@@ -99,11 +99,6 @@ submission. For Palomar, make the repository public on GitHub and submit its
 immutable commit and single `comparator.json`. The submission form also asks
 you to declare your relationship to the formalization.
 
-The current GitHub repository is private, so it is not yet eligible for
-Palomar submission. A repository administrator must make it public before
-intake. Local structural checks and kernel checks do not complete Palomar's
-own verification, editorial review or registration.
-
 Project code and documentation use the root MIT `LICENSE`. Reused stochastic
 foundations, OAI adaptations and renewal proofs retain their Apache-2.0 licenses
 and exact source/adaptation records in `vendor/PROVENANCE.json`; `NOTICE` records their
