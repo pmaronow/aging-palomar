@@ -1,0 +1,514 @@
+\chapter{The causal tree realization and reflection}\label{sec:geometry-core}
+
+In this section, we realize the CK correlation as the Gram kernel of a curve $v_t$ of unit vectors in a deterministic Hilbert space. We use this realization to study the part of a late state that was already determined at an earlier time. The main results are the exact causal realization, \cref{prop:geometry-tree-realization}; the evolution of a projected state, \cref{lem:geometry-projected-drift}; the reflection identity for stationary clusters, \cref{sel:prefix-reflection}; and the spectral representation of every stationary correlation profile, \cref{sel:cluster-complete-monotonicity}.
+
+We use the CK equations of \cref{sec:model}, the physical bounds \eqref{eq:ck-physical-bounds}, the Green covariance identity of \cref{prop:green-covariance}, the energy identity \eqref{eq:energy-identity}, the uniform multiplier bound \eqref{eq:uniform-multiplier}, the diagonal increment bound \eqref{eq:diagonal-increment}, the regularity of the response from \cref{prop:backward-response,prop:response-compactness}, and the stationary clusters of \cref{prop:stationary-clusters}. The results of this section are used in most of the later sections. The limits $d_L$ and $h_L$ of \cref{sel:prefix-reflection} are the objects of \cref{prop:threshold-inputs}, and they enter the proofs of marginality and forgetting in \cref{sec:stationary-selection}. The ceilings of \cref{sec:tree-ceilings} and the geometry of \cref{sec:geometry-results,sec:three-time} rest on the tree space and its height grading. In \cref{resp:chapter}, we use the leaf component of a projected state and \cref{lem:geometry-projected-drift}. The complete monotonicity asserted in \cref{thm:main-aging} is part of \cref{sel:cluster-complete-monotonicity}, which is also used in \cref{resp:chapter,sec:three-time,sec:stationary-relaxation}.
+
+We start from the Green identity \eqref{eq:green-covariance}, which we derived in \cref{prop:green-covariance} by variation of constants from the CK equations of \cite{bag2006,dgm2007}. Positive noncrossing expansions of the associated response equation occur in the work of Guionnet and Mazza \cite[Section~2.1 and Lemma~2.1]{guionnetmazza2005} and of Dembo, Guionnet, and Mazza \cite[Section~2]{dgm2007}. Guionnet and Mazza also describe their full Fock-space interpretation. We build on these positive expansions. The tree realization below is a positive expansion of the covariance, graded by ordered trees so that every term records its height and the times of the thermal noise that it uses; we do not identify this grading with a Wiener chaos decomposition. All constructions take place in one deterministic Hilbert space. The prefix projection $P_T$ defined below plays the role of conditioning on the noise up to time $T$, but we never condition on the finite-dimensional probability space.
+
+\paragraph{Standing assumptions and notation.}
+Throughout this section, $p\ge3$ and $\beta>0$ are fixed, $m=p-1$, and $(C,R,\lambda)$ is the uniformly initialized hard CK solution of \cref{sec:model}. All Hilbert spaces and tensor products are real. We write
+\[
+ \Sigma(t,u)=\beta^2p(p-1)C(t,u)^{p-2}R(t,u),\qquad 0\le u\le t,
+\]
+for the kernel \eqref{eq:self-energy-kernel}, so that the response equation \eqref{eq:ck-response} reads
+\begin{equation}\label{eq:tree-response-equation}
+ \partial_tR(t,s)=-\lambda(t)R(t,s)+\int_s^t\Sigma(t,u)R(u,s)\,\dd u,\qquad t>s.
+\end{equation}
+By \eqref{eq:ck-physical-bounds} and \cref{prop:response-compactness}, we have $0\le R(t,s)\le C(t,s)\le1$ for $t\ge s$, and in particular $\Sigma\ge0$.
+
+\section{The tree Hilbert space}\label{sec:tree-space}
+
+We first explain the purpose of the construction. Recall from \cref{prop:green-covariance} that the correlation is the sum of three terms,
+\[
+\begin{aligned}
+ C(t,s)={}&R(t,0)R(s,0)+2\int_0^{t\wedge s}R(t,u)R(s,u)\,\dd u\\
+ &+\beta^2p\int_0^t\int_0^sR(t,u)R(s,w)C(u,w)^{m}\,\dd w\,\dd u.
+\end{aligned}
+\]
+The first term comes from the initial condition, the second from the thermal noise, and the third from the colored memory. The first two terms are the inner product of the vectors $R(t,0)e_0+\sqrt2\,\mathbf 1_{[0,t]}R(t,\cdot)$ and $R(s,0)e_0+\sqrt2\,\mathbf 1_{[0,s]}R(s,\cdot)$ in $\R e_0\oplus L^2(\R_+)$. The second component of such a vector records the noise received at each time $u\le t$, transported to time $t$ by the response. If $C(u,w)=\ip{v_u}{v_w}$ for some vectors $v_u$, then $C(u,w)^m=\ip{v_u^{\otimes m}}{v_w^{\otimes m}}$, and the third term is also an inner product. This suggests looking for vectors $v_t$ with
+\[
+ v_t=R(t,0)e_0+\sqrt2\,\mathbf 1_{[0,t]}R(t,\cdot)+\beta\sqrt p\int_0^tR(t,u)\mathcal I\bigl(v_u^{\otimes m}\bigr)\,\dd u,
+\]
+where $\mathcal I$ is an isometry from the $m$-fold tensor power into a space orthogonal to the first two terms. Iterating this equation, we expand $v_t$ as a sum of terms indexed by trees. Each leaf of a tree carries either the initial vector $e_0$ or the time of a noise increment, and each internal vertex records one use of the memory integral. The point of this bookkeeping is that every term of $v_t$ comes with the times of the noise it uses. The terms whose noise times are at most $T$ form the part of the state at time $t$ built from the initial vector and noise received by time $T$; their memory integrals may still extend beyond $T$. We now make this precise.
+
+\paragraph{Trees and grafting.}
+Let $\mathcal E=\R e_0\oplus L^2(\R_+)$, where $e_0$ is a unit vector. By a \emph{tree} we mean a finite rooted tree in which every vertex has either no children or exactly $m$ children, and the children of each vertex are ordered. We call vertices without children leaves. We write $|\tau|$ for the number of leaves of a tree $\tau$, whose leaves we list from left to right, and $\bullet$ for the tree with one vertex. For trees $\tau_1,\dots,\tau_m$, we write $[\tau_1,\dots,\tau_m]$ for the tree whose root has the subtrees $\tau_1,\dots,\tau_m$, in this order. We call this operation grafting. Every tree other than $\bullet$ is the graft of a unique ordered $m$-tuple of trees.
+
+We define $\mathcal H$ as the orthogonal direct sum, over all trees $\tau$, of one copy of $\mathcal E^{\otimes|\tau|}$:
+\[
+ \mathcal H=\bigoplus_\tau\mathcal E^{\otimes|\tau|}.
+\]
+The summand indexed by $\bullet$ is $\mathcal E$. We call it the one-leaf summand. The space $\mathcal H$ is separable, because there are countably many trees and each summand is separable. Since tensor products distribute over orthogonal direct sums, we have
+\[
+ \mathcal H^{\otimes m}\cong\bigoplus_{(\tau_1,\dots,\tau_m)}\mathcal E^{\otimes(|\tau_1|+\dots+|\tau_m|)}.
+\]
+We define the grafting map $\mathcal I\colon\mathcal H^{\otimes m}\to\mathcal H$ by sending the summand indexed by $(\tau_1,\dots,\tau_m)$ identically onto the summand indexed by $[\tau_1,\dots,\tau_m]$; the leaves of $\tau_1$ come first, then those of $\tau_2$, and so on. Since every tree other than $\bullet$ is the graft of a unique $m$-tuple, $\mathcal I$ is an isometry, and its range is the orthogonal complement of the one-leaf summand. Its adjoint satisfies $\mathcal I^*\mathcal I=\Id$, and $\mathcal I^*$ vanishes on the one-leaf summand. We use ordered trees because they make grafting an isometry, with no symmetry factors. When $p=3$, we identify a tensor $x\otimes y\in\mathcal H\otimes\mathcal H$ with the Hilbert--Schmidt operator $z\mapsto\ip yz\,x$ on $\mathcal H$; this is how we use $\mathcal I^*$ in \cref{sec:geometry-results,sec:three-time}.
+
+\paragraph{Leaf labels and positivity.}
+We now realize $\mathcal E$ as an $L^2$ space. Let $\mathbb L=\{\star\}\sqcup[0,\infty)$ carry the measure $\delta_\star+\dd u$. Then $\mathcal E=L^2(\mathbb L)$, with $e_0=\mathbf 1_{\{\star\}}$, and $\mathcal E^{\otimes k}=L^2(\mathbb L^k)$. An element of the summand indexed by $\tau$ is then a function of the leaf labels of $\tau$. The label $\star$ marks the initial vector, and a label $u\ge0$ marks a noise time. We say that a vector of $\mathcal H$ is nonnegative if each of its components is a nonnegative function almost everywhere. Tensor products and grafts of nonnegative vectors are nonnegative.
+
+\paragraph{Heights.}
+We define the height of $\bullet$ to be zero, and the height of $[\tau_1,\dots,\tau_m]$ to be one plus the largest height of $\tau_1,\dots,\tau_m$. We write $\Pi_j$ for the orthogonal projection of $\mathcal H$ onto the sum of the summands indexed by trees of height $j$, and we set $\Pi_{\le H}=\sum_{j=0}^H\Pi_j$. Note that $\sum_{j\ge0}\Pi_j=\Id$ in the strong sense, because every tree has a finite height.
+
+\paragraph{Prefix projections.}
+For $T\ge0$, let $\mathcal E_T=\R e_0\oplus L^2([0,T])$, and let $\varpi_T$ be the orthogonal projection of $\mathcal E$ onto $\mathcal E_T$, that is, $\varpi_T(ae_0+g)=ae_0+\mathbf 1_{[0,T]}g$. We define the prefix projection
+\[
+ P_T=\bigoplus_\tau\varpi_T^{\otimes|\tau|},
+\]
+and we write $\mathcal H_T$ for its range, the closed subspace generated by trees whose leaf factors lie in $\mathcal E_T$. In terms of leaf labels, $P_T$ multiplies the component indexed by $\tau$ by the indicator function that all leaf labels lie in $\{\star\}\cup[0,T]$. Since $P_T$, $\Pi_j$, and $\mathcal I$ act summand by summand, and the leaves of a graft are the leaves of its root subtrees, we have
+\begin{equation}
+ P_TP_S=P_{T\wedge S},\qquad P_T\Pi_j=\Pi_jP_T,\qquad
+ P_T\mathcal I=\mathcal I P_T^{\otimes m}.
+ \label{eq:geometry-prefix-commutation}
+\end{equation}
+In words, $P_T$ is a causal projection. A vector built from leaves with noise times at most $T$ belongs to $\mathcal H_T$, and $P_T$ commutes with grafting. The projections $P_T$, $\Id-P_T$, and $\Pi_j$ preserve nonnegativity, since each of them multiplies every component by an indicator function.
+
+\section{The exact causal realization}\label{sec:tree-realization}
+
+\begin{proposition}[Exact causal realization]
+\label{prop:geometry-tree-realization}
+There exists a norm-continuous curve $t\mapsto v_t\in\mathcal H$, $t\ge0$, with $v_t\in\mathcal H_t$ for every $t$, such that
+\begin{align}
+ v_t={}&R(t,0)e_0+\sqrt2\,\mathbf 1_{[0,t]}R(t,\cdot)
+       +\beta\sqrt p\int_0^tR(t,u)\mathcal I\bigl(v_u^{\otimes m}\bigr)\,\dd u,
+       \label{eq:geometry-tree-realization}\\
+ \ip{v_t}{v_s}={}&C(t,s),\qquad \norm{v_t}=1,
+       \label{eq:geometry-tree-gram}
+\end{align}
+where the integral is a Bochner integral in $\mathcal H$. For every tree $\tau$, the component of $v_t$ indexed by $\tau$ is a nonnegative function of the leaf labels; in particular, $\ip{\Pi_jv_t}{\Pi_jv_s}\ge0$ for all $j\ge0$ and $t,s\ge0$. Let $h$ be the tree energy, defined by
+\begin{equation}
+ h(v)=\sqrt p\,\ip{v}{\mathcal I\bigl(v^{\otimes m}\bigr)},\qquad v\in\mathcal H.
+ \label{eq:geometry-tree-energy}
+\end{equation}
+Then $h(v_t)=e_\beta(t)$ and $\lambda(t)=1+p\beta h(v_t)$ for every $t\ge0$. Moreover, for all $T\ge0$ and $t\ge0$,
+\begin{equation}
+ \mathcal I^*P_Tv_t
+ =\beta\sqrt p\int_0^tR(t,u)\bigl(P_Tv_u\bigr)^{\otimes m}\,\dd u.
+ \label{eq:geometry-prefix-root-frame}
+\end{equation}
+\end{proposition}
+
+Before the proof, we write out the first terms of the expansion in the cubic case.
+
+\begin{example}[The first two heights for $p=3$]\label{ex:tree-first-heights}
+Let $p=3$, so that grafting is binary. We write $\eta_t$ for the component of $v_t$ at height zero, which is the leaf vector
+\[
+ \eta_t=R(t,0)e_0+\sqrt2\,\mathbf 1_{[0,t]}R(t,\cdot).
+\]
+The only tree of height one is $[\bullet,\bullet]$, with two leaves. Iterating \eqref{eq:geometry-tree-realization} once, we see that the component of $v_t$ at height one is
+\[
+ w_t=\beta\sqrt3\int_0^tR(t,u)\,\mathcal I(\eta_u\otimes\eta_u)\,\dd u.
+\]
+As a function of two noise times $y_1,y_2\in[0,t]$, it is
+\[
+ w_t(y_1,y_2)=2\sqrt3\,\beta\int_{y_1\vee y_2}^tR(t,u)R(u,y_1)R(u,y_2)\,\dd u.
+\]
+Noise received at the times $y_1$ and $y_2$ is transported to a time $u$ by the response, combined there by the cubic interaction, and transported to time $t$. At labels involving $\star$, a factor $\sqrt2R(u,y_i)$ is replaced by $R(u,0)$. The trees of height two are $[[\bullet,\bullet],\bullet]$, $[\bullet,[\bullet,\bullet]]$, and $[[\bullet,\bullet],[\bullet,\bullet]]$, and the corresponding components of $v_t$ are
+\begin{gather*}
+ \beta\sqrt3\int_0^tR(t,u)\,\mathcal I(w_u\otimes\eta_u)\,\dd u,\qquad
+ \beta\sqrt3\int_0^tR(t,u)\,\mathcal I(\eta_u\otimes w_u)\,\dd u,\\
+ \beta\sqrt3\int_0^tR(t,u)\,\mathcal I(w_u\otimes w_u)\,\dd u.
+\end{gather*}
+The prefix projection acts only on the labels. For instance, we see that $P_Tw_t$ keeps the values of $w_t$ at noise times $y_1,y_2\le T$, while the time integral defining it still runs up to $t$. Finally, the Gram kernel of $\eta_t+w_t$ is
+\[
+ A_0(t,s)+3\beta^2\int_0^t\int_0^sR(t,u)R(s,w)A_0(u,w)^2\,\dd w\,\dd u,
+ \qquad A_0(t,s)=\ip{\eta_t}{\eta_s},
+\]
+which is the first step of the Picard iteration of the Green identity \eqref{eq:green-covariance}. In the proof below, we show that these iterations increase to $C$.
+\end{example}
+
+\begin{proof}[Proof of \cref{prop:geometry-tree-realization}]
+The proof has five steps. We first construct the component of $v_t$ indexed by each tree through a finite recursion. We then show that the Gram kernels of the truncations at bounded height increase to $C$, using a uniqueness property of the Green equation. This allows us to sum the components. Finally, we compute the projected root frame and the energy.
+
+\paragraph{Step 1: the tree components.}
+Let $\eta_t=R(t,0)e_0+\sqrt2\,\mathbf 1_{[0,t]}R(t,\cdot)\in\mathcal E$, and set $w_\bullet(t)=\eta_t$. If $\tau=[\tau_1,\dots,\tau_m]$, we define, in the summand indexed by $\tau$,
+\begin{equation}\label{eq:tree-component-recursion}
+ w_\tau(t)=\beta\sqrt p\int_0^tR(t,u)\,w_{\tau_1}(u)\otimes\dots\otimes w_{\tau_m}(u)\,\dd u.
+\end{equation}
+This is a recursion on the number of vertices. The curve $t\mapsto\eta_t$ is norm-continuous, because $R$ is uniformly continuous on compact causal triangles and bounded by one. By induction on the number of vertices, each $w_\tau$ is a norm-continuous curve, and the integral in \eqref{eq:tree-component-recursion} is a Bochner integral of a continuous integrand. Also by induction, $w_\tau(t)$ is nonnegative, because $R\ge0$ and tensor products and integrals of nonnegative vectors are nonnegative, and $w_\tau(t)$ lies in $\mathcal E_t^{\otimes|\tau|}$, because $w_{\tau_i}(u)\in\mathcal E_u^{\otimes|\tau_i|}\subset\mathcal E_t^{\otimes|\tau_i|}$ for $u\le t$.
+
+\paragraph{Step 2: the truncated Gram kernels.}
+For $n\ge0$, let $v^{(n)}_t$ be the sum of $w_\tau(t)$ over the finitely many trees $\tau$ of height at most $n$, and let $K_n(t,s)=\ip{v^{(n)}_t}{v^{(n)}_s}$. A tree of height at most $n\ge1$ is either $\bullet$ or the graft of $m$ trees of height at most $n-1$. Summing \eqref{eq:tree-component-recursion} over these trees, we have
+\[
+ v^{(n)}_t=\eta_t+\beta\sqrt p\int_0^tR(t,u)\,\mathcal I\bigl((v^{(n-1)}_u)^{\otimes m}\bigr)\,\dd u.
+\]
+Recall that $\eta_t$ is orthogonal to the range of $\mathcal I$ and that $\mathcal I$ is an isometry. Using also $\ip{x^{\otimes m}}{y^{\otimes m}}=\ip xy^m$, we find that $K_0=A_0$ and
+\begin{equation}\label{eq:tree-truncated-green}
+ K_n(t,s)=A_0(t,s)+\beta^2p\int_0^t\int_0^sR(t,u)R(s,w)K_{n-1}(u,w)^m\,\dd w\,\dd u,\qquad n\ge1,
+\end{equation}
+where
+\[
+ A_0(t,s)=\ip{\eta_t}{\eta_s}=R(t,0)R(s,0)+2\int_0^{t\wedge s}R(t,u)R(s,u)\,\dd u.
+\]
+The squared coefficients are $(\sqrt2)^2=2$ and $(\beta\sqrt p)^2=\beta^2p$, which are the coefficients of the Green identity \eqref{eq:green-covariance}. Note that $K_n\ge0$, because the components are nonnegative. We claim that
+\begin{equation}\label{eq:tree-truncated-monotone}
+ 0\le K_{n-1}\le K_n\le C,\qquad n\ge1.
+\end{equation}
+Indeed, the Green identity reads $C=A_0+\beta^2p\int\!\!\int RR\,C^m$, and its double integral is nonnegative by \eqref{eq:ck-physical-bounds}. This implies that $K_0=A_0\le C$. If $0\le K_{n-1}\le C$, then \eqref{eq:tree-truncated-green} and $R\ge0$ imply that $K_n\le C$. In the same way, $K_1\ge K_0$, and if $K_{n-1}\ge K_{n-2}\ge0$, then $K_n\ge K_{n-1}$. This proves \eqref{eq:tree-truncated-monotone}. Then $K_n$ increases pointwise to a limit $K$ with $0\le K\le C\le1$, and by monotone convergence in \eqref{eq:tree-truncated-green}, $K$ solves the Green equation
+\begin{equation}\label{eq:tree-green-equation}
+ K(t,s)=A_0(t,s)+\beta^2p\int_0^t\int_0^sR(t,u)R(s,w)K(u,w)^m\,\dd w\,\dd u.
+\end{equation}
+
+\paragraph{Step 3: uniqueness for the Green equation.}
+We prove that, for every $A<\infty$, \eqref{eq:tree-green-equation} has at most one solution on $[0,A]^2$ with values in $[-1,1]$. The kernel $C$ is such a solution by \cref{prop:green-covariance}, so uniqueness implies that $K=C$, that is, $K_n$ increases to $C$. Let $K$ and $K'$ be two such solutions and let $\Delta=K-K'$. Using $|x^m-y^m|\le m|x-y|$ for $x,y\in[-1,1]$ and $0\le R\le1$, we have, for $t,s\le A$,
+\[
+ |\Delta(t,s)|\le\beta^2pm\int_0^t\int_0^s|\Delta(u,w)|\,\dd w\,\dd u.
+\]
+Let $\rho(a)=\sup_{t,s\le a}|\Delta(t,s)|$, a bounded nondecreasing function. We bound $|\Delta(u,w)|$ by $\rho(\max\{u,w\})$ and divide the square $[0,a]^2$ according to which coordinate is larger. For $a\le A$, this yields
+\[
+ \rho(a)\le\beta^2pm\int_0^a\int_0^a\rho(\max\{u,w\})\,\dd w\,\dd u
+ =2\beta^2pm\int_0^az\rho(z)\,\dd z
+ \le2\beta^2pmA\int_0^a\rho(z)\,\dd z.
+\]
+By Gronwall's inequality, we have $\rho=0$ on $[0,A]$. As $A$ is arbitrary, we conclude that $K=C$.
+
+\paragraph{Step 4: the curve $v_t$.}
+Using Step 3, we find that $\sum_\tau\norm{w_\tau(t)}^2=\lim_nK_n(t,t)=C(t,t)=1$. The components lie in orthogonal summands, and the series $v_t=\sum_\tau w_\tau(t)$ therefore converges in $\mathcal H$, with $v^{(n)}_t\to v_t$. Then $\ip{v_t}{v_s}=\lim_nK_n(t,s)=C(t,s)$, which is \eqref{eq:geometry-tree-gram}. By the identity $\norm{v_t-v_s}^2=2\{1-C(t,s)\}$ and the continuity of $C$, the curve $t\mapsto v_t$ is norm-continuous. Each component of $v_t$ is nonnegative and lies in $\mathcal E_t^{\otimes|\tau|}$, which shows that $v_t\in\mathcal H_t$. The inner product $\ip{\Pi_jv_t}{\Pi_jv_s}$ is a sum of inner products of nonnegative functions, and it is nonnegative.
+
+It remains to prove \eqref{eq:geometry-tree-realization}. The integrand $u\mapsto R(t,u)\mathcal I(v_u^{\otimes m})$ is continuous on $[0,t]$, and the integral is a Bochner integral. The orthogonal projection onto the summand indexed by $\tau=[\tau_1,\dots,\tau_m]$ is bounded and commutes with the integral, and it maps $\mathcal I(v_u^{\otimes m})$ to $w_{\tau_1}(u)\otimes\dots\otimes w_{\tau_m}(u)$. Comparing with \eqref{eq:tree-component-recursion}, we see that the component of the right side of \eqref{eq:geometry-tree-realization} indexed by $\tau$ is $w_\tau(t)$. Its one-leaf component is $\eta_t=w_\bullet(t)$. Both sides of \eqref{eq:geometry-tree-realization} therefore have the same components.
+
+\paragraph{Step 5: the root frame and the energy.}
+We apply $P_T$ to \eqref{eq:geometry-tree-realization}. The projection $P_T$ is bounded and commutes with grafting by \eqref{eq:geometry-prefix-commutation}, which gives
+\[
+ P_Tv_t=P_T\eta_t+\beta\sqrt p\int_0^tR(t,u)\,\mathcal I\bigl((P_Tv_u)^{\otimes m}\bigr)\,\dd u.
+\]
+The vector $P_T\eta_t$ lies in the one-leaf summand, which $\mathcal I^*$ annihilates, and $\mathcal I^*\mathcal I=\Id$. Applying $\mathcal I^*$ to the last display yields \eqref{eq:geometry-prefix-root-frame}. We now let $T=t$. For $u\le t$, we have $v_u\in\mathcal H_u\subset\mathcal H_t$, so $P_tv_u=v_u$. Taking the inner product of \eqref{eq:geometry-prefix-root-frame} with $v_t^{\otimes m}$, we obtain
+\[
+\begin{aligned}
+ h(v_t)&=\sqrt p\,\ip{\mathcal I^*v_t}{v_t^{\otimes m}}
+ =p\beta\int_0^tR(t,u)\ip{v_u}{v_t}^m\,\dd u\\
+ &=p\beta\int_0^tC(t,u)^{p-1}R(t,u)\,\dd u
+ =e_\beta(t),
+\end{aligned}
+\]
+where the last equality is \eqref{eq:energy-identity}. By the same identity, we also have $\lambda(t)=1+p\beta e_\beta(t)=1+p\beta h(v_t)$. This completes the proof.
+\end{proof}
+
+\section{The evolution of a projected state}\label{sec:tree-projected-drift}
+
+After time $T$, no new noise leaf survives the projection $P_T$, and the projected curve $P_Tv_t$ becomes differentiable. The next lemma computes its derivative. In \cref{resp:chapter}, we use it to turn reflection identities into bounds on derivatives at remote times (\cref{resp:forward-derivative}). The polynomial $h$ of \eqref{eq:geometry-tree-energy} is Fr\'echet differentiable on $\mathcal H$, and we write $\nabla h(v)$ for its gradient.
+
+\begin{lemma}[Local polynomial drift after a causal projection]
+\label{lem:geometry-projected-drift}
+Define $\mathcal B\colon\mathcal H\to\mathcal H$ by
+\[
+ \mathcal B(v)=-v+\beta\nabla h(v)-p\beta h(v)v.
+\]
+For every fixed $T\ge0$, the curve $t\mapsto P_Tv_t$ is continuously differentiable on $(T,\infty)$, and
+\begin{equation}
+ \frac{\dd}{\dd t}P_Tv_t=P_T\mathcal B(v_t),\qquad t>T.
+ \label{eq:geometry-projected-drift}
+\end{equation}
+The map $\mathcal B$ is Lipschitz on the closed unit ball of $\mathcal H$. If there exists $K<\infty$ such that $1-C(t,s)\le K|t-s|$ for all $t,s\ge0$, then there exists $K'<\infty$, depending only on $p$, $\beta$, and $K$, such that
+\[
+ \Bigl\|\frac{\dd}{\dd t}P_Tv_t-\frac{\dd}{\dd s}P_Tv_s\Bigr\|\le K'|t-s|^{1/2}
+ \qquad\text{for all }T\ge0\text{ and }t,s>T.
+\]
+\end{lemma}
+
+\begin{proof}
+We differentiate the projected realization, identify the result with the gradient of $h$ along the curve, and prove the Lipschitz bounds. Throughout, we write
+\[
+ \Phi(u)=\beta\sqrt p\,\mathcal I\bigl(v_u^{\otimes m}\bigr),\qquad
+ \Psi(t)=\int_0^tR(t,u)\Phi(u)\,\dd u,
+\]
+so that $v_t=\eta_t+\Psi(t)$ by \eqref{eq:geometry-tree-realization}, with $\eta_t$ the leaf vector of the proof of \cref{prop:geometry-tree-realization}. The curve $\Phi$ is continuous, with $\norm{\Phi(u)}\le\beta\sqrt p$.
+
+\paragraph{Step 1: differentiation.}
+By \cref{prop:backward-response}, the partial derivative $\partial_tR$ extends continuously to every compact causal triangle. For $t>T$, we have
+\[
+ P_T\eta_t=R(t,0)e_0+\sqrt2\,\mathbf 1_{[0,T]}R(t,\cdot),
+\]
+and the cutoff of the noise component no longer moves with $t$. On every compact interval of $(T,\infty)$, the difference quotients of $R(\cdot,u)$ converge to $\partial_tR(\cdot,u)$ uniformly in $u\in[0,T]$. It follows that $P_T\eta_t$ is continuously differentiable on $(T,\infty)$, with derivative $\partial_tR(t,0)e_0+\sqrt2\,\mathbf 1_{[0,T]}\partial_tR(t,\cdot)$. Inserting the response equation \eqref{eq:tree-response-equation}, and noting that the noise component of $P_T\eta_z$ is $\sqrt2R(z,y)$ for $y\le z\wedge T$ and zero for other $y$, we have
+\begin{equation}\label{eq:tree-leaf-derivative}
+ \frac{\dd}{\dd t}P_T\eta_t=-\lambda(t)P_T\eta_t+\int_0^t\Sigma(t,z)P_T\eta_z\,\dd z,\qquad t>T.
+\end{equation}
+Next, using that $R$ and $\partial_tR$ are continuous on compact causal triangles and that $R(t,t)=1$, we see that the curve $\Psi$ is continuously differentiable on $(0,\infty)$, with
+\[
+ \Psi'(t)=\Phi(t)+\int_0^t\partial_tR(t,u)\Phi(u)\,\dd u.
+\]
+We insert \eqref{eq:tree-response-equation} and exchange the order of integration on the triangle $\{0\le u\le z\le t\}$, which is allowed because the integrand is continuous and bounded in norm. We obtain
+\begin{equation}\label{eq:tree-memory-derivative}
+ \Psi'(t)=\Phi(t)-\lambda(t)\Psi(t)+\int_0^t\Sigma(t,z)\Psi(z)\,\dd z.
+\end{equation}
+Adding \eqref{eq:tree-leaf-derivative} and the image of \eqref{eq:tree-memory-derivative} under $P_T$, we have, for $t>T$,
+\begin{equation}\label{eq:tree-projected-derivative}
+ \frac{\dd}{\dd t}P_Tv_t=P_T\Bigl[-\lambda(t)v_t+\Phi(t)+\int_0^t\Sigma(t,z)v_z\,\dd z\Bigr].
+\end{equation}
+
+\paragraph{Step 2: the gradient along the curve.}
+For $v,w\in\mathcal H$, the derivative of $h$ is
+\[
+ Dh(v)[w]=\sqrt p\,\ip{w}{\mathcal I(v^{\otimes m})}
+ +\sqrt p\sum_{i=1}^m\ip{\mathcal I^*v}{v^{\otimes(i-1)}\otimes w\otimes v^{\otimes(m-i)}}.
+\]
+Recall from \eqref{eq:geometry-prefix-root-frame} with $T=t$ that $\mathcal I^*v_t=\beta\sqrt p\int_0^tR(t,u)v_u^{\otimes m}\,\dd u$. Each of the $m$ terms of the sum then equals $\beta\sqrt p\int_0^tR(t,u)C(t,u)^{m-1}\ip{v_u}w\,\dd u$, and we find that
+\begin{equation}\label{eq:tree-gradient-along-curve}
+ \beta\nabla h(v_t)=\Phi(t)+\beta^2p(p-1)\int_0^tC(t,u)^{p-2}R(t,u)v_u\,\dd u
+ =\Phi(t)+\int_0^t\Sigma(t,u)v_u\,\dd u.
+\end{equation}
+Although ordered grafting is not symmetric, the $m$ contractions agree here because the root tensor of $v_t$ is an integral of symmetric tensor powers; this produces the factor $p-1$ in $\Sigma$. We also have $\lambda(t)=1+p\beta h(v_t)$ by \cref{prop:geometry-tree-realization}. Inserting this and \eqref{eq:tree-gradient-along-curve} into \eqref{eq:tree-projected-derivative}, we arrive at \eqref{eq:geometry-projected-drift}. Its right side is continuous in $t$, because $t\mapsto v_t$ and $\mathcal B$ are continuous, and this shows that $P_Tv_t$ is continuously differentiable on $(T,\infty)$.
+
+\paragraph{Step 3: the Lipschitz bounds.}
+The multilinear form $(y_0,\dots,y_m)\mapsto\ip{y_0}{\mathcal I(y_1\otimes\dots\otimes y_m)}$ has norm at most one, and we obtain $h$ and $Dh$ by inserting $v$ or $w$ into its $p=m+1$ slots. Changing one slot at a time, we find, for $v,v'$ in the closed unit ball,
+\begin{gather*}
+ |h(v)|\le\sqrt p,\qquad |h(v)-h(v')|\le p\sqrt p\,\norm{v-v'},\\
+ \norm{\nabla h(v)-\nabla h(v')}\le p(p-1)\sqrt p\,\norm{v-v'}.
+\end{gather*}
+Writing $h(v)v-h(v')v'=h(v)(v-v')+\{h(v)-h(v')\}v'$, we have
+\[
+\begin{aligned}
+ \norm{\mathcal B(v)-\mathcal B(v')}
+ &\le\bigl\{1+\beta p(p-1)\sqrt p+p\beta(\sqrt p+p\sqrt p)\bigr\}\norm{v-v'}\\
+ &=\bigl(1+2\beta p^2\sqrt p\bigr)\norm{v-v'}.
+\end{aligned}
+\]
+Now suppose that $1-C(t,s)\le K|t-s|$ for all $t,s$. Then $\norm{v_t-v_s}^2=2\{1-C(t,s)\}\le2K|t-s|$. Since $P_T$ is a contraction, \eqref{eq:geometry-projected-drift} implies that, for $t,s>T$,
+\[
+ \Bigl\|\frac{\dd}{\dd t}P_Tv_t-\frac{\dd}{\dd s}P_Tv_s\Bigr\|
+ \le\bigl(1+2\beta p^2\sqrt p\bigr)\sqrt{2K}\,|t-s|^{1/2}.
+\]
+This is the last assertion, with $K'=(1+2\beta p^2\sqrt p)\sqrt{2K}$.
+\end{proof}
+
+\begin{remark}[The diagonal increment bound]\label{rem:geometry-diagonal-increment}
+The hypothesis of the last assertion of \cref{lem:geometry-projected-drift} holds with $K=\Lambda$, the constant of \eqref{eq:uniform-multiplier}. Indeed, by \eqref{eq:diagonal-increment} in \cref{prop:global-regularity} and the symmetry of $C$, we have $1-C(t,s)\le\Lambda|t-s|$ for all $t,s\ge0$. The derivatives of $P_Tv_t$ are then $1/2$-H\"older on $(T,\infty)$ with the constant $(1+2\beta p^2\sqrt p)\sqrt{2\Lambda}$, which does not depend on $T$.
+\end{remark}
+
+\section{Reflection and complete monotonicity}
+\label{sec:selection}
+
+We now study the part of a late state that was already determined at an earlier time. By \cref{prop:stationary-clusters}, entropy production identifies every bounded-lag cluster of the translated kernels as a stationary profile that satisfies the FDT relation. It neither selects the plateau of this profile nor controls the older part of the correlation memory. To study the plateau, we project late states onto the information carried by earlier noise leaves. For $T\ge0$ and $a\ge0$, we define the \emph{prefix center}
+\[
+ M_T(a)=P_Tv_{T+a}.
+\]
+It is the part of the state at time $T+a$ built from the initial vector and noise received by time $T$, including memory interactions after $T$. The main observation of this section is that the Gram kernel of the prefix centers satisfies a closed equation on a fixed future rectangle. Every memory term that involves a time before $T$ cancels exactly, before any limit is taken. The stationary FDT relation then identifies the limit of this kernel. This is the reflection identity, which says that the overlap of the centers at offsets $a$ and $b$ converges to $c(a+b)$.
+
+Recall that a stationary cluster $(c,r,\ell)$ is a locally uniform limit of the translated kernels $(C_{T_n},R_{T_n},\lambda_{T_n})$ along a sequence $T_n\to\infty$, as in \cref{prop:stationary-clusters}, and that its energy is $e_\infty=(\ell-1)/(p\beta)$.
+
+\begin{proposition}[Reflection of a stationary cluster]
+\label{sel:prefix-reflection}
+Fix $p\ge3$ and $\beta>0$. Let $T_n\to\infty$ be a sequence along which the translated kernels converge to a stationary cluster $(c,r,\ell)$, as in \cref{prop:stationary-clusters}, and let $e_\infty=(\ell-1)/(p\beta)$ be its energy. Then, for every finite $A\ge0$,
+\begin{equation}
+ \lim_{n\to\infty}\sup_{0\le a,b\le A}\bigl|\ip{M_{T_n}(a)}{M_{T_n}(b)}-c(a+b)\bigr|=0.
+ \label{sel:prefix-gram}
+\end{equation}
+Moreover, for every fixed $L\ge0$,
+\begin{align}
+ &\lim_{n\to\infty}\norm{M_{T_n}(L)}^2=d_L,\qquad d_L=c(2L),
+ \label{sel:prefix-norm}\\
+ &\lim_{n\to\infty}h\bigl(M_{T_n}(L)\bigr)=h_L,\qquad
+ h_L=e_\infty+\beta p\int_0^Lr(\tau)\bigl\{c(2L-\tau)^{p-1}-c(\tau)^{p-1}\bigr\}\,\dd\tau.
+ \label{sel:prefix-energy}
+\end{align}
+\end{proposition}
+
+The plateau $q$ of the cluster may be zero; the proposition covers every $p\ge3$, every $\beta>0$, and every stationary cluster.
+
+\begin{remark}[Independent futures]\label{rem:tree-independent-futures}
+The reflected lag $a+b$ has a simple heuristic explanation. Let $(x_t)$ be a stationary reversible Markov process in $\R^N$ with correlation $c(t)=\E[x_0\cdot x_t]/N$. Two continuations from a common state $x_T$, with independent noise after time $T$, have the conditional means $\E[x_{T+a}\mid x_T]$ and $\E[x_{T+b}\mid x_T]$ at times $T+a$ and $T+b$. The Markov semigroup of the process is self-adjoint in the stationary law, so stationarity and the semigroup property give
+\[
+ \frac1N\E\bigl[\E[x_{T+a}\mid x_T]\cdot\E[x_{T+b}\mid x_T]\bigr]=\frac1N\E[x_0\cdot x_{a+b}]=c(a+b).
+\]
+Trajectories with a common past and independent future noise were studied by Barrat, Burioni, and M\'ezard, and the formula $c(a+b)$ for the overlap of two such continuations appears in \cite[equation~(9) and Section~4.1]{bbm1996}. Franz and Virasoro proposed weighted averages over cloned futures to improve estimates of quasi-state magnetizations \cite[arXiv version~3, Section~III]{franzvirasoro2000}; see also Biroli \cite[arXiv version~2, Section~III.B]{biroli1999}. The prefix center plays the role of the conditional mean in the tree space. The CK dynamics is not stationary, and \cref{sel:prefix-reflection} justifies the reflected overlap for the stationary clusters of the CK solution, by an exact cancellation in the CK equations.
+\end{remark}
+
+\begin{proof}[Proof of \cref{sel:prefix-reflection}]
+The proof has four steps. First, for every fixed $T$, we derive a closed equation for the projected Gram kernel on the future rectangle. Second, we pass to the limit in its coefficients and show that the limiting equation is stable, in the sense that any solution with values in $[0,1]$ is the limit of the projected kernels. Third, we verify with Laplace transforms that $c(a+b)$ is such a solution, which proves \eqref{sel:prefix-gram} and \eqref{sel:prefix-norm}. Fourth, we compute the energy of a prefix center by an exact subtraction. Throughout, we write $B=\beta^2p$.
+
+\paragraph{Step 1: the closed equation on the future rectangle.}
+Fix $T\ge0$, and let $K_T(t,s)=\ip{P_Tv_t}{P_Tv_s}$ for $t,s\ge0$. We apply $P_T$ to \eqref{eq:geometry-tree-realization}. The one-leaf component $P_T\eta_t$ is orthogonal to the grafted part, $P_T$ commutes with grafting by \eqref{eq:geometry-prefix-commutation}, and $\mathcal I$ is an isometry. As in Step 2 of the proof of \cref{prop:geometry-tree-realization}, we obtain, for $t,s\ge T$,
+\begin{equation}\label{eq:tree-projected-green}
+\begin{split}
+ K_T(t,s)={}&R(t,0)R(s,0)+2\int_0^TR(t,u)R(s,u)\,\dd u\\
+ &+B\int_0^t\int_0^sR(t,u)R(s,w)K_T(u,w)^m\,\dd w\,\dd u.
+\end{split}
+\end{equation}
+Here the noise integral stops at $T$, since the noise components of $P_T\eta_t$ and $P_T\eta_s$ vanish beyond $T$. The projection has no effect as soon as one argument lies in the past. Indeed, if $u\le T$, then $v_u\in\mathcal H_T$, which implies that $P_Tv_u=v_u$ and
+\[
+ K_T(u,w)=\ip{v_u}{P_Tv_w}=\ip{P_Tv_u}{v_w}=\ip{v_u}{v_w}=C(u,w).
+\]
+The same holds if $w\le T$. We subtract \eqref{eq:tree-projected-green} from the Green identity \eqref{eq:green-covariance}. The initial terms cancel, the noise integrals over $[0,T]$ cancel, and in the memory integrals every block with $u\le T$ or $w\le T$ cancels. Only the integrals over $(T,t]\times(T,s]$ remain, and we have
+\[
+\begin{aligned}
+ C(t,s)-K_T(t,s)={}&2\int_T^{t\wedge s}R(t,u)R(s,u)\,\dd u\\
+ &+B\int_T^t\int_T^sR(t,u)R(s,w)\bigl\{C(u,w)^m-K_T(u,w)^m\bigr\}\,\dd w\,\dd u.
+\end{aligned}
+\]
+For $a,b\ge0$, let $Q_T(a,b)=K_T(T+a,T+b)=\ip{M_T(a)}{M_T(b)}$. Shifting all times by $T$, we arrive at
+\begin{align}
+ Q_T(a,b)={}&C(T+a,T+b)
+ -2\int_0^{a\wedge b}R(T+a,T+u)R(T+b,T+u)\,\dd u
+ \notag\\
+ &-B\int_0^a\int_0^b R(T+a,T+u)R(T+b,T+w)
+ \notag\\
+ &\hspace{6em}\cdot\bigl\{C(T+u,T+w)^m-Q_T(u,w)^m\bigr\}\,\dd w\,\dd u.
+ \label{sel:closed-prefix-rectangle}
+\end{align}
+This equation holds for every $T$; no limit has been taken, and no decay of the older memory has been used. We also note that
+\[
+ 0\le Q_T(a,b)\le C(T+a,T+b)\le1.
+\]
+Indeed, the components of $P_Tv_t$ and $(\Id-P_T)v_t$ are nonnegative, which implies $C(t,s)=K_T(t,s)+\ip{(\Id-P_T)v_t}{(\Id-P_T)v_s}\ge K_T(t,s)\ge0$.
+
+\paragraph{Step 2: the limiting equation, uniqueness, and stability.}
+We fix $0\le A<\infty$ and write $Q_n=Q_{T_n}$, $C_n(a,b)=C(T_n+a,T_n+b)$, and $R_n(a,u)=R(T_n+a,T_n+u)$. We also abbreviate $\Theta_n(u,w)=R_n(a,u)R_n(b,w)$ and $\theta(u,w)=r(a-u)r(b-w)$, for fixed $a$ and $b$. By \cref{prop:stationary-clusters}, we have $C_n(a,b)\to c(|a-b|)$ uniformly for $a,b\in[0,A]$, and $R_n(a,u)\to r(a-u)$ uniformly for $0\le u\le a\le A$. The limiting form of \eqref{sel:closed-prefix-rectangle} is the equation
+\begin{align}
+ Q(a,b)={}&c(|a-b|)-2\int_0^{a\wedge b}r(a-u)r(b-u)\,\dd u
+ \notag\\
+ &-B\int_0^a\int_0^b r(a-u)r(b-w)\bigl\{c(|u-w|)^m-Q(u,w)^m\bigr\}\,\dd w\,\dd u
+ \label{sel:limiting-prefix-rectangle}
+\end{align}
+for a function $Q$ on $[0,A]^2$. We first show that it has at most one bounded solution. Let $Q$ and $Q'$ be two solutions with $|Q|,|Q'|\le\Gamma$, and let $\Delta=Q-Q'$. Using $0\le r\le1$ and $|x^m-y^m|\le m\Gamma^{m-1}|x-y|$ for $|x|,|y|\le\Gamma$, we have
+\[
+ |\Delta(a,b)|\le Bm\Gamma^{m-1}\int_0^a\int_0^b|\Delta(u,w)|\,\dd w\,\dd u,
+\]
+and the Gronwall argument of Step 3 in the proof of \cref{prop:geometry-tree-realization} shows that $\Delta=0$.
+
+Next, we prove stability. Let $Q$ be a solution of \eqref{sel:limiting-prefix-rectangle} with values in $[0,1]$. Subtracting \eqref{sel:limiting-prefix-rectangle} from \eqref{sel:closed-prefix-rectangle} at $T=T_n$, we find
+\begin{align*}
+ Q_n(a,b)-Q(a,b)={}&\bigl\{C_n(a,b)-c(|a-b|)\bigr\}
+ -2\int_0^{a\wedge b}\bigl\{\Theta_n(u,u)-\theta(u,u)\bigr\}\,\dd u\\
+ &-B\int_0^a\int_0^b\bigl\{\Theta_n(u,w)C_n(u,w)^m-\theta(u,w)c(|u-w|)^m\bigr\}\,\dd w\,\dd u\\
+ &+B\int_0^a\int_0^b\bigl\{\Theta_n(u,w)-\theta(u,w)\bigr\}Q(u,w)^m\,\dd w\,\dd u\\
+ &+B\int_0^a\int_0^b\Theta_n(u,w)\bigl\{Q_n(u,w)^m-Q(u,w)^m\bigr\}\,\dd w\,\dd u.
+\end{align*}
+Let $\varepsilon_n$ be the supremum over $a,b\in[0,A]$ of the sum of the absolute values of the first four terms on the right. All kernels take values in $[0,1]$ and converge uniformly, and the intervals and rectangles of integration have measure bounded in terms of $A$ only. Then $\varepsilon_n\to0$. In the last term, we use $0\le\Theta_n\le1$ and $|x^m-y^m|\le m|x-y|$ for $x,y\in[0,1]$, which applies by Step 1. This gives
+\[
+ |Q_n(a,b)-Q(a,b)|\le\varepsilon_n+Bm\int_0^a\int_0^b|Q_n(u,w)-Q(u,w)|\,\dd w\,\dd u,\qquad a,b\in[0,A].
+\]
+Let $\rho_n(z)=\sup_{a,b\le z}|Q_n(a,b)-Q(a,b)|$. As in Step 3 of the proof of \cref{prop:geometry-tree-realization}, we have $\rho_n(z)\le\varepsilon_n+2BmA\int_0^z\rho_n(y)\,\dd y$ for $z\le A$, and Gronwall's inequality implies that
+\begin{equation}\label{eq:tree-prefix-stability}
+ \sup_{0\le a,b\le A}|Q_n(a,b)-Q(a,b)|\le\varepsilon_ne^{2BmA^2}\longrightarrow0.
+\end{equation}
+It remains to find a solution of \eqref{sel:limiting-prefix-rectangle} with values in $[0,1]$.
+
+\paragraph{Step 3: identification of the solution through Laplace transforms.}
+We check that $Q(a,b)=c(a+b)$ solves \eqref{sel:limiting-prefix-rectangle}. Note that $0\le c\le1$. Step 2 then proves \eqref{sel:prefix-gram}, and the case $a=b=L$ proves \eqref{sel:prefix-norm}.
+
+For a bounded function $f$ on $[0,\infty)$, let $D_f(a,b)=f(|a-b|)-f(a+b)$. Note that $c(|u-w|)^m-c(u+w)^m=D_{c^m}(u,w)$. Then the function $c(a+b)$ solves \eqref{sel:limiting-prefix-rectangle} if and only if, for all $a,b\ge0$,
+\begin{equation}\label{eq:tree-reflection-difference}
+ D_c(a,b)=2\int_0^{a\wedge b}r(a-u)r(b-u)\,\dd u
+ +B\int_0^a\int_0^b r(a-u)r(b-w)D_{c^m}(u,w)\,\dd w\,\dd u.
+\end{equation}
+We prove \eqref{eq:tree-reflection-difference} by comparing double Laplace transforms. For a bounded measurable $f$ on $[0,\infty)$ and $z>0$, we write $\widehat f(z)=\int_0^\infty e^{-zt}f(t)\,\dd t$, and for a bounded measurable $F$ on $[0,\infty)^2$ and $z_1,z_2>0$, we write $\widehat F(z_1,z_2)=\int_0^\infty\int_0^\infty e^{-z_1a-z_2b}F(a,b)\,\dd b\,\dd a$.
+
+We begin with the transform of $D_f$. Splitting $[0,\infty)^2$ into the regions $a\ge b$ and $a<b$, and substituting $a=b+x$ in the first and $b=a+x$ in the second, we find
+\[
+ \int_0^\infty\int_0^\infty e^{-z_1a-z_2b}f(|a-b|)\,\dd b\,\dd a=\frac{\widehat f(z_1)+\widehat f(z_2)}{z_1+z_2}.
+\]
+Substituting $y=a+b$ and integrating over $a\in[0,y]$, we have, for $z_1\ne z_2$,
+\[
+ \int_0^\infty\int_0^\infty e^{-z_1a-z_2b}f(a+b)\,\dd b\,\dd a
+ =\int_0^\infty f(y)\,\frac{e^{-z_2y}-e^{-z_1y}}{z_1-z_2}\,\dd y
+ =\frac{\widehat f(z_2)-\widehat f(z_1)}{z_1-z_2}.
+\]
+Subtracting the two identities and putting them over the common denominator $z_1^2-z_2^2$, we find that
+\begin{equation}\label{eq:tree-laplace-difference}
+ \widehat{D_f}(z_1,z_2)=\frac{2\{z_1\widehat f(z_1)-z_2\widehat f(z_2)\}}{z_1^2-z_2^2},\qquad z_1\ne z_2.
+\end{equation}
+
+Next, we compute the transforms of the stationary profiles. Let $\sigma(u)=Bm\,c(u)^{m-1}r(u)=-B(c^m)'(u)$. The stationary response equation \eqref{eq:stationary-cluster-response} reads $r'=-\ell r+\sigma*r$, where $*$ denotes convolution on $[0,\infty)$. The functions $r$ and $\sigma$ are nonnegative and integrable, with $\int_0^\infty r=1-q$ and $\int_0^\infty\sigma=B(1-q^m)$. Then $r'$ is integrable, and an integration by parts gives $z\widehat r(z)-1=-\ell\widehat r(z)+\widehat\sigma(z)\widehat r(z)$. Recall that $r$ is continuous and nonnegative with $r(0)=1$, so that $\widehat r(z)>0$. This yields
+\begin{equation}\label{eq:tree-laplace-response}
+ \widehat r(z)^{-1}=z+\ell-\widehat\sigma(z).
+\end{equation}
+In the same way, $c'=-r$ and $(c^m)'=-\sigma/B$, together with $c(0)=1$, give
+\begin{equation}\label{eq:tree-laplace-correlation}
+ z\widehat c(z)=1-\widehat r(z),\qquad z\widehat{c^m}(z)=1-\widehat\sigma(z)/B.
+\end{equation}
+
+We now compute the transform of the right side of \eqref{eq:tree-reflection-difference}. Integrating first over $a,b\ge u$, we find that the transform of the noise term is
+\[
+ 2\int_0^\infty e^{-(z_1+z_2)u}\,\dd u\;\widehat r(z_1)\widehat r(z_2)=\frac{2\widehat r(z_1)\widehat r(z_2)}{z_1+z_2}.
+\]
+The memory term is a two-dimensional convolution of $r(a)r(b)$ with the bounded function $D_{c^m}$, and its transform is $B\widehat r(z_1)\widehat r(z_2)\widehat{D_{c^m}}(z_1,z_2)$. All these integrals converge absolutely, because $r$ is integrable and $D_{c^m}$ is bounded, which justifies the use of Fubini's theorem. Using \eqref{eq:tree-laplace-difference} with $f=c^m$ and \eqref{eq:tree-laplace-correlation}, we can write
+\[
+ B\,\widehat{D_{c^m}}(z_1,z_2)=\frac{2\{\widehat\sigma(z_2)-\widehat\sigma(z_1)\}}{z_1^2-z_2^2}.
+\]
+Adding the transforms of the two terms, we have, for $z_1\ne z_2$,
+\begin{align*}
+ \frac{2\widehat r(z_1)\widehat r(z_2)}{z_1+z_2}
+ +B\widehat r(z_1)\widehat r(z_2)\widehat{D_{c^m}}(z_1,z_2)
+ &=\frac{2\widehat r(z_1)\widehat r(z_2)}{z_1^2-z_2^2}\bigl\{z_1-z_2+\widehat\sigma(z_2)-\widehat\sigma(z_1)\bigr\}\\
+ &=\frac{2\widehat r(z_1)\widehat r(z_2)}{z_1^2-z_2^2}\bigl\{\widehat r(z_1)^{-1}-\widehat r(z_2)^{-1}\bigr\}\\
+ &=\frac{2\{\widehat r(z_2)-\widehat r(z_1)\}}{z_1^2-z_2^2}
+ =\widehat{D_c}(z_1,z_2).
+\end{align*}
+In the second line, we used \eqref{eq:tree-laplace-response} at $z_1$ and at $z_2$. In the last equality, we used \eqref{eq:tree-laplace-difference} with $f=c$ and the first identity in \eqref{eq:tree-laplace-correlation}.
+
+Both sides of \eqref{eq:tree-reflection-difference} are bounded continuous functions on $[0,\infty)^2$. Indeed, the left side is bounded by one, the noise term by $2\int_0^\infty r=2(1-q)$, and the memory term by $B(1-q)^2$. We have shown that their double Laplace transforms agree for $z_1\ne z_2$, and by continuity of the transforms in $(z_1,z_2)$ they agree everywhere on $(0,\infty)^2$. Let $F$ denote either side. For fixed $z_2>0$, the function $a\mapsto\int_0^\infty e^{-z_2b}F(a,b)\,\dd b$ is bounded and continuous, by dominated convergence, and its Laplace transform is $\widehat F(\cdot,z_2)$. By the uniqueness theorem for Laplace transforms of continuous functions, the two such functions coincide for every $a\ge0$. For fixed $a$, the functions $b\mapsto F(a,b)$ are bounded and continuous and, by what we just proved, have the same Laplace transform. They therefore coincide. This proves \eqref{eq:tree-reflection-difference}, and hence \eqref{sel:prefix-gram} and \eqref{sel:prefix-norm}.
+
+\paragraph{Step 4: the energy subtraction.}
+By \eqref{eq:geometry-prefix-root-frame}, we have
+\[
+ h(P_Tv_t)=\sqrt p\,\ip{\mathcal I^*P_Tv_t}{(P_Tv_t)^{\otimes m}}
+ =\beta p\int_0^tR(t,u)K_T(t,u)^m\,\dd u.
+\]
+For $u\le T$, we have $K_T(t,u)=C(t,u)$ by Step 1. We subtract the identity $h(v_t)=e_\beta(t)=\beta p\int_0^tR(t,u)C(t,u)^m\,\dd u$ of \cref{prop:geometry-tree-realization} from the last display. The integrals over $[0,T]$ cancel. At $t=T+L$, using $K_T(T+L,u)=Q_T(L,u-T)=Q_T(u-T,L)$, we obtain
+\begin{equation}
+ h(P_Tv_{T+L})
+ =e_\beta(T+L)+\beta p\int_T^{T+L}R(T+L,u)
+ \bigl\{Q_T(u-T,L)^m-C(T+L,u)^m\bigr\}\,\dd u.
+ \label{sel:exact-prefix-energy-subtraction}
+\end{equation}
+Only an integral over a future interval of fixed length $L$ remains. Now let $T=T_n$. By \cref{prop:stationary-clusters}, we have $e_\beta(T_n+L)\to e_\infty$. With the change of variables $\tau=T_n+L-u\in[0,L]$, we have
+\begin{gather*}
+ R(T_n+L,T_n+L-\tau)\to r(\tau),\qquad C(T_n+L,T_n+L-\tau)\to c(\tau),\\
+ Q_n(L-\tau,L)\to c(2L-\tau),
+\end{gather*}
+uniformly in $\tau\in[0,L]$, by \cref{prop:stationary-clusters} and \eqref{sel:prefix-gram}. All these functions take values in $[0,1]$, and the integral in \eqref{sel:exact-prefix-energy-subtraction} converges to the integral in \eqref{sel:prefix-energy}. This completes the proof.
+\end{proof}
+
+By the reflection identity, the Hankel kernel $(a,b)\mapsto c(a+b)$ is a limit of Gram kernels. This leads to the following representation of every stationary profile.
+
+\begin{corollary}[Spectral representation of every stationary cluster]
+\label{sel:cluster-complete-monotonicity}
+Let $(c,r,\ell)$ be a stationary cluster, as in \cref{prop:stationary-clusters}, with plateau $q$. Then there exists a probability measure $\nu$ on $[0,\infty)$ such that
+\begin{equation}
+ c(t)=\int_{[0,\infty)}e^{-xt}\,\nu(\dd x)\quad(t\ge0),\qquad
+ \nu(\{0\})=q.
+ \label{eq:stationary-spectral-measure}
+\end{equation}
+In particular, $c$ and $r=-c'$ are completely monotone on $(0,\infty)$.
+\end{corollary}
+
+\begin{proof}
+The representation of a bounded continuous function with positive semidefinite Hankel matrices as a Laplace transform is classical; see Widder \cite[Chapter~IV, Section~12, Theorems~12a--12b, pp.~160--161]{widder1941} for Bernstein's theorem on completely monotone functions, and Berg, Christensen, and Ressel \cite[Chapter~4, Corollary~4.5, p.~114]{bcr1984} for positive definite functions on semigroups. Complete monotonicity for Brownian mode-coupling equations is also classical; Franosch and Voigtmann proved it for their mixture model by an iteration argument \cite[arXiv version~1, Section~III]{fv2002}. Here it follows from the reflection identity, and we include the short semigroup argument to keep the proof self-contained.
+The argument has three steps. We show that the Hankel kernel is positive semidefinite, construct a semigroup of shifts, and apply the spectral theorem.
+
+\paragraph{Step 1: positivity.}
+Let $T_n\to\infty$ be a sequence along which the translated kernels converge to $(c,r,\ell)$. For $a_1,\dots,a_k\ge0$ and $\alpha_1,\dots,\alpha_k\in\R$, we have
+\[
+ \sum_{i,j=1}^k\alpha_i\alpha_j\ip{M_{T_n}(a_i)}{M_{T_n}(a_j)}=\Bigl\|\sum_{i=1}^k\alpha_iM_{T_n}(a_i)\Bigr\|^2\ge0.
+\]
+Letting $n\to\infty$ and using \eqref{sel:prefix-gram}, we obtain
+\begin{equation}\label{eq:tree-hankel-positive}
+ \sum_{i,j=1}^k\alpha_i\alpha_jc(a_i+a_j)\ge0.
+\end{equation}
+
+\paragraph{Step 2: the shift semigroup.}
+Let $\mathcal V$ be the real vector space of finite formal linear combinations of symbols $\varphi_a$, $a\ge0$, with the bilinear form determined by $\ip{\varphi_a}{\varphi_b}=c(a+b)$. By \eqref{eq:tree-hankel-positive}, this form is positive semidefinite. Let $\mathcal G$ be the Hilbert space obtained by taking the quotient of $\mathcal V$ by its null vectors and completing. For $w=\sum_i\alpha_i\varphi_{a_i}\in\mathcal V$ and $\sigma\ge0$, let $w_\sigma=\sum_i\alpha_i\varphi_{a_i+\sigma}$ and
+\[
+ \psi_w(\sigma)=\ip{w_\sigma}{w_\sigma}=\sum_{i,j}\alpha_i\alpha_jc(a_i+a_j+2\sigma).
+\]
+Since $|c|\le1$, we see that $\psi_w(\sigma)\le(\sum_i|\alpha_i|)^2$. For $n\ge0$, we have $\psi_w((n+1)\sigma)=\ip{w_{n\sigma}}{w_{(n+2)\sigma}}$, and the Cauchy--Schwarz inequality gives
+\begin{equation}\label{eq:tree-log-convex}
+ \psi_w((n+1)\sigma)^2\le\psi_w(n\sigma)\,\psi_w((n+2)\sigma).
+\end{equation}
+We claim that $\psi_w(\sigma)\le\psi_w(0)$. If $\psi_w(0)=0$, then \eqref{eq:tree-log-convex} with $n=0$ implies that $\psi_w(\sigma)=0$. Suppose that $\psi_w(0)>0$ and $\psi_w(\sigma)>\psi_w(0)$, and let $\kappa=\psi_w(\sigma)/\psi_w(0)>1$. Using \eqref{eq:tree-log-convex} and induction on $n$, we find that $\psi_w((n+1)\sigma)\ge\kappa\,\psi_w(n\sigma)>0$ for every $n\ge0$. Then $\psi_w(n\sigma)\ge\kappa^n\psi_w(0)\to\infty$, which contradicts the bound $\psi_w\le(\sum_i|\alpha_i|)^2$. This proves the claim.
+
+The claim says that $w\mapsto w_\sigma$ does not increase the norm. In particular, it maps null vectors to null vectors, and it defines a contraction $S_\sigma$ of $\mathcal G$ with $S_\sigma\varphi_a=\varphi_{a+\sigma}$. Each $S_\sigma$ is self-adjoint, because $\ip{S_\sigma\varphi_a}{\varphi_b}=c(a+b+\sigma)=\ip{\varphi_a}{S_\sigma\varphi_b}$. Further, $S_0=\Id$ and $S_\sigma S_{\sigma'}=S_{\sigma+\sigma'}$, so that $S_\sigma=S_{\sigma/2}^*S_{\sigma/2}$ is a positive operator.
+
+\paragraph{Step 3: the spectral representation.}
+For an integer $j\ge1$, the operator $S_{1/j}$ is positive and $(S_{1/j})^j=S_1$. By uniqueness of positive $j$-th roots, we have $S_{1/j}=S_1^{1/j}$, and therefore $S_\sigma=S_1^\sigma$ for every rational $\sigma\ge0$. Let $\mu$ be the spectral measure of the positive contraction $S_1$ at the vector $\varphi_0$. It is a measure on $[0,1]$ with total mass $\norm{\varphi_0}^2=c(0)=1$, and for rational $\sigma>0$ we have
+\[
+ c(\sigma)=\ip{\varphi_0}{S_\sigma\varphi_0}=\int_{(0,1]}y^\sigma\,\mu(\dd y).
+\]
+Both sides are continuous in $\sigma>0$, the right side by dominated convergence, and the identity extends to every $\sigma>0$. Letting $\sigma\downarrow0$, we see that $\mu((0,1])=c(0)=1$, that is, $\mu(\{0\})=0$. Let $\nu$ be the image of $\mu$ under the map $y\mapsto-\log y$ from $(0,1]$ to $[0,\infty)$. Then $\nu$ is a probability measure, and the identity above becomes the first relation in \eqref{eq:stationary-spectral-measure}, also at $t=0$. By dominated convergence, $c(t)\to\nu(\{0\})$ as $t\to\infty$, which gives $\nu(\{0\})=q$. Finally, for $n\ge0$ and $t>0$, the function $x\mapsto x^ne^{-xt}$ is bounded on $[0,\infty)$, uniformly for $t$ in compact subsets of $(0,\infty)$. Differentiating under the integral, we find
+\[
+ (-1)^nc^{(n)}(t)=\int_{[0,\infty)}x^ne^{-xt}\,\nu(\dd x)\ge0,\qquad
+ (-1)^nr^{(n)}(t)=\int_{[0,\infty)}x^{n+1}e^{-xt}\,\nu(\dd x)\ge0,
+\]
+and $c$ and $r$ are completely monotone on $(0,\infty)$.
+\end{proof}

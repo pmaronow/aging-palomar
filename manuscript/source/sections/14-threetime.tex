@@ -1,0 +1,473 @@
+\chapter{Three-time correlations and the susceptibility}\label{sec:three-time}
+
+This section applies the deterministic results of \cref{sec:geometry-results} to the cubic CK solution. In \cref{sec:geometry-center-correlations}, we establish that the normalized prefix centers have asymptotically the same overlaps as the correlations divided by the plateau (\cref{prop:geometry-center-gram}). Combined with \cref{thm:geometry-threshold-product}, this gives the three-time product inequality of \cref{thm:geometry-actual-product} and composition bounds for last-crossing times (\cref{cor:geometry-last-crossing}). In \cref{sec:geometry-susceptibility}, we prove the lower bound $\liminf_{t\to\infty}\chi(t,0)\ge2(1-q)$ (\cref{thm:geometry-susceptibility-lower}). These results prove \cref{thm:main-geometry}. The product inequality is used again in \cref{resp:fisher-chapter}, where it bounds the memory term of the response equation, and the last-crossing bounds are discussed in \cref{sec:discussion}.
+
+\paragraph{Standing assumptions and notation.}
+Throughout this section, $p=3$ and $\beta\ge\bd=\sqrt{4/3}$, including the critical endpoint. We write $q$ for the selected plateau and $(c,r)$ for the stationary profile of \cref{sel:selected-sector}, with $r=-c'$. Recall that $q\ge1/2$, and that the bounded-lag translates of $C$ and $R$ converge locally uniformly, as in \eqref{sel:stationary-window}. We use the tree vectors $v_t$ and the prefix projections $P_T$ of \cref{prop:geometry-tree-realization}, and the notation $f$, $F_*$, and $\delta(\cdot)$ of \cref{sec:geometry-results}.
+
+It is convenient to index a prefix center by its terminal time and its age. For $s\ge D\ge0$, we define
+\[
+ M_{s,D}=P_{s-D}v_s,\qquad U_{s,D}=\frac{M_{s,D}}{\norm{M_{s,D}}},
+\]
+the latter whenever $M_{s,D}\ne0$. In the notation of \cref{sec:selection}, $M_{s,D}=M_{s-D}(D)$: it is the part of the state at time $s$ that is determined by the noise up to time $s-D$. We call $D$ the smoothing age of the center.
+
+Fix $D\ge0$. Recall from \cref{sel:selected-sector} that the translated kernels converge along every sequence of times tending to infinity. Hence \cref{sel:prefix-reflection} applies along every such sequence, and its conclusions hold as $T\to\infty$. In particular, \eqref{sel:prefix-norm} gives $\norm{M_{s,D}}^2\to c(2D)\ge q$ as $s\to\infty$, and $U_{s,D}$ is defined for all large $s$. The plateau is positive and marginal (\cref{sel:selected-sector,sel:positive-marginality}), which means that \cref{sel:threshold-centers} applies. Let $h_D$ and $\delta_D$ be as in \eqref{sel:prefix-energy} and \eqref{sel:center-deficit}. The cubic tree energy \eqref{eq:geometry-tree-energy} is $h=\sqrt3f$, the function $f$ is homogeneous of degree three, and $\Eth=\sqrt3F_*$. By \eqref{sel:prefix-norm} and \eqref{sel:prefix-energy}, we have
+\[
+ f(U_{s,D})=\frac{f(M_{s,D})}{\norm{M_{s,D}}^3}=\frac{h(M_{s,D})}{\sqrt3\norm{M_{s,D}}^3}\longrightarrow\frac{h_D}{\sqrt3\,c(2D)^{3/2}}=\frac{\Eth-\delta_D}{\sqrt3}=F_*-\frac{\delta_D}{\sqrt3}
+\]
+as $s\to\infty$. Together with \eqref{sel:center-deficit}, this gives
+\begin{equation}
+ \lim_{s\to\infty}\bigl[F_*-f(U_{s,D})\bigr]=\frac{\delta_D}{\sqrt3},
+ \qquad\lim_{D\to\infty}\delta_D=0 .
+ \label{eq:geometry-selected-center-deficit}
+\end{equation}
+In all limits in this section, we let the waiting time tend to infinity with the smoothing age fixed, and increase the smoothing age only afterward.
+
+\section{From causal centers to actual correlations}\label{sec:geometry-center-correlations}
+
+In this section, we assume that $\beta\ge\bd$. We use the following inputs:
+\begin{itemize}
+\item from \cref{resp:chapter}, the remote bound \eqref{resp:remote-forward} on the later derivative (\cref{resp:forward-derivative}), and the bound \eqref{resp:earlier-smoothing} on the variation of a correlation row across a window (\cref{resp:remote-earlier}), which rests on the strong localization of the response (\cref{resp:strong-row}) and on the Fisher control of the backward defect (\cref{thm:fisher-clock});
+\item from \cref{sec:tree-ceilings}, \cref{sel:threshold-centers}, through \eqref{eq:geometry-selected-center-deficit};
+\item from \cref{sec:geometry-results}, \cref{thm:geometry-threshold-product};
+\item from \cref{sec:selection}, the complete monotonicity of $c$ (\cref{sel:cluster-complete-monotonicity}).
+\end{itemize}
+
+At $\beta=\bd$, we have $q=1/2$ by \cref{sel:selected-sector}, and $6\beta^2q(1-q)^2=1$ by \cref{sel:positive-marginality}. Then the plateau is positive and marginal, so \cref{sel:threshold-centers} applies at the endpoint. The response and Fisher inputs above hold for every $\beta>0$. The argument below uses $q>0$ and these inputs, and therefore includes $\beta=\bd$ directly. It does not use a strictly positive Fisher margin; the positive relaxation cost of \cref{resp:fisher-chapter} retains the strict hypothesis $\beta>\bd$.
+
+These inputs imply that late, remote correlations change little across a window of length $D$, uniformly after the waiting-time limit. For the later coordinate, let $s\ge S$ and $t\ge s+D$. Then $s\le t-D$ and $t\ge S+D$, so \eqref{resp:remote-forward} with $L=D$ gives
+\begin{equation}
+ \limsup_{S\to\infty}\sup_{t\ge s+D,\ s\ge S}|\partial_tC(t,s)|\le\sqrt{c''(2D)} .
+ \label{eq:geometry-remote-derivative-input}
+\end{equation}
+The earlier coordinate is controlled by \eqref{resp:earlier-smoothing}. Both bounds become small after multiplication by the window length:
+\begin{equation}
+ D^2c''(2D)\longrightarrow0,\qquad D\int_D^\infty r(u)^2\,\dd u\longrightarrow0\qquad(D\to\infty).
+ \label{eq:geometry-smoothing-moduli}
+\end{equation}
+To prove the first limit, we use the spectral representation \eqref{eq:stationary-spectral-measure}. Differentiating under the integral for $t>0$, we have
+\[
+ D^2c''(2D)=\int_{[0,\infty)}(Dx)^2e^{-2Dx}\,\nu(\dd x).
+\]
+The integrand is bounded by $\sup_{y\ge0}y^2e^{-2y}=e^{-2}$ and tends to zero as $D\to\infty$ for every $x\ge0$, including $x=0$. Since $\nu$ is a probability measure, the first limit follows from dominated convergence. For the second, recall that $r$ is nonincreasing and $\int_0^\infty r=1-q$. This implies that $Dr(D)\le\int_0^Dr\le1-q$, and
+\[
+ D\int_D^\infty r(u)^2\,\dd u\le Dr(D)\int_D^\infty r(u)\,\dd u\le(1-q)\int_D^\infty r(u)\,\dd u\longrightarrow0 .
+\]
+We use only the complete monotonicity of $c$ here, and not the power law of \cref{sec:stationary-relaxation}.
+
+We place the causal centers and the three-time inequality below in the line of the normalized time-averaged magnetizations and the spherical product relation discussed by Cugliandolo and Kurchan \cite[arXiv version~1, Section~5.1, Equations~(5.1.8)--(5.1.9)]{ck1994}. In that work, the product relation is an asymptotic relation of the physical theory. Here we prove a uniform one-sided inequality for the CK solution, without assuming a slow clock.
+
+The next lemma compares a center with the average of the trajectory over the window that precedes it. For $s\ge D>0$, we define the Bochner integral
+\[
+ Z_{s,D}=\frac1D\int_{s-D}^sv_u\,\dd u .
+\]
+It is well defined because $u\mapsto v_u$ is continuous, and $\norm{Z_{s,D}}\le1$.
+
+\begin{lemma}[Causal centers are approximated by local averages]
+\label{lem:geometry-center-average}
+For every fixed $D>0$,
+\begin{equation}
+ \lim_{s\to\infty}\norm{M_{s,D}-Z_{s,D}}^2=\eta_D,
+ \qquad
+ \eta_D=c(2D)+\frac2{D^2}\int_0^D(D-\tau)c(\tau)\,\dd\tau-\frac2D\int_D^{2D}c(\tau)\,\dd\tau .
+ \label{eq:geometry-center-average}
+\end{equation}
+Moreover, $\eta_D\ge0$ and $\eta_D\to0$ as $D\to\infty$.
+\end{lemma}
+
+\begin{proof}
+We expand $\norm{M_{s,D}-Z_{s,D}}^2=\norm{M_{s,D}}^2+\norm{Z_{s,D}}^2-2\ip{M_{s,D}}{Z_{s,D}}$ and compute the limit of each term. By \eqref{sel:prefix-norm}, the first term tends to $c(2D)$. Next,
+\begin{align*}
+ \norm{Z_{s,D}}^2&=\frac1{D^2}\int_{s-D}^s\!\!\int_{s-D}^sC(u,w)\,\dd u\,\dd w\\
+ &\longrightarrow\frac1{D^2}\int_0^D\!\!\int_0^Dc(|u-w|)\,\dd u\,\dd w=\frac2{D^2}\int_0^D(D-\tau)c(\tau)\,\dd\tau,
+\end{align*}
+where we used the uniform convergence \eqref{sel:stationary-window} on the window $[s-D,s]$. For the cross term, let $T=s-D$, and write $Q_T(a,b)=\ip{M_T(a)}{M_T(b)}$ for the Gram kernel of the prefix centers of \cref{sec:selection}. For $u=T+a$ with $a\in[0,D]$, we have $\ip{M_{s,D}}{v_u}=\ip{P_Tv_{T+D}}{P_Tv_{T+a}}=Q_T(D,a)$. As noted at the start of this section, \eqref{sel:prefix-gram} holds as $T\to\infty$. It implies that $Q_T(D,a)$ tends to $c(D+a)$ uniformly in $a\in[0,D]$, and
+\[
+ \ip{M_{s,D}}{Z_{s,D}}=\frac1D\int_0^DQ_T(D,a)\,\dd a\longrightarrow\frac1D\int_0^Dc(D+a)\,\dd a=\frac1D\int_D^{2D}c(\tau)\,\dd\tau .
+\]
+This proves \eqref{eq:geometry-center-average}. The limit $\eta_D$ is nonnegative, as a limit of squared norms.
+
+To show that $\eta_D\to0$, let $g=c-q$, which is nonnegative, nonincreasing, and tends to zero. The constant $q$ contributes $q+q-2q=0$ to $\eta_D$, so
+\[
+ \eta_D=g(2D)+\frac2{D^2}\int_0^D(D-\tau)g(\tau)\,\dd\tau-\frac2D\int_D^{2D}g(\tau)\,\dd\tau .
+\]
+The first term tends to zero. The second is at most $2D^{-1}\int_0^Dg$, which tends to zero because $g(\tau)\to0$. The absolute value of the third is at most $2g(D)$, which also tends to zero.
+\end{proof}
+
+\begin{proposition}[Uniform aging Gram of normalized centers]
+\label{prop:geometry-center-gram}
+We have
+\begin{equation}
+ \lim_{D\to\infty}\limsup_{S\to\infty}
+ \sup_{s\ge S+D,\ t\ge s+2D}
+ \left|\ip{U_{t,D}}{U_{s,D}}-\frac{C(t,s)}q\right|=0 .
+ \label{eq:geometry-center-gram}
+\end{equation}
+In particular, the correlation of two late times with a diverging separation does not exceed the plateau in the limit: if $s_n\to\infty$ and $t_n-s_n\to\infty$, then
+\begin{equation}\label{eq:geometry-remote-envelope}
+ \limsup_{n\to\infty}C(t_n,s_n)\le q .
+\end{equation}
+\end{proposition}
+
+In \eqref{eq:geometry-center-gram}, the supremum is over pairs for which both centers are defined. For fixed $D$, this includes all pairs in the range once $S$ is large.
+
+\begin{proof}
+The proof has four steps. We first replace each center by the local average of \cref{lem:geometry-center-average}. We then compare the overlap of two local averages with the correlation of their endpoints. Combining the two steps gives the claim for the unnormalized centers, and in the last step we divide by their norms.
+
+\paragraph{Step 1: centers and local averages.}
+Since $\norm{M_{s,D}}\le\norm{v_s}=1$ and $\norm{Z_{t,D}}\le1$, we have
+\[
+ \bigl|\ip{M_{t,D}}{M_{s,D}}-\ip{Z_{t,D}}{Z_{s,D}}\bigr|
+ \le\norm{M_{t,D}-Z_{t,D}}+\norm{M_{s,D}-Z_{s,D}} .
+\]
+The limit in \eqref{eq:geometry-center-average} is a limit as the single variable $s$ tends to infinity, so that $\limsup_{S\to\infty}\sup_{s\ge S}\norm{M_{s,D}-Z_{s,D}}=\eta_D^{1/2}$.
+
+\paragraph{Step 2: local averages and correlations.}
+Let $s\ge S+D$ and $t\ge s+2D$. Then
+\[
+ \ip{Z_{t,D}}{Z_{s,D}}=\frac1{D^2}\int_{t-D}^t\!\!\int_{s-D}^sC(u,w)\,\dd w\,\dd u .
+\]
+For $u\in[t-D,t]$ and $w\in[s-D,s]$, we compare $C(u,w)$ with $C(t,s)$ by changing the two coordinates in succession:
+\[
+ |C(u,w)-C(t,s)|\le\int_u^t|\partial_xC(x,w)|\,\dd x+\int_{s-D}^s|\partial_yC(t,y)|\,\dd y .
+\]
+In the first integral, $x\ge u\ge t-D\ge s+D\ge w+D$ and $w\ge s-D\ge S$, and the integrand is bounded by the supremum in \eqref{eq:geometry-remote-derivative-input}. The second integral is the quantity bounded in \eqref{resp:earlier-smoothing}, since $s\ge S+D$ and $t\ge s+D$. Averaging over $u$ and $w$ and using these two bounds, we find
+\[
+ \limsup_{S\to\infty}\sup_{s\ge S+D,\ t\ge s+2D}\bigl|\ip{Z_{t,D}}{Z_{s,D}}-C(t,s)\bigr|
+ \le D\sqrt{c''(2D)}+\Bigl(D\int_D^\infty r(u)^2\,\dd u\Bigr)^{1/2}.
+\]
+
+\paragraph{Step 3: unnormalized centers.}
+Combining Steps 1 and 2, we obtain
+\begin{equation}\label{eq:geometry-unnormalized-gram}
+ \limsup_{S\to\infty}\sup_{s\ge S+D,\ t\ge s+2D}\bigl|\ip{M_{t,D}}{M_{s,D}}-C(t,s)\bigr|\le\mathcal E_D,
+\end{equation}
+where
+\[
+ \mathcal E_D=2\eta_D^{1/2}+D\sqrt{c''(2D)}+\Bigl(D\int_D^\infty r(u)^2\,\dd u\Bigr)^{1/2}.
+\]
+\Cref{lem:geometry-center-average} and \eqref{eq:geometry-smoothing-moduli} imply that $\mathcal E_D\to0$ as $D\to\infty$.
+
+\paragraph{Step 4: normalization.}
+For centers that are defined,
+\[
+ \Bigl|\ip{U_{t,D}}{U_{s,D}}-\frac{C(t,s)}q\Bigr|
+ \le\frac{|\ip{M_{t,D}}{M_{s,D}}-C(t,s)|}{\norm{M_{t,D}}\norm{M_{s,D}}}
+ +C(t,s)\Bigl|\frac1{\norm{M_{t,D}}\norm{M_{s,D}}}-\frac1q\Bigr| .
+\]
+As $s\to\infty$, the squared norm $\norm{M_{s,D}}^2$ tends to $c(2D)\ge q$, and this limit is again uniform over $s\ge S$ as $S\to\infty$. Using \eqref{eq:geometry-unnormalized-gram} and $C\le1$, we find that the upper limit as $S\to\infty$ of the supremum in \eqref{eq:geometry-center-gram} is at most
+\[
+ \frac{\mathcal E_D}{c(2D)}+\Bigl|\frac1{c(2D)}-\frac1q\Bigr|\le\frac{\mathcal E_D}q+\frac{c(2D)-q}{q^2} .
+\]
+This tends to zero as $D\to\infty$, because $\mathcal E_D\to0$ and $c(2D)\to q$. This proves \eqref{eq:geometry-center-gram}.
+
+For \eqref{eq:geometry-remote-envelope}, let $e(S,D)$ denote the supremum in \eqref{eq:geometry-center-gram}. By the Cauchy--Schwarz inequality, $\ip{U_{t,D}}{U_{s,D}}\le1$, and we have $C(t,s)\le q+q\,e(S,D)$ for all pairs in its range. For fixed $S$ and $D$, the pair $(s_n,t_n)$ lies in this range for all large $n$, and therefore $\limsup_nC(t_n,s_n)\le q+q\,e(S,D)$. Letting $S\to\infty$ and then $D\to\infty$ proves \eqref{eq:geometry-remote-envelope}.
+\end{proof}
+
+We now transfer the product inequality of \cref{thm:geometry-threshold-product} to the correlations. For $S\ge0$ and $D>0$, let
+\[
+ \mathcal A_{S,D}=\{(u,s,t):u\ge S+D,\ s\ge u+2D,\ t\ge s+2D\}.
+\]
+
+\begin{theorem}[Actual three-time product inequality]
+\label{thm:geometry-actual-product}
+For the cubic CK solution at $\beta\ge\bd$, including the critical endpoint,
+\begin{equation}
+ \lim_{D\to\infty}\limsup_{S\to\infty}
+ \sup_{(u,s,t)\in\mathcal A_{S,D}}
+ \bigl[C(t,s)C(s,u)-qC(t,u)\bigr]_+=0 .
+ \label{eq:geometry-actual-product}
+\end{equation}
+The same holds with the bracket replaced by $[C(t,s)C(t,u)-qC(s,u)]_+$ or by $[C(t,u)C(s,u)-qC(t,s)]_+$. In particular, for every sequence of triples $u_n<s_n<t_n$ with $u_n\to\infty$, $s_n-u_n\to\infty$, and $t_n-s_n\to\infty$,
+\begin{equation}\label{eq:geometry-actual-product-sequences}
+ \liminf_{n\to\infty}\bigl\{qC(t_n,u_n)-C(t_n,s_n)C(s_n,u_n)\bigr\}\ge0,
+\end{equation}
+and the same holds for the other two inequalities.
+\end{theorem}
+
+\begin{proof}
+We first check that the centers satisfy the positivity hypothesis of \cref{thm:geometry-threshold-product}. Recall from \cref{prop:geometry-tree-realization} that every component of $v_t$ is a nonnegative function of the leaf labels. The projections $P_T$ and $\Pi_h$ preserve this nonnegativity, since they multiply every component by an indicator function (\cref{sec:tree-space}). The inner product of two nonnegative vectors is nonnegative, and therefore $\ip{\Pi_hM_{t,D}}{\Pi_hM_{s,D}}\ge0$ for all $h,s,t$, and $D$, and the same holds for the normalized centers.
+
+Let $\omega$ be the function of \cref{thm:geometry-threshold-product}. Fix $D$ so large that $\delta_D/\sqrt3+1/D\le1$, and write $\delta_D'=\delta_D/\sqrt3+1/D$. Using \eqref{eq:geometry-selected-center-deficit}, we choose $S_D$ such that $U_{x,D}$ is defined and $F_*-f(U_{x,D})\le\delta_D'$ for all $x\ge S_D$. Let $S\ge S_D$ and $(u,s,t)\in\mathcal A_{S,D}$. All three times are at least $S$, so the triple
+\[
+ v_1=U_{t,D},\qquad v_2=U_{u,D},\qquad v_3=U_{s,D}
+\]
+satisfies the hypotheses of \cref{thm:geometry-threshold-product} with maximal deficit at most $\delta_D'$. Writing $g_{xy}=\ip{U_{x,D}}{U_{y,D}}$, we deduce from \eqref{eq:geometry-threshold-product} that
+\[
+ g_{tu}\ge g_{ts}g_{su}-\omega(\delta_D') .
+\]
+
+We now replace the overlaps by correlations. Let $e(S,D)$ be the supremum in \eqref{eq:geometry-center-gram}. The three pairs $(s,t)$, $(u,s)$, and $(u,t)$ all lie in the range of that supremum, since $s\ge u+2D\ge S+D$, $t\ge s+2D$, and $t\ge u+2D$. We obtain $|C(x,y)-q\,g_{xy}|\le q\,e$ for each pair, with $e=e(S,D)$. All correlations and normalized overlaps lie in $[0,1]$. Using $C(t,s)\le q(g_{ts}+e)$, $C(s,u)\le q(g_{su}+e)$, and $C(t,u)\ge q(g_{tu}-e)$, we find
+\[
+ C(t,s)C(s,u)-qC(t,u)
+ \le q^2(g_{ts}g_{su}-g_{tu})+q^2(3e+e^2)
+ \le q^2\omega(\delta_D')+q^2(3e+e^2) .
+\]
+We take the supremum over $\mathcal A_{S,D}$ and let $S\to\infty$. \Cref{prop:geometry-center-gram} implies that $\bar e_D=\limsup_{S\to\infty}e(S,D)$ tends to zero as $D\to\infty$, and $\omega(\delta_D')\to0$ by \cref{thm:geometry-threshold-product}, since $\delta_D'\to0$. We conclude that
+\[
+ \limsup_{S\to\infty}\sup_{\mathcal A_{S,D}}\bigl[C(t,s)C(s,u)-qC(t,u)\bigr]_+\le q^2\omega(\delta_D')+q^2(3\bar e_D+\bar e_D^2)\longrightarrow0
+\]
+as $D\to\infty$, which is \eqref{eq:geometry-actual-product}. The other two inequalities follow in the same way, by choosing $U_{t,D}$ or $U_{u,D}$ as the vector $v_3$ in \cref{thm:geometry-threshold-product}.
+
+Finally, let $(u_n,s_n,t_n)$ be a sequence as in the statement. For fixed $S$ and $D$, the triple $(u_n,s_n,t_n)$ lies in $\mathcal A_{S,D}$ for all large $n$. Then the upper limit of $[C(t_n,s_n)C(s_n,u_n)-qC(t_n,u_n)]_+$ as $n\to\infty$ is at most the supremum over $\mathcal A_{S,D}$, for every $S$ and $D$. Letting $S\to\infty$ and then $D\to\infty$, we find that this upper limit is zero, which implies \eqref{eq:geometry-actual-product-sequences}. The other two inequalities are handled in the same way.
+\end{proof}
+
+The product inequality implies composition bounds for relaxation times. For a level $c\in(0,q)$, we consider the last time at which the correlation with a given earlier time is at least $c$. Here and in \cref{resp:fisher-chapter}, the letter $c$ without an argument, possibly with an index, denotes such a level; the stationary profile is always written with its argument, as in $c(W)$.
+
+\begin{corollary}[Composition of last-crossing relaxation times]
+\label{cor:geometry-last-crossing}
+For a level $c\in(0,q)$ and $s\ge0$, define
+\[
+ \Theta_c(s)=\sup\{t\ge s:C(t,s)\ge c\}.
+\]
+For levels $c_1,c_2\in(0,q)$ and $0<c_0<c_1c_2/q$, we have, for every sufficiently large $s$,
+\begin{equation}
+ \Theta_{c_0}(s)\ge\Theta_{c_2}(\Theta_{c_1}(s)).
+ \label{eq:geometry-last-crossing}
+\end{equation}
+More generally, let $c_1,\dots,c_k\in(0,q)$ be a fixed finite list of levels, and let $s_0=s$ and $s_j=\Theta_{c_j}(s_{j-1})$ for $1\le j\le k$. Then
+\[
+ \liminf_{s\to\infty}C(s_k,s)\ge q^{1-k}\prod_{j=1}^kc_j .
+\]
+\end{corollary}
+
+\begin{proof}
+We first show that $\Theta_c(s)$ is finite and that $C(\Theta_c(s),s)=c$. By \cref{sel:fixed-wait-forgetting}, $C(t,s)\to0$ as $t\to\infty$, and the set $\{t\ge s:C(t,s)\ge c\}$ is bounded. It contains $s$, because $C(s,s)=1$, and it is closed, because $C$ is continuous. Its supremum $\Theta_c(s)$ therefore belongs to it, that is, $C(\Theta_c(s),s)\ge c$. If this inequality were strict, then by continuity some $t>\Theta_c(s)$ would also satisfy $C(t,s)>c$, which is impossible.
+
+Next, we show that $\Theta_c(s)-s\to\infty$ as $s\to\infty$. Fix $W>0$. By the stationary window \eqref{sel:stationary-window}, we have $C(s+W,s)\to c(W)$, and the profile satisfies $c(W)\ge q>c$. Then $C(s+W,s)>c$ for all large $s$, which gives $\Theta_c(s)\ge s+W$.
+
+Let $s_1=\Theta_{c_1}(s)$ and $s_2=\Theta_{c_2}(s_1)$. As $s\to\infty$, we have $s\to\infty$, $s_1-s\to\infty$, and, since $s_1\ge s$, also $s_2-s_1\to\infty$. Applying \eqref{eq:geometry-actual-product-sequences} to the triple $s<s_1<s_2$ along any sequence of values of $s$ tending to infinity, and using $C(s_2,s_1)=c_2$ and $C(s_1,s)=c_1$, we obtain
+\[
+ \liminf_{s\to\infty}C(s_2,s)\ge\frac{c_1c_2}q>c_0 .
+\]
+Then $C(s_2,s)\ge c_0$ for all large $s$, and $s_2$ belongs to the set that defines $\Theta_{c_0}(s)$. This proves \eqref{eq:geometry-last-crossing}.
+
+For the finite list, we prove by induction on $j$ that $\liminf_{s\to\infty}C(s_j,s)\ge q^{1-j}\prod_{i\le j}c_i$. For $j=1$, we have $C(s_1,s)=c_1$. Let $j\ge2$. The times $s_j$ are nondecreasing in $j$, which gives $s_{j-1}-s\ge s_1-s\to\infty$, and $s_j-s_{j-1}\to\infty$ because $s_{j-1}\to\infty$. Applying \eqref{eq:geometry-actual-product-sequences} to the triple $s<s_{j-1}<s_j$ and using $C(s_j,s_{j-1})=c_j$, we find
+\[
+ q\liminf_{s\to\infty}C(s_j,s)\ge c_j\liminf_{s\to\infty}C(s_{j-1},s)\ge c_jq^{2-j}\prod_{i<j}c_i ,
+\]
+where the last inequality is the induction hypothesis. This completes the induction.
+\end{proof}
+
+\begin{remark}\label{rem:geometry-last-crossing-scope}
+The definition of $\Theta_c(s)$ allows returns: the correlation $C(t,s)$ may fall below $c$ and rise above it again before the last crossing. \Cref{thm:geometry-actual-product,cor:geometry-last-crossing} are inequalities. They do not assert a multiplicative composition law for correlations, and they do not identify an aging clock; see \cref{sec:discussion}.
+\end{remark}
+
+\section{The susceptibility lower bound}
+\label{sec:geometry-susceptibility}
+
+Throughout this section, $\beta\ge\bd$; the endpoint $\beta=\bd$, at which $q=1/2$, is included. We have $\int_0^\infty r=1-q$, because $r=-c'$, $c(0)=1$, and $c(\tau)\to q$. For $p=3$, the marginality equation \eqref{sel:positive-plateau-equation} reads $6\beta^2q(1-q)^2=1$, that is,
+\begin{equation}\label{eq:geometry-marginal-normalization}
+ \beta\sqrt3\sqrt q\,(1-q)=\frac1{\sqrt2} .
+\end{equation}
+
+In this section, we use \cref{thm:geometry-universal-root} from \cref{sec:geometry-results}, \cref{sel:threshold-centers} from \cref{sec:tree-ceilings} (through \eqref{eq:geometry-selected-center-deficit}), and the strong localization of the response row, \cref{resp:strong-row}, from \cref{resp:chapter}. We also use the root frame \eqref{eq:geometry-prefix-root-frame} and \cref{sel:prefix-reflection}. For $p=3$, the root frame reads
+\begin{equation}\label{eq:geometry-cubic-root-frame}
+ \mathcal I^*P_Tv_t=\beta\sqrt3\int_0^tR(t,u)\,|P_Tv_u\rangle\langle P_Tv_u|\,\dd u .
+\end{equation}
+The root operator of a center is a positive integral of the rank-one operators $|P_Tv_u\rangle\langle P_Tv_u|$, weighted by the response. \Cref{thm:geometry-universal-root} determines the limit of the normalized root in Hilbert--Schmidt norm, but this alone does not determine the limit of its trace, which is where the total response mass appears. We obtain a lower bound on the trace by first replacing each old rank-one term $|v_u\rangle\langle v_u|$ by the smoothed term $|M_{u,D}\rangle\langle M_{u,D}|$, whose norm converges. Because of causality, the errors made on time strips at distance at least $D$ from each other are orthogonal. Their total is therefore controlled by the squared response row on the old times, which tends to zero by \cref{resp:strong-row}. We need no bound on the integral $\chi(t,0)$ of the response row; by \eqref{resp:square-tail}, it is only known to be $o(\sqrt t)$.
+
+\begin{lemma}[Orthogonality of disjoint causal strips]
+\label{lem:geometry-disjoint-strips}
+For $D>0$ and $u\ge D$, let
+\[
+ F_{u,D}=|v_u\rangle\langle v_u|-|M_{u,D}\rangle\langle M_{u,D}| .
+\]
+If $u,w\ge D$ and $|u-w|\ge D$, then $\ip{F_{u,D}}{F_{w,D}}_{\HS}=0$. For $D\le T\le t$, we have
+\begin{equation}
+ \Bigl\|\int_D^TR(t,u)F_{u,D}\,\dd u\Bigr\|_{\HS}^2\le8D\int_D^TR(t,u)^2\,\dd u .
+ \label{eq:geometry-disjoint-strips}
+\end{equation}
+If $t_n\to\infty$, $L_n\to\infty$, and $t_n-L_n\ge D$, then the Hilbert--Schmidt distance between
+\[
+ \int_0^{t_n-L_n}R(t_n,u)\,|v_u\rangle\langle v_u|\,\dd u
+ \quad\text{and}\quad
+ \int_D^{t_n-L_n}R(t_n,u)\,|M_{u,D}\rangle\langle M_{u,D}|\,\dd u
+\]
+tends to zero.
+\end{lemma}
+
+\begin{proof}
+We first note that the integrals are Bochner integrals in trace norm. For each fixed $x\in\mathcal H$, the map $T\mapsto P_Tx$ is continuous: on each tree summand, $P_T$ multiplies the leaf kernel by indicator functions of leaf times at most $T$, and the continuity follows from dominated convergence, first on each summand and then on their direct sum. Together with the continuity of $u\mapsto v_u$, this shows that $u\mapsto M_{u,D}$ is continuous on $[D,\infty)$. Then the rank-one operators above are continuous in trace norm, with trace norms at most one.
+
+Suppose that $u\ge w+D$; the opposite ordering follows by symmetry. Then $w\le u-D$, and we have $v_w\in\mathcal H_w\subset\mathcal H_{u-D}$ and $M_{w,D}\in\mathcal H_{w-D}\subset\mathcal H_{u-D}$. For both vectors $x\in\{v_w,M_{w,D}\}$, this gives $\ip{v_u}{x}=\ip{P_{u-D}v_u}{x}=\ip{M_{u,D}}{x}$. Expanding the four rank-one pairings and using $\langle|a\rangle\langle a|,|b\rangle\langle b|\rangle_{\HS}=\ip{a}{b}^2$, we find
+\begin{align*}
+ \ip{F_{u,D}}{F_{w,D}}_{\HS}
+ &=\ip{v_u}{v_w}^2-\ip{v_u}{M_{w,D}}^2-\ip{M_{u,D}}{v_w}^2+\ip{M_{u,D}}{M_{w,D}}^2\\
+ &=\ip{M_{u,D}}{v_w}^2-\ip{M_{u,D}}{M_{w,D}}^2-\ip{M_{u,D}}{v_w}^2+\ip{M_{u,D}}{M_{w,D}}^2=0 .
+\end{align*}
+
+For \eqref{eq:geometry-disjoint-strips}, note that $\norm{F_{u,D}}_{\HS}\le\norm{v_u}^2+\norm{M_{u,D}}^2\le2$, and that $R\ge0$. Let $g=\mathbf1_{[D,T]}R(t,\cdot)$, extended by zero to $\R$, and $k=\mathbf1_{[-D,D]}$. By the orthogonality just proved,
+\begin{align*}
+ \Bigl\|\int_D^TR(t,u)F_{u,D}\,\dd u\Bigr\|_{\HS}^2
+ &=\int_D^T\!\!\int_D^TR(t,u)R(t,w)\ip{F_{u,D}}{F_{w,D}}_{\HS}\,\dd u\,\dd w\\
+ &\le4\int_\R g(u)(k*g)(u)\,\dd u .
+\end{align*}
+By the Cauchy--Schwarz inequality and Young's convolution inequality, the right side is at most $4\norm{g}_2\norm{k*g}_2\le4\norm{k}_1\norm{g}_2^2=8D\int_D^TR(t,u)^2\,\dd u$.
+
+For the last assertion, let $T_n=t_n-L_n$, and let $f_t$ be the lag row \eqref{resp:lag-row}. Substituting $\tau=t_n-u$, we have
+\begin{equation}\label{eq:geometry-old-row-l2}
+ \int_0^{T_n}R(t_n,u)^2\,\dd u=\int_{L_n}^{t_n}f_{t_n}(\tau)^2\,\dd\tau
+ \le2\norm{f_{t_n}-r}_{L^2(0,\infty)}^2+2\int_{L_n}^\infty r(\tau)^2\,\dd\tau\longrightarrow0,
+\end{equation}
+by \eqref{resp:strong-row-limit} and $r\in L^2(0,\infty)$. The difference of the two operators in the statement is
+\[
+ \int_0^DR(t_n,u)\,|v_u\rangle\langle v_u|\,\dd u+\int_D^{T_n}R(t_n,u)F_{u,D}\,\dd u .
+\]
+The first term has Hilbert--Schmidt norm at most $\int_0^DR(t_n,u)\,\dd u\le\sqrt D\,(\int_0^{T_n}R(t_n,u)^2\,\dd u)^{1/2}$, by the Cauchy--Schwarz inequality. The second term is bounded by \eqref{eq:geometry-disjoint-strips} with $T=T_n$. Both bounds tend to zero by \eqref{eq:geometry-old-row-l2}.
+\end{proof}
+
+\begin{theorem}[Susceptibility lower bound]
+\label{thm:geometry-susceptibility-lower}
+For the uniform-start cubic CK solution at $\beta\ge\bd$,
+\begin{equation}
+ \liminf_{t\to\infty}\chi(t,0)\ge2(1-q) .
+ \label{eq:geometry-susceptibility-lower}
+\end{equation}
+More precisely, for every fixed $D>0$,
+\begin{equation}
+ \liminf_{t\to\infty}\chi(t,0)\ge(1-q)+\frac{q(1-q)}{c(2D)} .
+ \label{eq:geometry-susceptibility-smoothed}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Let $\gamma=\liminf_{t\to\infty}\chi(t,0)\in[0,\infty]$. If $\gamma=\infty$, there is nothing to prove. Otherwise, we choose $t_n\to\infty$ with $\chi(t_n,0)\to\gamma$. All later bounds on the total response mass are along this sequence. Because $c(2D)\downarrow q$ as $D\to\infty$, the bound \eqref{eq:geometry-susceptibility-smoothed} implies \eqref{eq:geometry-susceptibility-lower}. We therefore fix $D>0$ and prove \eqref{eq:geometry-susceptibility-smoothed}.
+
+The proof has six steps.
+\begin{enumerate}
+\item We choose ages $L_n\to\infty$ such that the centers $U_n=U_{t_n,L_n}$ approach the ceiling and have the limits \eqref{eq:geometry-susceptibility-diagonal} below.
+\item By \eqref{eq:geometry-cubic-root-frame}, the root operator $\mathcal I^*U_n$ splits into an old part $A_n$, which is an integral over the times before $T_n=t_n-L_n$, and a recent part $B_n$.
+\item In the coordinates of \cref{thm:geometry-universal-root}, the recent part converges to the rank-one operator $2^{-1/2}|\mathbf1\rangle\langle\mathbf1|$.
+\item It follows that the old part converges in Hilbert--Schmidt norm to a positive operator $\mathcal S$ with trace $2^{-1/2}$.
+\item We smooth the old part with \cref{lem:geometry-disjoint-strips}. The smoothed operator is positive, and the lower semicontinuity of the trace shows that its trace is at least $2^{-1/2}$ in the limit.
+\item The trace of the smoothed operator is explicit in the limit, and it is proportional to the old response mass $\gamma-(1-q)$. Comparing with Step 5 gives \eqref{eq:geometry-susceptibility-smoothed}.
+\end{enumerate}
+
+\paragraph{Step 1: the diagonal choice.}
+Recall the notation $M_T(a)=P_Tv_{T+a}$ and $Q_T(a,b)=\ip{M_T(a)}{M_T(b)}$ from the proof of \cref{lem:geometry-center-average}. Fix an integer $k\ge1$. By \eqref{sel:prefix-gram}, by \eqref{eq:geometry-selected-center-deficit} with $D=k$ and $s=T+k$, and by \eqref{sel:stationary-window}, the following three statements hold for all large $T$:
+\begin{enumerate}[label=(\roman*)]
+\item $\sup_{0\le a,b\le k}|Q_T(a,b)-c(a+b)|\le1/k$;
+\item $M_T(k)\ne0$, and $|f(M_T(k)/\norm{M_T(k)})-F_*+\delta_k/\sqrt3|\le1/k$;
+\item $|\int_0^kR(T+k,T+k-\tau)\,\dd\tau-(1-c(k))|\le1/k$.
+\end{enumerate}
+For (iii), we used that $\int_0^kR(T+k,T+k-\tau)\,\dd\tau\to\int_0^kr=1-c(k)$. Let $\theta_k$ be a threshold such that (i)--(iii) hold for all $T\ge\theta_k$, chosen nondecreasing in $k$ and satisfying $\theta_k\ge k$. Discarding finitely many $n$, we may assume that $t_n\ge1+\theta_1$. Let $L_n$ be the largest integer $k\ge1$ with $t_n\ge k+\theta_k$. For each fixed $K$, we have $t_n\ge K+\theta_K$ for all large $n$, because $t_n\to\infty$; therefore $L_n\to\infty$. Let $T_n=t_n-L_n$. Then $T_n\ge\theta_{L_n}\ge L_n\to\infty$, and (i)--(iii) hold with $k=L_n$ and $T=T_n$. We define
+\[
+ d_n=\norm{M_{t_n,L_n}}^2=Q_{T_n}(L_n,L_n),\qquad U_n=U_{t_n,L_n}=\frac{M_{T_n}(L_n)}{\sqrt{d_n}} .
+\]
+Note that $\chi(t_n,T_n)=\int_{T_n}^{t_n}R(t_n,u)\,\dd u=\int_0^{L_n}R(t_n,t_n-\tau)\,\dd\tau$. Since $c(L_n)\to q$, $c(2L_n)\to q$, and $\delta_{L_n}\to0$, the statements (i)--(iii) give
+\begin{equation}
+ d_n\to q,\qquad
+ \chi(t_n,T_n)\to1-q,\qquad
+ f(U_n)\to F_* .
+ \label{eq:geometry-susceptibility-diagonal}
+\end{equation}
+We also record a consequence of (i) for the recent states. Fix $W>0$, and let $n$ be so large that $L_n\ge W$. For $0\le\tau\le W$, we have $P_{T_n}v_{t_n-\tau}=M_{T_n}(L_n-\tau)$, and (i) gives
+\begin{align*}
+ \bigl\|P_{T_n}v_{t_n-\tau}-\sqrt q\,U_n\bigr\|^2
+ &=Q_{T_n}(L_n-\tau,L_n-\tau)+q-\frac{2\sqrt q\,Q_{T_n}(L_n-\tau,L_n)}{\sqrt{d_n}}\\
+ &=c(2L_n-2\tau)+q-\frac{2\sqrt q\,c(2L_n-\tau)}{\sqrt{d_n}}+o(1),
+\end{align*}
+uniformly in $\tau\in[0,W]$. The function $c$ is nonincreasing with limit $q$, which gives $c(2L_n-2\tau)\to q$ and $c(2L_n-\tau)\to q$ uniformly in $\tau\in[0,W]$. Together with $d_n\to q$, this shows that
+\begin{equation}\label{eq:geometry-recent-centers}
+ \sup_{0\le\tau\le W}\bigl\|P_{T_n}v_{t_n-\tau}-\sqrt q\,U_n\bigr\|\longrightarrow0 .
+\end{equation}
+
+\paragraph{Step 2: the old and recent parts of the root.}
+For $u\le T_n$, we have $v_u\in\mathcal H_u\subset\mathcal H_{T_n}$ and $P_{T_n}v_u=v_u$. Applying \eqref{eq:geometry-cubic-root-frame} with $T=T_n$ and $t=t_n$, and dividing by $\sqrt{d_n}$, we obtain $\mathcal I^*U_n=A_n+B_n$, where
+\begin{align*}
+ A_n&=\frac{\beta\sqrt3}{\sqrt{d_n}}\int_0^{T_n}R(t_n,u)\,|v_u\rangle\langle v_u|\,\dd u,\\
+ B_n&=\frac{\beta\sqrt3}{\sqrt{d_n}}\int_{T_n}^{t_n}R(t_n,u)\,|P_{T_n}v_u\rangle\langle P_{T_n}v_u|\,\dd u .
+\end{align*}
+Both operators are positive and trace class, as Bochner integrals in trace norm of positive rank-one operators with trace norms at most one.
+
+\paragraph{Step 3: the recent part.}
+By \eqref{eq:geometry-susceptibility-diagonal}, \cref{thm:geometry-universal-root} applies to the unit vectors $U_n$. Let $V_n$ be the embeddings it provides, so that $V_nU_n=\mathbf1$ and $V_n\mathcal I^*U_nV_n^*\to\mathcal T\oplus0$ in Hilbert--Schmidt norm. We transport every operator by $V_n$ and write $\widehat X=V_nXV_n^*$. This preserves Hilbert--Schmidt distances, positivity, and traces. We write $|\mathbf1\rangle\langle\mathbf1|$ also for the operator $|\mathbf1\rangle\langle\mathbf1|\oplus0$. We claim that
+\begin{equation}
+ \widehat B_n\longrightarrow\frac1{\sqrt2}|\mathbf1\rangle\langle\mathbf1|\quad\text{in Hilbert--Schmidt norm.}
+ \label{eq:geometry-recent-root-atom}
+\end{equation}
+
+To prove the claim, fix $W>0$ and let $n$ be so large that $L_n\ge W$. We split $B_n=B_n'+B_n''$ at the time $t_n-W$, where $B_n'$ is the integral over $[t_n-W,t_n]$. We write $w_{n,\tau}=P_{T_n}v_{t_n-\tau}$ and $\chi_n(W)=\int_0^WR(t_n,t_n-\tau)\,\dd\tau$. Using the rank-one estimate
+\[
+ \bigl\||x\rangle\langle x|-|y\rangle\langle y|\bigr\|_{\HS}\le(\norm{x}+\norm{y})\norm{x-y}
+\]
+with $x=w_{n,\tau}$ and $y=\sqrt q\,U_n$, both of norm at most one, we find
+\[
+ \Bigl\|B_n'-\frac{\beta\sqrt3\,q\,\chi_n(W)}{\sqrt{d_n}}|U_n\rangle\langle U_n|\Bigr\|_{\HS}
+ \le\frac{2\beta\sqrt3}{\sqrt{d_n}}\,\chi_n(W)\sup_{0\le\tau\le W}\norm{w_{n,\tau}-\sqrt q\,U_n}\longrightarrow0,
+\]
+by \eqref{eq:geometry-recent-centers}. Note that $\chi_n(W)\to\int_0^Wr$, by \eqref{sel:stationary-window}. Since $V_n|U_n\rangle\langle U_n|V_n^*=|\mathbf1\rangle\langle\mathbf1|$ and $d_n\to q$, it follows that
+\[
+ \widehat B_n'\longrightarrow\beta\sqrt3\sqrt q\Bigl(\int_0^Wr(\tau)\,\dd\tau\Bigr)|\mathbf1\rangle\langle\mathbf1| .
+\]
+For the remaining part, since $\norm{P_{T_n}v_u}\le1$, we have
+\begin{align*}
+ \norm{\widehat B_n''}_{\HS}&\le\frac{\beta\sqrt3}{\sqrt{d_n}}\int_{T_n}^{t_n-W}R(t_n,u)\,\dd u
+ =\frac{\beta\sqrt3}{\sqrt{d_n}}\bigl[\chi(t_n,T_n)-\chi_n(W)\bigr]\\
+ &\longrightarrow\frac{\beta\sqrt3}{\sqrt q}\Bigl[(1-q)-\int_0^Wr(\tau)\,\dd\tau\Bigr],
+\end{align*}
+by \eqref{eq:geometry-susceptibility-diagonal}. Combining the last two displays, we obtain
+\[
+ \limsup_{n\to\infty}\Bigl\|\widehat B_n-\frac1{\sqrt2}|\mathbf1\rangle\langle\mathbf1|\Bigr\|_{\HS}
+ \le\Bigl|\beta\sqrt3\sqrt q\int_0^Wr-\frac1{\sqrt2}\Bigr|+\frac{\beta\sqrt3}{\sqrt q}\Bigl[(1-q)-\int_0^Wr\Bigr].
+\]
+The left side does not depend on $W$. As $W\to\infty$, we have $\int_0^Wr\to1-q$, and the right side tends to zero by \eqref{eq:geometry-marginal-normalization}. This proves \eqref{eq:geometry-recent-root-atom}.
+
+\paragraph{Step 4: the old part.}
+By \cref{thm:geometry-universal-root} and \eqref{eq:geometry-recent-root-atom}, $\widehat A_n=V_n\mathcal I^*U_nV_n^*-\widehat B_n$ converges in Hilbert--Schmidt norm to $\mathcal S\oplus0$, where
+\[
+ \mathcal S=\mathcal T-\frac1{\sqrt2}|\mathbf1\rangle\langle\mathbf1|
+ =\frac1{2\sqrt2}\int_0^1z^{-3/2}|\mathbf1_{[0,z]}\rangle\langle\mathbf1_{[0,z]}|\,\dd z .
+\]
+The second expression comes from the frame \eqref{eq:geometry-universal-root-frame}. It shows that $\mathcal S$ is positive and that $\tr\mathcal S=\tr\mathcal T-2^{-1/2}=2^{-1/2}$.
+
+\paragraph{Step 5: smoothing and lower semicontinuity of the trace.}
+Let $n$ be so large that $T_n\ge D$, and define the smoothed old part
+\[
+ A_{n,D}=\frac{\beta\sqrt3}{\sqrt{d_n}}\int_D^{T_n}R(t_n,u)\,|M_{u,D}\rangle\langle M_{u,D}|\,\dd u .
+\]
+It is a positive trace-class operator. By the last assertion of \cref{lem:geometry-disjoint-strips}, applied with the sequences $t_n$ and $L_n$, and since $d_n\to q$, we have $\norm{A_{n,D}-A_n}_{\HS}\to0$. By Step 4, $\widehat A_{n,D}\to\mathcal S\oplus0$ in Hilbert--Schmidt norm. We claim that
+\begin{equation}
+ \liminf_{n\to\infty}\tr A_{n,D}\ge\tr\mathcal S=\frac1{\sqrt2} .
+ \label{eq:geometry-trace-fatou}
+\end{equation}
+This is the classical lower semicontinuity of the trace on positive operators, and not continuity, since the convergence holds only in Hilbert--Schmidt norm. We include the short proof. Let $Q$ be an orthogonal projection of finite rank on $L^2(0,1)\oplus\mathcal K$. For Hilbert--Schmidt operators $X$ and $Y$, we have $\tr(QXQ)=\tr(QX)=\ip{Q}{X}_{\HS}$, so
+\[
+ |\tr(QXQ)-\tr(QYQ)|\le\norm{Q}_{\HS}\norm{X-Y}_{\HS}=(\operatorname{rank}Q)^{1/2}\norm{X-Y}_{\HS} .
+\]
+In particular, $\tr(Q\widehat A_{n,D}Q)\to\tr(Q(\mathcal S\oplus0)Q)$. For a positive trace-class operator $X$, we have $\tr(QXQ)\le\tr X$, as one sees by computing the trace in an orthonormal basis that contains a basis of the range of $Q$. Since $\tr\widehat A_{n,D}=\tr A_{n,D}$, we obtain
+\[
+ \liminf_{n\to\infty}\tr A_{n,D}\ge\tr\bigl(Q(\mathcal S\oplus0)Q\bigr).
+\]
+Let $(e_i)$ be an orthonormal basis of $L^2(0,1)$, and let $Q_k$ be the projection onto the span of $e_1,\dots,e_k$. Then $\tr(Q_k(\mathcal S\oplus0)Q_k)=\sum_{i\le k}\ip{e_i}{\mathcal Se_i}$ increases to $\tr\mathcal S$ as $k\to\infty$. This proves \eqref{eq:geometry-trace-fatou}.
+
+\paragraph{Step 6: the trace of the smoothed old part.}
+The trace of a rank-one operator $|x\rangle\langle x|$ is $\norm{x}^2$, so
+\[
+ \tr A_{n,D}=\frac{\beta\sqrt3}{\sqrt{d_n}}\int_D^{T_n}R(t_n,u)\,z_D(u)\,\dd u,
+ \qquad z_D(u)=\norm{M_{u,D}}^2 .
+\]
+Recall from \eqref{sel:prefix-norm} that $z_D(u)\to c(2D)$ as $u\to\infty$. By \eqref{eq:geometry-susceptibility-diagonal}, the old response mass satisfies
+\[
+ \int_0^{T_n}R(t_n,u)\,\dd u=\chi(t_n,0)-\chi(t_n,T_n)\longrightarrow\gamma-(1-q) .
+\]
+Fix $u_0\ge D$. For $n$ so large that $T_n\ge u_0$, the Cauchy--Schwarz inequality and \eqref{eq:geometry-old-row-l2} give $\int_0^{u_0}R(t_n,u)\,\dd u\le\sqrt{u_0}\,(\int_0^{T_n}R(t_n,u)^2\,\dd u)^{1/2}\to0$. Splitting the integrals at $u_0$ and using $0\le z_D\le1$ and $c(2D)\le1$, we find
+\begin{align*}
+ &\Bigl|\int_D^{T_n}R(t_n,u)z_D(u)\,\dd u-c(2D)\int_0^{T_n}R(t_n,u)\,\dd u\Bigr|\\
+ &\qquad\le2\int_0^{u_0}R(t_n,u)\,\dd u+\sup_{u\ge u_0}|z_D(u)-c(2D)|\int_0^{T_n}R(t_n,u)\,\dd u .
+\end{align*}
+We recall that $\gamma<\infty$. The upper limit of the right side as $n\to\infty$ is at most $\sup_{u\ge u_0}|z_D(u)-c(2D)|\,(\gamma-(1-q))$, which tends to zero as $u_0\to\infty$. Together with $d_n\to q$, this gives
+\[
+ \tr A_{n,D}\longrightarrow\frac{\beta\sqrt3}{\sqrt q}\,c(2D)\bigl(\gamma-(1-q)\bigr).
+\]
+Comparing with \eqref{eq:geometry-trace-fatou} and using \eqref{eq:geometry-marginal-normalization}, we obtain
+\[
+ \frac{\beta\sqrt3}{\sqrt q}\,c(2D)\bigl(\gamma-(1-q)\bigr)\ge\frac1{\sqrt2}=\beta\sqrt3\sqrt q\,(1-q) .
+\]
+Multiplying by $\sqrt q/(\beta\sqrt3)$, we find $c(2D)(\gamma-(1-q))\ge q(1-q)$, which is \eqref{eq:geometry-susceptibility-smoothed}. This completes the proof.
+\end{proof}
+
+\begin{remark}\label{rem:geometry-susceptibility-prediction}
+In the asymptotic solution of Cugliandolo and Kurchan \cite[arXiv version~1, paragraph after Equation~(12) and Equation~(13), p.~6]{ck1993}, the slow sector has the constant fluctuation--dissipation ratio $x=(p-2)(1-q)/q$. Under this prediction, the total susceptibility tends to $(1-q)+xq=(p-1)(1-q)$, which is $2(1-q)$ for $p=3$; formally, this is the relation \eqref{eq:discussion-slow-fdr} with $c=0$. \Cref{thm:geometry-susceptibility-lower} proves the corresponding lower bound. The matching upper bound \eqref{eq:discussion-susceptibility-upper} is open; see \cref{sec:discussion}.
+\end{remark}

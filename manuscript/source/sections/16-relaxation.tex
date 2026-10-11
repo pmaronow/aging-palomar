@@ -1,0 +1,940 @@
+\chapter{Algebraic relaxation in the stationary sector}\label{sec:stationary-relaxation}
+
+In this section, we prove \cref{thm:stationary-critical-amplitude}. Together with the discussion of the exponent in \cref{sec:sc-statement}, it proves \cref{thm:main-stationary-tail}. For $\beta\ge\bd$, it describes how the selected stationary profile $c$ approaches its plateau $q$. The difference $c(t)-q$ decays like $A_\beta t^{-a}$, where the amplitude $A_\beta$ is finite and positive, and the exponent $a\in(0,1/2)$ is determined by $q$ through the relation \eqref{eq:stationary-critical-exponent}. Every fixed derivative of $c$ has the corresponding power asymptotic.
+
+The argument is an analysis of one scalar equation. It uses four results proved earlier: the regularity of a stationary cluster (\cref{prop:stationary-clusters}), the scalar memory equation and the plateau identity (\cref{prop:scalar-clusters}), the selection of the plateau together with marginality (\cref{sel:selected-sector}), and the complete monotonicity of the profile (\cref{sel:cluster-complete-monotonicity}). The precise properties that we use are listed at the start of \cref{sec:sc-statement}. The results of this section prove \cref{thm:main-stationary-tail} and verify the power-law hypotheses in \cref{resp:remote-earlier,resp:thermal}. The section can be read once \cref{part:selection} is available.
+
+The relation \eqref{eq:stationary-critical-exponent} between the exponent and the plateau is the classical exponent relation of mode-coupling theory. G\"otze analyzed the leading critical and beta-scaling asymptotics of schematic and full mode-coupling equations in \cite[p.~144, Equation~(11)]{goetze1984} and \cite[p.~195, Equation~(1b), and Sections~3 and~5]{goetze1985}, the latter under a generic instability with an isolated critical stability eigenvalue. The cited critical power-law expansions concern an exponent parameter strictly between zero and one. An explicit statement of the relation is given in \cite[Section~4, p.~881, paragraph following Equation~(6)]{goetze1998}. The liquid-theory review gives the exponent relation for $\lambda_{\mathrm{MCT}}\in[1/2,1)$ \cite[Section~3.3, Equation~(3.19), p.~306]{goetzesjogren1992}. The general polynomial discussion in \cite[Section~6.1.2, Equations~(6.11d) and~(6.17b), pp.~444--447]{goetze2009} includes $0<\lambda_{\mathrm{MCT}}<1$, but assumes that the constructed low-frequency solution determines the asymptote of the actual critical correlator; it explicitly states on p.~447 that a proof of this matching assumption is unavailable.
+An aging analogue, relating the approach and departure exponents to the fluctuation--dissipation ratio, was analyzed in \cite[arXiv version~1, Sections~III and~VI.D--E]{cugliandololedoussal1996} and \cite[Section~IV, Equation~(IV.6)]{bckm1996}; see also \cite[arXiv version~2, Section~12.3.8, Equation~(12.36)]{cugliandolo2004}. For the pure spherical model, its parameter is $\vartheta=(p-2)(1-q)/(2q)$, with $0<\vartheta\le1/2$ for the selected aging profile, and it is half of the fluctuation--dissipation ratio $(p-2)(1-q)/q$ of the aging regime predicted in \cite[arXiv version~1, paragraph after Equation~(12), p.~6]{ck1993}, and the relation is written in this form in \cite[arXiv version~1, p.~4, paragraph following Equation~(12)]{kimlatz2001}. The structural theory of scalar mode-coupling equations in \cite[Section~2, Theorem~1 and Corollaries~1.1--1.2, pp.~232--233]{gs1995}, its extension to Brownian mixtures with completely monotone solutions \cite[arXiv version~1, Section~III]{fv2002}, and the regenerative-process viewpoint of \cite[Sections~1 and~5.2 and Appendix~C]{sjogren2003} are mathematical predecessors of the argument below. The critical power law, with an amplitude that depends on the transient dynamics, is a classical asymptotic result of mode-coupling theory \cite[Section~4, Equation~(6), pp.~880--881]{goetze1998}. We give a self-contained proof for the stationary profile selected by the CK solution, including a finite positive amplitude and the asymptotics of all fixed derivatives. The proof does not assume a power expansion of the profile and does not differentiate an asymptotic equivalence. The tools are classical: comparison principles, beta integrals, the Schur test with its exact remainder, a factorization of gamma variables, the key renewal theorem \cite{feller1971}, and the monotone density theorem \cite{bgt1987}.
+
+\section{Inputs and statement of the result}\label{sec:sc-statement}
+
+Throughout this section, we fix $p\ge3$ and $\beta\ge\bd$. Let $(c,r)$ be the stationary profile and $\ell=\ell_\beta$ the limiting multiplier given by \cref{sel:selected-sector}, and let $q=q_\beta$ be the plateau of $c$. We use the following properties of $(c,r,q,\ell)$, and no other information about the CK solution.
+\begin{enumerate}[label=(S\arabic*)]
+\item\label{item:sc-input-regularity} (\Cref{prop:stationary-clusters}.) The function $r$ is continuously differentiable on $[0,\infty)$, and $c'=-r$ and $c(0)=r(0)=1$.
+\item\label{item:sc-input-scalar} (\Cref{prop:scalar-clusters}.) The function $r$ is strictly positive on $[0,\infty)$. With
+\[
+ \phi(y)=\gamma+\beta^2py^{p-1},\qquad \gamma=\ell-\beta^2p,
+\]
+we have the scalar memory equation \eqref{eq:scalar-memory},
+\[
+ c'(t)=-1+\int_0^t\phi(c(t-s))\,r(s)\,\dd s,\qquad t\ge0,
+\]
+and the plateau identity $\phi(q)(1-q)=1$ from \eqref{eq:plateau-multiplier}.
+\item\label{item:sc-input-marginal} (\Cref{sel:selected-sector}.) The plateau satisfies $\qd\le q<1$ and the marginality condition
+\begin{equation}\label{eq:sc-marginality}
+ \beta^2p(p-1)q^{p-2}(1-q)^2=1.
+\end{equation}
+Moreover, $q=\qd$ if and only if $\beta=\bd$.
+\item\label{item:sc-input-cm} (\Cref{sel:cluster-complete-monotonicity}.) There exists a probability measure $\nu$ on $[0,\infty)$ such that
+\[
+ c(t)=\int_{[0,\infty)}e^{-xt}\,\nu(\dd x),\qquad t\ge0,\qquad\nu(\{0\})=q.
+\]
+\end{enumerate}
+The last sentence of \ref{item:sc-input-marginal} follows from \cref{sel:selected-sector}, which identifies $q$ as the larger root of \eqref{eq:sc-marginality}, and this root lies in $[(p-2)/p,1)$. The function $y\mapsto y^{p-2}(1-y)^2$ is strictly decreasing on this interval, which implies that the larger root is strictly increasing in $\beta$. The point $\qd$ lies in the same interval, and a direct substitution shows that it is a root when $\beta=\bd$.
+
+\paragraph{The exponent.} We define
+\begin{equation}\label{eq:stationary-critical-exponent}
+ \vartheta=\frac{(p-2)(1-q)}{2q},\qquad
+ \frac{\Gamma(1-a)^2}{\Gamma(1-2a)}=\vartheta,
+ \qquad 0<a<\frac12,
+\end{equation}
+where $\Gamma$ is Euler's gamma function. We now check that the second relation determines $a$ uniquely. Recall that $q\ge\qd=(p-2)/(p-1)$. Then $(1-q)/q\le1/(p-2)$, which gives $0<\vartheta\le1/2$. Let $\psi=\Gamma'/\Gamma$ be the digamma function. For $0<\alpha<1/2$, we have
+\[
+ \frac{\dd}{\dd\alpha}\log\frac{\Gamma(1-\alpha)^2}{\Gamma(1-2\alpha)}
+ =2\bigl[\psi(1-2\alpha)-\psi(1-\alpha)\bigr]<0,
+\]
+since $\psi$ is strictly increasing on $(0,\infty)$. The quotient equals $1$ at $\alpha=0$ and tends to $0$ as $\alpha\uparrow1/2$, because $\Gamma(1-2\alpha)\to\infty$. We conclude that it is a strictly decreasing bijection from $[0,1/2)$ onto $(0,1]$. In particular, there exists exactly one $a\in(0,1/2)$ satisfying \eqref{eq:stationary-critical-exponent}.
+
+At $\beta=\bd$, we have $q=\qd$, and then $\vartheta=1/2$ for all $p$. Solving $\Gamma(1-a)^2/\Gamma(1-2a)=1/2$ numerically, by bisection in double-precision arithmetic with the logarithm of the gamma function, yields $a=0.3952630630\ldots$ at $\beta=\bd$. For $\beta>\bd$, we have $q>\qd$ by \ref{item:sc-input-marginal}. Then $\vartheta<1/2$, and $a$ lies strictly between this value and $1/2$. In the cubic model, $\vartheta=(1-q)/(2q)$. These numerical values are not used in the proofs.
+
+The relation \eqref{eq:stationary-critical-exponent} has a simple meaning. We write $(f*g)(t)=\int_0^tf(t-s)g(s)\,\dd s$ for the convolution of two functions on $[0,\infty)$; we use this notation throughout the section. For the pure power $w(t)=t^{-a}$, the beta integral gives $(w*w)(t)=\mathrm B(1-a,1-a)\,t^{1-2a}$, where $\mathrm B$ is Euler's beta function. Using $\Gamma(2-2a)=(1-2a)\Gamma(1-2a)$, we find
+\begin{equation}\label{eq:sc-power-balance}
+ (w*w)'(t)=(1-2a)\mathrm B(1-a,1-a)\,t^{-2a}
+ =\frac{\Gamma(1-a)^2}{\Gamma(1-2a)}\,w(t)^2 .
+\end{equation}
+In other words, \eqref{eq:stationary-critical-exponent} says that $(w*w)'=\vartheta w^2$. This is the balance of the two quadratic terms in the normalized equation \eqref{eq:sc-normalized} below; see \eqref{eq:sc-quadratic-balance}. Because both sides of this balance are quadratic, it fixes the exponent but not the amplitude.
+
+\paragraph{The result.}
+
+\begin{theorem}[Stationary critical relaxation]
+\label{thm:stationary-critical-amplitude}
+Fix $p\ge3$ and $\beta\ge\bd$. Let $c$ be the stationary profile of \cref{sel:selected-sector}, let $q$ be its plateau, and let $a\in(0,1/2)$ be defined by \eqref{eq:stationary-critical-exponent}. Then there exists $A_\beta\in(0,\infty)$ such that, as $t\to\infty$,
+\begin{equation}
+ c(t)-q\sim A_\beta t^{-a},\qquad
+ (-1)^n c^{(n)}(t)\sim A_\beta(a)_n t^{-a-n}
+ \quad\text{for every fixed integer }n\ge1,
+ \label{eq:stationary-critical-amplitude}
+\end{equation}
+where $(a)_n=a(a+1)\cdots(a+n-1)$. In particular, $r(t)\sim aA_\beta t^{-1-a}$.
+\end{theorem}
+
+\begin{remark}\label{rem:sc-amplitude}
+The exponent $a$ depends only on $\vartheta$, that is, on $p$ and $q$. The proof determines the amplitude as a limit, $A_\beta=(1-q)^{1+a}A_0$ with $A_0$ given in \eqref{eq:sc-amplitude-limit}, and gives no closed formula for it. In line with the remark after \eqref{eq:sc-power-balance}, marginality determines the exponent, while the amplitude is determined by the whole profile $c$.
+\end{remark}
+
+\paragraph{Outline of the proof.} The proof occupies the rest of this section. We first rescale time and the profile so that marginality says that the coefficient of the linear memory term equals one (\cref{lem:sc-normalized-equation}). The normalized profile $u$ then solves $u'+u+M(u)*u'=0$, where $M$ is a polynomial with $M(y)=y+\vartheta y^2+O(y^3)$. The proof then has three steps.
+\begin{enumerate}[label=\arabic*.]
+\item \emph{Comparison profiles} (\cref{subsec:sc-normalization,subsec:sc-endpoint}). A comparison principle (\cref{lem:sc-comparison}) turns the sign of the residual of an explicit profile into an inequality between that profile and $u$. For the shifted power $g(t)=(1+t)^{-a}$, the choice of $a$ makes the quadratic part of the residual positive but of smaller order than $g^3$, and the sign of the residual is decided by cubic terms. We fix this sign by correcting $g$ with a small multiple of $g^2$ (\cref{lem:sc-shifted,lem:sc-critical-residuals}). The comparison profiles keep $u$ itself up to a fixed time and continue it by a rescaled corrected power. This yields $A_-(1+t)^{-a}\le u(t)\le A_+(1+t)^{-a}$ (\cref{thm:stationary-critical-endpoint}). These bounds identify the exponent, but they still allow $t^au(t)$ to oscillate between $A_-$ and $A_+$ on a logarithmic time scale.
+\item \emph{The logarithmic Dirichlet form} (\cref{subsec:sc-dirichlet}). The function $Q=u*u$ satisfies $Q'=\vartheta u^2+\mathcal E$, where the error $\mathcal E$ is integrable against $t^{-(1-2a)}$ (\cref{lem:stationary-critical-balance-error}). Integrating this balance against the same weight and comparing the result with the Schur test for a homogeneous kernel, we deduce that $D(x)=e^{ax}u(e^x)$ has a finite Dirichlet energy for an explicit kernel on the line (\cref{lem:stationary-critical-dirichlet}). This implies that $D(x+h)-D(x)\to0$ as $x\to\infty$ for every fixed $h$. This still allows $D$ to vary slowly without converging.
+\item \emph{The renewal equation} (\cref{subsec:sc-renewal}). We take the Laplace transform of the balance at the point $e^{-x}$. A factorization of gamma random variables turns the result into a linear renewal equation $f-\mathcal Bf=g_0$ for a smoothed version $f$ of $D^2$, with an integrable source $g_0$. We control the variance part of $g_0$ by the Dirichlet energy of the second step, and the rest by the error $\mathcal E$. Using the key renewal theorem, we show that $f$ converges. By the second step, $f-D^2\to0$, and by the first step the limit of $D$ lies in $(0,\infty)$. Finally, complete monotonicity and the monotone density theorem give the asymptotics of every derivative.
+\end{enumerate}
+
+\section{Normalization and comparison}
+\label{subsec:sc-normalization}
+
+We first rescale the profile so that marginality becomes a statement about a single coefficient. Recall the function $\phi$ and the plateau identity $\phi(q)(1-q)=1$ from \ref{item:sc-input-scalar}. We define the polynomial
+\begin{equation}\label{eq:sc-memory-polynomial}
+ M(y)=(1-q)\bigl[\phi(q+(1-q)y)-\phi(q)\bigr],\qquad y\in\R .
+\end{equation}
+
+\begin{lemma}[The normalized equation]\label{lem:sc-normalized-equation}
+Define $u\colon[0,\infty)\to\R$ by
+\[
+ u(z)=\frac{c((1-q)z)-q}{1-q}.
+\]
+Then $u$ is continuously differentiable, and
+\begin{equation}
+ u'+u+M(u)*u'=0,\qquad u(0)=1,\qquad
+ M(y)=y+\sum_{j=2}^{p-1}\lambda_jy^j,
+ \quad\lambda_2=\vartheta,
+ \label{eq:sc-normalized}
+\end{equation}
+where
+\begin{equation}\label{eq:sc-memory-coefficients}
+ \lambda_j=\frac1{p-1}\binom{p-1}{j}\Bigl(\frac{1-q}{q}\Bigr)^{j-1}\ge0,\qquad 2\le j\le p-1.
+\end{equation}
+Further, there exists a probability measure $\mu$ on $(0,\infty)$ such that
+\begin{equation}\label{eq:sc-u-spectral}
+ u(z)=\int_{(0,\infty)}e^{-\eta z}\,\mu(\dd\eta),\qquad z\ge0.
+\end{equation}
+In particular, $u$ is strictly positive and completely monotone on $(0,\infty)$, and $u(z)\to0$ as $z\to\infty$. The function $v=-u'$ is continuous, strictly positive, and nonincreasing on $[0,\infty)$, with $v(0)=1$ and $\int_0^\infty v(z)\,\dd z=1$.
+\end{lemma}
+
+\begin{proof}
+Recall from \ref{item:sc-input-regularity} that $c$ is continuously differentiable with $c'=-r$. By the chain rule, $u'(z)=c'((1-q)z)=-r((1-q)z)$; the factor $1-q$ produced by the chain rule cancels the normalization. In particular, $u$ is continuously differentiable, $u(0)=1$, and $v(z)=r((1-q)z)$; by \ref{item:sc-input-scalar}, $v$ is strictly positive, and $v(0)=r(0)=1$.
+
+Fix $z\ge0$. We use \eqref{eq:scalar-memory} at the time $(1-q)z$ and substitute $s=(1-q)w$ in its integral. Using $r((1-q)w)=v(w)$ and $c((1-q)(z-w))=q+(1-q)u(z-w)$, we find
+\[
+ u'(z)=-1+(1-q)\int_0^z\phi\bigl(q+(1-q)u(z-w)\bigr)\,v(w)\,\dd w .
+\]
+By \eqref{eq:sc-memory-polynomial}, we have $(1-q)\phi(q+(1-q)y)=(1-q)\phi(q)+M(y)=1+M(y)$, where we used the plateau identity. Inserting this and $\int_0^zv(w)\,\dd w=1-u(z)$ into the previous display, we conclude that
+\[
+ u'(z)=-1+\bigl(1-u(z)\bigr)+\int_0^zM(u(z-w))\,v(w)\,\dd w
+ =-u(z)-(M(u)*u')(z),
+\]
+which is the first relation in \eqref{eq:sc-normalized}.
+
+Next, we compute $M$. By the binomial theorem,
+\[
+ M(y)=(1-q)\beta^2p\bigl[(q+(1-q)y)^{p-1}-q^{p-1}\bigr]
+ =\beta^2p\sum_{j=1}^{p-1}\binom{p-1}{j}q^{p-1-j}(1-q)^{j+1}y^j .
+\]
+The coefficient of $y$ is $\beta^2p(p-1)q^{p-2}(1-q)^2$, which equals $1$ by the marginality condition \eqref{eq:sc-marginality}. Dividing the coefficient of $y^j$ by this quantity, we find that it equals $\lambda_j$ in \eqref{eq:sc-memory-coefficients}. For $j=2$, this gives $\lambda_2=(p-2)(1-q)/(2q)=\vartheta$. All coefficients are nonnegative because $0<q<1$. For $p=3$, we have simply $M(y)=y+\vartheta y^2$.
+
+Finally, by \ref{item:sc-input-cm}, we have $c(t)-q=\int_{(0,\infty)}e^{-xt}\,\nu(\dd x)$ and $\nu((0,\infty))=1-q>0$. Let $\mu$ be the image of the probability measure $(1-q)^{-1}\nu(\,\cdot\,\cap(0,\infty))$ under the map $x\mapsto(1-q)x$. Then \eqref{eq:sc-u-spectral} holds. By the representation, we have $u>0$, since $\mu$ is a nonzero measure on $(0,\infty)$. By dominated convergence, $u(z)\to0$ as $z\to\infty$. For $n\ge1$ and $z_0>0$, the function $\eta^ne^{-\eta z'}$ is bounded uniformly in $\eta>0$ and $z'\ge z_0$. By induction on $n$, this justifies differentiating $n$ times under the integral sign on $(z_0,\infty)$, and we have
+\[
+ (-1)^nu^{(n)}(z)=\int_{(0,\infty)}\eta^ne^{-\eta z}\,\mu(\dd\eta)>0,\qquad z>0,\ n\ge1 .
+\]
+For $n=2$, this shows that $v$ is nonincreasing on $(0,\infty)$, and by continuity also on $[0,\infty)$. Lastly, $\int_0^\infty v=u(0)-\lim_{z\to\infty}u(z)=1$.
+\end{proof}
+
+From now on, we write $t$ for the normalized time variable. The physical lag reappears only at the end of the proof of \cref{thm:stationary-critical-amplitude}. We record two properties of $M$. Its coefficients are nonnegative, and in particular $M$ is increasing and convex on $[0,\infty)$, with $M(0)=0$. The number $L_M=M'(1)$ is a Lipschitz constant for $M$ on $[0,1]$.
+
+For a locally absolutely continuous, nonincreasing function $P\colon[0,\infty)\to[0,1]$ with $P(0)=1$, we define its residual
+\[
+ \mathcal R_P=P'+P+M(P)*P' .
+\]
+It is defined almost everywhere, and $\mathcal R_u=0$ by \eqref{eq:sc-normalized}. By the following lemma, a nonnegative residual gives an upper bound for $u$, and a nonpositive residual gives a lower bound.
+
+\begin{lemma}[Comparison]
+\label{lem:sc-comparison}
+Let $P\colon[0,\infty)\to[0,1]$ be locally absolutely continuous and nonincreasing, with $P(0)=1$. If $\mathcal R_P\ge0$ almost everywhere, then $u\le P$. If $\mathcal R_P\le0$ almost everywhere, then $P\le u$.
+\end{lemma}
+
+\begin{proof}
+We begin with the first assertion. Set $w=P-u$, and recall that $v=-u'\ge0$. We have
+\[
+ M(P)*P'-M(u)*u'=M(P)*w'-[M(P)-M(u)]*v .
+\]
+Subtracting \eqref{eq:sc-normalized} from the definition of $\mathcal R_P$ and using this identity, we find
+\begin{equation}\label{eq:sc-comparison-difference}
+ w'+w+M(P)*w'=\mathcal R_P+[M(P)-M(u)]*v .
+\end{equation}
+The functions $M\circ P$ and $w$ are locally absolutely continuous, and $w(0)=0$ and $P(0)=1$. Integrating by parts in the convolution, we have, for all $t\ge0$,
+\[
+ (M(P)*w')(t)=\int_0^tM(P(t-s))\,w'(s)\,\dd s=M(1)\,w(t)-(k_P*w)(t),
+\]
+where $k_P=-(M\circ P)'$.
+We have $k_P\ge0$ almost everywhere and $\int_0^tk_P=M(1)-M(P(t))\le M(1)$, because $M$ is increasing on $[0,1]$ and $P$ is nonincreasing with values in $[0,1]$. Inserting this into \eqref{eq:sc-comparison-difference}, we obtain, with $b_0=1+M(1)$,
+\begin{equation}\label{eq:sc-comparison-ode}
+ w'+b_0w=\mathcal R_P+[M(P)-M(u)]*v+k_P*w\qquad\text{almost everywhere.}
+\end{equation}
+
+We now estimate the negative part $w_-=\max\{-w,0\}$. Recall that $M$ is increasing on $[0,1]$, with Lipschitz constant $L_M$ there. Since $u$ and $P$ take values in $[0,1]$, we have $M(P)-M(u)\ge-L_Mw_-$. We also have $w\ge-w_-$, and $v$ and $k_P$ are nonnegative. Using also $\mathcal R_P\ge0$, we deduce from \eqref{eq:sc-comparison-ode} that
+\[
+ \bigl(e^{b_0t}w(t)\bigr)'\ge-e^{b_0t}\bigl[L_M(w_-*v)(t)+(k_P*w_-)(t)\bigr]
+ \qquad\text{almost everywhere.}
+\]
+The function $e^{b_0t}w(t)$ is locally absolutely continuous and vanishes at $t=0$. Integrating, and using $e^{-b_0(t-s)}\le1$, we find
+\[
+ w(t)\ge-\int_0^t\bigl[L_M(w_-*v)(s)+(k_P*w_-)(s)\bigr]\,\dd s .
+\]
+Since the integral on the right is nonnegative, $w_-(t)$ is bounded by the same integral. For a nonnegative locally integrable function $k$, we have, by Tonelli's theorem,
+\[
+ \int_0^t(w_-*k)(s)\,\dd s=\int_0^tk(\sigma)\int_0^{t-\sigma}w_-(s')\,\dd s'\,\dd\sigma
+ \le\|k\|_{L^1(0,t)}\int_0^tw_-(s)\,\dd s .
+\]
+We have $\|v\|_{L^1(0,t)}=1-u(t)\le1$ and $\|k_P\|_{L^1(0,t)}\le M(1)$. Combining these bounds, we find
+\[
+ w_-(t)\le\bigl(L_M+M(1)\bigr)\int_0^tw_-(s)\,\dd s,\qquad t\ge0 .
+\]
+The function $w_-$ is continuous and nonnegative, and Gronwall's inequality implies that $w_-=0$, that is, $u\le P$.
+
+For the second assertion, we set $w=u-P$ and $v_P=-P'\ge0$. Repeating the computation above, with the roles of $u$ and $P$ exchanged and with $u(0)=1$ in the integration by parts, we have
+\[
+ w'+b_0w=-\mathcal R_P+[M(u)-M(P)]*v_P+k_u*w,\qquad k_u=-(M\circ u)'\ge0,
+\]
+almost everywhere. Now $-\mathcal R_P\ge0$, $\|v_P\|_{L^1(0,t)}=1-P(t)\le1$, and $\|k_u\|_{L^1(0,t)}\le M(1)$. Arguing as in the previous paragraph, we conclude that $w_-=0$, that is, $P\le u$.
+\end{proof}
+
+\section{Comparison profiles at the critical exponent}
+\label{subsec:sc-endpoint}
+
+To apply \cref{lem:sc-comparison}, we need explicit profiles whose residuals have a definite sign. The natural candidates are multiples of the shifted power
+\[
+ g(t)=(1+t)^{-a}.
+\]
+We define
+\[
+ D_g=(g*g)'-\vartheta g^2,\qquad
+ H=(g*g^2)'-\vartheta g^3,\qquad
+ D_2=(g^2*g^2)'-\vartheta g^4,
+\]
+and, for $|\varepsilon|\le1/4$,
+\[
+ f_\varepsilon=(1+\varepsilon)g-\varepsilon g^2 .
+\]
+The next lemma explains why an uncorrected power does not suffice. By the choice of $a$, the quadratic part $D_g$ of the residual of $g$ is positive but of smaller order than $g^3$, and the sign of the residual is decided by cubic terms. The cross term $H$ that appears when $g$ is corrected by a multiple of $g^2$ is of order $g^3$ and has a definite sign. Unless stated otherwise, constants denoted by $K$, possibly with indices, depend only on $p$ and $q$, through $a$, $\vartheta$, and the coefficients $\lambda_j$, and on the indicated indices; their values may change from line to line. Constants that also depend on the profile $u$ are indicated as such.
+
+\begin{lemma}[Shifted-power estimates]
+\label{lem:sc-shifted}
+For every $t\ge0$, we have $D_g(t)>0$. Moreover, as $t\to\infty$,
+\begin{equation}
+ D_g(t)=O((1+t)^{-a-1})=o(g(t)^3),\qquad
+ \frac{H(t)}{g(t)^3}\longrightarrow
+ (1-3a)\,\mathrm B(1-a,1-2a)-\vartheta<0.
+ \label{eq:sc-shifted-limits}
+\end{equation}
+When $3a\ne1$, the limit equals $\Gamma(1-a)\Gamma(1-2a)/\Gamma(1-3a)-\vartheta$. There exists $K$ such that $|D_2|\le Kg^3$ on $[0,\infty)$. For every $\varepsilon$ with $|\varepsilon|\le1/4$, the profile $f_\varepsilon$ is positive and strictly decreasing, $f_\varepsilon(0)=1$, $f_\varepsilon\le Kg$, and $|f_\varepsilon'(t)|\le K(1+t)^{-a-1}$. Finally, for every integer $j\ge2$ there exists $K_j$ such that, for all $|\varepsilon|\le1/4$ and $t\ge0$,
+\begin{equation}
+ |(f_\varepsilon^j*f_\varepsilon)'(t)|\le K_jg(t)^3 .
+ \label{eq:sc-shifted-derivative}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The proof has four steps. We first express the derivative of a convolution of two shifted powers through a truncated beta integral. We then use this formula to prove that $D_g>0$, and next to prove \eqref{eq:sc-shifted-limits}. Finally, we bound derivatives of convolutions by splitting them at the midpoint, without differentiating an asymptotic formula.
+
+\paragraph{Step 1: a beta formula.} Let $\alpha,\zeta\in(0,1)$ and $g_\alpha(t)=(1+t)^{-\alpha}$. For $t\ge0$, set $T=t+2$ and $x=1/T\in(0,1/2]$. Substituting $y=(1+s)/T$ in the convolution integral, we find
+\[
+ (g_\alpha*g_\zeta)(t)=\int_0^t(1+t-s)^{-\alpha}(1+s)^{-\zeta}\,\dd s
+ =T^{1-\alpha-\zeta}\int_x^{1-x}y^{-\alpha}(1-y)^{-\zeta}\,\dd y,
+\]
+where we used the symmetry $y\mapsto1-y$ of the interval $[x,1-x]$. We differentiate in $t$, using $\dd T/\dd t=1$ and $\dd x/\dd t=-x^2$. The two endpoints of the integral contribute boundary terms, multiplied by $x^2T^{1-\alpha-\zeta}=xT^{-\alpha-\zeta}$, and we arrive at
+\begin{align}
+ (g_\alpha*g_\zeta)'(t)
+ = T^{-\alpha-\zeta}\bigg[
+ &(1-\alpha-\zeta)\int_x^{1-x}
+             y^{-\alpha}(1-y)^{-\zeta}\,\dd y\nonumber\\
+ &+x^{1-\alpha}(1-x)^{-\zeta}
+  +x^{1-\zeta}(1-x)^{-\alpha}\bigg].
+ \label{eq:sc-beta-derivative}
+\end{align}
+Both boundary terms are positive.
+
+\paragraph{Step 2: positivity of $D_g$.} We take $\alpha=\zeta=a$ in \eqref{eq:sc-beta-derivative}. With $\omega(x)=[x(1-x)]^{-a}$, the bracket in \eqref{eq:sc-beta-derivative} is
+\[
+ J(x)=(1-2a)\int_x^{1-x}\omega(y)\,\dd y+2x\,\omega(x).
+\]
+Since $g(t)^2=(T-1)^{-2a}=T^{-2a}(1-x)^{-2a}$, we have
+\begin{equation}\label{eq:sc-quotient-J}
+ \frac{(g*g)'(t)}{g(t)^2}=(1-x)^{2a}J(x).
+\end{equation}
+Using $\omega(1-x)=\omega(x)$ and $\omega'(x)=-a(1-2x)\,\omega(x)/[x(1-x)]$, a direct computation shows that $J'(x)=2a\,\omega(x)/(1-x)$, and then
+\[
+ \frac{\dd}{\dd x}\bigl[(1-x)^{2a}J(x)\bigr]=2a(1-x)^{2a-1}L(x),
+\]
+where
+\[
+ L(x)=(1-2x)\,\omega(x)-(1-2a)\int_x^{1-x}\omega(y)\,\dd y .
+\]
+We have $L(1/2)=0$, and
+\[
+ L'(x)=-\frac{a\,\omega(x)}{x(1-x)}<0,\qquad 0<x<\frac12,
+\]
+where we used $(1-2x)^2+4x(1-x)=1$. It follows that $L>0$ on $(0,1/2)$, and that $(1-x)^{2a}J(x)$ is strictly increasing on $(0,1/2]$. As $x\downarrow0$, we have $2x\,\omega(x)\to0$ and $J(x)\to(1-2a)\mathrm B(1-a,1-a)$. As in \eqref{eq:sc-power-balance}, this limit equals $\Gamma(1-a)^2/\Gamma(1-2a)=\vartheta$. Every $t\ge0$ corresponds to some $x\in(0,1/2]$, and \eqref{eq:sc-quotient-J} implies that $(g*g)'(t)>\vartheta g(t)^2$, that is, $D_g(t)>0$, for all $t\ge0$, including $t=0$.
+
+\paragraph{Step 3: the limits.} By \eqref{eq:sc-quotient-J}, we have $D_g(t)=T^{-2a}[J(x)-\vartheta(1-x)^{-2a}]$. Using $\vartheta=(1-2a)\int_0^1\omega$, we can write
+\[
+ J(x)-\vartheta(1-x)^{-2a}
+ =-2(1-2a)\int_0^x\omega(y)\,\dd y+2x\,\omega(x)
+ -\vartheta\bigl[(1-x)^{-2a}-1\bigr].
+\]
+For $0<y\le x\le1/2$, we have $\omega(y)\le2^ay^{-a}$. Then the first two terms are bounded by $Kx^{1-a}$, and the last term is bounded by $Kx\le Kx^{1-a}$. With $x=1/T$ and $1+t\le T\le2(1+t)$, this gives
+\[
+ |D_g(t)|\le KT^{-2a}x^{1-a}=KT^{-1-a}\le K(1+t)^{-1-a}.
+\]
+This is the first estimate in \eqref{eq:sc-shifted-limits}. We also have $D_g=o(g^3)$, because $(1+t)^{-1-a}=g(t)^3(1+t)^{-(1-2a)}$ and $1-2a>0$.
+
+For the second limit, we take $(\alpha,\zeta)=(a,2a)$ in \eqref{eq:sc-beta-derivative}, which is allowed since $2a<1$. Using $g(t)^3=T^{-3a}(1-x)^{-3a}$, we find
+\begin{multline*}
+ \frac{(g*g^2)'(t)}{g(t)^3}=(1-x)^{3a}\bigg[(1-3a)\int_x^{1-x}y^{-a}(1-y)^{-2a}\,\dd y\\
+ +x^{1-a}(1-x)^{-2a}+x^{1-2a}(1-x)^{-a}\bigg].
+\end{multline*}
+As $t\to\infty$, we have $x\to0$, the boundary terms tend to zero, and the integral tends to $\mathrm B(1-a,1-2a)$. This proves the convergence in \eqref{eq:sc-shifted-limits}. When $3a\ne1$, the identity $\Gamma(2-3a)=(1-3a)\Gamma(1-3a)$ yields $(1-3a)\mathrm B(1-a,1-2a)=\Gamma(1-a)\Gamma(1-2a)/\Gamma(1-3a)$.
+
+It remains to show that the limit is negative. If $3a\ge1$, then $(1-3a)\mathrm B(1-a,1-2a)\le0<\vartheta$. If $3a<1$, consider
+\[
+ \Upsilon(\sigma)=\frac{\Gamma(1-a)\Gamma(1-\sigma)}{\Gamma(1-a-\sigma)},\qquad 0<\sigma<1-a .
+\]
+Its logarithmic derivative is $\psi(1-a-\sigma)-\psi(1-\sigma)<0$, and hence $\Upsilon$ is strictly decreasing. We have $\Upsilon(a)=\vartheta$ by \eqref{eq:stationary-critical-exponent}, and $2a<1-a$. We conclude that $(1-3a)\mathrm B(1-a,1-2a)=\Upsilon(2a)<\Upsilon(a)=\vartheta$.
+
+\paragraph{Step 4: derivative bounds.} Let $F$ and $G$ be continuously differentiable on $[0,\infty)$. Splitting the convolution at $t/2$ and substituting $s\mapsto t-s$ on $[t/2,t]$, we have
+\[
+ (F*G)(t)=\int_0^{t/2}F(s)G(t-s)\,\dd s+\int_0^{t/2}G(s)F(t-s)\,\dd s .
+\]
+Differentiating both integrals, we find the exact identity
+\begin{align}
+ (F*G)'(t)={}&F(t/2)G(t/2)
+ +\int_0^{t/2}F(s)G'(t-s)\,\dd s\nonumber\\
+ &+\int_0^{t/2}G(s)F'(t-s)\,\dd s,
+ \label{eq:sc-midpoint-derivative}
+\end{align}
+in which each of the two boundary terms contributed $F(t/2)G(t/2)/2$.
+
+We next consider $f_\varepsilon$. We can write
+\[
+ f_\varepsilon=g\bigl[1+\varepsilon(1-g)\bigr],\qquad
+ f_\varepsilon'=g'\bigl[1+\varepsilon(1-2g)\bigr],
+\]
+and both brackets lie in $[3/4,5/4]$ when $|\varepsilon|\le1/4$, because $0<g\le1$. Recalling that $g'(t)=-a(1+t)^{-a-1}<0$, we deduce that $f_\varepsilon$ is positive and strictly decreasing, and that
+\begin{equation}\label{eq:sc-f-eps-bounds}
+ \tfrac34 g\le f_\varepsilon\le\tfrac54 g,\qquad
+ \tfrac34a(1+t)^{-a-1}\le|f_\varepsilon'(t)|\le\tfrac54a(1+t)^{-a-1}.
+\end{equation}
+Also $f_\varepsilon(0)=(1+\varepsilon)-\varepsilon=1$.
+
+Fix $j\ge2$, and apply \eqref{eq:sc-midpoint-derivative} with $F=f_\varepsilon^j$ and $G=f_\varepsilon$. Using \eqref{eq:sc-f-eps-bounds}, we have $|F(t)|\le K(1+t)^{-ja}$, $|F'(t)|=jf_\varepsilon^{j-1}|f_\varepsilon'|\le K_j(1+t)^{-ja-1}$, $|G(t)|\le K(1+t)^{-a}$, and $|G'(t)|\le K(1+t)^{-a-1}$. For $0\le s\le t/2$, we have $1+t-s\ge(1+t)/2$. Inserting these bounds into the three terms of \eqref{eq:sc-midpoint-derivative}, we obtain
+\begin{multline*}
+ |(f_\varepsilon^j*f_\varepsilon)'(t)|\le K_j\bigg[(1+t)^{-(j+1)a}
+ +(1+t)^{-a-1}\int_0^{t/2}(1+s)^{-ja}\,\dd s\\
+ +(1+t)^{-ja-1}\int_0^{t/2}(1+s)^{-a}\,\dd s\bigg].
+\end{multline*}
+The last term is at most $K_j(1+t)^{-(j+1)a}$, since $\int_0^{t/2}(1+s)^{-a}\,\dd s\le(1+t)^{1-a}/(1-a)$. The integral in the middle term is at most $(1+t)^{1-ja}/(1-ja)$ if $ja<1$, at most $\log(2+t)$ if $ja=1$, and at most $1/(ja-1)$ if $ja>1$. Accordingly, the middle term is at most $K_j(1+t)^{-(j+1)a}$, $K(1+t)^{-a-1}\log(2+t)$, or $K_j(1+t)^{-a-1}$. Each of these bounds is at most $K_j(1+t)^{-3a}=K_jg(t)^3$: the first because $j\ge2$, and the other two because $a+1>3a$ and $(1+t)^{-(1-2a)}\log(2+t)$ is bounded. This proves \eqref{eq:sc-shifted-derivative}.
+
+Finally, we take $(\alpha,\zeta)=(2a,2a)$ in \eqref{eq:sc-beta-derivative}, which is allowed since $2a<1$. The integral in the bracket is at most $\mathrm B(1-2a,1-2a)$, and the boundary terms are bounded on $(0,1/2]$. Then $|(g^2*g^2)'(t)|\le KT^{-4a}\le K(1+t)^{-3a}$. Together with $g^4\le g^3$, this shows that $|D_2|\le Kg^3$.
+\end{proof}
+
+We now correct $g$ by a multiple of $g^2$. The following quantity plays the role of the residual of a profile $hf(\cdot/\tau)$ attached at a time where $u$ has fallen to the value $h$; its precise relation to the residual $\mathcal R_P$ appears in \eqref{eq:sc-upper-decomposition} below. For a continuously differentiable function $f$ on $[0,\infty)$ and $h\in(0,1]$, we write $j_f=-f'$ and define the ideal residual
+\begin{equation}
+ I_h(f)=hf-(1-h)M(hf)-h[M(hf)*j_f].
+ \label{eq:sc-ideal-residual}
+\end{equation}
+
+\begin{lemma}[Corrected critical profiles]
+\label{lem:sc-critical-residuals}
+There exist constants $\kappa,\eta,h_0>0$, depending only on $p$ and $q$, with $h_0\le1$ and $\kappa h_0\le1/4$, such that the following holds for every $h\in(0,h_0]$. The profiles
+\[
+ f_+=(1+\kappa h)g-\kappa hg^2,\qquad f_-=(1-\kappa h)g+\kappa hg^2
+\]
+are positive and strictly decreasing, with $f_\pm(0)=1$. Further, $I_h(f_+)\ge\eta h^3g^3$ on $[0,\infty)$, and there exists $X_h<\infty$ such that $I_h(f_-)\le-\eta h^3g^3$ on $[X_h,\infty)$.
+\end{lemma}
+
+\begin{proof}
+The profiles are $f_\pm=f_{\pm\kappa h}$. Once $\kappa h_0\le1/4$, the first assertion follows from \cref{lem:sc-shifted}. We begin by expanding $I_h(f)$ for a continuously differentiable $f$ with $f(0)=1$. Differentiating $(f^j*f)(t)=\int_0^tf(s)^jf(t-s)\,\dd s$ and using $f(0)=1$, we have
+\[
+ (f^j*f)'=f^j-f^j*j_f,\qquad j\ge1 .
+\]
+Inserting $M(y)=\sum_{j=1}^{p-1}\lambda_jy^j$, with $\lambda_1=1$, into \eqref{eq:sc-ideal-residual} and using this identity, we obtain
+\[
+ I_h(f)=hf-\sum_{j=1}^{p-1}\lambda_jh^jf^j+\sum_{j=1}^{p-1}\lambda_jh^{j+1}(f^j*f)' .
+\]
+The term $hf$ cancels against the term $j=1$ of the first sum. Separating the terms with $j=1$ and $j=2$ from the rest, we have
+\begin{align}
+ I_h(f)={}&h^2[(f*f)'-\vartheta f^2]+N_h(f),\nonumber\\
+ N_h(f)={}&\vartheta h^3(f^2*f)'
+ +\sum_{j=3}^{p-1}\lambda_j
+       [-h^jf^j+h^{j+1}(f^j*f)'].
+ \label{eq:sc-ideal-expansion}
+\end{align}
+
+We now bound $N_h(f_\varepsilon)$ for $|\varepsilon|\le1/4$ and $0<h\le1$. By \eqref{eq:sc-shifted-derivative}, we have $h^{j+1}|(f_\varepsilon^j*f_\varepsilon)'|\le K_jh^3g^3$ for $j\ge2$. Using \eqref{eq:sc-f-eps-bounds}, we have $h^jf_\varepsilon^j\le(5/4)^jh^3g^3$ for $j\ge3$, where we used $h\le1$ and $g\le1$. Then there exists $K_0$ such that
+\begin{equation}\label{eq:sc-N-bound}
+ |N_h(f_\varepsilon)|\le K_0h^3g^3,\qquad |\varepsilon|\le1/4,\quad 0<h\le1 .
+\end{equation}
+Next, expanding $f_\varepsilon*f_\varepsilon$ and $f_\varepsilon^2$ by bilinearity, we find the exact quadratic expansion
+\begin{equation}
+ (f_\varepsilon*f_\varepsilon)'-\vartheta f_\varepsilon^2
+ =(1+\varepsilon)^2D_g
+ -2\varepsilon(1+\varepsilon)H+\varepsilon^2D_2.
+ \label{eq:sc-quadratic-expansion}
+\end{equation}
+
+We now fix the constants. Let
+\[
+ \Delta=\vartheta-(1-3a)\mathrm B(1-a,1-2a),
+\]
+which is positive by \cref{lem:sc-shifted}. By \eqref{eq:sc-shifted-limits}, there exists $t_*<\infty$ such that $H(t)\le-(\Delta/2)g(t)^3$ for $t\ge t_*$. There also exist $K_D$ and $K_H$ such that $|D_2|\le K_Dg^3$ and $|H|\le K_Hg^3$ on $[0,\infty)$, by \cref{lem:sc-shifted}; for $H$ we used that $H/g^3$ is continuous and has a finite limit. Let $\mu_*=\min_{[0,t_*]}D_g/g^3$, which is positive by \cref{lem:sc-shifted}. We set
+\[
+ \kappa=1+\frac{4K_0}{\Delta},
+\]
+so that $K_0\le\kappa\Delta/4$. Let $h_0\in(0,1]$ be so small that
+\[
+ \kappa h_0\le\frac14,\qquad \kappa^2K_Dh_0\le\frac{\kappa\Delta}4,\qquad
+ \Bigl(\tfrac52\kappa K_H+\kappa^2K_D+K_0\Bigr)h_0\le\frac{\mu_*}2 ,
+\]
+and we set $\eta=\min\{\kappa\Delta/8,\mu_*/2\}$. Fix $h\in(0,h_0]$.
+
+For the upper profile, we take $\varepsilon=\kappa h\in(0,1/4]$ in \eqref{eq:sc-quadratic-expansion}. On $[t_*,\infty)$, we have $(1+\varepsilon)^2D_g\ge0$, $-2\varepsilon(1+\varepsilon)H\ge\varepsilon\Delta g^3$, and $\varepsilon^2D_2\ge-\kappa^2h^2K_Dg^3$. Together with \eqref{eq:sc-ideal-expansion} and \eqref{eq:sc-N-bound}, these bounds imply that
+\[
+ I_h(f_+)\ge h^3\bigl[\kappa\Delta-\kappa^2hK_D-K_0\bigr]g^3\ge\frac{\kappa\Delta}2h^3g^3\ge\eta h^3g^3
+ \qquad\text{on }[t_*,\infty),
+\]
+where we used $\kappa^2hK_D\le\kappa\Delta/4$ and $K_0\le\kappa\Delta/4$. On $[0,t_*]$, we divide \eqref{eq:sc-ideal-expansion} by $h^2g^3$ and use $(1+\varepsilon)^2\ge1$ and $|2\varepsilon(1+\varepsilon)|\le5\kappa h/2$. This yields
+\[
+ \frac{I_h(f_+)}{h^2g^3}\ge\mu_*-\Bigl(\tfrac52\kappa K_H+\kappa^2K_D+K_0\Bigr)h\ge\frac{\mu_*}2,
+\]
+that is, $I_h(f_+)\ge(\mu_*/2)h^2g^3\ge\eta h^3g^3$ on $[0,t_*]$, since $h\le1$.
+
+For the lower profile, we take $\varepsilon=-\kappa h$. Then $1-\kappa h\ge3/4$, and on $[t_*,\infty)$ the cross term satisfies $2\kappa h(1-\kappa h)H\le-(3/4)\kappa h\Delta g^3$. Using also $(1-\kappa h)^2D_g\le D_g$, $\varepsilon^2D_2\le\kappa^2h^2K_Dg^3$, and \eqref{eq:sc-N-bound}, we find
+\[
+ I_h(f_-)\le h^2D_g+h^3\Bigl[-\frac34\kappa\Delta+\kappa^2hK_D+K_0\Bigr]g^3
+ \le h^2D_g-\frac{\kappa\Delta}4h^3g^3
+ \qquad\text{on }[t_*,\infty).
+\]
+The ratio $D_g/g^3$ tends to zero by \eqref{eq:sc-shifted-limits}. Then there exists $X_h\ge t_*$ such that $D_g\le(\kappa\Delta/8)hg^3$ on $[X_h,\infty)$, and there $I_h(f_-)\le-(\kappa\Delta/8)h^3g^3\le-\eta h^3g^3$. This completes the proof.
+\end{proof}
+
+The cutoff $X_h$ depends on $h$; since $D_g/g^3\le K(1+t)^{-(1-2a)}$, it can be taken of order $h^{-1/(1-2a)}$. In the next proof, $h$ is fixed before $X_h$ is used.
+
+\begin{proposition}[Critical endpoint bounds]
+\label{thm:stationary-critical-endpoint}
+There exist constants $0<A_-\le A_+<\infty$ such that
+\begin{equation}
+ A_-(1+t)^{-a}\le u(t)\le A_+(1+t)^{-a},\qquad t\ge0.
+ \label{eq:sc-endpoint-bounds}
+\end{equation}
+For every integer $n\ge1$, there exist constants $0<\underline K_n\le\overline K_n<\infty$ and $t_n<\infty$ such that
+\[
+ \underline K_n(1+t)^{-a-n}\le(-1)^nu^{(n)}(t)\le\overline K_n(1+t)^{-a-n},\qquad t\ge t_n .
+\]
+\end{proposition}
+
+\begin{proof}
+The proof has three steps. First, we construct a profile $P_+$ with nonnegative residual. It equals $u$ up to a time $T_0$, is constant up to $T_1=2T_0$, and then follows a copy of $f_+$ on a long time scale $\tau$; we choose the time scale large enough to absorb the error caused by the memory of the initial segment of $u$. Second, we construct a profile $P_-$ with nonpositive residual by attaching a copy of $f_-$ directly at $T_0$, on a short time scale. In both cases, we then obtain a bound for $u$ from \cref{lem:sc-comparison}. Third, we deduce the derivative bounds from complete monotonicity.
+
+We will use the following consequence of \cref{lem:sc-shifted}. Let $f=f_{\pm}$ be one of the profiles of \cref{lem:sc-critical-residuals}. For $0\le\delta\le1$ and $x\ge0$, every $y\ge(x-\delta)_+$ satisfies $1+y\ge(1+x)/2$. By the mean value theorem and the bound on $|f_\varepsilon'|$ in \cref{lem:sc-shifted}, we have
+\begin{equation}\label{eq:sc-shift-cost}
+ 0\le f\bigl((x-\delta)_+\bigr)-f(x)\le K\delta(1+x)^{-a-1},\qquad 0\le\delta\le1,\ x\ge0 .
+\end{equation}
+We also use the convolution bound
+\begin{equation}\label{eq:sc-power-convolution}
+ \int_0^x(1+z)^{-a-1}(1+x-z)^{-a-1}\,\dd z\le2\Bigl(1+\frac x2\Bigr)^{-a-1}\int_0^\infty(1+z)^{-a-1}\,\dd z\le K(1+x)^{-a-1},
+\end{equation}
+which follows from the symmetry $z\mapsto x-z$ and splitting the integral at $x/2$.
+
+\paragraph{Step 1: the upper bound.} Let $\kappa,\eta,h_0$ be as in \cref{lem:sc-critical-residuals}. Since $u$ decreases to zero, there exists $T_0\ge1$ with $h=u(T_0)\le h_0$. We fix such a $T_0$; note that $h>0$. Let $T_1=2T_0$, and let $\tau\ge T_1$ be a parameter, to be fixed below. We write $f=f_+$ and $j=-f'$, and define
+\[
+ P_+(t)=
+ \begin{cases}
+ u(t),&0\le t\le T_0,\\
+ h,&T_0\le t\le T_1,\\
+ hf((t-T_1)/\tau),&t\ge T_1.
+ \end{cases}
+\]
+This function is continuous, since $u(T_0)=h=hf(0)$. It is locally absolutely continuous, nonincreasing, takes values in $[0,1]$, and satisfies $P_+(0)=1$. We check that $\mathcal R_{P_+}\ge0$ on each of the three intervals.
+
+On $(0,T_0)$, we have $\mathcal R_{P_+}=\mathcal R_u=0$, since the residual at time $t$ involves only the values of $P_+$ on $[0,t]$.
+
+On $(T_0,T_1)$, we have $P_+'(t)=0$ and $P_+(t)=h$, and $-P_+'$ vanishes on $(T_0,t)$. For $0\le s\le T_0$, we have $t-s\ge T_0-s$, which implies $P_+(t-s)\le P_+(T_0-s)=u(T_0-s)$. Since $M$ is increasing on $[0,1]$, we have
+\[
+ \mathcal R_{P_+}(t)=h-\int_0^{T_0}M(P_+(t-s))\,v(s)\,\dd s\ge h-(M(u)*v)(T_0)=v(T_0)>0 .
+\]
+In the equality on the right, we used \eqref{eq:sc-normalized} at time $T_0$, in the form $(M(u)*v)(T_0)=u(T_0)+u'(T_0)=h-v(T_0)$.
+
+On $(T_1,\infty)$, we write $x=(t-T_1)/\tau$. Then $P_+(t)=hf(x)$ and $P_+'(t)=(h/\tau)f'(x)$. The measure $-P_+'(s)\,\dd s$ equals $v(s)\,\dd s$ on $[0,T_0]$, vanishes on $(T_0,T_1)$, and equals $(h/\tau)j((s-T_1)/\tau)\,\dd s$ on $(T_1,\infty)$. For $0\le s\le T_0$, we have $t-s\ge T_1-T_0=T_0$ and $P_+(t-s)=hf((x-s/\tau)_+)$: this is the definition of $P_+$ if $t-s\ge T_1$, and if $T_0\le t-s<T_1$ both sides equal $h$. In the integral over $(T_1,t)$, we substitute $s=T_1+\tau(x-z)$, for which $t-s=\tau z$. Recalling that $\int_0^{T_0}v=1-u(T_0)=1-h$ and comparing with \eqref{eq:sc-ideal-residual}, we obtain the exact decomposition
+\begin{equation}\label{eq:sc-upper-decomposition}
+ \mathcal R_{P_+}(t)=\frac h\tau f'(x)+I_h(f)(x)-E_1(x)-E_2(x),
+\end{equation}
+where
+\begin{align*}
+ E_1(x)&=\int_0^{T_0}\Bigl[M\bigl(hf((x-s/\tau)_+)\bigr)-M\bigl(hf(x)\bigr)\Bigr]v(s)\,\dd s,\\
+ E_2(x)&=h\int_0^x\bigl[M(P_+(\tau z))-M(hf(z))\bigr]j(x-z)\,\dd z .
+\end{align*}
+The terms $E_1$ and $E_2$ measure the difference between the actual memory of $P_+$, which contains the initial segment of $u$, and the ideal memory in $I_h(f)$. Both are nonnegative. For $E_1$, this holds because $f$ is decreasing and $M$ is increasing. For $E_2$, we have $P_+(\tau z)\ge hf(z)$ for all $z\ge0$: if $\tau z\le T_1$, then $P_+(\tau z)\ge h\ge hf(z)$, and if $\tau z\ge T_1$, then $P_+(\tau z)=hf(z-T_1/\tau)\ge hf(z)$.
+
+We now bound $E_1$ and $E_2$ from above, keeping the whole initial segment of $u$. For $s\le T_0$, we have $s/\tau\le T_0/\tau\le1$. By \eqref{eq:sc-shift-cost} with $\delta=s/\tau$, the Lipschitz bound for $M$ on $[0,1]$, and $\int_0^{T_0}v\le1$, we have
+\[
+ 0\le E_1(x)\le L_MKh\,\frac{T_0}\tau\,(1+x)^{-a-1}.
+\]
+For $E_2$, we split the integral at $z=T_0/\tau$. On $0\le z\le\min\{x,T_0/\tau\}$, the difference in brackets is at most $M(1)$, and $j(x-z)\le K(1+x-z)^{-a-1}\le K(1+x)^{-a-1}$, since $z\le1$. This part of $E_2$ is at most $KhM(1)(T_0/\tau)(1+x)^{-a-1}$. On $T_0/\tau\le z\le x$, we have $\tau z\ge T_0$ and $P_+(\tau z)=hf((z-T_1/\tau)_+)$. By \eqref{eq:sc-shift-cost} with $\delta=T_1/\tau\le1$, the difference in brackets is at most $L_MKh(T_1/\tau)(1+z)^{-a-1}$. Using also $j(x-z)\le K(1+x-z)^{-a-1}$ and \eqref{eq:sc-power-convolution}, we find that this part of $E_2$ is at most $Kh^2(T_1/\tau)(1+x)^{-a-1}$. Finally, $(h/\tau)f'(x)\ge-K(h/\tau)(1+x)^{-a-1}$.
+
+We insert these bounds and $I_h(f_+)\ge\eta h^3g^3$ into \eqref{eq:sc-upper-decomposition}. Using also $(1+x)^{-a-1}\le g(x)^3$, which holds because $a+1>3a$, we conclude that
+\[
+ \mathcal R_{P_+}(t)\ge\Bigl[\eta h^3-\frac{K_1h}\tau\Bigr]g(x)^3,\qquad t>T_1,
+\]
+where $K_1$ depends on $p$, $q$, and $T_1$, but not on $\tau\ge T_1$. We now fix
+\[
+ \tau=\max\Bigl\{T_1,\frac{2K_1}{\eta h^2}\Bigr\}.
+\]
+Then $\mathcal R_{P_+}>0$ on $(T_1,\infty)$. We have shown that $\mathcal R_{P_+}\ge0$ almost everywhere, and \cref{lem:sc-comparison} implies that $u\le P_+$. For $t\ge T_1$, we have $\tau+t-T_1\ge t\ge(1+t)/2$, since $\tau\ge T_1$ and $t\ge1$. Using \eqref{eq:sc-f-eps-bounds}, we find
+\[
+ u(t)\le hf_+\Bigl(\frac{t-T_1}\tau\Bigr)\le\frac54h\Bigl(\frac{\tau+t-T_1}\tau\Bigr)^{-a}
+ \le\frac54h(2\tau)^a(1+t)^{-a},\qquad t\ge T_1 .
+\]
+For $t\le T_1$, we have $u(t)\le1\le(1+T_1)^a(1+t)^{-a}$. This proves the upper bound in \eqref{eq:sc-endpoint-bounds}.
+
+\paragraph{Step 2: the lower bound.} We now write $f=f_-$ and $j=-f'$. We fix $T_0$ with $h=u(T_0)\le h_0$ and the cutoff $X_h$ of \cref{lem:sc-critical-residuals}. For a parameter $\tau>0$, to be fixed below, we define
+\[
+ P_-(t)=
+ \begin{cases}
+ u(t),&0\le t\le T_0,\\
+ hf((t-T_0)/\tau),&t\ge T_0.
+ \end{cases}
+\]
+This function is continuous, locally absolutely continuous, nonincreasing, takes values in $[0,1]$, and satisfies $P_-(0)=1$. As before, $\mathcal R_{P_-}=0$ on $(0,T_0)$.
+
+For $t>T_0$, let $x=(t-T_0)/\tau$. Splitting the memory integral of $\mathcal R_{P_-}(t)$ at $T_0$ and substituting $s=T_0+\tau(x-z)$ in the second part, we have
+\[
+ \mathcal R_{P_-}(t)=\frac h\tau f'(x)+hf(x)-\int_0^{T_0}M(P_-(t-s))\,v(s)\,\dd s
+ -h\int_0^xM(P_-(\tau z))\,j(x-z)\,\dd z .
+\]
+The actual values of $P_-$ in the memory integrals are at least their ideal replacements. For $0\le s\le T_0$, we have $P_-(t-s)\ge P_-(t)=hf(x)$, since $P_-$ is nonincreasing. For $z\ge0$, we have $P_-(\tau z)\ge hf(z)$: if $\tau z\le T_0$, then $P_-(\tau z)=u(\tau z)\ge u(T_0)=h\ge hf(z)$, and if $\tau z\ge T_0$, then $P_-(\tau z)=hf(z-T_0/\tau)\ge hf(z)$. The function $M$ is increasing, and the memory terms enter with a negative sign. Recalling also that $\int_0^{T_0}v=1-h$, we conclude that
+\[
+ \mathcal R_{P_-}(t)\le\frac h\tau f'(x)+I_h(f)(x),\qquad t>T_0 .
+\]
+In contrast with the upper bound, this inequality has no error term.
+
+It remains to fix $\tau$ so that the right side is nonpositive for all $x\ge0$. For $x\ge X_h$, both terms are nonpositive by \cref{lem:sc-critical-residuals}. On $[0,X_h]$, the function $I_h(f)$ is continuous, and $L_h=\max_{[0,X_h]}I_h(f)_+$ is finite. By \eqref{eq:sc-f-eps-bounds}, we have $-f'(x)\ge\delta_h=(3/4)a(1+X_h)^{-a-1}>0$ there. Let
+\[
+ \tau=\frac{h\delta_h}{L_h+1}.
+\]
+Then $(h/\tau)f'(x)\le-(L_h+1)<-I_h(f)(x)$ for $0\le x\le X_h$. We have shown that $\mathcal R_{P_-}\le0$ almost everywhere; the single jump of $P_-'$ at $T_0$ does not affect the argument. By \cref{lem:sc-comparison}, we have $P_-\le u$. For $t\ge T_0$, using \eqref{eq:sc-f-eps-bounds} and $1+(t-T_0)/\tau\le1+t/\tau\le\max\{1,1/\tau\}(1+t)$, we find
+\[
+ u(t)\ge hf_-\Bigl(\frac{t-T_0}\tau\Bigr)\ge\frac34h\Bigl(1+\frac{t-T_0}\tau\Bigr)^{-a}
+ \ge\frac34h\min\{1,\tau\}^a(1+t)^{-a}.
+\]
+For $t\le T_0$, we have $u(t)\ge u(T_0)=h\ge h(1+t)^{-a}$. This proves the lower bound in \eqref{eq:sc-endpoint-bounds}.
+
+\paragraph{Step 3: the derivatives.} For $n\ge0$ and $t>0$, let $F_n(t)=(-1)^nu^{(n)}(t)$. By \cref{lem:sc-normalized-equation}, each $F_n$ is positive. Since $F_n'=-F_{n+1}\le0$, each $F_n$ is nonincreasing. Using \eqref{eq:sc-endpoint-bounds}, we have $\underline k_0t^{-a}\le F_0(t)\le\overline k_0t^{-a}$ for $t\ge1$, with $\underline k_0=2^{-a}A_-$ and $\overline k_0=A_+$.
+
+Suppose that, for some $n\ge0$ and $t_n'\ge1$,
+\[
+ \underline k_nt^{-\alpha}\le F_n(t)\le\overline k_nt^{-\alpha},\qquad t\ge t_n',\qquad \alpha=a+n .
+\]
+Using that $F_{n+1}$ is nonincreasing, we have, for $t\ge2t_n'$,
+\[
+ \frac t2F_{n+1}(t)\le\int_{t/2}^tF_{n+1}(s)\,\dd s=F_n(t/2)-F_n(t)\le F_n(t/2)\le2^\alpha\overline k_nt^{-\alpha},
+\]
+that is, $F_{n+1}(t)\le2^{1+\alpha}\overline k_nt^{-\alpha-1}$. For the lower bound, let $\Lambda>1$ be such that $\overline k_n\Lambda^{-\alpha}\le\underline k_n/2$. For $t\ge t_n'$, we have
+\[
+ \frac{\underline k_n}2t^{-\alpha}\le F_n(t)-F_n(\Lambda t)=\int_t^{\Lambda t}F_{n+1}(s)\,\dd s\le(\Lambda-1)\,t\,F_{n+1}(t),
+\]
+that is, $F_{n+1}(t)\ge\underline k_nt^{-\alpha-1}/(2(\Lambda-1))$. The same two-sided bound therefore holds for $F_{n+1}$, with $\alpha$ replaced by $\alpha+1$ and $t_{n+1}'=2t_n'$. By induction, it holds for all $n\ge0$. This proves the derivative bounds, because $(1+t)/2\le t\le1+t$ for $t\ge1$.
+\end{proof}
+
+The function $v$ is nonincreasing with $v(0)=1$. Together with the case $n=1$ of \cref{thm:stationary-critical-endpoint}, this implies that, for a constant $K$ depending on $u$,
+\begin{equation}\label{eq:sc-v-bound}
+ 0<v(t)\le K(1+t)^{-a-1},\qquad t\ge0 .
+\end{equation}
+
+\section{The quadratic balance and its logarithmic Dirichlet form}
+\label{subsec:sc-dirichlet}
+
+The bounds \eqref{eq:sc-endpoint-bounds} identify the exponent, but they do not show that $t^au(t)$ has a limit. The goal of this section is to prove that $t^au(t)$ varies more and more slowly on a logarithmic time scale. We first isolate the quadratic balance behind \eqref{eq:sc-power-balance}.
+
+\begin{lemma}[Integrable critical balance error]
+\label{lem:stationary-critical-balance-error}
+Let $Q=u*u$ and $\rho=1-2a$. Then the function $\mathcal E=Q'-\vartheta u^2$ satisfies
+\begin{equation}
+ Q'=\vartheta u^2+\mathcal E,
+ \qquad |\mathcal E(t)|\le K(1+t)^{-3a},\qquad
+ \int_0^\infty|\mathcal E(t)|t^{-\rho}\,\dd t<\infty,
+ \label{eq:sc-quadratic-balance}
+\end{equation}
+where $K$ depends on $u$.
+\end{lemma}
+
+\begin{proof}
+Recall that $v=-u'$. Differentiating $Q=u*u$ and using $u(0)=1$, we have $Q'=u-u*v$. By \eqref{eq:sc-normalized}, we have $u=v+M(u)*v=v+u*v+\sum_{j=2}^{p-1}\lambda_ju^j*v$. Inserting this into the expression for $Q'$, we find
+\[
+ Q'=v+\sum_{j=2}^{p-1}\lambda_j\,u^j*v .
+\]
+In the same way, we have $(u^j*u)'=u^j-u^j*v$. Inserting this identity and separating the term $\lambda_2u^2=\vartheta u^2$, we obtain $Q'=\vartheta u^2+\mathcal E$ with the exact error
+\begin{equation}
+ \mathcal E=v+\sum_{j=3}^{p-1}\lambda_ju^j
+               -\sum_{j=2}^{p-1}\lambda_j(u^j*u)'.
+ \label{eq:sc-error-exact}
+\end{equation}
+For $p=3$, the first sum is empty.
+
+We bound each term. Using \eqref{eq:sc-endpoint-bounds} and \eqref{eq:sc-v-bound}, we have $u(t)\le K(1+t)^{-a}$ and $v(t)\le K(1+t)^{-a-1}$. The term $v$ is at most $K(1+t)^{-3a}$, since $a+1>3a$, and so is $u^j$ for $j\ge3$. For $j\ge2$, we apply \eqref{eq:sc-midpoint-derivative} with $F=u^j$ and $G=u$, which are continuously differentiable. We have $|F|\le K(1+t)^{-ja}$, $|F'|=ju^{j-1}v\le K_j(1+t)^{-ja-1}$, $|G|\le K(1+t)^{-a}$, and $|G'|=v\le K(1+t)^{-a-1}$. These are the bounds used in Step~4 of the proof of \cref{lem:sc-shifted}, and the computation there yields $|(u^j*u)'(t)|\le K_j(1+t)^{-3a}$, including the case $ja=1$. This proves the pointwise bound in \eqref{eq:sc-quadratic-balance}.
+
+The error is bounded near zero and $\rho<1$, which implies that $\int_0^1|\mathcal E(t)|t^{-\rho}\,\dd t<\infty$. On $[1,\infty)$, we use $3a+\rho=1+a$ and find $\int_1^\infty|\mathcal E(t)|t^{-\rho}\,\dd t\le K\int_1^\infty t^{-1-a}\,\dd t<\infty$.
+\end{proof}
+
+We now pass to logarithmic time. In the following lemma, we convert the balance \eqref{eq:sc-quadratic-balance} into a finite Dirichlet energy for the function $e^{ax}u(e^x)$, which equals $t^au(t)$ at $t=e^x$.
+
+\begin{lemma}[Logarithmic Dirichlet bound]
+\label{lem:stationary-critical-dirichlet}
+The function $D(x)=e^{ax}u(e^x)$, $x\in\R$, is bounded and Lipschitz on $\R$, it is bounded below by a positive constant on $[0,\infty)$, and
+\begin{equation}
+ \int_{\R}\int_{\R}
+ \frac{[D(x)-D(y)]^2}{[2\cosh((x-y)/2)]^{2-2a}}
+       \,\dd x\,\dd y<\infty.
+ \label{eq:stationary-log-dirichlet-finite}
+\end{equation}
+In particular, for every fixed $h\in\R$,
+\begin{equation}
+ D(x+h)-D(x)\longrightarrow0\qquad(x\to\infty),
+ \label{eq:stationary-log-increment-vanishing}
+\end{equation}
+and the convergence is uniform when $h$ ranges over a compact interval.
+\end{lemma}
+
+\begin{proof}
+The proof has four steps. We first record the elementary properties of $D$. We then integrate the balance \eqref{eq:sc-quadratic-balance} against $t^{-\rho}$ up to a finite time $T$ and obtain a quantity $J_T$ that is bounded above uniformly in $T$. Next, we use the identity behind the Schur test to bound a truncated version of the energy in \eqref{eq:stationary-log-dirichlet-finite} by $J_T$. Finally, we deduce \eqref{eq:stationary-log-increment-vanishing}. We keep the cutoff $T$ finite until the last moment, because the separate integrals that appear in the second and third steps diverge as $T\to\infty$.
+
+\paragraph{Step 1: properties of $D$.} By \eqref{eq:sc-endpoint-bounds}, we have
+\[
+ A_-\Bigl(\frac{e^x}{1+e^x}\Bigr)^a\le D(x)\le A_+\Bigl(\frac{e^x}{1+e^x}\Bigr)^a,\qquad x\in\R .
+\]
+In particular, $0<D\le A_+$, $D(x)\ge2^{-a}A_-$ for $x\ge0$, and $D(x)\to0$ as $x\to-\infty$. The derivative of $D$ is
+\[
+ D'(x)=ae^{ax}u(e^x)-e^{(a+1)x}v(e^x).
+\]
+For $x\ge0$, the bounds \eqref{eq:sc-endpoint-bounds} and \eqref{eq:sc-v-bound} show that both terms are bounded. For $x\le0$, both terms are bounded by $1$, since $u\le1$ and $v\le1$. We conclude that $D$ is Lipschitz on $\R$. Let $L_D$ denote a Lipschitz constant.
+
+\paragraph{Step 2: the balance in integrated form.} Let
+\[
+ C_\rho=\mathrm B\Bigl(\frac{1+\rho}2,\frac{1+\rho}2\Bigr)=\mathrm B(1-a,1-a),
+\]
+so that $\vartheta=\rho C_\rho$ by \eqref{eq:sc-power-balance}. For $T>0$, we define
+\[
+ I_T=\int_0^TQ(t)t^{-1-\rho}\,\dd t,
+ \qquad
+ J_T=C_\rho\int_0^T u(t)^2t^{-\rho}\,\dd t-I_T.
+\]
+Note that $0\le Q(t)\le t$, because $0\le u\le1$. Then both integrals are finite, and $Q(t)t^{-\rho}\to0$ as $t\to0$. The function $Q$ is continuously differentiable. Integrating by parts, we find
+\[
+ \int_0^TQ'(t)t^{-\rho}\,\dd t=Q(T)T^{-\rho}+\rho I_T .
+\]
+We insert \eqref{eq:sc-quadratic-balance} on the left side, use $\vartheta=\rho C_\rho$, and divide by $\rho$. We arrive at the exact identity
+\begin{equation}
+ J_T=\frac{Q(T)T^{-\rho}}\rho
+       -\frac1\rho\int_0^T\mathcal E(t)t^{-\rho}\,\dd t.
+ \label{eq:sc-Schur-deficit}
+\end{equation}
+Using \eqref{eq:sc-endpoint-bounds}, we have
+\[
+ Q(T)\le A_+^2\int_0^T(1+T-s)^{-a}(1+s)^{-a}\,\dd s\le A_+^2\int_0^T(T-s)^{-a}s^{-a}\,\dd s=A_+^2C_\rho T^{\rho}.
+\]
+Together with \cref{lem:stationary-critical-balance-error}, this shows that
+\[
+ \sup_{T>0}J_T\le\frac{A_+^2C_\rho}\rho+\frac1\rho\int_0^\infty|\mathcal E(t)|t^{-\rho}\,\dd t<\infty .
+\]
+
+\paragraph{Step 3: the weighted Schur identity.} We define the symmetric kernel
+\[
+ \Xi(s,t)=\frac{(st)^{-a}}{(s+t)^{2-2a}},\qquad s,t>0 .
+\]
+Substituting $t=s\varsigma$ and using the beta integral $\int_0^\infty\varsigma^{-a}(1+\varsigma)^{2a-2}\,\dd\varsigma=\mathrm B(1-a,1-a)$, we find, for $s>0$,
+\begin{equation}\label{eq:sc-Schur-row}
+ \int_0^\infty\Xi(s,t)\,\dd t=\frac{C_\rho}s .
+\end{equation}
+Let $u_T=u\mathbf 1_{[0,T]}$ and $\Phi_T(s)=s^au_T(s)$. Using \eqref{eq:sc-Schur-row}, $2a-1=-\rho$, and $2-2a=1+\rho$, we have
+\[
+ \int_0^\infty\!\!\int_0^\infty\Xi(s,t)\Phi_T(s)^2\,\dd s\,\dd t=C_\rho\int_0^Tu(s)^2s^{-\rho}\,\dd s,
+ \qquad
+ \Xi(s,t)\Phi_T(s)\Phi_T(t)=\frac{u_T(s)u_T(t)}{(s+t)^{1+\rho}} .
+\]
+The first quantity is finite, since $u\le1$ and $\rho<1$. By the Cauchy--Schwarz inequality with respect to the measure $\Xi(s,t)\,\dd s\,\dd t$, the function $\Xi(s,t)|\Phi_T(s)\Phi_T(t)|$ is integrable as well. Expanding the square and using the symmetry of $\Xi$, we obtain
+\begin{align}
+ &\frac12\int_0^\infty\!\!\int_0^\infty
+ \Xi(s,t)\bigl[\Phi_T(s)-\Phi_T(t)\bigr]^2\,\dd s\,\dd t\nonumber\\
+ &\quad=C_\rho\int_0^T u(s)^2s^{-\rho}\,\dd s
+     -\int_0^T\!\!\int_0^T\frac{u(s)u(t)}{(s+t)^{1+\rho}}
+                         \,\dd s\,\dd t
+ \le J_T.
+ \label{eq:sc-Schur-square}
+\end{align}
+For the inequality, we used the representation of $I_T$ obtained by writing out $Q$ and applying Tonelli's theorem,
+\[
+ I_T=\iint_{\{s,t>0,\ s+t\le T\}}\frac{u(s)u(t)}{(s+t)^{1+\rho}}\,\dd s\,\dd t,
+\]
+together with the facts that the triangle $\{s+t\le T\}$ is contained in the square $[0,T]^2$ and that the integrand is nonnegative. The identity in \eqref{eq:sc-Schur-square} is the sum-of-squares identity behind the Schur test \cite[Section~7, Equation~(1), pp.~23--24]{schur1911} for the kernel $(st)^{\rho/2}(s+t)^{-1-\rho}$ on $L^2(0,\infty)$ with the test function $s^{-1/2}$, written in the variables $\Phi_T$.
+
+As $T\to\infty$, the integrand on the left of \eqref{eq:sc-Schur-square} converges pointwise to $\Xi(s,t)[s^au(s)-t^au(t)]^2$; indeed, it equals this limit as soon as $T>\max\{s,t\}$. Fatou's lemma and Step~2 then imply that
+\[
+ \int_0^\infty\!\!\int_0^\infty
+ \frac{(st)^{-a}}{(s+t)^{2-2a}}
+ [s^au(s)-t^au(t)]^2\,\dd s\,\dd t\le2\sup_{T>0}J_T<\infty.
+\]
+We now substitute $s=e^x$ and $t=e^y$. Using $e^x+e^y=e^{(x+y)/2}\,2\cosh((x-y)/2)$, we have
+\begin{align*}
+ \Xi(e^x,e^y)\,e^{x+y}&=e^{-a(x+y)}\,e^{(a-1)(x+y)}\,[2\cosh((x-y)/2)]^{2a-2}\,e^{x+y}\\
+ &=[2\cosh((x-y)/2)]^{-(2-2a)},
+\end{align*}
+and $s^au(s)=D(x)$. This proves \eqref{eq:stationary-log-dirichlet-finite}.
+
+\paragraph{Step 4: vanishing increments.} Suppose that \eqref{eq:stationary-log-increment-vanishing} fails for some $h\in\R$. Then there exist $\epsilon>0$ and a sequence $x_k\to\infty$ with $|D(x_k+h)-D(x_k)|\ge\epsilon$. Let $\delta=\epsilon/(6L_D)$, and consider the regions
+\[
+ \mathcal S_k=\bigl\{(x,y):|x-x_k|\le\delta,\ |y-x-h|\le\delta\bigr\}.
+\]
+For $(x,y)\in\mathcal S_k$, we have $|x-x_k|\le\delta$ and $|y-(x_k+h)|\le2\delta$. Using the Lipschitz bound, we find
+\[
+ |D(y)-D(x)|\ge|D(x_k+h)-D(x_k)|-3L_D\delta\ge\epsilon/2 .
+\]
+Further, since $|x-y|\le|h|+\delta$ on $\mathcal S_k$, the kernel in \eqref{eq:stationary-log-dirichlet-finite} is at least $[2\cosh((|h|+\delta)/2)]^{-(2-2a)}>0$ there. Passing to a subsequence, we may assume that the intervals $[x_k-\delta,x_k+\delta]$ are disjoint; then the regions $\mathcal S_k$ are disjoint. Each of them has area $4\delta^2$ and contributes at least a fixed positive amount to the integral in \eqref{eq:stationary-log-dirichlet-finite}. This contradicts the finiteness of the integral, and proves \eqref{eq:stationary-log-increment-vanishing}.
+
+For the uniformity, let $I$ be a compact interval and $\epsilon>0$. There exist finitely many points $h_1,\dots,h_N\in I$ such that every $h\in I$ satisfies $|h-h_i|\le\epsilon/(2L_D)$ for some $i$. Then $|D(x+h)-D(x)|\le|D(x+h_i)-D(x)|+\epsilon/2$, and the claim follows from \eqref{eq:stationary-log-increment-vanishing} for the finitely many $h_i$.
+\end{proof}
+
+\section{An integrable-source renewal equation}
+\label{subsec:sc-renewal}
+
+The vanishing of the increments in \eqref{eq:stationary-log-increment-vanishing} does not by itself imply that $D$ converges. In this section, we show that a smoothed version of $D^2$ satisfies a renewal equation with an integrable source and use the renewal theorem to prove that it converges.
+
+\paragraph{The renewal theorem.} We use the renewal theorem in the following form. A probability measure $F$ on $(0,\infty)$ is called arithmetic if it is concentrated on a set of the form $\{h,2h,3h,\dots\}$ for some $h>0$. A function $z\colon[0,\infty)\to[0,\infty)$ is called directly Riemann integrable if, for every $h>0$, the upper and lower sums
+\[
+ \overline\sigma(h)=h\sum_{n\ge1}\sup_{[(n-1)h,nh]}z,\qquad
+ \underline\sigma(h)=h\sum_{n\ge1}\inf_{[(n-1)h,nh]}z
+\]
+are finite, and they tend to the same limit as $h\to0$. This limit is then $\int_0^\infty z$.
+
+\begin{theorem}[Key renewal theorem; {\cite[Chapter~XI, Section~1, pp.~362--363]{feller1971}}]\label{thm:sc-key-renewal}
+Let $F$ be a probability measure on $(0,\infty)$ which is not arithmetic and has finite mean $m_F$, and let $F^{*n}$ denote its $n$-fold convolution, with $F^{*0}=\delta_0$. Let $z\colon[0,\infty)\to[0,\infty)$ be Borel measurable and directly Riemann integrable, and define
+\[
+ Z(x)=\sum_{n\ge0}\int_{[0,x]}z(x-y)\,F^{*n}(\dd y),\qquad x\ge0 .
+\]
+Then $Z(x)\to m_F^{-1}\int_0^\infty z(y)\,\dd y$ as $x\to\infty$.
+\end{theorem}
+
+We extend the test $z$ by zero to negative arguments. Borel measurability on $[0,\infty)$ is equivalent to Borel measurability of this extension and makes the integrals well-defined even for singular increment laws. The Darboux-sum condition alone does not imply measurability for such laws. The application below uses a continuous nonnegative source.
+
+In \cite[Chapter~XI, Section~1, pp.~362--363]{feller1971}, the function $Z$ is the solution of the renewal equation $Z(x)=z(x)+\int_{[0,x]}Z(x-y)\,F(\dd y)$, written as $Z=U\star z$ with $U=\sum_{n\ge0}F^{*n}$, and the theorem is stated there as the alternative form of the renewal theorem. We check direct Riemann integrability through the following elementary criterion, which we prove for completeness.
+
+\begin{lemma}[A criterion for direct Riemann integrability]\label{lem:sc-dri}
+Let $z\colon[0,\infty)\to[0,\infty)$ be continuous, and suppose that $\sum_{k\ge0}s_k<\infty$, where $s_k=\sup_{[k,k+1]}z$. Then $z$ is directly Riemann integrable.
+\end{lemma}
+
+\begin{proof}
+Let $S=\sum_ks_k$. For $0<h\le1$ and $n\ge1$, the interval $[(n-1)h,nh]$ lies in $[k,k+2]$ with $k=\lfloor(n-1)h\rfloor$, and its supremum is at most $s_k+s_{k+1}$. At most $2/h$ indices $n$ share the same value of $k$, which gives $\overline\sigma(h)\le4S$. For $h>1$, each interval $[(n-1)h,nh]$ is covered by the intervals $[k,k+1]$ that meet it, and each $[k,k+1]$ meets at most two of them. Then $\overline\sigma(h)\le2hS$. This shows that all upper and lower sums are finite. Now let $X\ge2$ be an integer. The function $z$ is continuous on $[0,X]$, and the parts of $\overline\sigma(h)$ and $\underline\sigma(h)$ coming from intervals contained in $[0,X]$ tend to $\int_0^Xz$ as $h\to0$. For $h\le1$, the remaining parts of both sums are at most $4\sum_{k\ge X-2}s_k$, by the argument above. This tail and $\int_X^\infty z$ tend to zero as $X\to\infty$, and we conclude that both sums converge to $\int_0^\infty z$.
+\end{proof}
+
+\paragraph{A renewal density.} The renewal equation that we derive is driven by a logarithmic beta variable, whose density is unbounded near zero. The following lemma records the behavior of its renewal density.
+
+\begin{lemma}[Renewal density for a logarithmic beta variable]
+\label{lem:log-beta-renewal-density}
+Let $0<a<1$ and $\rho>0$, and let $Y=-\log B$, where $B$ has the beta distribution with parameters $(\rho,a)$. The density of $Y$ is
+\[
+ k(y)=\frac{e^{-\rho y}(1-e^{-y})^{a-1}}{\mathrm B(\rho,a)},
+ \qquad y>0,
+\]
+and its mean is $m=\psi(\rho+a)-\psi(\rho)>0$.
+The renewal density $U(y)=\sum_{n\ge1}k^{*n}(y)$ is locally integrable on $[0,\infty)$, bounded on $[1,\infty)$, and satisfies
+\begin{equation}
+ U(y)\longrightarrow\frac1m\qquad(y\to\infty).
+ \label{eq:log-beta-renewal-limit}
+\end{equation}
+\end{lemma}
+
+Here we set $k=0$ on $(-\infty,0]$, $k^{*1}=k$, and $k^{*(n+1)}=k^{*n}*k$. Each convolution power is a nonnegative Borel probability density supported in $(0,\infty)$. The parameter $a$ in this lemma is arbitrary in $(0,1)$; we apply it with the exponent $a$ of \eqref{eq:stationary-critical-exponent} and $\rho=1-2a$.
+
+\begin{proof}
+The density of $B$ is $b^{\rho-1}(1-b)^{a-1}/\mathrm B(\rho,a)$ on $(0,1)$. The change of variables $b=e^{-y}$ gives the formula for $k$. Differentiating $\log\mathrm B(\rho,a)=\log\int_0^1b^{\rho-1}(1-b)^{a-1}\,\dd b$ in $\rho$, we find $\E\log B=\psi(\rho)-\psi(\rho+a)$; the differentiation under the integral sign is justified because $|\log b|\,b^{\rho'-1}(1-b)^{a-1}$ is integrable on $(0,1)$, uniformly for $\rho'$ near $\rho$. We conclude that $m=\E Y=\psi(\rho+a)-\psi(\rho)$, which is positive since $\psi$ is strictly increasing.
+
+We first bound the convolution powers. The function $(1-e^{-y})/y$ decreases from $1$ to $1-e^{-1}$ on $(0,1]$, and $y^{1-a}e^{-\rho y/2}$ is bounded on $[1,\infty)$. It follows that there exists $K$, depending only on $a$ and $\rho$, such that $k(y)\le Ky^{a-1}e^{-\rho y/2}$ for all $y>0$. The beta integral
+\[
+ \int_0^ys^{na-1}(y-s)^{a-1}\,\dd s=\frac{\Gamma(na)\Gamma(a)}{\Gamma((n+1)a)}\,y^{(n+1)a-1}
+\]
+and $e^{-\rho s/2}e^{-\rho(y-s)/2}=e^{-\rho y/2}$ imply, by induction on $n$, that
+\begin{equation}
+ k^{*n}(y)\le
+ \frac{K^n\Gamma(a)^n}{\Gamma(na)}y^{na-1}e^{-\rho y/2},\qquad y>0,\ n\ge1 .
+ \label{eq:sc-beta-renewal-envelope}
+\end{equation}
+The series $\sum_n(K\Gamma(a))^nY_0^{na}/\Gamma(na)$ converges for all $Y_0>0$, because $\Gamma(na)$ grows faster than any exponential in $n$. For $0<y\le1$, we have $y^{na-1}\le y^{a-1}$, so $U(y)\le K'y^{a-1}$. In particular, $U$ is finite on $(0,\infty)$ and locally integrable on $[0,\infty)$.
+
+We next show that each $k^{*n}$ is continuous on $(0,\infty)$. Substituting $s_i=y\varrho_i$ in the $(n-1)$-fold integral that defines $k^{*n}(y)$, we have
+\[
+ k^{*n}(y)=y^{n-1}\int_{\Sigma_{n-1}}\prod_{i=1}^nk(y\varrho_i)\,\dd\varrho_1\cdots\dd\varrho_{n-1},
+ \qquad\varrho_n=1-\sum_{i<n}\varrho_i,
+\]
+where $\Sigma_{n-1}=\{\varrho_i>0,\ \sum_{i<n}\varrho_i<1\}$. For $y$ in a compact subset of $(0,\infty)$, the integrand is continuous in $y$ and dominated by a constant times $\prod_i\varrho_i^{a-1}$, which is integrable on $\Sigma_{n-1}$. The continuity follows by dominated convergence.
+
+Now fix an integer $j$ with $ja>1$, and let $k_j=k^{*j}$. By \eqref{eq:sc-beta-renewal-envelope}, we have $k_j(y)\to0$ as $y\downarrow0$, and $k_j$ extends to a continuous function on $[0,\infty)$ with $k_j(0)=0$. Its zero extension is therefore Borel measurable. The same bound shows that $\sum_{l\ge0}\sup_{[l,l+1]}k_j<\infty$. Then \cref{lem:sc-dri} implies that $k_j$ is directly Riemann integrable. It is the density of the sum of $j$ independent copies of $Y$. The corresponding probability measure is supported in $(0,\infty)$, it is not arithmetic because it has a density, and its finite positive mean is $jm$. Thus this law and the nonnegative test $z=k_j$ satisfy every hypothesis of \cref{thm:sc-key-renewal}. In this case, $Z=k_j+\sum_{n\ge1}k_j^{*n}*k_j=\sum_{n\ge1}k_j^{*n}$, where the interchange of sum and integral is justified by Tonelli's theorem. The theorem gives
+\[
+ U_j(y)=\sum_{n\ge1}k_j^{*n}(y)\longrightarrow\frac1{jm}\qquad(y\to\infty).
+\]
+Note that $k_j^{*n}=k^{*jn}$. Using \eqref{eq:sc-beta-renewal-envelope} with $jna-1>0$, we see that the series defining $U_j$ converges uniformly on every interval $[0,Y_0]$. Each term of this series is continuous on $[0,\infty)$, and so is $U_j$. Since $U_j$ is continuous and converges at infinity, it is bounded on $[0,\infty)$.
+
+Finally, we decompose the indices $n\ge1$ according to their residues modulo $j$, writing $n=i+jl$ with $1\le i\le j$ and $l\ge0$. Using Tonelli's theorem, we obtain
+\[
+ U=\sum_{i=1}^j k^{*i}+\sum_{i=1}^j k^{*i}*U_j .
+\]
+By \eqref{eq:sc-beta-renewal-envelope}, each $k^{*i}$ is bounded on $[1,\infty)$ and tends to zero at infinity. For each $i$, we have $(k^{*i}*U_j)(y)=\int_0^\infty k^{*i}(s)U_j(y-s)\mathbf 1_{\{s\le y\}}\,\dd s$. The integrand is bounded by $\|U_j\|_\infty k^{*i}(s)$, which is integrable, and it converges to $k^{*i}(s)/(jm)$ for every $s$. Then $(k^{*i}*U_j)(y)\to1/(jm)$ by dominated convergence, and also $(k^{*i}*U_j)\le\|U_j\|_\infty$. Summing over $i$, we find that $U$ is bounded on $[1,\infty)$ and that $U(y)\to j/(jm)=1/m$. This proves \eqref{eq:log-beta-renewal-limit}.
+\end{proof}
+
+\paragraph{The gamma--beta factorization.} The second ingredient is a classical identity between gamma and beta variables. For a shape parameter $\alpha>0$, we say that a random variable has the gamma distribution with shape $\alpha$ if its density is $y^{\alpha-1}e^{-y}/\Gamma(\alpha)$ on $(0,\infty)$.
+
+\begin{lemma}[Gamma--beta factorization]\label{lem:sc-gamma-beta}
+Let $\rho,a>0$ and $b=\rho+a$. Let $G_b$ and $B$ be independent random variables, where $G_b$ has the gamma distribution with shape $b$ and $B$ has the beta distribution with parameters $(\rho,a)$. Then $BG_b$ has the gamma distribution with shape $\rho$.
+\end{lemma}
+
+\begin{proof}
+Let $X$ and $W$ be independent, with gamma distributions of shapes $\rho$ and $a$. The map $(x,w)\mapsto(g,y)=(x+w,x/(x+w))$ is a bijection from $(0,\infty)^2$ onto $(0,\infty)\times(0,1)$, with inverse $(g,y)\mapsto(gy,g(1-y))$ and Jacobian $g$. The joint density of $(X+W,X/(X+W))$ is therefore
+\[
+ \frac{(gy)^{\rho-1}(g(1-y))^{a-1}e^{-g}}{\Gamma(\rho)\Gamma(a)}\,g
+ =\frac{g^{b-1}e^{-g}}{\Gamma(b)}\cdot\frac{y^{\rho-1}(1-y)^{a-1}}{\mathrm B(\rho,a)},
+\]
+where we used $\Gamma(\rho)\Gamma(a)=\Gamma(b)\mathrm B(\rho,a)$. This shows that $X+W$ and $X/(X+W)$ are independent, with the laws of $G_b$ and $B$. Then $BG_b$ has the law of $X=[X/(X+W)]\cdot(X+W)$, which is the gamma distribution with shape $\rho$.
+\end{proof}
+
+\paragraph{The proof of the theorem.} We now combine the three steps.
+
+\begin{proof}[Proof of \cref{thm:stationary-critical-amplitude}]
+We keep the normalized time variable until the last step. Recall that $D(x)=e^{ax}u(e^x)$ and $\rho=1-2a$, and set $b=1-a=\rho+a$. Let $G_b$ have the gamma distribution with shape $b$, and let $B$ be an independent random variable with the beta distribution with parameters $(\rho,a)$. For bounded measurable functions $\zeta$ on $\R$, we define the averaging operators
+\[
+ (\mathcal K\zeta)(x)=\E\,\zeta(x+\log G_b),\qquad
+ (\mathcal B\zeta)(x)=\E\,\zeta(x+\log B)=\int_0^\infty k(y)\,\zeta(x-y)\,\dd y,
+\]
+where $k$ is the density of $-\log B$ from \cref{lem:log-beta-renewal-density}. By the independence of $B$ and $G_b$ and Fubini's theorem, $\mathcal B\mathcal K\zeta(x)=\E\,\zeta(x+\log(BG_b))$. Recall from \cref{lem:sc-gamma-beta} that $BG_b$ has the gamma distribution with shape $\rho$.
+
+The proof has five steps. We first transform the balance \eqref{eq:sc-quadratic-balance} into an exact equation in the logarithmic variable. We then show that it is a renewal equation with an integrable source, solve this equation by iteration, and use \cref{lem:log-beta-renewal-density} to find the limit of its solution. Next, we deduce that $D$ converges. Finally, we treat the derivatives and return to the physical lag.
+
+\paragraph{Step 1: the balance in logarithmic time.} For $z>0$, we write $\widehat\zeta(z)=\int_0^\infty e^{-zt}\zeta(t)\,\dd t$ for the Laplace transform of a bounded function $\zeta$ on $[0,\infty)$. By \cref{lem:stationary-critical-balance-error}, the functions $u$, $u^2$, and $\mathcal E$ are bounded. The function $Q$ is continuously differentiable with $Q(0)=0$ and $0\le Q(t)\le t$. An integration by parts gives $\widehat{Q'}(z)=z\widehat Q(z)$, and $\widehat Q=\widehat u^{\,2}$ by Fubini's theorem. Taking the Laplace transform of \eqref{eq:sc-quadratic-balance}, we obtain
+\begin{equation}\label{eq:sc-laplace-balance}
+ z\,\widehat u(z)^2=\vartheta\,\widehat{u^2}(z)+\widehat{\mathcal E}(z),\qquad z>0 .
+\end{equation}
+We evaluate the transforms at $z=e^{-x}$, $x\in\R$. We have $u(t)=t^{-a}D(\log t)$, and the substitution $t=e^xw$ gives
+\[
+ \widehat u(e^{-x})=\int_0^\infty e^{-w}\,(e^xw)^{-a}D(x+\log w)\,e^x\,\dd w
+ =e^{bx}\Gamma(b)\,(\mathcal KD)(x),
+\]
+where we used that $w^{b-1}e^{-w}/\Gamma(b)$ is the density of $G_b$. In the same way, since $BG_b$ has the gamma distribution with shape $\rho=1-2a$,
+\[
+ \widehat{u^2}(e^{-x})=\int_0^\infty e^{-w}(e^xw)^{-2a}D(x+\log w)^2\,e^x\,\dd w
+ =e^{\rho x}\Gamma(\rho)\,\mathcal B\mathcal K(D^2)(x).
+\]
+Further, $e^{-x}\widehat u(e^{-x})^2=e^{(2b-1)x}\Gamma(b)^2(\mathcal KD)(x)^2=e^{\rho x}\Gamma(b)^2(\mathcal KD)(x)^2$. Inserting these three identities into \eqref{eq:sc-laplace-balance} at $z=e^{-x}$ and dividing by $e^{\rho x}\Gamma(b)^2$, we obtain the exact equation
+\begin{equation}
+ [\mathcal KD(x)]^2=\mathcal B\mathcal K(D^2)(x)+\sigma(x),
+ \qquad
+ \sigma(x)=\frac{e^{-\rho x}\widehat{\mathcal E}(e^{-x})}
+                   {\Gamma(b)^2},
+ \label{eq:sc-log-renewal-balance}
+\end{equation}
+where we used the exponent relation in the form $\vartheta\Gamma(\rho)=\Gamma(b)^2$, which is \eqref{eq:stationary-critical-exponent}.
+
+The source $\sigma$ is integrable on $\R$. Indeed, for $t>0$, the substitution $w=te^{-x}$ yields $\int_\R e^{-\rho x}e^{-te^{-x}}\,\dd x=t^{-\rho}\Gamma(\rho)$. By Tonelli's theorem and \cref{lem:stationary-critical-balance-error}, we have
+\begin{equation}
+ \int_{\R}|\sigma(x)|\,\dd x
+ \le\frac{\Gamma(\rho)}{\Gamma(b)^2}
+       \int_0^\infty|\mathcal E(t)|t^{-\rho}\,\dd t<\infty.
+ \label{eq:sc-log-source-integrable}
+\end{equation}
+
+\paragraph{Step 2: the linear renewal equation.} We set
+\[
+ f=\mathcal K(D^2),\qquad V=\mathcal K(D^2)-[\mathcal KD]^2 .
+\]
+For each $x$, $V(x)$ is the variance of $D(x+\log G_b)$; in particular, $V\ge0$. We have $\mathcal B\mathcal K(D^2)=\mathcal Bf$ and $[\mathcal KD]^2=f-V$, and \eqref{eq:sc-log-renewal-balance} becomes the linear renewal equation
+\begin{equation}
+ f-\mathcal Bf=g_0,\qquad g_0=V+\sigma .
+ \label{eq:sc-linear-renewal}
+\end{equation}
+
+We now verify that $V$ is integrable. Let $G^{(1)}$ and $G^{(2)}$ be independent copies of $G_b$. Then
+\[
+ V(x)=\frac12\E\bigl[D(x+\log G^{(1)})-D(x+\log G^{(2)})\bigr]^2 .
+\]
+Integrating out $G^{(1)}$, we find that the ratio $G^{(2)}/G^{(1)}$ has the density $\varsigma^{b-1}(1+\varsigma)^{-2b}/\mathrm B(b,b)$ on $(0,\infty)$. Taking logarithms, we see that the difference $\log G^{(2)}-\log G^{(1)}$ has the density
+\[
+ \frac{e^{bh}}{\mathrm B(b,b)(1+e^h)^{2b}}=\frac{[2\cosh(h/2)]^{-2b}}{\mathrm B(b,b)},\qquad h\in\R .
+\]
+By Tonelli's theorem and the translation $x\mapsto x-\log G^{(1)}$, and since $2b=2-2a$, we obtain
+\[
+ \int_{\R}V(x)\,\dd x
+ =\frac1{2\mathrm B(b,b)}\int_{\R}\int_{\R}
+ \frac{[D(x)-D(y)]^2}{[2\cosh((x-y)/2)]^{2-2a}}
+                 \,\dd x\,\dd y<\infty,
+\]
+where the finiteness is \eqref{eq:stationary-log-dirichlet-finite}. Together with \eqref{eq:sc-log-source-integrable}, this shows that $g_0\in L^1(\R)$.
+
+We next record the regularity of the terms in \eqref{eq:sc-linear-renewal}. Averages of translates preserve bounds and Lipschitz constants. By \cref{lem:stationary-critical-dirichlet}, $D$ is bounded and Lipschitz. The functions $D^2$, $\mathcal KD$, $f$, $[\mathcal KD]^2$, $V$, and $\mathcal Bf$ inherit these properties. By \eqref{eq:sc-log-renewal-balance} and \eqref{eq:sc-linear-renewal}, the same holds for $\sigma$ and $g_0$. A uniformly continuous integrable function on $\R$ tends to zero at $\pm\infty$: otherwise there would be infinitely many disjoint intervals of a fixed length on which its absolute value is bounded below by a fixed positive number. In particular, $g_0(x)\to0$ as $x\to\pm\infty$. Further, $f(x)\to0$ as $x\to-\infty$, by dominated convergence, since $D$ is bounded and $D(y)\to0$ as $y\to-\infty$.
+
+\paragraph{Step 3: the renewal representation and the limit of $f$.} The source $g_0$ is bounded, continuous, and integrable, but it may be signed. We use the local integrability and bounded tail of the renewal density from \cref{lem:log-beta-renewal-density} to handle this source. Let $Y_1,Y_2,\dots$ be independent copies of $Y=-\log B$, and let $S_n=Y_1+\cdots+Y_n$, with $S_0=0$. Then $\mathcal B^n\zeta(x)=\E\,\zeta(x-S_n)$, and for $n\ge1$ the variable $S_n$ has the density $k^{*n}$. Applying \eqref{eq:sc-linear-renewal} repeatedly, we have, for all $n\ge1$,
+\[
+ f(x)=\sum_{l=0}^{n-1}\E\,g_0(x-S_l)+\E\,f(x-S_n).
+\]
+By the strong law of large numbers, $S_n/n\to m>0$ almost surely, and in particular $S_n\to\infty$ almost surely. Then $\E f(x-S_n)\to0$ by bounded convergence, because $f$ is bounded and $f(-\infty)=0$. For every fixed $x$, we have
+\begin{align*}
+ \sum_{l\ge1}\E\,|g_0(x-S_l)|&=\int_0^\infty U(y)|g_0(x-y)|\,\dd y\\
+ &\le\|g_0\|_\infty\int_0^1U(y)\,\dd y+\sup_{y\ge1}U(y)\,\|g_0\|_{L^1(\R)}<\infty,
+\end{align*}
+by \cref{lem:log-beta-renewal-density} and Tonelli's theorem. This justifies summing the series term by term, and we obtain
+\begin{equation}
+ f(x)=g_0(x)+\int_0^\infty U(y)g_0(x-y)\,\dd y,\qquad x\in\R .
+ \label{eq:sc-renewal-representation}
+\end{equation}
+
+We now let $x\to\infty$ in \eqref{eq:sc-renewal-representation}. The term $g_0(x)$ tends to zero. The part of the integral with $0<y<1$ is at most $\sup_{[x-1,x]}|g_0|\int_0^1U$, which tends to zero. In the remaining part, we substitute $s=x-y$:
+\[
+ \int_1^\infty U(y)g_0(x-y)\,\dd y=\int_\R U(x-s)\,g_0(s)\,\mathbf 1_{\{s\le x-1\}}\,\dd s .
+\]
+The integrand is dominated by $\sup_{y\ge1}U(y)\,|g_0(s)|$, which is integrable, and by \eqref{eq:log-beta-renewal-limit} it converges to $g_0(s)/m$ for every $s$. We conclude by dominated convergence that
+\begin{equation}\label{eq:sc-f-limit}
+ f(x)\longrightarrow f_\infty=\frac1m\int_{\R}g_0(s)\,\dd s\qquad(x\to\infty).
+\end{equation}
+
+\paragraph{Step 4: the limit of $D$.} For every fixed $h\in\R$, we have
+\[
+ D(x+h)^2-D(x)^2=\bigl[D(x+h)-D(x)\bigr]\bigl[D(x+h)+D(x)\bigr]\longrightarrow0
+\]
+as $x\to\infty$, by \eqref{eq:stationary-log-increment-vanishing} and the boundedness of $D$. These differences are bounded by $2\|D\|_\infty^2$. By dominated convergence with respect to the law of $\log G_b$, we find
+\[
+ f(x)-D(x)^2=\E\bigl[D(x+\log G_b)^2-D(x)^2\bigr]\longrightarrow0 .
+\]
+Combined with \eqref{eq:sc-f-limit}, this shows that $D(x)^2\to f_\infty$. Recall from \cref{lem:stationary-critical-dirichlet} that $D$ is bounded, and bounded below by a positive constant on $[0,\infty)$. This implies that $f_\infty\in(0,\infty)$. Since $D>0$, we conclude that
+\begin{equation}\label{eq:sc-amplitude-limit}
+ D(x)\longrightarrow A_0=\sqrt{f_\infty}\in(0,\infty),\qquad\text{that is,}\qquad u(t)\sim A_0t^{-a}\quad(t\to\infty).
+\end{equation}
+We did not need to know the sign of $\int g_0$ in advance: its positivity follows from the lower bound in \eqref{eq:sc-endpoint-bounds}.
+
+\paragraph{Step 5: the derivatives and the physical lag.} As in the proof of \cref{thm:stationary-critical-endpoint}, let $F_n=(-1)^nu^{(n)}$ on $(0,\infty)$ for $n\ge0$. Recall from \cref{lem:sc-normalized-equation} that each $F_{n+1}=-F_n'$ is positive and nonincreasing. We show by induction that
+\begin{equation}\label{eq:sc-derivative-asymptotics}
+ F_n(t)\sim A_0(a)_nt^{-a-n}\qquad(t\to\infty),\qquad n\ge0,
+\end{equation}
+where $(a)_0=1$. For $n=0$, this is \eqref{eq:sc-amplitude-limit}. Suppose that \eqref{eq:sc-derivative-asymptotics} holds for some $n\ge0$, and write $\alpha=a+n$ and $A_n=A_0(a)_n$. For $\Lambda>1$, since $F_{n+1}$ is nonincreasing, we have
+\[
+ \frac{F_n(t)-F_n(\Lambda t)}{(\Lambda-1)t}\le F_{n+1}(t)\le\frac{F_n(t/\Lambda)-F_n(t)}{(1-1/\Lambda)t}.
+\]
+Multiplying by $t^{\alpha+1}$ and letting $t\to\infty$, we obtain
+\[
+ A_n\,\frac{1-\Lambda^{-\alpha}}{\Lambda-1}\le\liminf_{t\to\infty}t^{\alpha+1}F_{n+1}(t)
+ \le\limsup_{t\to\infty}t^{\alpha+1}F_{n+1}(t)\le A_n\,\frac{\Lambda^\alpha-1}{1-1/\Lambda}.
+\]
+Both bounds tend to $\alpha A_n$ as $\Lambda\downarrow1$, and we conclude that $F_{n+1}(t)\sim(a+n)A_0(a)_nt^{-a-n-1}=A_0(a)_{n+1}t^{-a-n-1}$, which is \eqref{eq:sc-derivative-asymptotics} for $n+1$. This argument is the monotone density theorem; see \cite[Section~1.7.3, Theorem~1.7.2 and its following tail-integral variant, p.~39]{bgt1987}.
+
+Finally, we return to the physical lag, which we again denote by $t$. By the definition of $u$, we have $c(t)=q+(1-q)u(t/(1-q))$ and $c^{(n)}(t)=(1-q)^{1-n}u^{(n)}(t/(1-q))$ for $n\ge1$. Using \eqref{eq:sc-derivative-asymptotics}, we obtain
+\[
+ c(t)-q\sim(1-q)A_0\Bigl(\frac t{1-q}\Bigr)^{-a}=A_0(1-q)^{1+a}t^{-a},
+\]
+and, for all $n\ge1$,
+\[
+ (-1)^nc^{(n)}(t)\sim(1-q)^{1-n}A_0(a)_n\Bigl(\frac t{1-q}\Bigr)^{-a-n}=A_0(1-q)^{1+a}(a)_nt^{-a-n}.
+\]
+This is \eqref{eq:stationary-critical-amplitude} with $A_\beta=A_0(1-q)^{1+a}\in(0,\infty)$. The case $n=1$ gives $r(t)\sim aA_\beta t^{-1-a}$, because $r=-c'$. This completes the proof.
+\end{proof}

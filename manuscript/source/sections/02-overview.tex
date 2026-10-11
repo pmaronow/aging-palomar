@@ -1,0 +1,335 @@
+\chapter{Overview of the proofs}\label{sec:proof-overview}
+
+In this section, we explain the main steps of the proofs and the ideas behind them. We describe each step informally and point to the precise statements in later sections. In \cref{sec:overview-difficulty}, we explain what makes the long-time behavior of the CK solution hard to analyze. \Cref{sec:overview-clusters,sec:overview-scalar,sec:overview-tree,sec:overview-selection,sec:overview-inputs} describe the proof of \cref{thm:main-aging}, and \cref{sec:overview-response,sec:overview-geometry,sec:overview-power-law} describe the proofs of the other main theorems. Throughout, $p\ge3$ and $\beta>0$ are fixed, $m=p-1$, and $(C,R,\lambda)$ is the CK solution of \cref{sec:intro-model}. We illustrate several formulas in the cubic model, where $m=2$, $\bd=\sqrt{4/3}$, and $\qd=1/2$.
+
+\section{The difficulty}\label{sec:overview-difficulty}
+
+After the dimension limit, which we take first on every fixed time horizon (\cref{prop:hard-bridge}), we must study the deterministic solution $(C,R,\lambda)$ of the integro-differential equations \eqref{eq:ck-response}--\eqref{eq:ck-multiplier} as both of its times tend to infinity. The aging statement \eqref{eq:main-aging} combines two assertions of different kinds. The first concerns bounded windows of lags at late times, where we must show that the solution becomes stationary and that its stationary correlation decreases to a positive plateau $q_\beta$. The second concerns the whole history: we must show that $C(t,s)\to0$ as $t\to\infty$ for every fixed $s$. Note that a positive stationary plateau implies neither the second assertion nor the noncommutation of the two limits in \eqref{eq:main-aging}. The stationary profile records $C(T+t,T+s)$ only for bounded $t-s$, and it carries no information about $C(t,s)$ for fixed $s$.
+
+Cugliandolo and Kurchan derived the plateau, the energy, and the loss of memory from an asymptotic solution of the CK equations \cite{ck1993}. Their derivation separates a stationary regime at bounded lags from an aging regime below the plateau, in which it imposes an asymptotic relation between response and correlation; within this ansatz, the plateau is fixed by the marginality condition. A proof cannot start from these assumptions. We do not know in advance that the two regimes separate, on which time scale the aging regime lives, or how response and correlation are related there, and our results determine neither the time scale nor the full relation.
+
+The difficulty is visible in the equations. If we translate both observation times to late times and keep their difference bounded, the memory integral of the response equation \eqref{eq:ck-response} involves only the times between them. The memory integrals of the correlation equation \eqref{eq:ck-correlation}, however, run over $[0,t]$ and $[0,s]$, and on a late window they involve the overlap of late states with the remote past, which a limit on late windows does not control.
+
+We make no assumption on this older memory. There are three main ingredients. The first is entropy production. We prove that the total entropy produced by the diffusion relative to its Gibbs measure is at most $\beta^2N/2$ on average over the disorder, and deduce that every limit of the solution on late windows is stationary and satisfies FDT (\cref{sec:overview-clusters}). The closed response equation then constrains the plateau, but it does not select it (\cref{sec:overview-scalar}). The second ingredient is a realization of $C$ as the Gram kernel of unit vectors $v_t$ in a Hilbert space graded by trees, whose leaves record the times of the thermal noise. Projecting a late state onto the trees with early leaves plays the role of conditioning on the early noise, and the Gram kernel of these projections satisfies an equation from which the older memory cancels exactly (\cref{sec:overview-tree}). The third ingredient is an energy ceiling for normalized projections of late states. Together with the scalar constraints, it forces every positive plateau to be marginal, and when it is saturated, it forces the projections to forget every fixed earlier state (\cref{sec:overview-selection,sec:overview-inputs}). For $p\in\{3,4\}$, the ceiling is a deterministic inequality in the tree space; for general $p$, we use the algorithmic threshold of Huang and Sellke \cite[Theorem~1 and Corollary~1.8]{hs2023}.
+
+\section{From the diffusion to stationary clusters}\label{sec:overview-clusters}
+
+\paragraph{Inputs.}
+The bridge of \cref{prop:hard-bridge} is Sellke's convergence theorem for hard-spherical Langevin dynamics \cite[Theorem~4.3]{sellke2024}: on every fixed time horizon, empirical correlations and a Brownian observable converge, and by \cref{lem:brown-force-response}, this observable is the integrated response to an additive force. In finite dimension, the normalized trace response has diagonal $\kappa_N=(N-1)/N$. Its annealed mean converges to $R$ uniformly on fixed causal triangles, by the compact-time modulus of the tangent flow and uniqueness of the limit identified by the primitives (\cref{rem:no-pointwise-response}); this is stronger than the convergence of primitives that the published bridge gives. Integrating by parts in the Gaussian disorder, we find that $e_\beta(t)$ is the limit of the mean energy and that $\lambda=1+p\beta e_\beta$ (\cref{prop:energy-bridge}). Our basic structural tool is the Green covariance identity of \cref{prop:green-covariance},
+\begin{equation}\label{eq:overview-green}
+\begin{aligned}
+ C(t,s)={}&R(t,0)R(s,0)+2\int_0^{t\wedge s}R(t,u)R(s,u)\,\dd u\\
+ &+\beta^2p\int_0^t\int_0^sR(t,u)R(s,w)C(u,w)^{p-1}\,\dd w\,\dd u ,
+\end{aligned}
+\end{equation}
+whose three terms come from the initial condition, the thermal noise, and the colored memory, each propagated by the response. It has the variation-of-constants interpretation of the linear effective single-spin equation with white and colored Gaussian noise \cite[arXiv version~2, Section~9.5, equation~(9.56), p.~55]{cugliandolo2004}. We prove the identity directly from the CK equations, whose derivation and rigorous fixed-horizon limits are discussed in \cite{ck1993,bag2006,ds2020}. We also show that $1\le\lambda\le\Lambda$ and $0\le R\le C$, and that the translated kernels $C_T(a,b)=C(T+a,T+b)$, $R_T(a,b)=R(T+a,T+b)$, and $\lambda_T(a)=\lambda(T+a)$ are precompact as $T\to\infty$ (\cref{sec:ck-structure}).
+
+\paragraph{Entropy production.}
+Fix the disorder, let $\rho_t$ be the density of $X_t$ with respect to the uniform measure $\omega_N$ on $S_N$, and recall that the diffusion is reversible with respect to the Gibbs density $g_N\propto e^{\beta H_N}$. The relative entropy of $\rho_t$ with respect to $g_N$ decreases at the rate $I_H(t)$, the relative Fisher information. Since the initial law is uniform, the initial relative entropy is $\log Z_{N,\beta}-\beta\int H_N\,\dd\omega_N$, whose mean is at most $\log\E Z_{N,\beta}=\beta^2N/2$ by Jensen's inequality. With $a_N(t)=N^{-1}\E I_H(t)$, we arrive at the budget
+\begin{equation}\label{eq:overview-budget}
+ \int_0^\infty a_N(t)\,\dd t\le\frac{\beta^2}2
+\end{equation}
+of \cref{lem:entropy-budget}. The link with FDT is the exact identity of \cref{lem:finite-dimensional-fdt}. If $c_H$ and $r_H$ are the correlation and the response at fixed disorder, and $m_\tau(x)$ is the conditional mean of $X_{s+\tau}$ given $X_s=x$, then for $t>s$ we have
+\[
+ r_H(t,s)-\partial_sc_H(t,s)
+ =\frac1N\int\rho_s\,\Bigl\langle m_{t-s},\nabla_S\log\frac{\rho_s}{g_N}\Bigr\rangle\,\dd\omega_N .
+\]
+At $s=0$, the derivative in the earlier time is taken from the right. The right side vanishes in equilibrium, and by the Cauchy--Schwarz inequality its square is at most $I_H(s)/N$. After averaging over the disorder, we find that $|\bar r_N(t,s)-\partial_s\bar c_N(t,s)|^2\le a_N(s)$: the violation of FDT at the earlier time $s$ is controlled by the entropy production at time $s$. This is the mechanism of Cugliandolo, Dean, and Kurchan \cite[arXiv version~2, equations~(12)--(13), p.~3, and~(18), p.~4]{cdk1997}.
+
+\paragraph{A single Fisher majorant.}
+We need this bound for the CK solution at every pair of times. However, the budget \eqref{eq:overview-budget} bounds $a_N$ only in $L^1$, and the integrability of a limit of $a_N$ would not make it small at every late time. To overcome this, we turn to the Bochner formula \cite[Proposition~3, equation~(4b), p.~187]{bakryemery1985}, which shows that $e^{-Kt}I_H(t)$ is nonincreasing on an event of overwhelming probability for the disorder, with $K$ depending only on $p$ and $\beta$. We apply Helly's selection theorem to the Fisher informations restricted to this disorder event (compare the selection proof in \cite[Theorem~25.9, p.~336]{billingsley1995}), and use the landscape moments and entropy budget to show that the disorder outside this event contributes an $L^1$ mass that vanishes as $N\to\infty$. This gives one subsequence $(N_j)$, which we keep for the rest of the paper, along which the full normalized annealed Fisher information $a_{N_j}$ converges in $L^1_{\mathrm{loc}}$ to a function $a_F$, the Fisher majorant. We prove in \cref{thm:fisher-clock} that
+\begin{equation}\label{eq:overview-fisher}
+\begin{gathered}
+ \int_0^\infty a_F(u)\,\dd u\le\frac{\beta^2}2,\qquad
+ \lim_{T\to\infty}\sup_{s\ge T}a_F(s)=0,\\
+ |\partial_sC(t,s)-R(t,s)|^2\le a_F(s),\qquad t>s>0,
+\end{gathered}
+\end{equation}
+where the decay of $\sup_{s\ge T}a_F(s)$ follows from integrability and the monotonicity of $e^{-Kt}a_F(t)$. We choose the right-continuous representative of this limit and use the same $a_F$ below, including for the physical relaxation cost. One function thus dominates the backward defect $E(t,s)=\partial_sC(t,s)-R(t,s)$ on the whole triangle. In the same way, using a second current identity and the gradient bound for the semigroup, we show that a correlation at fixed lag changes little when both times are shifted. For $0\le\tau\le L$ and $0\le w_1\le w_2$, the difference $|C(w_2+\tau,w_2)-C(w_1+\tau,w_1)|$ is at most $B_L\int_{w_1}^{w_2}\sqrt{a_F(u)}\,\dd u$, where $B_L$ depends only on $p$, $\beta$, and $L$ (\cref{lem:waiting-clock-current}); compare \cite[arXiv version~2, equation~(15), p.~3]{cdk1997}.
+
+\paragraph{Stationary clusters.}
+As $a_F$ is integrable, the right sides of these bounds vanish on late windows of bounded length. Combining this with the precompactness of the translated kernels, we prove in \cref{prop:stationary-clusters} that every limit of $(C_{T_n},R_{T_n},\lambda_{T_n})$ along a sequence $T_n\to\infty$ has the form $c(|a-b|)$, $r(a-b)$, and $\ell$, where $c(0)=r(0)=1$, $0\le c\le1$, $r=-c'\ge0$, and the constant $\ell$ equals $1+p\beta e_\infty$ for the limit $e_\infty$ of the energies. Stationarity comes from the flatness bound, and FDT from integrating the Fisher bound over a bounded window. As the memory integral of the response equation runs only between the two observation times, we also obtain the closed stationary response equation
+\begin{equation}\label{eq:overview-stationary-response}
+ r'(\tau)=-\ell r(\tau)+\beta^2p(p-1)\int_0^\tau c(\tau-u)^{p-2}r(\tau-u)r(u)\,\dd u ,
+\end{equation}
+in which the coefficient $\beta^2p(p-1)$ is $6\beta^2$ for $p=3$. We call $(c,r,\ell)$ a stationary cluster and $q=\lim_{\tau\to\infty}c(\tau)$ its plateau. Note that \cref{prop:stationary-clusters} determines neither $q$ nor $\ell$, that different sequences $T_n$ may a priori lead to different clusters, and that it says nothing about $C(t,s)$ for fixed $s$.
+
+\section{The scalar equation and its constraints}\label{sec:overview-scalar}
+
+Integrating \eqref{eq:overview-stationary-response} once, we obtain the scalar memory equation of \cref{prop:scalar-clusters},
+\begin{equation}\label{eq:overview-scalar}
+ c'(t)=-1+\int_0^t\phi\bigl(c(t-u)\bigr)r(u)\,\dd u,\qquad
+ \phi(y)=\ell-\beta^2p+\beta^2py^{p-1},
+\end{equation}
+which is the equation classified by Dembo, Guionnet, and Mazza \cite[arXiv version~1, Proposition~1.4, p.~5, and Section~5, pp.~17--20]{dgm2007}. We derive its consequences directly, because \cref{sec:stationary-selection} needs the constants and a strict inequality in exactly the following form. As $t\to\infty$, the integral tends to $\phi(q)(1-q)$, and the limit of $c'(t)$ must vanish because $c$ is bounded. This gives the plateau identity
+\[
+ \phi(q)(1-q)=1,\qquad\text{that is,}\qquad
+ \ell=L(q)=\frac1{1-q}+\beta^2p\bigl(1-q^{p-1}\bigr).
+\]
+Next, $\phi$ is nondecreasing and $c$ is nonincreasing. Replacing $c(t-u)$ by $c(t)$ in \eqref{eq:overview-scalar}, we find that $c'(t)\ge F(c(t))$, where $F(y)=\phi(y)(1-y)-1$. The memory term of the stationary response equation is nonnegative, so $r(t)\ge e^{-\ell t}>0$. Then $c$ decreases strictly from $1$ to $q$, every $y\in(q,1)$ equals $c(t_y)$ for some $t_y$, and $F(y)\le c'(t_y)<0$. We have obtained the strict sign condition
+\[
+ F(q)=0,\qquad F(y)<0\quad(q<y<1).
+\]
+In particular, $F'(q)\le0$, which is the submarginality inequality $\beta^2p(p-1)q^{p-2}(1-q)^2\le1$. In the cubic model, these read $\ell=(1-q)^{-1}+3\beta^2(1-q^2)$, $F(y)=(\ell-3\beta^2+3\beta^2y^2)(1-y)-1$, and $6\beta^2q(1-q)^2\le1$. Finally, \cref{lem:stationary-uniqueness} states that, for a prescribed multiplier, the stationary system has at most one solution.
+
+These are constraints on a possible cluster, not a selection of its plateau. If $q=0$, then $\ell=1+\beta^2p$ and the inequality says nothing. If $q>0$, then $\ell$ is determined by $q$, and the plateau is submarginal. To prove equality in the marginality relation, we need an inequality in the opposite direction. It will come from an upper bound on the energy of the part of a late state that was already determined at an earlier time.
+
+\section{The causal tree realization and reflection}\label{sec:overview-tree}
+
+\paragraph{The tree space.}
+In the Green identity \eqref{eq:overview-green}, the first two terms form the inner product of $R(t,0)e_0+\sqrt2\,\mathbf1_{[0,t]}R(t,\cdot)$ and $R(s,0)e_0+\sqrt2\,\mathbf1_{[0,s]}R(s,\cdot)$ in $\R e_0\oplus L^2(\R_+)$, where a unit vector $e_0$ represents the initial condition. If $C(u,w)=\ip{v_u}{v_w}$, then $C(u,w)^m=\ip{v_u^{\otimes m}}{v_w^{\otimes m}}$, and the third term is an inner product as well. We therefore look for unit vectors such that
+\begin{equation}\label{eq:overview-realization}
+ v_t=R(t,0)e_0+\sqrt2\,\mathbf1_{[0,t]}R(t,\cdot)
+ +\beta\sqrt p\int_0^tR(t,u)\,\mathcal I\bigl(v_u^{\otimes m}\bigr)\,\dd u,
+\end{equation}
+where $\mathcal I$ is an isometry from $m$-fold tensor powers into a space orthogonal to the first two terms. Iterating \eqref{eq:overview-realization}, we expand $v_t$ into terms indexed by finite rooted trees in which every vertex has either no children or $m$ ordered children (\cref{sec:tree-space}). Each leaf carries the initial vector or the time of a noise increment, and each internal vertex records one use of the memory integral. For example, when $p=3$, the component of $v_t$ indexed by the tree with two leaves, evaluated at two noise times $y_1,y_2\le t$, is
+\[
+ w_t(y_1,y_2)=2\sqrt3\,\beta\int_{y_1\vee y_2}^tR(t,u)R(u,y_1)R(u,y_2)\,\dd u .
+\]
+Noise received at times $y_1$ and $y_2$ is transported to a time $u$ by the response, combined there by the cubic interaction, and transported to time $t$; at a leaf that carries the initial vector, a factor $\sqrt2R(u,y_i)$ becomes $R(u,0)$ (\cref{ex:tree-first-heights}). Accordingly, $\mathcal H$ is an orthogonal sum, over trees, of tensor powers of $\R e_0\oplus L^2(\R_+)$, and $\mathcal I$ grafts $m$ trees onto a new root. We write $\Pi_j$ for the projection onto trees of height $j$, and $P_T$ for the prefix projection, which keeps each component only where all of its leaf times are at most $T$. As the leaves of a graft are the leaves of its subtrees, $P_T$ commutes with grafting.
+
+\paragraph{The realization.}
+In \cref{prop:geometry-tree-realization}, we construct a norm-continuous curve of unit vectors $v_t\in\mathcal H$ that solves \eqref{eq:overview-realization} and satisfies
+\[
+ \ip{v_t}{v_s}=C(t,s),\qquad P_tv_t=v_t,\qquad
+ h(v_t)=e_\beta(t),\quad\text{where }h(v)=\sqrt p\,\ip{v}{\mathcal I(v^{\otimes m})}.
+\]
+We call $h$ the tree energy. Every component of $v_t$ is a nonnegative function of the leaf labels. The construction is a positive Picard iteration: the Gram kernels of the truncations at height $n$ increase with $n$, because $R$ and $C$ are nonnegative, and their limit solves the Green equation, whose solution with values in $[-1,1]$ is unique. Positive noncrossing expansions of the response equation appear in \cite[Section~2.1]{guionnetmazza2005} and \cite[Section~2]{dgm2007}; here we expand the covariance.
+
+\paragraph{Prefix centers.}
+For $T,a\ge0$, we call $M_T(a)=P_Tv_{T+a}$ a prefix center. It retains the components whose initial and thermal-noise leaf labels lie at or before $T$; their internal memory integrals may still extend beyond $T$. For $s\le T$, we have $P_Tv_s=v_s$, and therefore $\ip{v_{T+a}}{v_s}=\ip{M_T(a)}{v_s}$; that is, the correlation of a late state with any state up to time $T$ is carried by its prefix center. At first sight, the Gram kernel of the prefix centers is as hard to compute as $C$, since the centers are built from the whole older history. However, the older memory cancels exactly. Let $K_T(t,s)=\ip{P_Tv_t}{P_Tv_s}$. Applying $P_T$ to \eqref{eq:overview-realization}, we see that $K_T$ satisfies a Green identity in which the noise integral stops at $T$. If $u\le T$, then $P_Tv_u=v_u$, and therefore $K_T(u,w)=C(u,w)$. When we subtract the identity for $K_T$ from \eqref{eq:overview-green}, the initial terms, the noise integrals over $[0,T]$, and every block of the memory integral with $u\le T$ or $w\le T$ cancel. For $t,s\ge T$, only the future rectangle remains:
+\[
+\begin{aligned}
+ C(t,s)-K_T(t,s)={}&2\int_T^{t\wedge s}R(t,u)R(s,u)\,\dd u\\
+ &+\beta^2p\int_T^t\int_T^sR(t,u)R(s,w)\bigl\{C(u,w)^m-K_T(u,w)^m\bigr\}\,\dd w\,\dd u .
+\end{aligned}
+\]
+In the variables $a=t-T$ and $b=s-T$, this is the closed equation \eqref{sel:closed-prefix-rectangle} for $Q_T(a,b)=\ip{M_T(a)}{M_T(b)}$ on a fixed rectangle. It holds for every $T$, before any limit is taken, and it uses no decay of the older memory.
+
+\paragraph{Reflection.}
+Let $T_n\to\infty$ be a sequence along which the translated kernels converge to a stationary cluster $(c,r,\ell)$. The coefficients of the closed equation converge, and by a Gronwall argument, every solution of the limiting equation with values in $[0,1]$ is the limit of $Q_{T_n}$. Comparing double Laplace transforms, and using only the stationary response equation, we check that $c(a+b)$ is such a solution. This proves the reflection identity of \cref{sel:prefix-reflection}: for every $A<\infty$,
+\begin{equation}\label{eq:overview-reflection}
+ \lim_{n\to\infty}\sup_{0\le a,b\le A}\bigl|\ip{M_{T_n}(a)}{M_{T_n}(b)}-c(a+b)\bigr|=0 .
+\end{equation}
+In particular, $\norm{M_{T_n}(L)}^2\to d_L=c(2L)$. We compute the energy of a center by the same kind of exact subtraction. When we subtract $h(v_t)=e_\beta(t)$ from $h(P_Tv_t)$, only an integral over the last $L$ units of time remains \eqref{sel:exact-prefix-energy-subtraction}. Passing to the limit, we find that
+\begin{equation}\label{eq:overview-center-energy}
+ h\bigl(M_{T_n}(L)\bigr)\longrightarrow
+ h_L=e_\infty+\beta p\int_0^Lr(\tau)\bigl\{c(2L-\tau)^{p-1}-c(\tau)^{p-1}\bigr\}\,\dd\tau .
+\end{equation}
+These limits hold for every stationary cluster, whatever its plateau.
+
+We may think of $M_T(a)$ as the average of the state at time $T+a$ over independent continuations of the thermal noise after time $T$. For a stationary reversible Markov process, the conditional means of two such continuations of lengths $a$ and $b$ have overlap $c(a+b)$ (\cref{rem:tree-independent-futures}); this reflected formula appears in the work of Barrat, Burioni, and M\'ezard \cite[Section~2, Equation~(9)]{bbm1996}. Averages over independent futures and time-averaged magnetizations \cite{cugliandolodean1995,franzvirasoro2000,biroli1999,ck1994} are discussed in \cref{sec:intro-related}. In our proof, the reflected overlap comes from the exact cancellation above.
+
+\paragraph{Complete monotonicity.}
+By \eqref{eq:overview-reflection}, the Hankel kernel $(a,b)\mapsto c(a+b)$ is a limit of Gram kernels, and it is positive semidefinite. Using a short semigroup argument in the spirit of the Bernstein--Widder theorem \cite{widder1941,bcr1984}, we deduce the representation of \cref{sel:cluster-complete-monotonicity},
+\[
+ c(t)=\int_{[0,\infty)}e^{-xt}\,\nu(\dd x),\qquad \nu(\{0\})=q,
+\]
+for a probability measure $\nu$. In particular, $c$ and $r$ are completely monotone. Franosch and Voigtmann proved complete monotonicity for Brownian mode-coupling equations of mixtures by a different route, an iteration argument \cite[arXiv version~1, Section~III]{fv2002}. Finally, after time $T$ no new noise leaf survives the projection $P_T$. By \cref{lem:geometry-projected-drift}, the curve $t\mapsto P_Tv_t$ is then differentiable on $(T,\infty)$, and its derivative is the image under $P_T$ of an explicit polynomial function of $v_t$. We use this in \cref{resp:chapter} to bound $\partial_tC$ far from the diagonal.
+
+\section{Selection of the plateau from two threshold inputs}\label{sec:overview-selection}
+
+\paragraph{The threshold inputs.}
+Besides the fact that the correlation of a late state with an earlier state is carried exactly by the center, \cref{sec:stationary-selection} takes as input two facts about prefix centers, which we state as \cref{prop:threshold-inputs}. Recall that $h$ is homogeneous of degree $p$, so that $h_L/d_L^{p/2}$ is the limiting energy of the normalized center $M_{T_n}(L)/\norm{M_{T_n}(L)}$. Let $\Eth=2\sqrt{(p-1)/p}$ be the threshold energy of the pure $p$-spin landscape \cite[Equation~(2.13)]{abc2013}. Informally, \cref{prop:threshold-inputs} states the following.
+\begin{enumerate}[label=(\alph*)]
+\item For every stationary cluster with positive plateau, the limiting center energies satisfy $h_L\le\Eth\,d_L^{p/2}$ for every $L\ge0$.
+\item If the translated kernels converge along every sequence $T\to\infty$ to one stationary profile, and if its plateau is positive and marginal, then the solution forgets every fixed earlier state: $\sup_{0\le s\le S}C(t,s)\to0$ as $t\to\infty$, for every $S<\infty$.
+\end{enumerate}
+We prove \cref{thm:main-aging} from these inputs in \cref{sec:stationary-selection}, and we prove the inputs in \cref{sec:tree-ceilings,app:general-selection}.
+
+\paragraph{An algebraic identity.}
+Since $c$ decreases to $q$, we have $d_L\to q$. Using dominated convergence in \eqref{eq:overview-center-energy} and $p\int_0^\infty c^{p-1}r=1-q^p$, we find that
+\[
+ h_L\longrightarrow h=e_\infty-\beta\bigl\{1-q^p-pq^{p-1}(1-q)\bigr\}.
+\]
+If $q>0$, inserting the plateau identity $\ell=L(q)$ and $e_\infty=(\ell-1)/(p\beta)$ into this formula, we obtain the identity of \cref{lem:center-energy},
+\begin{equation}\label{eq:overview-amgm}
+ \frac h{q^{p/2}}=\sqrt{\frac{p-1}p}\Bigl(z+\frac1z\Bigr)\ge\Eth,\qquad
+ z=\beta\sqrt{p(p-1)}\,q^{(p-2)/2}(1-q).
+\end{equation}
+Equality holds if and only if $z=1$, that is, if and only if $\beta^2p(p-1)q^{p-2}(1-q)^2=1$. For $p=3$, we have $h=e_\infty-\beta\{1-q^3-3q^2(1-q)\}$, $z=\beta\sqrt{6q}\,(1-q)$, and $\Eth=2\sqrt{2/3}$. Note that this identity is algebra about a stationary cluster, and that it uses no threshold input.
+
+\paragraph{Marginality.}
+Let $(c,r,\ell)$ be a stationary cluster with $q>0$. Letting $L\to\infty$ in part~\ref{item:threshold-ceiling} of \cref{prop:threshold-inputs}, we find that $h\le\Eth q^{p/2}$, while \eqref{eq:overview-amgm} gives $h\ge\Eth q^{p/2}$. Equality must hold, and the plateau is marginal. This is the inequality in the opposite direction that the scalar constraints were missing. For $\beta>\beta_{\mathrm m}$, the marginality equation has two roots in $(0,1)$, and the strict sign condition excludes the smaller one. Indeed, at a marginal plateau we have $F(q)=F'(q)=0$, and if $q<q_{\mathrm m}=(p-2)/p$, then $F''(q)>0$, so that $F$ would be positive just above $q$. Hence $q=q_+(\beta)$, the root in $[q_{\mathrm m},1)$ (\cref{sel:positive-marginality}).
+
+\paragraph{Convergence at every temperature.}
+It remains to show that the cluster does not depend on the sequence $T_n$. By marginality and the plateau identity, the multiplier of every cluster is either $1+\beta^2p$, when $q=0$, or $L(q_+(\beta))$; it lies in a set with at most two elements. The function $\lambda$ is continuous and bounded. By the intermediate value theorem, every point between $\liminf_{t\to\infty}\lambda(t)$ and $\limsup_{t\to\infty}\lambda(t)$ is the limit of $\lambda(T_n)$ along some sequence $T_n\to\infty$, and by compactness, each such limit is the multiplier of a cluster. An interval contained in a set with at most two elements is a single point, so $\lambda$ converges. Once the multiplier is fixed, \cref{lem:stationary-uniqueness} identifies the profile, and precompactness upgrades subsequential convergence to convergence of the whole translated family (\cref{sel:all-temperature}). This holds for every $\beta>0$, and the energy converges as well.
+
+\paragraph{The selected plateau.}
+For $\beta\ge\bd$, we exclude the zero plateau with the same sign condition. If $q=0$, then $\ell=1+\beta^2p$ and $F(y)=y\{\beta^2py^{p-2}(1-y)-1\}$, and we find that
+\[
+ F(\qd)=\qd\Bigl(\frac{\beta^2}{\bd^2}-1\Bigr)\ge0,
+\]
+which contradicts the sign condition on $(0,1)$. For $p=3$, this reads $F(1/2)=(3\beta^2/4-1)/2$. At $\beta=\bd$, we have $F(\qd)=0$, and the contradiction comes from the strictness of the sign condition; the endpoint needs no continuity argument in $\beta$. We conclude that $q=q_\beta=q_+(\beta)\ge\qd$, and the energy formula \eqref{eq:main-energy} follows from $\ell=L(q_\beta)$ and marginality (\cref{sel:selected-sector}). For $\beta<\beta_{\mathrm m}$, only the zero plateau is possible. For $\beta_{\mathrm m}\le\beta<\bd$, we prove convergence, but we do not decide between the two alternatives (\cref{sel:intermediate-range}).
+
+\paragraph{Forgetting and aging.}
+If $q>0$, the convergence of the whole translated family and marginality are the hypotheses of part~\ref{item:threshold-forgetting} of \cref{prop:threshold-inputs}, which implies that $\sup_{s\le S}C(t,s)\to0$. If $q=0$, we need no threshold input. For $s\le t-L$, we have $C(t,s)=\ip{M_{t-L}(L)}{v_s}\le\norm{M_{t-L}(L)}$ by the Cauchy--Schwarz inequality. The right side tends to $c(2L)^{1/2}$ as $t\to\infty$, and $c(2L)\to0$ as $L\to\infty$. Using the domination $R\le C$, we transfer forgetting to the response (\cref{sel:fixed-wait-forgetting}). For $\beta\ge\bd$, the ordered limits \eqref{eq:main-aging} follow: the first inner limit is $c(\tau)$, which tends to $q_\beta>0$, and the second vanishes by forgetting (\cref{sel:aging}).
+
+\paragraph{The order of the argument.}
+But there is an apparent circularity here, since the threshold inputs are proved in later sections, and part~\ref{item:threshold-forgetting} assumes a marginal plateau, which is what part~\ref{item:threshold-ceiling} is used to prove. The way out is the order of deduction. Part~\ref{item:threshold-ceiling} concerns an arbitrary stationary cluster with positive plateau, and its proofs in \cref{sec:tree-ceilings,app:general-selection} use only \cref{sec:model,sec:ck-structure,sec:entropy-clusters,sec:scalar,sec:geometry-core}. We deduce marginality from part~\ref{item:threshold-ceiling} and the identity \eqref{eq:overview-amgm}, which uses no threshold input. Convergence at every temperature and marginality are then the hypotheses of part~\ref{item:threshold-forgetting}, from which we deduce forgetting.
+
+\section{Why the threshold inputs hold}\label{sec:overview-inputs}
+
+\subsection{The cubic tree ceiling}
+For $p=3$, grafting is binary, the tree energy is $h=\sqrt3f$ with $f(v)=\ip{v}{\mathcal I(v\otimes v)}$, and $\Eth=\sqrt3F_*$ with $F_*=2\sqrt2/3$. We prove in \cref{thm:geometry-tree-ceiling} that $|f(v)|<F_*$ for every unit vector $v$, that $F_*$ is the supremum, and that, with $b_j=\norm{\Pi_jv}^2$,
+\begin{equation}\label{eq:overview-height-defect}
+ \sum_{j\ge0}b_j^2\le4\sqrt2\,\bigl(F_*-f(v)\bigr).
+\end{equation}
+The proof is a heightwise Cauchy--Schwarz inequality followed by a Riemann sum. Let $B_j=b_0+\dots+b_j$, with $B_{-1}=B_{-2}=0$. Since a graft is one level taller than its taller subtree, the component of $\mathcal I(v\otimes v)$ at height $j$ is built from the components of $v$ below height $j$, and its squared norm is $B_{j-1}^2-B_{j-2}^2=b_{j-1}s_j^2$, where $s_j=(B_{j-1}+B_{j-2})^{1/2}$ (\cref{lem:tree-graft-heights}). Using the Cauchy--Schwarz inequality at each height, and then $2\sqrt{b_jb_{j-1}}\le b_j+b_{j-1}$, we find that
+\[
+ f(v)=\sum_{j\ge1}\ip{\Pi_jv}{\Pi_j\mathcal I(v\otimes v)}
+ \le\sum_{j\ge1}\sqrt{b_jb_{j-1}}\,s_j
+ \le\frac12\sum_{j\ge1}(b_j+b_{j-1})s_j .
+\]
+We have $s_j\le\sqrt{2B_{j-1}}$ and $s_{j+1}\le\sqrt{2B_j}$, and the last sum is therefore at most the trapezoid sum of the concave function $\sqrt{2y}$ over the partition $0\le B_0\le B_1\le\dots$ of $[0,1]$. This trapezoid sum is at most
+\[
+ \int_0^1\sqrt{2y}\,\dd y=\frac{2\sqrt2}3=F_* ,
+\]
+and keeping track of the gaps in these steps gives \eqref{eq:overview-height-defect}. The supremum is approached by unit vectors with mass $1/(n+1)$ at each of the heights $0,\dots,n$, whose component at each height $j\ge1$ is a positive multiple of the graft of the lower components. For these vectors, the first inequality above is an equality, and $f(v)$ is the midpoint Riemann sum of the same integral over the first $n$ of the $n+1$ intervals of the partition; the omitted interval contributes at most $\sqrt2/(n+1)$.
+
+The defect bound says more than $f(v)<F_*$. Together with the Cauchy--Schwarz inequality, it implies that $\norm{\Pi_{\le H}v}^2\le(4\sqrt2(H+1)(F_*-f(v)))^{1/2}$ for every $H\ge0$, where $\Pi_{\le H}=\Pi_0+\dots+\Pi_H$: a unit vector close to the ceiling has little mass at every fixed set of heights. The proof also retains the gaps of the two inequalities above, an angular defect and a Young defect \eqref{eq:geometry-angular-young-defects}, which we use in \cref{sec:geometry-results}. For $p=4$, a difference of cubes replaces the difference of squares, and the ceiling is $f(v)=\ip{v}{\mathcal I(v^{\otimes3})}<\sqrt3/2$ for unit vectors $v$, with $h=2f$ and $\Eth=\sqrt3$ (\cref{thm:geometry-quartic-tree-ceiling}). To prove part~\ref{item:threshold-ceiling} for $p\in\{3,4\}$, we apply the ceiling to the normalized centers $M_{T_n}(L)/\norm{M_{T_n}(L)}$ and let $n\to\infty$ using \cref{sel:prefix-reflection}. The ceilings are elementary inequalities in the tree space, and their proofs use neither the landscape results of \cite{abc2013} nor the algorithmic results of \cite{hs2021,hs2023}.
+
+\subsection{Height escape and forgetting}
+Under the hypotheses of part~\ref{item:threshold-forgetting}, the limits of \cref{sel:prefix-reflection} hold as $T\to\infty$ without passing to a sequence, and the normalized centers saturate the threshold. Indeed, the deficit $\delta_L=\Eth-h_L/d_L^{p/2}$ is nonnegative by part~\ref{item:threshold-ceiling}, and $h_L/d_L^{p/2}$ tends to $h/q^{p/2}$, which equals $\Eth$ by the equality case of \eqref{eq:overview-amgm}. Then $\delta_L\to0$, and by the defect bound, the mass of the centers leaves every fixed set of heights (\cref{sel:threshold-centers}):
+\[
+ \limsup_{t\to\infty}\norm{\Pi_{\le H}P_{t-L}v_t}^2\le d_L\bigl\{\kappa_p(H+1)\delta_L\bigr\}^{1/2},
+\]
+with $\kappa_3=4\sqrt{2/3}$ and $\kappa_4=\sqrt3$. An earlier state behaves in the opposite way. The curve $s\mapsto v_s$ is norm-continuous, so the set $\{v_s:s\le S\}$ is compact, and $\norm{(\Id-\Pi_{\le H})v_s}\to0$ as $H\to\infty$, uniformly in $s\le S$. For $s\le S\le t-L$, we have $C(t,s)=\ip{P_{t-L}v_t}{v_s}$, and splitting $v_s$ at height $H$, we find that
+\[
+ |C(t,s)|\le\norm{\Pi_{\le H}P_{t-L}v_t}+\norm{(\Id-\Pi_{\le H})v_s} .
+\]
+We first let $t\to\infty$ with $L$ and $H$ fixed, then let $L\to\infty$, and finally let $H\to\infty$. This proves part~\ref{item:threshold-forgetting} for $p\in\{3,4\}$.
+
+\subsection{General pure models}
+For general $p$, we have no deterministic ceiling in the tree space. In \cref{app:general-selection}, we prove both inputs for every $p\ge3$ by an argument in finite dimension, which does not use the tree ceilings.
+
+\paragraph{Forks.}
+In finite dimension, the analog of a prefix center is a mean over independent futures. At a late time $T$, we continue the trajectory by $K$ independent Brownian futures of length $L$, which we call a fork. We let $m_{N,T}$ be the average of their endpoints, the center of the fork. With a current identity of the kind used in \cref{sec:entropy-clusters}, we show that the overlap of two branches of lengths $a$ and $d$ concentrates near $c(a+d)$ along $T_n$; this is the reflection identity in finite dimension (\cref{sel:fork-moments}). We compute the energy of the center exactly by a Gaussian integration by parts, and subtracting the energy of a single branch removes the common past in the dimension limit. Unlike the cancellation of \cref{sec:geometry-core}, this one holds only in the limit, because on a fixed time horizon the overlaps of all branches with a state of the common past concentrate around the same value. As $N=N_j\to\infty$ and then $T=T_n\to\infty$, we find that (\cref{sel:finite-forks})
+\[
+ \frac{\norm{m_{N,T}}^2}N\longrightarrow Q_{K,L}=\frac1K+\Bigl(1-\frac1K\Bigr)c(2L),\qquad
+ \frac{\E H_N(m_{N,T})}N\longrightarrow h_{K,L},
+\]
+where $h_{K,L}$ is explicit. Using the hard--soft approximation of Sellke \cite[Lemmas~3.1 and~3.2]{sellke2024}, we approximate the normalized center in mean square by Lipschitz functions of the disorder, with constants that do not depend on $N$. The algorithmic threshold of Huang and Sellke \cite[Theorem~1 and Corollary~1.8]{hs2023} applies to these approximations, and it implies that $h_{K,L}\le\Eth Q_{K,L}^{p/2}$; this follows the argument by which Sellke showed that the energy of the dynamics itself stays below the threshold \cite[Section~3]{sellke2024}. Letting $K\to\infty$, we have $Q_{K,L}\to d_L$ and $h_{K,L}\to h_L$, which proves part~\ref{item:threshold-ceiling}. Every horizon, number of branches, and approximation parameter is fixed while the dimension tends to infinity, and the limits are taken in the order
+\[
+ N_j\to\infty,\qquad n\to\infty,\qquad \varepsilon\downarrow0,\qquad K\to\infty,\qquad L\to\infty,\qquad M\to\infty
+\]
+of \eqref{sel:aging-limit-order}, where $\varepsilon$ is the accuracy of the Lipschitz approximation and $M$ is the number of steps of the Euler--Maruyama scheme below.
+
+\paragraph{Adaptive disclosure.}
+Part~\ref{item:threshold-forgetting} needs more. Under marginality, the normalized fork centers saturate the threshold as $K\to\infty$ and then $L\to\infty$ (\cref{lem:fork-parameter-limits}). If a fork ends at time $t$, the mean overlap of its center with the earlier state $X_s$ is the mean of $X_t\cdot X_s/N$, which tends to $C(t,s)$. We must therefore show that a Lipschitz algorithm close to the threshold is almost orthogonal to $X_s$. For directions independent of the disorder, this follows from the external-field version of the threshold \cite[Corollary~1.8]{hs2023}, which by convex duality implies the overlap penalty of \cref{sel:absolute-field-cost}. Let $\zeta_N$ be an auxiliary seed independent of the disorder tensor $J$, let $w=w(\zeta_N)$ satisfy $\norm w=\sqrt N$, and let $\mathcal A_N(J,\zeta_N)$ take values in the ball of radius $\sqrt N$. If, for almost every value of the seed, $J\mapsto\mathcal A_N(J,\zeta_N)$ is $L_{\mathrm{Lip}}$-Lipschitz, with a deterministic constant $L_{\mathrm{Lip}}$ that does not depend on $N$, then
+\[
+ \limsup_{N\to\infty}\Bigl\{\E\frac{H_N(\mathcal A_N)}N+\bd\,\E\Bigl|\frac{\ip w{\mathcal A_N}}N\Bigr|^p\Bigr\}\le\Eth .
+\]
+However, $X_s$ depends on the disorder. To overcome this, we disclose the disorder in stages (\cref{sel:adaptive-disclosure}). At each stage, we reveal the part of the tensor that determines the next gradient query. Conditionally on what has been revealed, the rest of the tensor is standard Gaussian on a smaller space, and the overlap penalty applies to the new query direction. By induction over finitely many stages, we show that an algorithm that saturates the threshold is asymptotically orthogonal to every span obtained in this way from a seed-measurable initial span of fixed dimension by a fixed number of gradient queries (\cref{sel:adaptive-orthogonality}). In the proof of \cref{sel:general-fixed-wait}, we apply this only on the fixed fork product law, whose seed consists of $X_0$, the full trunk Wiener path, and the $K$ full future Wiener paths, jointly independent of $J$. For its Euler--Maruyama scheme with $M$ steps, the initial span is generated by $X_0$ and the $M$ trunk Brownian increments, and the scheme adds at most $M$ gradient queries. The resulting span contains a vector approximating this fork's trunk state $X_s$, with dimension-limit normalized mean-square error at most $Cs/M$, where $C$ depends only on $p$, $\beta$, and $s$. We take the limits in \eqref{sel:aging-limit-order}, using $\varepsilon=1/(m+1)$, and let $M\to\infty$ last. This proves that $C(t,s)\to0$ for every fixed $s$ (\cref{sel:general-fixed-wait}), uniformly in $s\le S$ by the modulus of continuity of $C$. Adaptive Gaussian conditioning of this kind goes back to Bolthausen \cite[Section~3]{bolthausen2014} and to Bayati and Montanari \cite[arXiv version~4, Section~3.8]{bayatimontanari2011}. Conditioning of the disorder tensor on adaptive gradient observations was developed for message passing in spin glasses in \cite[arXiv version~1, Appendix~A]{eams2021} and extended to multi-species spherical models in \cite[Appendix~A]{hs2024amp}; we combine it with the external-field threshold.
+
+\section{Response localization and persistent violation}\label{sec:overview-response}
+
+\paragraph{The remote response.}
+\Cref{thm:main-aging} controls the response only on bounded windows of lags, while a row $s\mapsto R(t,s)$ has length $t$. Convergence on every bounded window does not exclude a small contribution spread over the remote part $[0,t-L]$ of the row. In \cref{resp:chapter}, we first prove that the remote part carries no squared mass:
+\begin{equation}\label{eq:overview-remote}
+ \lim_{L\to\infty}\limsup_{t\to\infty}\int_0^{t-L}R(t,u)^2\,\dd u=0 .
+\end{equation}
+Again we use the prefix centers. The component of $v_{T+L}$ at height zero is the leaf vector $R(T+L,0)e_0+\sqrt2\,\mathbf1_{[0,T+L]}R(T+L,\cdot)$, and $P_T$ restricts its noise part to $[0,T]$. This yields
+\[
+ 2\int_0^TR(T+L,u)^2\,\dd u\le\norm{\Pi_0M_T(L)}^2\le\norm{M_T(L)}^2\longrightarrow c(2L)\qquad(T\to\infty),
+\]
+which proves \eqref{eq:overview-remote} when $q=0$. If $q>0$, then $c(2L)\to q$, and we need to show that the normalized centers have vanishing mass at height zero. For $p=3$, this follows from the term $j=0$ of \eqref{eq:overview-height-defect}, because the normalized centers saturate the threshold. For general $p$, we test the center of a fork against the Gaussian vector $G_N=\int_0^Tk(u)\,\dd B_u$, built from the Brownian path with a weight $k$ proportional to $R(T+L,\cdot)$. A weighted form of the Brownian response identity shows that the mean overlap of $m_{N,T}$ with $G_N$ tends to $(2\int_0^TR(T+L,u)^2\,\dd u)^{1/2}$. Since $G_N$ is independent of the disorder, the overlap penalty forces this overlap to be small, with no adaptive disclosure (\cref{prop:remote-response-general}).
+
+\paragraph{Whole rows.}
+Together with convergence on recent strips, \eqref{eq:overview-remote} implies that the lag rows $v\mapsto\mathbf1_{[0,t]}(v)R(t,t-v)$ converge to $r$ in $L^2(0,\infty)$, and by the Cauchy--Schwarz inequality, we have $\chi(t,0)=o(\sqrt t)$ (\cref{resp:strong-row}). By the backward response equation, we have $\partial_sR\le\Lambda R$, so that a large remote value $R(t,s)$ would force squared mass on $[s-1,s]$; this upgrades the convergence to the uniform norm (\cref{resp:uniform-row}). For the earlier derivative, we differentiate the Green identity in its earlier time. On a bounded interval of earlier times, forgetting makes every term vanish as $t\to\infty$, except a colored term $\int_0^tR(t,u)C(u,s)^{p-1}\,\dd u$, which we control by positivity and a modulus of continuity uniform in $t$: the Green identity bounds $C(t,s)$ from below by a weighted integral of this term over earlier times, with positive weights; forgetting makes that integral vanish, and the uniform modulus in \eqref{resp:colored-modulus} then forces the term to vanish pointwise. This shows that $E(t,s)\to0$ for every fixed $s>0$. Since $|E(t,s)|^2\le a_F(s)$ with an integrable $a_F$, dominated convergence over the whole row then shows that $\int_0^t|E(t,s)|^2\,\dd s\to0$ (\cref{resp:backward-fdt}). This is where we need one majorant for the whole triangle. For every $p\ge3$, the projected drift and the reflection identity also bound $\partial_tC$ far from the diagonal (\cref{resp:forward-derivative}). More precisely, for every $L>0$,
+\[
+ \limsup_{t\to\infty}\sup_{0\le s\le t-L}|\partial_tC(t,s)|
+ \le\sqrt{c''(2L)}\le\frac{\sqrt{1-q}}{eL},
+\]
+and, using convergence on bounded lag windows, we obtain
+\[
+ \lim_{t\to\infty}\sup_{0\le s\le t}|\partial_tC(t,s)+r(t-s)|
+ =\lim_{t\to\infty}\sup_{0\le s\le t}|\partial_tC(t,s)+R(t,s)|=0.
+\]
+The diagonal derivative is taken from the causal side and equals $-1$, while $c'(0)=-1$ is a right derivative. These conclusions about forward FDT hold at every positive temperature. For every $p\ge3$, we also deduce \eqref{eq:main-thermal} from complete-row convergence (\cref{resp:thermal}).
+
+\paragraph{Persistent integrated violation.}
+These statements about squared norms are compatible with a persistent violation of FDT. Let $\beta>\bd$, and recall that $x=(p-2)(1-q)/q\in(0,1)$. The energy identity fixes one weighted integral of the response over the whole row,
+\[
+ p\int_0^tC(t,u)^{p-1}R(t,u)\,\dd u=\frac{e_\beta(t)}\beta\longrightarrow1-d_*,
+\]
+where $d_*=1-e_\beta(\infty)/\beta=(1-x)q^p$ by the energy formula \eqref{eq:main-energy}. A recent strip of length $A$ contributes $p\int_0^Ac^{p-1}r=1-c(A)^p$, as it would for an equilibrium profile. The rest of the row carries the weighted response $c(A)^p-d_*$, while $C(t,\cdot)^p$ rises across it from $C(t,0)^p\to0$ to $C(t,t-A)^p\to c(A)^p$. It follows that the ratio in \eqref{eq:main-weighted-ratio} tends to $1-d_*/c(A)^p$, and then to $x$ as $A\to\infty$ (\cref{resp:weighted-ratio}). In the same way, we find the exact identity
+\[
+ p\int_0^tC(t,u)^{p-1}E(t,u)\,\dd u=1-C(t,0)^p-\frac{e_\beta(t)}\beta\longrightarrow d_*>0 .
+\]
+To remove the weight $C^{p-1}$, we prove the transport inequality of \cref{resp:transport}: if $z\ge0$ is absolutely continuous on $[u,v]$, $r_0\ge0$, and $J=\int_u^vz^{p-1}r_0$, then $\int_u^v(z'-r_0)_+\ge[z(v)-(z(u)^p+pJ)^{1/p}]_+$. Applying this on $[S,t-L]$ with $z=C(t,\cdot)$ and $r_0=R(t,\cdot)$, we find that, in the limit $t\to\infty$, the positive part of the defect has integral at least $m_L=c(L)-[c(L)^p-d_*]^{1/p}$ there. As $L\to\infty$, $m_L$ increases to $m_\infty=q(1-x^{1/p})$ (\cref{resp:persistent-defect}). This lower bound holds on an interval whose length is of order $t$, and by the Cauchy--Schwarz inequality, we have $\liminf_{t\to\infty}t\int_0^tE(t,u)_+^2\,\dd u\ge m_\infty^2$. This is the coexistence of small pointwise violation and integrated violation over an expanding interval described by Cugliandolo, Dean, and Kurchan \cite{cdk1997}.
+
+\section{Three-time geometry, susceptibility, and the Fisher cost}\label{sec:overview-geometry}
+
+In the cubic model, we use more of the tree geometry than the energy ceiling. Throughout this section, $p=3$.
+
+\paragraph{Saturated tree vectors.}
+In \cref{sec:geometry-results}, which is deterministic, we study unit vectors $v\in\mathcal H$ with a small deficit $\delta(v)=F_*-f(v)$. Using the retained defects, we bound weighted sums of the variations of the height amplitudes $\norm{\Pi_jv}$ and of the angular errors between each component $\Pi_jv$ and the graft $\Pi_j\mathcal I(v\otimes v)$ of the lower components. We deduce that the root operator $\mathcal I^*v$, viewed as a Hilbert--Schmidt operator on $\mathcal H$, is then close to an operator whose coefficients in the normalized height directions depend only on the height masses (\cref{lem:geometry-coherent-root}). In the coordinate $x\in(0,1)$ given by the cumulative mass, these operators converge to one universal operator. More precisely, if $\norm{v_n}=1$ and $f(v_n)\to F_*$, there exist isometric embeddings $V_n$ of $\mathcal H$ into $L^2(0,1)\oplus\mathcal K$, where $\mathcal K$ is a fixed auxiliary Hilbert space, such that $V_nv_n=\mathbf1$ and
+\[
+ V_n\mathcal I^*v_nV_n^*\longrightarrow\mathcal T\oplus0\quad\text{in Hilbert--Schmidt norm},
+\]
+where $\mathcal T$ is the integral operator with kernel $T(x,y)=(2\max(x,y))^{-1/2}$ (\cref{thm:geometry-universal-root}). The operator $\mathcal T$ is positive and trace class, with $\tr\mathcal T=\sqrt2$ and $\ip{\mathbf1}{\mathcal T\mathbf1}=F_*$. For two vectors with nonnegative inner products at every height, the same defects show that little of their overlap is carried by heights at which a smoothed cosine between their prefixes is far from one (\cref{lem:geometry-pair-deficit}). For three such vectors, the prefixes that carry the overlaps of two of the pairs are nested, which leads to the product inequality of \cref{thm:geometry-threshold-product},
+\[
+ \ip{v_1}{v_2}\ge\ip{v_1}{v_3}\ip{v_2}{v_3}-\omega\Bigl(\max_i\delta(v_i)\Bigr),\qquad
+ \lim_{\delta\downarrow0}\omega(\delta)=0 .
+\]
+
+\paragraph{Three times.}
+Let $\beta\ge\bd$, including $\beta=\bd$, where $q=1/2$. To apply these results to the CK solution, we use the normalized centers $U_{s,D}=M_{s,D}/\norm{M_{s,D}}$ of a fixed smoothing age $D$, where $M_{s,D}=P_{s-D}v_s$. Their components are nonnegative, and by \cref{sel:threshold-centers} their deficits are small when $D$ is large. The obstacle is to relate their overlaps to the correlations. A center is close to the average $D^{-1}\int_{s-D}^sv_u\,\dd u$ of the trajectory over the preceding window (\cref{lem:geometry-center-average}), and the overlap of two such averages is close to $C(t,s)$ when the derivatives of $C$ are small far from the diagonal, which is what \cref{resp:chapter} provides. We find that $\ip{U_{t,D}}{U_{s,D}}\approx C(t,s)/q$ for late pairs whose distance is large compared with $D$ (\cref{prop:geometry-center-gram}), and the product inequality becomes \cref{thm:geometry-actual-product}: for late triples $u<s<t$ with diverging gaps,
+\[
+ qC(t,u)\ge C(t,s)C(s,u)-o(1).
+\]
+This is a one-sided version of the spherical product relation of Cugliandolo and Kurchan \cite[arXiv version~1, Section~5.1, Equation~(5.1.8)]{ck1994}, which we prove for the actual CK solution without any assumption on the time scale of aging. It implies composition bounds for the last times at which the correlation crosses given levels (\cref{cor:geometry-last-crossing}).
+
+\paragraph{The susceptibility.}
+For the bound on $\chi(t,0)$, we use the root operator of a center. For $p=3$, the root frame \eqref{eq:geometry-prefix-root-frame} reads
+\[
+ \mathcal I^*P_Tv_t=\beta\sqrt3\int_0^tR(t,u)\,|P_Tv_u\rangle\langle P_Tv_u|\,\dd u,
+\]
+so that its trace is a weighted response mass. We take $t_n\to\infty$ along which $\chi(t_n,0)$ tends to its lower limit, ages $L_n\to\infty$, and the normalized centers $U_n$ of $M_{T_n}(L_n)$, where $T_n=t_n-L_n$; these centers approach the ceiling. We split their root operators into an old part $A_n$, the integral over $u\le T_n$, and a recent part $B_n$. On recent windows of fixed length, the projected states $P_{T_n}v_u$ are close to $\sqrt q\,U_n$ by reflection, and in the coordinates of the universal operator, $B_n$ converges to $\beta\sqrt3\sqrt q\,(1-q)|\mathbf1\rangle\langle\mathbf1|$, which equals $2^{-1/2}|\mathbf1\rangle\langle\mathbf1|$ by marginality. By \cref{thm:geometry-universal-root}, the old part then converges in Hilbert--Schmidt norm to $\mathcal T-2^{-1/2}|\mathbf1\rangle\langle\mathbf1|$, a positive operator with trace $2^{-1/2}$.
+
+However, convergence in Hilbert--Schmidt norm does not give convergence of the trace. To overcome this, we rely on the lower semicontinuity of the trace on positive operators, after replacing each old term $|v_u\rangle\langle v_u|$ by $|M_{u,D}\rangle\langle M_{u,D}|$, whose norm converges. By causality, the errors on time strips at distance at least $D$ from each other are orthogonal (\cref{lem:geometry-disjoint-strips}), and their total is controlled by the squared remote response, which vanishes by \eqref{eq:overview-remote}. The trace of the smoothed old part is asymptotically $\beta\sqrt3\,q^{-1/2}c(2D)$ times the old response mass $\chi(t_n,0)-(1-q)$, and comparing it with $2^{-1/2}$, we find that
+\[
+ \liminf_{t\to\infty}\chi(t,0)\ge(1-q)+\frac{q(1-q)}{c(2D)}\longrightarrow2(1-q)\qquad(D\to\infty),
+\]
+which is \cref{thm:geometry-susceptibility-lower}. This holds for every $\beta\ge\bd$, including the endpoint, but we have no matching upper bound.
+
+\paragraph{A Fisher cost.}
+In \cref{resp:fisher-chapter}, we combine the same Fisher majorant $a_F$ from \eqref{eq:overview-fisher} with the product inequality. Let $\beta>\bd$, so that $q>1/2$, and consider windows $[s_n,t_n]$ with $s_n\to\infty$, $t_n-s_n\to\infty$, and $C(t_n,s_n)\to z\in(0,q)$, such that
+\[
+ \varepsilon_n^2=(t_n-s_n)\int_{s_n}^{t_n}a_F(u)\,\dd u\longrightarrow\varepsilon^2\le1 .
+\]
+By the Cauchy--Schwarz inequality and $|E(w,u)|^2\le a_F(u)$, the integrated backward defect on every subinterval of the window is at most $\varepsilon_n$; in particular, the response mass of the window is $1-C(t_n,s_n)$ up to $\varepsilon_n$. Integrating the backward response equation \eqref{eq:backward-response} over the window, we find that $1-\ell(1-C(t_n,s_n))+3\beta^2I_n$ is at most of order $\varepsilon_n$ in the limit, where
+\[
+ I_n=\int_{s_n}^{t_n}\bigl[1-C(u,s_n)^2\bigr]R(t_n,u)\,\dd u .
+\]
+In the bulk of the window, we have $C(t_n,u)C(u,s_n)\le qC(t_n,s_n)+o(1)$ by the product inequality. As the row $u\mapsto C(t_n,u)$ has derivative $R(t_n,u)+E(t_n,u)$, a clipped primitive turns this into an explicit lower bound for $I_n$, and we compute the recent strip from stationary convergence. With the calibration $6\beta^2q(1-q)^2=1$ and $\ell=(1-q)^{-1}+3\beta^2(1-q^2)$, the two estimates are compatible only if
+\[
+ 3\beta^2(2q-1)(q-z)^2\le(\ell+9\beta^2)\varepsilon+6\beta^2\varepsilon^2
+\]
+(\cref{resp:fisher-obstruction}), and the left side is positive because $q>1/2$. This strict margin vanishes at $\beta=\bd$, which is why the positive Fisher cost is restricted to $\beta>\bd$, even though the product inequality includes the endpoint. For $\varepsilon=0$, this is impossible, which excludes every limit $z\in(0,q)$ of $C(t_n,s_n)$ along windows on which $\tau\int a_F$ tends to zero. Limits above $q$ are excluded by the remote envelope \eqref{eq:geometry-remote-envelope}. We also exclude a zero limit: the first crossing of a fixed level $z'\in(0,q)$ occurs inside the window, at a lag that tends to infinity, and the crossing windows have no larger Fisher cost, so that the obstruction applies to them. Every such window therefore ends at the plateau. At the first passage below a level $c\in(0,q)$, the inequality bounds $\varepsilon$ from below, which gives \eqref{eq:main-passage-cost} (\cref{resp:fisher-cost}).
+
+\section{The stationary power law}\label{sec:overview-power-law}
+
+For every $p\ge3$, let $\beta\ge\bd$. In \cref{sec:stationary-relaxation}, we study the scalar equation \eqref{eq:overview-scalar} for the selected profile, using only this equation with its plateau identity, marginality, and complete monotonicity. The function $u(z)=[c((1-q)z)-q]/(1-q)$ satisfies (\cref{lem:sc-normalized-equation})
+\[
+ u'+u+M(u)*u'=0,\qquad u(0)=1,
+\]
+where $*$ is the convolution on $[0,\infty)$ and $M$ is a polynomial with nonnegative coefficients such that $M(y)=y+\vartheta y^2+O(y^3)$, with $\vartheta=(p-2)(1-q)/(2q)$. For $p=3$, we have $M(y)=y+\vartheta y^2$. The linear coefficient of $M$ is exactly one, by marginality. For a pure power $w(t)=t^{-a}$, the beta integral gives
+\[
+ (w*w)'=\frac{\Gamma(1-a)^2}{\Gamma(1-2a)}\,w^2 ,
+\]
+so that the exponent relation \eqref{eq:main-tail-exponent} says that the two quadratic terms of the equation balance for $w$. This is the classical exponent relation of mode-coupling theory \cite[Section~4, p.~881]{goetze1998}, in its version for the aging state \cite[Equation~(IV.6)]{bckm1996} and \cite{kimlatz2001}. As the balance is quadratic, it fixes the exponent but not the amplitude. The proof of an amplitude has three further steps.
+
+\paragraph{Comparison.}
+Using a comparison principle (\cref{lem:sc-comparison}), we turn the sign of the residual of an explicit profile into an inequality between that profile and $u$. For the shifted power $g(t)=(1+t)^{-a}$, the choice of $a$ makes the quadratic part of the residual positive but smaller than $g^3$. The sign of the residual is then decided by cubic terms. We fix it by correcting $g$ with a small multiple of $g^2$ (\cref{lem:sc-shifted,lem:sc-critical-residuals}). Our comparison profiles keep $u$ itself up to a fixed time and continue it by a rescaled corrected power, which absorbs the memory of the initial segment. We obtain $A_-(1+t)^{-a}\le u(t)\le A_+(1+t)^{-a}$ with constants $0<A_-\le A_+<\infty$ (\cref{thm:stationary-critical-endpoint}). These bounds determine the exponent, but they still allow $t^au(t)$ to oscillate between $A_-$ and $A_+$ on a logarithmic time scale.
+
+\paragraph{A logarithmic Dirichlet form.}
+The convolution square $u*u$ satisfies the quadratic balance $(u*u)'=\vartheta u^2+\mathcal E$, where the error $\mathcal E$ is integrable against the weight $t^{-(1-2a)}$ (\cref{lem:stationary-critical-balance-error}). We integrate the balance against this weight and compare the result with the Schur test for a homogeneous kernel, keeping its exact remainder. We find that the function $D(x)=e^{ax}u(e^x)$ has finite energy for an explicit Dirichlet form on the line (\cref{lem:stationary-critical-dirichlet}), which implies that $D(x+y)-D(x)\to0$ as $x\to\infty$, for every fixed $y$. This still allows $D$ to vary slowly without converging.
+
+\paragraph{A renewal equation.}
+We take the Laplace transform of the balance at the point $e^{-x}$. Since the product of independent gamma and beta variables with suitable parameters has a gamma distribution (\cref{lem:sc-gamma-beta}), the transformed balance becomes a linear renewal equation for a smoothed version of $D^2$. Its source is integrable: the variance part of the source is controlled by the Dirichlet form, and the rest by $\mathcal E$. Using the key renewal theorem \cite[Chapter~XI, Section~1]{feller1971}, with a renewal density that we control near zero and at infinity (\cref{lem:log-beta-renewal-density}), we show that the smoothed function converges. Its difference from $D^2$ tends to zero by the second step, so that $D$ converges, and the bounds of the first step make the limit positive and finite. This proves that $c(t)-q\sim A_\beta t^{-a}$. Finally, complete monotonicity and the monotone density theorem \cite[Section~1.7.3]{bgt1987} give the asymptotics of every fixed derivative, without differentiating an asymptotic relation (\cref{thm:stationary-critical-amplitude}). The tools are classical, and the structural theory of these memory equations is developed in \cite{gs1995,fv2002,sjogren2003}; we apply them to the stationary profile selected by the CK solution.
+
+\section{Dependencies between the sections}\label{sec:overview-dependencies}
+
+\Cref{tab:main-results-map} lists, for each main theorem, the section in which it is proved and the main results that its proof uses. We add three remarks on the order of reading. First, for \cref{thm:main-aging}, a reader interested in $p\in\{3,4\}$ may read \cref{sec:tree-ceilings} and skip \cref{app:general-selection}, and a reader interested in general $p$ may skip \cref{sec:tree-ceilings}, since \cref{app:general-selection} does not use the tree ceilings. For \cref{thm:main-response} with $p\ne3$ and a positive plateau, \cref{resp:appendix-p} uses the forks and the overlap penalty of \cref{app:general-selection}. Second, \cref{sec:geometry-results} uses only the tree space and the cubic ceiling with its retained defects. Third, \cref{part:relaxation} uses only \cref{prop:stationary-clusters,prop:scalar-clusters,sel:selected-sector,sel:cluster-complete-monotonicity}, and the power law is not used in the proofs of the other main theorems; it serves only to verify the power-law hypotheses in the last assertions of \cref{resp:remote-earlier,resp:thermal}.

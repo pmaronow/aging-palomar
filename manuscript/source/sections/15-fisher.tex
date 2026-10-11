@@ -1,0 +1,262 @@
+\chapter{A Fisher cost for relaxation below the plateau}\label{resp:fisher-chapter}
+
+In this section, we prove \cref{resp:fisher-cost}, which is \cref{thm:main-fisher-cost}. It concerns the relaxation of the cubic CK solution below the plateau, measured in physical time. We show that a growing time window $[s,s+\tau]$ on which $\tau\int_s^{s+\tau}a_F$ tends to zero ends at the plateau, and that every first passage of the correlation below a level $c\in(0,q)$ costs a positive amount of this quantity.
+
+In the proof, we compare the backward response equation of \cref{prop:backward-response}, integrated over the window, with a lower bound on its memory term. The Fisher control of the backward defect (\cref{thm:fisher-clock}), which is the form taken here by the entropy-production mechanism of Cugliandolo, Dean, and Kurchan \cite[arXiv version~2, Equations~(12)--(13), p.~3, and Equation~(18), p.~4]{cdk1997}, makes the integrated defect on the window small. The additional input is the uniform three-time inequality of \cref{thm:geometry-actual-product}: for late times $v<u<w$ with large gaps, it gives $C(w,u)C(u,v)\le qC(w,v)+o(1)$, and we use it to bound the memory term from below. Its product form has a physical predecessor in \cite[arXiv version~1, Section~5.1, Equation~(5.1.8)]{ck1994}. After the calibration of the selected sector, the two bounds differ by $3\beta^2(2q-1)(q-c)^2$, which is positive because $q>1/2$. We also use the remote envelope \eqref{eq:geometry-remote-envelope} of \cref{prop:geometry-center-gram}, the response localization of \cref{resp:uniform-row,resp:forward-derivative}, the stationary window \eqref{sel:stationary-window}, and the forgetting of fixed waiting times (\cref{sel:fixed-wait-forgetting}). These results prove \cref{thm:main-fisher-cost}, and their implications for relaxation rates are discussed in \cref{sec:discussion}.
+
+\paragraph{Standing assumptions and notation.}
+Throughout this section, $p=3$ and $\beta>\bd=\sqrt{4/3}$. By \cref{sel:selected-sector} and the discussion preceding it, the selected plateau satisfies $q>\qd=1/2$. We write $\ell=\ell_\beta=\lim_{t\to\infty}\lambda(t)$. For $p=3$, the marginality equation \eqref{sel:positive-plateau-equation} and the multiplier formula \eqref{sel:selected-multiplier} read
+\begin{equation}
+ 6\beta^2q(1-q)^2=1,
+ \qquad \ell=\frac1{1-q}+3\beta^2(1-q^2).
+ \label{resp:fisher-calibration}
+\end{equation}
+Let $a_F$ be the Fisher majorant fixed in \cref{thm:fisher-clock}, from the same dimension extraction used in the physical-fork comparisons. Let $E(t,s)=\partial_sC(t,s)-R(t,s)$ be the backward FDT defect. Recall from \eqref{resp:fisher-domination} that $|E(t,s)|^2\le a_F(s)$ for $t>s>0$, and that $\int_0^\infty a_F<\infty$. Every row $C(t,\cdot)$ is absolutely continuous on $[0,t]$, with derivative $R(t,\cdot)+E(t,\cdot)$ almost everywhere (\cref{thm:fisher-clock}). We also use that $0\le R\le C\le1$ (\cref{prop:response-compactness}), that $\lambda\ge1$ by \eqref{eq:ck-multiplier}, which gives $\ell\ge1$, and that for $p=3$ the kernel \eqref{eq:self-energy-kernel} is $\Sigma(t,u)=6\beta^2C(t,u)R(t,u)$. As in \cref{sec:geometry-center-correlations}, the letter $c$ without an argument denotes a level in $(0,q)$, and the stationary profile is always written with its argument, as in $c(2D)$.
+
+\begin{theorem}[Fisher-small windows and all-level passage costs]
+\label{resp:fisher-cost}
+Suppose that $s_n,\tau_n\ge0$, $s_n\to\infty$, $\tau_n\to\infty$, and
+\begin{equation}
+ \tau_n\int_{s_n}^{s_n+\tau_n}a_F(u)\,\dd u\longrightarrow0 .
+ \label{resp:fisher-small-window}
+\end{equation}
+Then
+\begin{equation}
+ C(s_n+\tau_n,s_n)\to q,
+ \qquad \chi(s_n+\tau_n,s_n)\to1-q .
+ \label{resp:fisher-window-limit}
+\end{equation}
+For a level $c\in(0,q)$ and $s\ge0$, define the first passage lag
+\[
+ \tau_c(s)=\inf\{\tau\ge0:C(s+\tau,s)\le c\}.
+\]
+It is positive and finite, satisfies $C(s+\tau_c(s),s)=c$, tends to infinity as $s\to\infty$, and satisfies
+\begin{align}
+ \liminf_{s\to\infty}\tau_c(s)\int_s^{s+\tau_c(s)}a_F(u)\,\dd u
+ &\ge\mathfrak c_\beta(c),\label{resp:local-fisher-cost}\\
+ \liminf_{s\to\infty}\tau_c(s)\int_s^\infty a_F(u)\,\dd u
+ &\ge\mathfrak c_\beta(c),\label{resp:tail-fisher-cost}
+\end{align}
+where the explicit positive constant is
+\begin{equation}
+ \mathfrak c_\beta(c)=\min\left\{1,
+ \left[\frac{3\beta^2(2q-1)(q-c)^2}{\ell+15\beta^2}\right]^2\right\}.
+ \label{resp:fisher-constant}
+\end{equation}
+\end{theorem}
+
+\begin{remark}[The constant and the endpoint]\label{rem:fisher-constant}
+By \eqref{resp:fisher-calibration}, we have $3\beta^2=(2q(1-q)^2)^{-1}$ and $\ell=(1+3q)/(2q(1-q))$, so that
+\[
+ \ell+15\beta^2=\frac{6+2q-3q^2}{2q(1-q)^2},
+ \qquad
+ \frac{3\beta^2(2q-1)(q-c)^2}{\ell+15\beta^2}=\frac{(2q-1)(q-c)^2}{6+2q-3q^2} .
+\]
+For $1/2<q<1$ and a level $c\in(0,q)$, we have $6+2q-3q^2=5+(1-q)(1+3q)>5$ and $0<(2q-1)(q-c)^2<1$. The ratio is therefore less than $1/5$, and the minimum in \eqref{resp:fisher-constant} is always attained by its second term. At the endpoint $\beta=\bd$, the plateau is $q=1/2$ and the formula for the constant vanishes. Although the cubic product inequality of \cref{thm:geometry-actual-product} includes this endpoint, the positive Fisher cost and the Fisher-small-window conclusion above are asserted only for $\beta>\bd$. The strict inequality is essential to the argument below, in which the positive margin $3\beta^2(2q-1)(q-c)^2$ is the source of the cost.
+\end{remark}
+
+The theorem follows from a quantitative statement about a single sequence of windows, which we prove first.
+
+\begin{lemma}[A sequential physical-window obstruction]
+\label{resp:fisher-obstruction}
+Let $0\le s_n\le t_n$, $s_n\to\infty$, and $t_n-s_n\to\infty$, and suppose that $C(t_n,s_n)\to z\in(0,q)$. Suppose further that
+\[
+ \varepsilon_n=\left[(t_n-s_n)\int_{s_n}^{t_n}a_F(u)\,\dd u\right]^{1/2}\longrightarrow\varepsilon\le1 .
+\]
+Then
+\begin{equation}
+ 3\beta^2(2q-1)(q-z)^2\le(\ell+9\beta^2)\varepsilon+6\beta^2\varepsilon^2 .
+ \label{resp:sequential-obstruction}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The proof has six steps.
+\begin{enumerate}
+\item The Fisher control bounds the integrated defect on every subinterval of the window by $\varepsilon_n$.
+\item We integrate the backward response equation over the window. The result relates the response mass of the window to the memory integral $I_n$ defined in \eqref{eq:fisher-cost-memory-integral} below, with an error of order $\varepsilon_n$.
+\item We split $I_n$ into an early strip, a bulk, and a recent strip of length $2D$, and compute the recent strip and the values of the correlation row at the ends of the bulk.
+\item In the bulk, the product inequality bounds $1-C(u,s)^2$ from below by a function of the correlation row $C(t,u)$, which we integrate exactly.
+\item We take the limits $n\to\infty$ and then $D\to\infty$, and obtain a lower bound for $I_n$.
+\item The calibration \eqref{resp:fisher-calibration} turns the two estimates into \eqref{resp:sequential-obstruction}.
+\end{enumerate}
+We temporarily suppress the index $n$ and write $s=s_n$, $t=t_n$, $c_n=C(t,s)$, and $Y(u)=C(t,u)$ for $u\in[s,t]$. We assume throughout that $n$ is large; in particular, $s>0$.
+
+\paragraph{Step 1: Fisher control on the window.}
+For all $s\le v\le w\le t$, the bound $|E(w,u)|\le\sqrt{a_F(u)}$, the Cauchy--Schwarz inequality, and $a_F\ge0$ give
+\begin{equation}
+ \int_v^w|E(w,u)|\,\dd u\le\Bigl((w-v)\int_v^wa_F(u)\,\dd u\Bigr)^{1/2}\le\varepsilon_n .
+ \label{resp:fisher-entire-triangle}
+\end{equation}
+The function $Y$ is absolutely continuous with derivative $R(t,\cdot)+E(t,\cdot)$, and $Y(t)=1$. Integrating over $[s,t]$, we find $1-c_n=\chi(t,s)+\int_s^tE(t,u)\,\dd u$. By \eqref{resp:fisher-entire-triangle} with $v=s$ and $w=t$, and since $c_n\ge0$, we have
+\begin{equation}
+ |\chi(t,s)-(1-c_n)|\le\varepsilon_n,
+ \qquad \chi(t,s)\le1+\varepsilon_n .
+ \label{resp:fisher-chi-bound}
+\end{equation}
+This bound on the response mass of the window comes from the Fisher control alone. We have no bound on $\chi(t,0)$, and none is needed.
+
+\paragraph{Step 2: the integrated response equation.}
+Recall from \cref{prop:backward-response} that the derivative $\partial_vR(t,v)$ is continuous on the closed triangle $s\le v\le t$, and note that $R(t,t)=1$. Integrating \eqref{eq:backward-response} in its second variable over $[s,t]$, and exchanging the order of integration on the finite triangle $\{s\le v\le u\le t\}$, where the integrand is continuous and bounded, we obtain
+\begin{equation}
+ 1-R(t,s)=\int_s^t\lambda(u)R(t,u)\,\dd u
+ -6\beta^2\int_s^tR(t,u)\int_s^uC(u,v)R(u,v)\,\dd v\,\dd u .
+ \label{resp:fisher-response-primitive}
+\end{equation}
+We rewrite the inner integral with the chain rule. For $s\le u\le t$, the function $v\mapsto C(u,v)^2$ is absolutely continuous on $[s,u]$, with derivative $2C(u,v)(R(u,v)+E(u,v))$, and $C(u,u)=1$. Hence
+\[
+ \int_s^uC(u,v)R(u,v)\,\dd v=\frac{1-C(u,s)^2}2-J_n(u),
+ \qquad J_n(u)=\int_s^uC(u,v)E(u,v)\,\dd v .
+\]
+Using $0\le C\le1$ and \eqref{resp:fisher-entire-triangle} with $v=s$ and $w=u$, we find $|J_n(u)|\le\varepsilon_n$. We define the memory integral
+\begin{equation}\label{eq:fisher-cost-memory-integral}
+ I_n=\int_s^t\bigl[1-C(u,s)^2\bigr]R(t,u)\,\dd u .
+\end{equation}
+Inserting the expression for the inner integral into \eqref{resp:fisher-response-primitive}, writing $\lambda=\ell+(\lambda-\ell)$, and rearranging, we find the exact identity
+\begin{equation}\label{eq:fisher-cost-exact-rearrangement}
+ \begin{split}
+ 1-\ell(1-c_n)+3\beta^2I_n
+ ={}&R(t,s)+\int_s^t(\lambda(u)-\ell)R(t,u)\,\dd u\\
+ &+\ell\bigl[\chi(t,s)-(1-c_n)\bigr]+6\beta^2\int_s^tR(t,u)J_n(u)\,\dd u .
+ \end{split}
+\end{equation}
+We bound the absolute values of the last three terms. The first is at most $\sup_{u\ge s_n}|\lambda(u)-\ell|\,(1+\varepsilon_n)$, which tends to zero because $\lambda(u)\to\ell$ (\cref{sel:selected-sector}) and $\varepsilon_n$ is bounded. By \eqref{resp:fisher-chi-bound}, the second is at most $\ell\varepsilon_n$, and the third is at most $6\beta^2\varepsilon_n\chi(t,s)\le6\beta^2(1+\varepsilon_n)\varepsilon_n$. We conclude that
+\begin{equation}
+ \bigl|1-\ell(1-c_n)+3\beta^2I_n\bigr|
+ \le R(t,s)+o(1)+\bigl[\ell+6\beta^2(1+\varepsilon_n)\bigr]\varepsilon_n,
+ \label{resp:fisher-primitive-error}
+\end{equation}
+where $o(1)$ tends to zero as $n\to\infty$.
+
+\paragraph{Step 3: the recent strip and the ends of the bulk.}
+Fix $D>0$, and let $n$ be so large that $t-s>4D$. Let $s'=s+2D$ and $t'=t-2D$, and split $I_n$ into the integrals over $[s,s']$, $[s',t']$, and $[t',t]$. The first is nonnegative, since $R\ge0$ and $C\le1$.
+
+On the recent strip, we first show that $C(u,s)$ is close to $c_n$. For $u\in[t',t]$,
+\[
+ |C(u,s)-c_n|\le\int_u^t|\partial_xC(x,s)|\,\dd x\le2D\sup_{x\in[t',t]}|\partial_xC(x,s)| .
+\]
+Fix $L>0$. For large $n$, every $x\in[t',t]$ satisfies $x-s\ge t-s-2D\ge L$, and $x\ge t'\to\infty$. Then \eqref{resp:remote-forward} implies that $\limsup_n\sup_{x\in[t',t]}|\partial_xC(x,s)|\le\sqrt{c''(2L)}$. The right side tends to zero as $L\to\infty$, by the second inequality in \eqref{resp:remote-forward}. Together with $c_n\to z$, this shows that $\sup_{u\in[t',t]}|C(u,s)-z|\to0$. Using \eqref{sel:stationary-window}, we find that the response mass of the strip satisfies $\int_{t'}^tR(t,u)\,\dd u=\int_0^{2D}R(t,t-\tau)\,\dd\tau\to\int_0^{2D}r=1-c(2D)$. Therefore
+\begin{equation}
+ \int_{t'}^t\bigl[1-C(u,s)^2\bigr]R(t,u)\,\dd u\longrightarrow\bigl[1-c(2D)\bigr](1-z^2) .
+ \label{resp:fisher-upper-strip}
+\end{equation}
+
+We next consider the values of $Y$ at the ends of the bulk. The stationary window \eqref{sel:stationary-window} also gives $Y(t')=C(t,t-2D)\to c(2D)$. At the other end,
+\begin{align*}
+ |Y(s')-c_n|&\le\int_s^{s+2D}R(t,u)\,\dd u+\int_s^{s+2D}|E(t,u)|\,\dd u\\
+ &\le2D\sup_{s\le u\le s+2D}R(t,u)+\Bigl(2D\int_{s_n}^\infty a_F(u)\,\dd u\Bigr)^{1/2}.
+\end{align*}
+The first term tends to zero by \cref{resp:uniform-row}, because $t-u\ge t-s-2D\to\infty$ uniformly for $u\le s+2D$ and $r(\tau)\to0$. The second tends to zero because $a_F$ is integrable and $s_n\to\infty$. Therefore $Y(s')\to z$.
+
+\paragraph{Step 4: the bulk.}
+Let
+\[
+ \pi_{n,D}=\sup_{s'\le u\le t'}\bigl[Y(u)C(u,s)-q\,c_n\bigr]_+ .
+\]
+For $u\in[s',t']$, the times $s<u<t$ have gaps $u-s\ge2D$ and $t-u\ge2D$. For fixed $S$, we have $s_n\ge S+D$ for large $n$, and then the triple $(s,u,t)$ belongs to the set $\mathcal A_{S,D}$ of \cref{thm:geometry-actual-product}, and $[Y(u)C(u,s)-qc_n]_+=[C(t,u)C(u,s)-qC(t,s)]_+$ is the bracket in \eqref{eq:geometry-actual-product}. Letting $n\to\infty$ and then $S\to\infty$, we find
+\begin{equation}\label{eq:fisher-cost-product-error}
+ \lim_{D\to\infty}\limsup_{n\to\infty}\pi_{n,D}=0 .
+\end{equation}
+
+To use the product bound, we introduce a clipped function and its primitive. For $\kappa>0$, let
+\[
+ \varphi_\kappa(y)=\Bigl[1-\frac{\kappa^2}{y^2}\Bigr]_+\quad(y>0),\qquad\varphi_\kappa(0)=0,
+\]
+and
+\[
+ \Phi_\kappa(y)=\int_0^y\varphi_\kappa(x)\,\dd x=\begin{cases}0,&0\le y\le\kappa,\\ y+\kappa^2/y-2\kappa,&y>\kappa.\end{cases}
+\]
+The function $\Phi_\kappa$ is continuously differentiable on $[0,\infty)$, with $\Phi_\kappa'=\varphi_\kappa\in[0,1]$, and $(\kappa,y)\mapsto\Phi_\kappa(y)$ is continuous on $(0,\infty)\times[0,\infty)$.
+
+Let $\kappa_n=qc_n$ and $\kappa_n'=\kappa_n+\pi_{n,D}$. For large $n$, we have $c_n\ge z/2>0$ and $\kappa_n>0$. We claim that
+\[
+ 1-C(u,s)^2\ge\varphi_{\kappa_n'}(Y(u)),\qquad s'\le u\le t'.
+\]
+If $Y(u)\le\kappa_n'$, the right side is zero. Otherwise, by the definition of $\pi_{n,D}$, we have $Y(u)C(u,s)\le\kappa_n'$, that is, $0\le C(u,s)\le\kappa_n'/Y(u)$, and the claim follows. Next, for $0<\kappa\le\kappa'$ and $y\ge0$, we have
+\[
+ 0\le\varphi_\kappa(y)-\varphi_{\kappa'}(y)\le1-\frac{\kappa^2}{\kappa'^2}\le\frac{2(\kappa'-\kappa)}{\kappa},
+\]
+as one checks separately for $y\le\kappa$, $\kappa<y\le\kappa'$, and $y>\kappa'$. With $\kappa=\kappa_n$ and $\kappa'=\kappa_n'$, and using \eqref{resp:fisher-chi-bound}, we obtain
+\[
+ \int_{s'}^{t'}\bigl[1-C(u,s)^2\bigr]R(t,u)\,\dd u
+ \ge\int_{s'}^{t'}\varphi_{\kappa_n}(Y(u))R(t,u)\,\dd u-\frac{2(1+\varepsilon_n)}{qc_n}\pi_{n,D} .
+\]
+The function $Y$ is absolutely continuous on $[s',t']$ with $Y'=R(t,\cdot)+E(t,\cdot)$ almost everywhere, and $\Phi_{\kappa_n}$ is continuously differentiable with a bounded derivative. Hence $\Phi_{\kappa_n}\circ Y$ is absolutely continuous, with derivative $\varphi_{\kappa_n}(Y)Y'$, and
+\[
+ \int_{s'}^{t'}\varphi_{\kappa_n}(Y(u))R(t,u)\,\dd u
+ =\Phi_{\kappa_n}(Y(t'))-\Phi_{\kappa_n}(Y(s'))-\int_{s'}^{t'}\varphi_{\kappa_n}(Y(u))E(t,u)\,\dd u .
+\]
+This identity is oriented: it does not require $Y$ to be monotone, and it holds when $Y$ returns to earlier values or crosses the level $\kappa_n$. By \eqref{resp:fisher-entire-triangle} and $0\le\varphi_{\kappa_n}\le1$, the last integral is at most $\varepsilon_n$ in absolute value. We conclude that
+\begin{equation}
+ \int_{s'}^{t'}\bigl[1-C(u,s)^2\bigr]R(t,u)\,\dd u
+ \ge\Phi_{qc_n}(Y(t'))-\Phi_{qc_n}(Y(s'))-\varepsilon_n-\frac{2(1+\varepsilon_n)}{qc_n}\pi_{n,D} .
+ \label{resp:fisher-bulk-calibration}
+\end{equation}
+
+\paragraph{Step 5: the limits.}
+We first take the lower limit as $n\to\infty$ with $D$ fixed. We have $qc_n\to qz$, and by Step 3, $Y(t')\to c(2D)$ and $Y(s')\to z$. By the continuity of $(\kappa,y)\mapsto\Phi_\kappa(y)$,
+\[
+ \Phi_{qc_n}(Y(t'))-\Phi_{qc_n}(Y(s'))\longrightarrow\Phi_{qz}(c(2D))-\Phi_{qz}(z)=\int_z^{c(2D)}\Bigl(1-\frac{q^2z^2}{y^2}\Bigr)\dd y,
+\]
+where we used that $y\ge z>qz$ on $[z,c(2D)]$, so that no clipping occurs. Combining the nonnegativity of the early strip, \eqref{resp:fisher-upper-strip}, and \eqref{resp:fisher-bulk-calibration}, we obtain
+\[
+ \liminf_{n\to\infty}I_n\ge\bigl[1-c(2D)\bigr](1-z^2)+\int_z^{c(2D)}\Bigl(1-\frac{q^2z^2}{y^2}\Bigr)\dd y-\varepsilon-\frac{2(1+\varepsilon)}{qz}\limsup_{n\to\infty}\pi_{n,D} .
+\]
+The left side does not depend on $D$. We let $D\to\infty$, using $c(2D)\downarrow q$ and \eqref{eq:fisher-cost-product-error}. Since $\int_z^q(1-q^2z^2/y^2)\,\dd y=q-z-q^2z+qz^2$, this gives
+\begin{equation}
+ \liminf_{n\to\infty}I_n\ge(1-q)(1-z^2)+q-z-q^2z+qz^2-\varepsilon .
+ \label{resp:fisher-memory-lower}
+\end{equation}
+
+\paragraph{Step 6: the calibrated margin.}
+Let $\Psi(z)=(1-q)(1-z^2)+q-z-q^2z+qz^2$ be the main term in \eqref{resp:fisher-memory-lower}. Expanding, we find $\Psi(z)=1-(1+q^2)z+(2q-1)z^2$, and hence
+\[
+ \Psi(z)-(1-q^2)(1-z)=q^2-2q^2z+(2q-1)z^2 .
+\]
+By the second identity in \eqref{resp:fisher-calibration}, we have $1-\ell(1-z)=(z-q)/(1-q)-3\beta^2(1-q^2)(1-z)$, and by the first, $1/(1-q)=6\beta^2q(1-q)$. Therefore
+\begin{equation}\label{eq:fisher-cost-calibrated-margin}
+ \begin{split}
+ 1-\ell(1-z)+3\beta^2\Psi(z)
+ &=3\beta^2\bigl[2q(1-q)(z-q)+q^2-2q^2z+(2q-1)z^2\bigr]\\
+ &=3\beta^2(2q-1)(q-z)^2 .
+ \end{split}
+\end{equation}
+In the second line, we expanded both sides: each equals $3\beta^2[(2q-1)z^2-4q^2z+2qz+2q^3-q^2]$.
+
+We now combine the estimates. Since $s_n\to\infty$ and $t_n-s_n\to\infty$, \cref{resp:uniform-row} implies that $R(t_n,s_n)\to0$. Taking the lower limit of the left side of \eqref{resp:fisher-primitive-error} and using $c_n\to z$, \eqref{resp:fisher-memory-lower}, and \eqref{eq:fisher-cost-calibrated-margin}, we obtain
+\[
+ 3\beta^2(2q-1)(q-z)^2-3\beta^2\varepsilon
+ \le\liminf_{n\to\infty}\bigl[1-\ell(1-c_n)+3\beta^2I_n\bigr]
+ \le\bigl[\ell+6\beta^2(1+\varepsilon)\bigr]\varepsilon .
+\]
+The memory bound \eqref{resp:fisher-memory-lower} loses $3\beta^2\varepsilon$, and the response equation \eqref{resp:fisher-primitive-error} loses $\ell\varepsilon+6\beta^2\varepsilon+6\beta^2\varepsilon^2$. Adding these losses, we arrive at
+\[
+ 3\beta^2(2q-1)(q-z)^2\le(\ell+9\beta^2)\varepsilon+6\beta^2\varepsilon^2,
+\]
+which is \eqref{resp:sequential-obstruction}.
+\end{proof}
+
+\begin{proof}[Proof of \cref{resp:fisher-cost}]
+We first prove \eqref{resp:fisher-window-limit}. Let $t_n=s_n+\tau_n$. Then $\varepsilon_n=(\tau_n\int_{s_n}^{t_n}a_F)^{1/2}\to0$ by \eqref{resp:fisher-small-window}, and \eqref{eq:geometry-remote-envelope} implies that $\limsup_nC(t_n,s_n)\le q$. Since $C$ takes values in $[0,1]$, it suffices to show that every subsequential limit $z$ of $C(t_n,s_n)$ equals $q$; we already know that $z\le q$. Passing to a subsequence, we may assume that $C(t_n,s_n)\to z$.
+
+If $z\in(0,q)$, then \cref{resp:fisher-obstruction} with $\varepsilon=0$ implies that $3\beta^2(2q-1)(q-z)^2\le0$. This is impossible, because $q>1/2$ and $z<q$.
+
+If $z=0$, we fix $z'\in(0,q)$. For large $n$, we have $C(t_n,s_n)<z'$, while $C(s_n,s_n)=1>z'$. The correlation is continuous, and the first crossing lag $\sigma_n=\inf\{\sigma\ge0:C(s_n+\sigma,s_n)\le z'\}$ satisfies $\sigma_n\le\tau_n$ and $C(s_n+\sigma_n,s_n)=z'$. The lags $\sigma_n$ tend to infinity. Indeed, for fixed $W>0$, \eqref{sel:stationary-window} shows that $C(s_n+\sigma,s_n)\to c(\sigma)\ge q>z'$ uniformly in $\sigma\in[0,W]$, and this forces $\sigma_n>W$ for large $n$. Since $a_F\ge0$ and $\sigma_n\le\tau_n$,
+\[
+ \sigma_n\int_{s_n}^{s_n+\sigma_n}a_F(u)\,\dd u\le\tau_n\int_{s_n}^{s_n+\tau_n}a_F(u)\,\dd u\longrightarrow0 .
+\]
+\Cref{resp:fisher-obstruction}, applied to the windows $[s_n,s_n+\sigma_n]$ with $z'$ in place of $z$ and with $\varepsilon=0$, again gives a contradiction. We conclude that $z=q$, and that $C(t_n,s_n)\to q$. Finally, by \eqref{resp:fisher-chi-bound}, we have $|\chi(t_n,s_n)-(1-C(t_n,s_n))|\le\varepsilon_n\to0$, and therefore $\chi(t_n,s_n)\to1-q$.
+
+We now turn to the passage lag. Fix a level $c\in(0,q)$ and $s\ge0$. By \cref{sel:fixed-wait-forgetting}, $C(s+\tau,s)\to0$ as $\tau\to\infty$, and the set $\{\tau\ge0:C(s+\tau,s)\le c\}$ is nonempty. It is closed, because $C$ is continuous. Then $\tau_c(s)$ is finite and $C(s+\tau_c(s),s)\le c$. We have $C(s,s)=1$ and $C(s+\tau,s)>c$ for $0\le\tau<\tau_c(s)$, and by continuity, $C(s+\tau_c(s),s)=c$. As in the case $z=0$ above, \eqref{sel:stationary-window} and the bound $c(\tau)\ge q>c$ on the profile show that, for each fixed $W$, we have $C(s+\tau,s)>c$ for all $\tau\in[0,W]$ once $s$ is large. We conclude that $\tau_c(s)\to\infty$.
+
+Let $A=\liminf_{s\to\infty}\tau_c(s)\int_s^{s+\tau_c(s)}a_F(u)\,\dd u\in[0,\infty]$. If $A\ge1$, then \eqref{resp:local-fisher-cost} holds, since $\mathfrak c_\beta(c)\le1$. Suppose that $A<1$, and choose $s_n\to\infty$ along which the quantity in the definition of $A$ converges to $A$. Let $t_n=s_n+\tau_c(s_n)$. Then $t_n-s_n\to\infty$, $C(t_n,s_n)=c\in(0,q)$, and $\varepsilon_n\to\sqrt A<1$. By \cref{resp:fisher-obstruction} with $z=c$ and $\varepsilon=\sqrt A$, and since $A\le\sqrt A$, we have
+\[
+ 3\beta^2(2q-1)(q-c)^2
+ \le(\ell+9\beta^2)\sqrt A+6\beta^2A
+ \le(\ell+9\beta^2)\sqrt A+6\beta^2\sqrt A
+ =(\ell+15\beta^2)\sqrt A .
+\]
+Squaring, we find $A\ge[3\beta^2(2q-1)(q-c)^2/(\ell+15\beta^2)]^2\ge\mathfrak c_\beta(c)$. This proves \eqref{resp:local-fisher-cost}. Because $a_F\ge0$, enlarging the domain of integration from $[s,s+\tau_c(s)]$ to $[s,\infty)$ can only increase the left side, and \eqref{resp:tail-fisher-cost} follows.
+\end{proof}
+
+\Cref{resp:fisher-cost} bounds the physical time needed to relax below the plateau in terms of the Fisher majorant. It does not determine the growth of $\tau_c(s)$, and it does not identify an aging clock; see \cref{sec:discussion}.

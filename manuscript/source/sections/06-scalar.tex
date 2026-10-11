@@ -1,0 +1,148 @@
+\chapter{The scalar equation of a stationary cluster}\label{sec:scalar}
+
+The CK response equation \eqref{eq:ck-response} is causal, in the sense that its memory integral runs only over times between the earlier and the later observation time. When both times are translated to late times and their lag stays bounded, the equation involves only the translated kernels on a bounded window, and it passes to every translated cluster. This is how we obtained the closed equation \eqref{eq:stationary-cluster-response} in \cref{prop:stationary-clusters}. The correlation equation \eqref{eq:ck-correlation} is different. Its memory integrals run over the whole past, and the stationary limit does not control their older part. In this section, we extract from the closed response equation the information that it carries about a stationary cluster $(c,r,\ell)$.
+
+The main result, \cref{prop:scalar-clusters}, is a scalar memory equation for $c$. It determines the multiplier $\ell$ in terms of the plateau $q$, and it gives a strict sign condition on the interval $(q,1)$, which implies the inequality $\beta^2p(p-1)q^{p-2}(1-q)^2\le1$. We also show that the response equation with a prescribed multiplier has at most one solution (\cref{lem:stationary-uniqueness}). We use only \cref{prop:stationary-clusters}. In \cref{sec:stationary-selection}, the multiplier formula and the sign condition enter the proofs of marginality (\cref{sel:positive-marginality}) and of the selection of the plateau (\cref{sel:selected-sector}), and the uniqueness lemma identifies the stationary profile in \cref{sel:all-temperature}. The scalar equation \eqref{eq:scalar-memory} is also the starting point of \cref{sec:stationary-relaxation}.
+
+The scalar memory equation \eqref{eq:scalar-memory} is the equation classified by Dembo, Guionnet, and Mazza \cite[arXiv version~1, Proposition~1.4, p.~5, and Section~5, pp.~17--20]{dgm2007}. For $b>0$ and a nondecreasing function $\phi\colon[0,1]\to\R$ with Lipschitz continuous derivative and $\sup_{0\le y\le1}\phi(y)(1-y)\ge b$, they characterized the plateau of its solution through the largest admissible root and proved the corresponding stability inequality. The sign condition \eqref{eq:scalar-sign} and the inequality \eqref{eq:cluster-submarginality} already follow from their scalar classification; here we obtain them by a direct comparison of the memory term. These hypotheses hold for the polynomial $\phi$ of \eqref{eq:scalar-memory}, with $b=1$ by \eqref{eq:plateau-multiplier}, but we do not use their result. We derive the equation and its consequences directly from \cref{prop:stationary-clusters}, for two reasons. Our response is normalized differently, and \cref{sec:stationary-selection} needs the constants and the strict inequality in the form given here. We also note that their reduction of the CK solution to the scalar equation at all temperatures \cite[arXiv version~1, Proposition~6.1, pp.~21--22]{dgm2007} assumes the asymptotic conditions (6.5) and (6.6) of that paper. Here, \cref{prop:stationary-clusters} applies to every stationary cluster without such assumptions.
+
+Throughout this section, $p\ge3$ and $\beta>0$ are fixed. Derivatives of stationary profiles at $t=0$ are right derivatives on $[0,\infty)$.
+
+\begin{proposition}[Scalar constraints]\label{prop:scalar-clusters}
+Let $(c,r,\ell)$ be a stationary cluster with plateau $q$, as in \cref{prop:stationary-clusters}, and let $B=\beta^2p$ and $\gamma=\ell-B$. Then $r=-c'$ is strictly positive on $[0,\infty)$, and
+\begin{equation}
+ c'(t)=-1+\int_0^t\phi(c(t-u))r(u)\,\dd u,
+ \qquad \phi(y)=\gamma+By^{p-1}.
+ \label{eq:scalar-memory}
+\end{equation}
+The plateau $q=\lim_{t\to\infty}c(t)$ belongs to $[0,1)$ and satisfies
+\begin{equation}
+ \phi(q)(1-q)=1,\qquad
+ \ell=L(q),\qquad\text{where }L(q)=\frac1{1-q}+\beta^2p(1-q^{p-1}).
+ \label{eq:plateau-multiplier}
+\end{equation}
+Moreover, if $F(y)=\phi(y)(1-y)-1$, then
+\begin{equation}
+ F(q)=0,\qquad F(y)<0\quad(q<y<1).
+ \label{eq:scalar-sign}
+\end{equation}
+In particular,
+\begin{equation}
+ \beta^2p(p-1)q^{p-2}(1-q)^2\le1.
+ \label{eq:cluster-submarginality}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+We first show that $r$ is positive and integrate the response equation once, which gives \eqref{eq:scalar-memory}. We then let $t\to\infty$ in \eqref{eq:scalar-memory} to identify the multiplier. Finally, we compare the memory integral in \eqref{eq:scalar-memory} with its value at the current correlation, which yields the sign condition.
+
+\paragraph{Step 1: positivity and the scalar equation.}
+With $\beta^2p(p-1)=B(p-1)$, the stationary response equation \eqref{eq:stationary-cluster-response} reads
+\[
+ r'(t)=-\ell r(t)+B(p-1)\int_0^tc(t-u)^{p-2}r(t-u)r(u)\,\dd u.
+\]
+By variation of constants and $r(0)=1$, we have
+\[
+ r(t)=e^{-\ell t}+B(p-1)\int_0^te^{-\ell(t-v)}\int_0^vc(v-u)^{p-2}r(v-u)r(u)\,\dd u\,\dd v.
+\]
+Every factor in the double integral is nonnegative, because $c\ge0$ and $r\ge0$. This implies that $r(t)\ge e^{-\ell t}>0$. Then $c$ is strictly decreasing, and $c(t)>q$ for every $t\ge0$.
+
+Next, we integrate the response equation from $0$ to $t$. Using $r(0)=1$ and $\int_0^tr(u)\,\dd u=1-c(t)$, we have
+\[
+ r(t)-1=-\ell\bigl(1-c(t)\bigr)+B(p-1)\int_0^t\int_0^vc(v-u)^{p-2}r(v-u)r(u)\,\dd u\,\dd v.
+\]
+The double integral is over the bounded triangle $\{0\le u\le v\le t\}$, where the integrand is continuous; Fubini's theorem applies there without any assumption on the behavior of $c$ and $r$ at infinity. Exchanging the order of integration and substituting $w=v-u$, we find
+\[
+\begin{aligned}
+ &(p-1)\int_0^t\int_0^vc(v-u)^{p-2}r(v-u)r(u)\,\dd u\,\dd v\\
+ &\qquad=\int_0^tr(u)\Bigl[(p-1)\int_0^{t-u}c(w)^{p-2}r(w)\,\dd w\Bigr]\dd u.
+\end{aligned}
+\]
+As $c'=-r$ and $c(0)=1$, the derivative of $c(w)^{p-1}$ is $-(p-1)c(w)^{p-2}r(w)$, and the bracket equals $1-c(t-u)^{p-1}$. Inserting this into the previous identity, we obtain
+\[
+ r(t)=1-(\ell-B)\bigl(1-c(t)\bigr)-B\int_0^tc(t-u)^{p-1}r(u)\,\dd u.
+\]
+Finally, we substitute $r(t)=-c'(t)$ on the left and $1-c(t)=\int_0^tr(u)\,\dd u$ on the right. Recalling that $\gamma=\ell-B$, we arrive at
+\[
+ c'(t)=-1+\int_0^t\bigl(\gamma+Bc(t-u)^{p-1}\bigr)r(u)\,\dd u,
+\]
+which is \eqref{eq:scalar-memory}.
+
+\paragraph{Step 2: the multiplier.}
+By \cref{prop:stationary-clusters}, the limit $q$ exists, $q<1$, and $\int_0^\infty r(u)\,\dd u=1-q$. We claim that the integral in \eqref{eq:scalar-memory} converges to $\phi(q)(1-q)$ as $t\to\infty$. Let $M_\phi=\sup_{[0,1]}|\phi|$, and fix $U>0$. For $t>U$, we split the integral at $U$ and find
+\[
+\begin{aligned}
+ &\Bigl|\int_0^t\phi(c(t-u))r(u)\,\dd u-\phi(q)(1-q)\Bigr|\\
+ &\qquad\le\sup_{0\le u\le U}|\phi(c(t-u))-\phi(q)|\int_0^Ur(u)\,\dd u
+ +2M_\phi\int_U^\infty r(u)\,\dd u.
+\end{aligned}
+\]
+Here we used $0\le c\le1$ and $\int_0^\infty r=1-q$. For $0\le u\le U$, we have $q\le c(t-u)\le c(t-U)$. Then $c(t-u)\to q$ uniformly in $u\in[0,U]$ as $t\to\infty$, and the first term tends to zero because $\phi$ is continuous. Letting $t\to\infty$ and then $U\to\infty$, we obtain the claim, since $r$ is integrable. By \eqref{eq:scalar-memory}, we have $c'(t)\to\phi(q)(1-q)-1$. If this limit were nonzero, the bounded function $c$ would grow or decrease linearly at infinity, which is impossible. We conclude that $\phi(q)(1-q)=1$. Since $\phi(q)=\ell-B+Bq^{p-1}$, this identity is equivalent to $\ell=L(q)$, which proves \eqref{eq:plateau-multiplier}.
+
+\paragraph{Step 3: the sign condition.}
+The function $\phi$ is nondecreasing on $[0,1]$, because $B>0$. As $c$ is nonincreasing, we have $c(t-u)\ge c(t)$ for $0\le u\le t$. Using this and $r\ge0$ in \eqref{eq:scalar-memory}, we find
+\[
+ c'(t)\ge-1+\phi(c(t))\int_0^tr(u)\,\dd u=-1+\phi(c(t))\bigl(1-c(t)\bigr)=F(c(t)).
+\]
+By Step~1, $c$ decreases continuously and strictly from $c(0)=1$ to its limit $q$. Every $y\in(q,1)$ is then equal to $c(t_y)$ for some $t_y\in(0,\infty)$, and
+\[
+ F(y)\le c'(t_y)=-r(t_y)<0.
+\]
+Together with $F(q)=\phi(q)(1-q)-1=0$, which is \eqref{eq:plateau-multiplier}, this proves \eqref{eq:scalar-sign}.
+
+Since the polynomial $F$ vanishes at $q$ and is negative on $(q,1)$, we have $F'(q)\le0$. Using $\phi(q)=1/(1-q)$, we compute
+\[
+ F'(q)=B(p-1)q^{p-2}(1-q)-\phi(q)=\frac{\beta^2p(p-1)q^{p-2}(1-q)^2-1}{1-q}.
+\]
+As $1-q>0$, the inequality $F'(q)\le0$ is \eqref{eq:cluster-submarginality}.
+\end{proof}
+
+\Cref{prop:scalar-clusters} gives constraints that every stationary cluster satisfies; it does not determine the plateau. If $q=0$, then \eqref{eq:plateau-multiplier} gives $\ell=L(0)=1+\beta^2p$, and \eqref{eq:cluster-submarginality} carries no information. If $q>0$, the multiplier is determined by $q$, and \eqref{eq:cluster-submarginality} is a one-sided version of the marginality relation $\beta^2p(p-1)q^{p-2}(1-q)^2=1$ of \cref{thm:main-aging}. To select $q$, \cref{sec:stationary-selection} combines these constraints with the upper bound on the energy of prefix centers from \cref{prop:threshold-inputs}.
+
+We now turn to uniqueness. We write $f*g$ for the convolution on $[0,\infty)$, given by $(f*g)(\tau)=\int_0^\tau f(\tau-u)g(u)\,\dd u$. A solution of the system in the next lemma is understood in integrated form: a pair $(c,r)$ of locally bounded Borel measurable functions on $[0,\infty)$ such that, for every $t\ge0$,
+\[
+ c(t)=1-\int_0^tr(u)\,\dd u,
+ \qquad
+ r(t)=1+\int_0^t\Bigl[-\ell r(v)+\beta^2p(p-1)\bigl((c^{p-2}r)*r\bigr)(v)\Bigr]\dd v.
+\]
+The integrated equations are pointwise identities, not merely identities almost everywhere. As the integrands on their right sides are locally integrable, both functions are continuous. Every pair of continuously differentiable functions satisfying the system, with right derivatives at zero, is a solution in this sense; by \cref{prop:stationary-clusters}, this applies to every stationary cluster with multiplier $\ell$.
+
+\begin{lemma}[Uniqueness with prescribed multiplier]\label{lem:stationary-uniqueness}
+For a fixed finite $\ell$, the system
+\[
+ c'=-r,\qquad
+ r'=-\ell r+\beta^2p(p-1)\bigl(c^{p-2}r\bigr)*r,
+ \qquad c(0)=r(0)=1,
+\]
+has at most one solution in this locally bounded integrated sense on $[0,\infty)$.
+\end{lemma}
+
+\begin{proof}
+Let $(c_1,r_1)$ and $(c_2,r_2)$ be two solutions, and fix $T>0$. Let $M\ge1$ be a bound for $|c_1|$, $|c_2|$, $|r_1|$, and $|r_2|$ on $[0,T]$, and define, for $0\le t\le T$,
+\[
+ D(t)=\sup_{0\le v\le t}\bigl(|c_1(v)-c_2(v)|+|r_1(v)-r_2(v)|\bigr).
+\]
+We first bound the difference of the memory integrands. Let $0\le u\le v\le T$, and write $a=v-u$ and $b=u$. Telescoping the three factors, we have
+\[
+\begin{aligned}
+ &\bigl|c_1(a)^{p-2}r_1(a)r_1(b)-c_2(a)^{p-2}r_2(a)r_2(b)\bigr|\\
+ &\qquad\le|c_1(a)^{p-2}-c_2(a)^{p-2}|\,|r_1(a)r_1(b)|
+ +|c_2(a)|^{p-2}|r_1(a)-r_2(a)|\,|r_1(b)|\\
+ &\qquad\quad+|c_2(a)^{p-2}r_2(a)|\,|r_1(b)-r_2(b)|\\
+ &\qquad\le pM^{p-1}\{D(a)+D(b)\}.
+\end{aligned}
+\]
+In the last line, we used $|x^{p-2}-y^{p-2}|\le(p-2)M^{p-3}|x-y|$ for $|x|,|y|\le M$, and $|c_1-c_2|,|r_1-r_2|\le D$. Since $D\ge0$, we have $\int_0^v\{D(v-u)+D(u)\}\,\dd u=2\int_0^vD(u)\,\dd u\le2\int_0^tD(u)\,\dd u$ for $v\le t$. Subtracting the integrated equations of the two solutions, we obtain, for $0\le t\le T$,
+\[
+\begin{aligned}
+ |c_1(t)-c_2(t)|&\le\int_0^tD(u)\,\dd u,\\
+ |r_1(t)-r_2(t)|&\le\bigl(|\ell|+2\beta^2p^2(p-1)M^{p-1}T\bigr)\int_0^tD(u)\,\dd u.
+\end{aligned}
+\]
+The right sides are nondecreasing in $t$. Taking the supremum over $[0,t]$, we find
+\[
+ D(t)\le K_T\int_0^tD(u)\,\dd u,
+ \qquad K_T=1+|\ell|+2\beta^2p^2(p-1)M^{p-1}T,
+\]
+where $K_T$ depends on $\ell$, $p$, $\beta$, $T$, and the bound $M$. The function $D$ is bounded and nondecreasing on $[0,T]$, and Gronwall's inequality implies that $D=0$ on $[0,T]$. As $T$ was arbitrary, the two solutions coincide.
+\end{proof}

@@ -1,0 +1,353 @@
+\chapter{Tree ceilings and the threshold inputs for cubic and quartic models}\label{sec:tree-ceilings}
+
+In this section, we prove \cref{prop:threshold-inputs} for $p\in\{3,4\}$. That proposition is stated in \cref{sec:threshold-inputs}, and \cref{sec:stationary-selection} deduces from it the selection of the plateau, forgetting, and correlation aging. We prove the proposition for every $p\ge3$ in \cref{app:general-selection}.
+
+Both parts rest on a deterministic inequality in the tree space of \cref{sec:tree-space}. For $p=3$, the cubic tree ceiling, \cref{thm:geometry-tree-ceiling}, states that every unit tree vector has energy strictly below $\Eth$, and that a unit vector with energy close to $\Eth$ has little mass at every fixed finite set of heights. \Cref{thm:geometry-quartic-tree-ceiling} is the analogous statement for $p=4$, and \cref{cor:tree-ceiling-energy} restates both in terms of the tree energy. In \cref{sec:tree-input-ceiling}, we prove part~\ref{item:threshold-ceiling} of \cref{prop:threshold-inputs} by applying a ceiling to normalized prefix centers and passing to the limit with \cref{sel:prefix-reflection}. Under the hypotheses of part~\ref{item:threshold-forgetting}, the normalized centers approach the threshold; this is \cref{sel:threshold-centers}. Their mass then leaves every fixed set of heights, while an earlier state is approximated by finitely many heights, uniformly on a bounded time interval. Combining these two facts, we prove part~\ref{item:threshold-forgetting} in \cref{sec:tree-input-forgetting}.
+
+Besides the tree space and the realization of \cref{prop:geometry-tree-realization}, we use the reflection identity of \cref{sel:prefix-reflection}, the precompactness in \cref{prop:stationary-clusters}, the plateau identity \eqref{eq:plateau-multiplier}, and the limiting center energy of \cref{lem:center-energy}. The last lemma is an algebraic statement about a stationary cluster and does not use \cref{prop:threshold-inputs}. Hence the arguments of this section and of \cref{sec:stationary-selection} are not circular. The ceilings are used again later: the participation bound enters the proof of \cref{resp:strong-row}, and the retained angular and Young defects \eqref{eq:geometry-angular-young-defects} are used in \cref{sec:geometry-results}. \Cref{sel:threshold-centers} is used in \cref{resp:chapter,sec:three-time}.
+
+The value $\Eth=2\sqrt{(p-1)/p}$ is the threshold energy of the pure $p$-spin model. It appears in the complexity of critical points computed by Auffinger, Ben Arous, and \v{C}ern\'y \cite[equation~(2.13)]{abc2013}, where the Hamiltonian is minimized and the threshold is $-\Eth$. It is the threshold for Lipschitz algorithms identified by Huang and Sellke, for even models in \cite{hs2021} and including odd pure models in \cite[Theorem~1 and Corollary~1.8]{hs2023}, and Sellke proved that low-temperature Langevin dynamics approaches it when the temperature is also sent to zero \cite[Theorems~1.1 and~1.7]{sellke2024}. The ceilings below are elementary inequalities in the tree space, and we do not use the cited results in the proofs of this section. They also differ from the branching constructions of the algorithmic literature, such as those of Subag \cite[Remark~6]{subag2021} and of Huang and Sellke \cite[Remarks~1.2--1.3 and Sections~3 and~7]{hs2021}, which concern configurations in finite dimension. Here we retain quantitative height defects inside the causal covariance realization and use their saturation to prove escape from every fixed set of heights.
+
+\paragraph{Standing notation.}
+Throughout this section, $p\in\{3,4\}$ and $m=p-1$, and $\mathcal H$, $\mathcal I$, $\Pi_j$, and $P_T$ are the tree space, the grafting isometry, and the height and prefix projections of \cref{sec:tree-space} for this arity. For $v\in\mathcal H$ and $j\ge0$, we write
+\[
+ b_j=\norm{\Pi_jv}^2,\qquad a_j=\sqrt{b_j},\qquad B_j=\sum_{i\le j}b_i,
+\]
+with $b_j=B_j=0$ for $j<0$. Recall that $\sum_j\Pi_j=\Id$, so that the masses $b_j$ sum to $\norm v^2$ and $B_j$ increases to $\norm v^2$. The tree energy is $h(v)=\sqrt p\,\ip v{\mathcal I(v^{\otimes m})}$, as in \eqref{eq:geometry-tree-energy}. It is a homogeneous polynomial of degree $p$, that is, $h(\alpha v)=\alpha^ph(v)$ for $\alpha\ge0$.
+
+\section{The cubic tree ceiling}\label{sec:tree-cubic-ceiling}
+
+We begin with a computation that holds for both arities. It expresses the height profile of a graft through the cumulative masses $B_j$.
+
+\begin{lemma}[Heights of a graft]\label{lem:tree-graft-heights}
+Let $v\in\mathcal H$. Then $\Pi_0\mathcal I(v^{\otimes m})=0$, and for every $j\ge1$,
+\begin{equation}\label{eq:tree-graft-heights}
+ \Pi_j\mathcal I(v^{\otimes m})=\Pi_j\mathcal I\bigl((\Pi_{\le j-1}v)^{\otimes m}\bigr),\qquad
+ \norm{\Pi_j\mathcal I(v^{\otimes m})}^2=B_{j-1}^m-B_{j-2}^m.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The ranges of the projections $\Pi_i$, $i\ge0$, are mutually orthogonal and span $\mathcal H$. It follows that $\mathcal H^{\otimes m}$ is the orthogonal sum of the subspaces $\Pi_{i_1}\mathcal H\otimes\dots\otimes\Pi_{i_m}\mathcal H$ over $(i_1,\dots,i_m)$. Because a graft has height one plus the largest height of its root subtrees, the map $\mathcal I$ sends the subspace indexed by $(i_1,\dots,i_m)$ into the range of $\Pi_j$ with $j=1+\max_ki_k$. In particular, $\Pi_0\mathcal I=0$, and for $j\ge1$,
+\[
+ \Pi_j\mathcal I(v^{\otimes m})=\sum_{\max_ki_k=j-1}\mathcal I\bigl(\Pi_{i_1}v\otimes\dots\otimes\Pi_{i_m}v\bigr).
+\]
+Only the components $\Pi_iv$ with $i\le j-1$ appear, which gives the first identity in \eqref{eq:tree-graft-heights}. The terms of the sum are orthogonal, since $\mathcal I$ is an isometry and the subspaces are orthogonal, and the term indexed by $(i_1,\dots,i_m)$ has squared norm $b_{i_1}\cdots b_{i_m}$. Summing over the $m$-tuples with largest entry $j-1$, we obtain
+\[
+ \norm{\Pi_j\mathcal I(v^{\otimes m})}^2=\Bigl(\sum_{i\le j-1}b_i\Bigr)^m-\Bigl(\sum_{i\le j-2}b_i\Bigr)^m=B_{j-1}^m-B_{j-2}^m,
+\]
+as desired.
+\end{proof}
+
+We now treat the cubic case. The next estimate is the reason that a normalized prefix center selects marginality. It is an inequality in the tree space, and it involves no finite-dimensional critical points.
+
+\begin{theorem}[The cubic tree ceiling and its retained defects]
+\label{thm:geometry-tree-ceiling}
+Let $p=3$, so that grafting is binary, and let $F_*=2\sqrt2/3$. For a unit vector $v\in\mathcal H$, define
+\[
+ f(v)=\ip{v}{\mathcal I(v\otimes v)},\qquad \delta=F_*-f(v),
+\]
+and let $b_j=\norm{\Pi_jv}^2$, $a_j=\sqrt{b_j}$, and $B_j=\sum_{i\le j}b_i$ for $j\ge0$, with $B_{-1}=B_{-2}=0$. Then $|f(v)|<F_*$, and
+\begin{equation}
+ \sum_{j\ge0}b_j^2\le4\sqrt2\,\delta,
+ \qquad
+ \norm{\Pi_{\le H}v}^2\le\sqrt{4\sqrt2\,(H+1)\,\delta}\quad(H\ge0).
+ \label{eq:geometry-height-defect}
+\end{equation}
+The supremum of $f$ over unit vectors equals $F_*$, and it is not attained. Further, let $s_j=\sqrt{B_{j-1}+B_{j-2}}$, and for $j\ge1$ let $\theta_j\in[0,\pi]$ be the angle between $\Pi_jv$ and $\Pi_j\mathcal I(v\otimes v)$, with $\theta_j=0$ when one of these two vectors is zero. Then
+\begin{equation}
+ \sum_{j\ge1}a_ja_{j-1}s_j(1-\cos\theta_j)\le\delta,
+ \qquad
+ \frac12\sum_{j\ge1}s_j(a_j-a_{j-1})^2\le\delta.
+ \label{eq:geometry-angular-young-defects}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The proof has three steps. First, we write $f(v)$ as a sum over heights and bound it by two sums $S$ and $Y$, keeping track of the gaps. Second, we compare $Y$ with the integral $\int_0^1\sqrt{2y}\,\dd y=F_*$, again keeping the gap. Third, we construct unit vectors whose values of $f$ approach $F_*$.
+
+\paragraph{Step 1: heightwise Cauchy--Schwarz and Young inequalities.}
+By \cref{lem:tree-graft-heights} with $m=2$, we have, for $j\ge1$,
+\[
+ \norm{\Pi_j\mathcal I(v\otimes v)}^2=B_{j-1}^2-B_{j-2}^2=b_{j-1}(B_{j-1}+B_{j-2})=a_{j-1}^2s_j^2.
+\]
+Using that the height projections are orthogonal and that $\Pi_0\mathcal I=0$, we find that
+\begin{equation}\label{eq:tree-cubic-angles}
+ f(v)=\sum_{j\ge1}\ip{\Pi_jv}{\Pi_j\mathcal I(v\otimes v)}=\sum_{j\ge1}a_ja_{j-1}s_j\cos\theta_j.
+\end{equation}
+When one of the two vectors in the $j$-th inner product is zero, the coefficient $a_ja_{j-1}s_j$, which is the product of their norms, vanishes. The convention on $\theta_j$ therefore does not matter. We define
+\[
+ S=\sum_{j\ge1}a_ja_{j-1}s_j,\qquad Y=\frac12\sum_{j\ge1}(b_j+b_{j-1})s_j.
+\]
+All these series converge absolutely, because $s_j\le\sqrt2$ and $\sum_jb_j=1$. Using \eqref{eq:tree-cubic-angles} and the inequality $a_ja_{j-1}\le\frac12(b_j+b_{j-1})$, we see that $|f(v)|\le S\le Y$, with the exact gaps
+\begin{equation}\label{eq:tree-cubic-gaps}
+ S-f(v)=\sum_{j\ge1}a_ja_{j-1}s_j(1-\cos\theta_j),\qquad
+ Y-S=\frac12\sum_{j\ge1}s_j(a_j-a_{j-1})^2.
+\end{equation}
+
+\paragraph{Step 2: comparison with an integral.}
+Let $g(y)=\sqrt{2y}$, a concave function on $[0,1]$ with $\int_0^1g(y)\,\dd y=F_*$. Reindexing the second half of $Y$ and using $s_1=\sqrt{b_0}$, we have
+\[
+ Y=\frac12b_0^{3/2}+\frac12\sum_{j\ge1}b_j(s_j+s_{j+1}).
+\]
+Since $B_j$ increases to one, we may split $\int_0^1g$ at the points $B_0\le B_1\le\dots$. Using $\int_0^{B_0}g=F_*b_0^{3/2}$, we find that
+\begin{equation}\label{eq:tree-cubic-integral-gap}
+ F_*-Y=\Bigl(F_*-\frac12\Bigr)b_0^{3/2}
+ +\sum_{j\ge1}\Bigl[\int_{B_{j-1}}^{B_j}g(y)\,\dd y-\frac{b_j}{2}(s_j+s_{j+1})\Bigr].
+\end{equation}
+We bound each bracket from below. Because $g$ is concave, the trapezoid rule underestimates its integral, that is,
+\[
+ \int_{B_{j-1}}^{B_j}g(y)\,\dd y\ge\frac{b_j}2\bigl\{g(B_{j-1})+g(B_j)\bigr\}.
+\]
+We have $s_j\le g(B_{j-1})$, because $B_{j-2}\le B_{j-1}$. If $b_j>0$, then
+\[
+ g(B_j)-s_{j+1}=\sqrt{2B_j}-\sqrt{B_j+B_{j-1}}
+ =\frac{b_j}{\sqrt{2B_j}+\sqrt{B_j+B_{j-1}}}\ge\frac{b_j}{2\sqrt2},
+\]
+because the denominator is at most $2\sqrt2$. Inserting these bounds, we see that the bracket with index $j$ is at least $\frac{b_j}2\cdot\frac{b_j}{2\sqrt2}=b_j^2/(4\sqrt2)$, and this also holds when $b_j=0$. For the first term, we use $b_0^{3/2}\ge b_0^2$ and
+\[
+ F_*-\frac12-\frac1{4\sqrt2}=\frac{13\sqrt2-12}{24}>0.
+\]
+Combining these bounds with \eqref{eq:tree-cubic-integral-gap}, we obtain
+\begin{equation}\label{eq:tree-cubic-participation-gap}
+ F_*-Y\ge\frac1{4\sqrt2}\sum_{j\ge0}b_j^2.
+\end{equation}
+
+We now collect the gaps. We have the exact decomposition
+\[
+ \delta=F_*-f(v)=(F_*-Y)+(Y-S)+\bigl(S-f(v)\bigr),
+\]
+in which all three terms are nonnegative. By \eqref{eq:tree-cubic-participation-gap}, the first term is at least $(4\sqrt2)^{-1}\sum_jb_j^2$, which yields the first inequality in \eqref{eq:geometry-height-defect}. The second and third terms are the two sums in \eqref{eq:geometry-angular-young-defects} by \eqref{eq:tree-cubic-gaps}, which proves \eqref{eq:geometry-angular-young-defects}. Using the Cauchy--Schwarz inequality, we also have
+\[
+ \norm{\Pi_{\le H}v}^2=\sum_{j=0}^Hb_j\le\Bigl((H+1)\sum_{j\ge0}b_j^2\Bigr)^{1/2}\le\sqrt{4\sqrt2\,(H+1)\,\delta},
+\]
+which is the second inequality in \eqref{eq:geometry-height-defect}. Finally, some $b_j$ is positive, because $\sum_jb_j=1$, and we have $|f(v)|\le Y\le F_*-(4\sqrt2)^{-1}\sum_jb_j^2<F_*$. In particular, no unit vector attains the value $F_*$.
+
+\paragraph{Step 3: sharpness.}
+We construct unit vectors $v^{(n)}$ with $f(v^{(n)})\to F_*$. We give the construction for a general arity $m\in\{2,3\}$, since the proof of \cref{thm:geometry-quartic-tree-ceiling} uses it with $m=3$. Fix an integer $n\ge1$ and let $\rho=(n+1)^{-1}$. Let $w_0=\sqrt\rho\,e_0$, a vector in the one-leaf summand. For $j=1,\dots,n$, we define inductively
+\[
+ \gamma_j=\Pi_j\mathcal I\bigl(w_{j-1}^{\otimes m}\bigr),\qquad u_j=\sqrt\rho\,\frac{\gamma_j}{\norm{\gamma_j}},\qquad w_j=w_{j-1}+u_j.
+\]
+We check by induction that this is well defined, and that $w_{j-1}$ has mass $\rho$ at each height $0,\dots,j-1$ and no mass at larger heights. This holds for $w_0$. If it holds for $w_{j-1}$, then \cref{lem:tree-graft-heights} applied to $w_{j-1}$ gives
+\[
+ \norm{\gamma_j}^2=(j\rho)^m-\bigl((j-1)\rho\bigr)^m>0,
+\]
+and $u_j$ is well defined. The vector $u_j$ lies in the range of $\Pi_j$ and has squared norm $\rho$, and therefore $w_j$ has mass $\rho$ at each height $0,\dots,j$ and no mass at larger heights. Let $v^{(n)}=w_n$. It is a unit vector, with $b_j=\rho$ for $0\le j\le n$ and $b_j=0$ for $j>n$.
+
+We now show that all the angles vanish. Let $1\le j\le n$. Since $\Pi_{\le j-1}v^{(n)}=w_{j-1}$, \cref{lem:tree-graft-heights} implies that $\Pi_j\mathcal I((v^{(n)})^{\otimes m})=\gamma_j$. The component $\Pi_jv^{(n)}=u_j$ is a positive multiple of $\gamma_j$, which means that $\theta_j=0$. For $j>n$, the component $\Pi_jv^{(n)}$ vanishes. Only the heights $1,\dots,n$ contribute to $f$, and we find that
+\begin{equation}\label{eq:tree-sharp-value}
+ f\bigl(v^{(n)}\bigr)=\sum_{j=1}^n\ip{u_j}{\gamma_j}=\sum_{j=1}^n\sqrt\rho\,\norm{\gamma_j}
+ =\sum_{j=1}^n\sqrt\rho\,\bigl\{(j\rho)^m-\bigl((j-1)\rho\bigr)^m\bigr\}^{1/2}.
+\end{equation}
+For $m=2$, each summand equals $\rho\sqrt{(2j-1)\rho}=\rho\,g\bigl((j-\frac12)\rho\bigr)$. In other words, $f(v^{(n)})$ is the midpoint Riemann sum for $\int g$ over the first $n$ of the $n+1$ intervals $[(j-1)\rho,j\rho]$ that partition $[0,1]$. Since $g$ is continuous on $[0,1]$ and bounded by $\sqrt2$, the omitted last interval contributes at most $\sqrt2\rho$, and we obtain
+\[
+ \lim_{n\to\infty}f\bigl(v^{(n)}\bigr)=\int_0^1\sqrt{2y}\,\dd y=F_*.
+\]
+Together with Step 2, this shows that the supremum of $f$ equals $F_*$ and is not attained.
+\end{proof}
+
+\section{The quartic tree ceiling}\label{sec:tree-quartic-ceiling}
+
+For $p=4$, grafting is ternary. The proof follows the cubic one, with a difference of cubes of the cumulative masses in place of a difference of squares. The comparison function becomes linear, and the ceiling calculation telescopes.
+
+\begin{lemma}[The quartic tree ceiling]
+\label{thm:geometry-quartic-tree-ceiling}
+Let $p=4$, so that grafting has arity three. For a unit vector $v\in\mathcal H$, define $f(v)=\ip{v}{\mathcal I(v^{\otimes3})}$. Then
+\begin{equation}\label{eq:tree-quartic-ceiling}
+ |f(v)|<\frac{\sqrt3}{2},\qquad
+ \sum_{j\ge0}\norm{\Pi_jv}^4\le2\sqrt3\Bigl(\frac{\sqrt3}{2}-f(v)\Bigr).
+\end{equation}
+The supremum of $f$ over unit vectors equals $\sqrt3/2$, and it is not attained. In particular, let $h(v)=2f(v)$ be the tree energy and $\Eth=\sqrt3$. If $(v_n)$ are unit vectors with $h(v_n)\to\Eth$, then $\norm{\Pi_{\le H}v_n}\to0$ for every $H\ge0$.
+\end{lemma}
+
+\begin{proof}
+The proof has three steps, parallel to those of \cref{thm:geometry-tree-ceiling}: a heightwise bound, a comparison that keeps the gap, and the sharpness construction.
+
+\paragraph{Step 1: heightwise bound.}
+In this proof, we let
+\[
+ s_j=\sqrt{B_{j-1}^2+B_{j-1}B_{j-2}+B_{j-2}^2},\qquad j\ge1.
+\]
+By \cref{lem:tree-graft-heights} with $m=3$, we have
+\[
+ \norm{\Pi_j\mathcal I(v^{\otimes3})}^2=B_{j-1}^3-B_{j-2}^3=b_{j-1}s_j^2=a_{j-1}^2s_j^2.
+\]
+As in Step 1 of the proof of \cref{thm:geometry-tree-ceiling}, using the Cauchy--Schwarz inequality at each height and the inequality $a_ja_{j-1}\le\frac12(b_j+b_{j-1})$, we have
+\[
+ |f(v)|\le S\le Y,\qquad S=\sum_{j\ge1}a_ja_{j-1}s_j,\qquad Y=\frac12\sum_{j\ge1}(b_j+b_{j-1})s_j.
+\]
+Reindexing the second half of $Y$ and using $s_1=B_0=b_0$, we have
+\[
+ Y=\frac12b_0^2+\frac12\sum_{j\ge1}b_j(s_j+s_{j+1}).
+\]
+
+\paragraph{Step 2: the comparison.}
+Note that $b_j(B_j+B_{j-1})=B_j^2-B_{j-1}^2$. As $B_j$ increases to one, the sum $\sum_{j\ge0}b_j(B_j+B_{j-1})$ telescopes to one, and we can write
+\[
+ \frac{\sqrt3}2=\frac{\sqrt3}2\,b_0^2+\frac12\sum_{j\ge1}b_j\bigl(\sqrt3B_{j-1}+\sqrt3B_j\bigr),
+\]
+and subtracting the expression for $Y$, we arrive at
+\begin{equation}\label{eq:tree-quartic-gap}
+ \frac{\sqrt3}2-Y=\frac{\sqrt3-1}2\,b_0^2
+ +\frac12\sum_{j\ge1}b_j\Bigl[\bigl(\sqrt3B_{j-1}-s_j\bigr)+\bigl(\sqrt3B_j-s_{j+1}\bigr)\Bigr].
+\end{equation}
+We have $s_j\le\sqrt3B_{j-1}$, because $B_{j-2}\le B_{j-1}$. To bound the second difference, let $X\ge X'\ge0$. Then
+\[
+ \frac{(2X+X')^2}{3}-\bigl(X^2+XX'+X'^2\bigr)=\frac{(X-X')(X+2X')}{3}\ge0.
+\]
+This implies that $\sqrt{X^2+XX'+X'^2}\le(2X+X')/\sqrt3$, and therefore
+\[
+ \sqrt3X-\sqrt{X^2+XX'+X'^2}\ge\sqrt3X-\frac{2X+X'}{\sqrt3}=\frac{X-X'}{\sqrt3}.
+\]
+Taking $X=B_j$ and $X'=B_{j-1}$, we find that $\sqrt3B_j-s_{j+1}\ge b_j/\sqrt3$, and the summand with index $j\ge1$ in \eqref{eq:tree-quartic-gap} is at least $b_j^2/(2\sqrt3)$. The first term is also at least $b_0^2/(2\sqrt3)$, because
+\[
+ \frac{\sqrt3-1}2-\frac1{2\sqrt3}=\frac{2-\sqrt3}{2\sqrt3}>0.
+\]
+We conclude that
+\[
+ \frac{\sqrt3}2-Y\ge\frac1{2\sqrt3}\sum_{j\ge0}b_j^2.
+\]
+Since $f(v)\le Y$, this yields the second inequality in \eqref{eq:tree-quartic-ceiling}. Further, $|f(v)|\le Y$ and $\sum_jb_j^2>0$ for a unit vector, which gives $|f(v)|<\sqrt3/2$. This also shows that the value $\sqrt3/2$ is not attained.
+
+\paragraph{Step 3: sharpness and finite heights.}
+Let $v^{(n)}$ be the unit vectors constructed in Step 3 of the proof of \cref{thm:geometry-tree-ceiling}, now with $m=3$, and let $\rho=(n+1)^{-1}$. Inserting $m=3$ into \eqref{eq:tree-sharp-value}, we obtain
+\[
+ f\bigl(v^{(n)}\bigr)=\sum_{j=1}^n\sqrt\rho\,\bigl\{\rho^3\bigl(j^3-(j-1)^3\bigr)\bigr\}^{1/2}
+ =\rho^2\sum_{j=1}^n\sqrt{3j^2-3j+1}.
+\]
+For $j\ge1$, we have $3(j-1)^2\le3j^2-3j+1\le3j^2$, so that
+\[
+ \frac{\sqrt3}2\cdot\frac{n(n-1)}{(n+1)^2}\le f\bigl(v^{(n)}\bigr)\le\frac{\sqrt3}2\cdot\frac{n}{n+1}.
+\]
+Both bounds tend to $\sqrt3/2$, which proves that the supremum of $f$ equals $\sqrt3/2$.
+
+Finally, since $h=2f$, the second inequality in \eqref{eq:tree-quartic-ceiling} reads $\sum_jb_j^2\le\sqrt3\{\Eth-h(v)\}$. For $H\ge0$, the Cauchy--Schwarz inequality gives
+\[
+ \norm{\Pi_{\le H}v}^2=\sum_{j=0}^Hb_j\le\Bigl((H+1)\sum_{j\ge0}b_j^2\Bigr)^{1/2}\le\bigl\{\sqrt3\,(H+1)\bigl(\Eth-h(v)\bigr)\bigr\}^{1/2},
+\]
+and the right side tends to zero along any sequence of unit vectors with $h(v_n)\to\Eth$.
+\end{proof}
+
+For later use, we restate the two ceilings in terms of the tree energy $h$ and the threshold $\Eth$.
+
+\begin{corollary}[The ceilings in terms of the tree energy]\label{cor:tree-ceiling-energy}
+Let $p\in\{3,4\}$, and let $\kappa_3=4\sqrt{2/3}$ and $\kappa_4=\sqrt3$. Every unit vector $v\in\mathcal H$ satisfies $|h(v)|<\Eth$ and
+\begin{equation}\label{eq:tree-ceiling-energy}
+ \sum_{j\ge0}\norm{\Pi_jv}^4\le\kappa_p\bigl(\Eth-h(v)\bigr),\qquad
+ \norm{\Pi_{\le H}v}^2\le\bigl\{\kappa_p(H+1)\bigl(\Eth-h(v)\bigr)\bigr\}^{1/2}\quad(H\ge0).
+\end{equation}
+The supremum of $h$ over unit vectors equals $\Eth$.
+\end{corollary}
+
+\begin{proof}
+For $p=3$, we have $h=\sqrt3f$ and $\Eth=2\sqrt{2/3}=\sqrt3F_*$, so that $F_*-f(v)=\{\Eth-h(v)\}/\sqrt3$. Then \cref{thm:geometry-tree-ceiling} implies that $|h(v)|<\Eth$ and that $\sum_jb_j^2\le(4\sqrt2/\sqrt3)\{\Eth-h(v)\}=\kappa_3\{\Eth-h(v)\}$. For $p=4$, we have $h=2f$ and $\Eth=\sqrt3$, so that $\sqrt3/2-f(v)=\{\Eth-h(v)\}/2$. Then \cref{thm:geometry-quartic-tree-ceiling} implies that $|h(v)|<\Eth$ and that $\sum_jb_j^2\le\sqrt3\{\Eth-h(v)\}=\kappa_4\{\Eth-h(v)\}$. In both cases, the second inequality in \eqref{eq:tree-ceiling-energy} follows from the first by the Cauchy--Schwarz inequality, as in the two proofs above, and the supremum statement follows from those of \cref{thm:geometry-tree-ceiling,thm:geometry-quartic-tree-ceiling}.
+\end{proof}
+
+\section{The energy ceiling for prefix centers}\label{sec:tree-input-ceiling}
+
+We now prove the first threshold input. Recall the prefix centers $M_T(a)=P_Tv_{T+a}$ of \cref{sec:selection}.
+
+\begin{proof}[Proof of part~\ref{item:threshold-ceiling} of \cref{prop:threshold-inputs} for $p\in\{3,4\}$]
+Let $T_n\to\infty$ be a sequence along which the translated kernels converge to a stationary cluster $(c,r,\ell)$ with plateau $q>0$, and fix $L\ge0$. We abbreviate $M_n=M_{T_n}(L)$. By \eqref{sel:prefix-norm}, we have $\norm{M_n}^2\to d_L=c(2L)$, and $d_L\ge q>0$ because $c$ is nonincreasing with limit $q$. Then $M_n\ne0$ for all large $n$, and $U_n=M_n/\norm{M_n}$ is a unit vector. \Cref{cor:tree-ceiling-energy} implies that $h(U_n)<\Eth$. Since $h$ is homogeneous of degree $p$, we have
+\[
+ h(M_n)=\norm{M_n}^p\,h(U_n)<\Eth\norm{M_n}^p.
+\]
+Letting $n\to\infty$ and using \eqref{sel:prefix-energy} on the left side and \eqref{sel:prefix-norm} on the right side, we obtain $h_L\le\Eth d_L^{p/2}$, which is \eqref{eq:threshold-input-ceiling}.
+\end{proof}
+
+The proof uses only the limits of \cref{sel:prefix-reflection} along the given sequence. In particular, it uses neither marginality nor convergence of the whole translated family, which \cref{sec:stationary-selection} deduces from part~\ref{item:threshold-ceiling}.
+
+\section{Threshold-saturating prefix centers}\label{sec:tree-saturated-centers}
+
+Under the hypotheses of part~\ref{item:threshold-forgetting} of \cref{prop:threshold-inputs}, the upper bound of part~\ref{item:threshold-ceiling} becomes an equality in the limit of large offsets. The next proposition states this and converts it into a bound on the mass of the centers at low heights. It is the input to the proof of part~\ref{item:threshold-forgetting} below, and we use it again in \cref{resp:chapter,sec:three-time}.
+
+Suppose that the translated kernels converge along every sequence $T\to\infty$ to one stationary profile $(c,r)$ with plateau $q$. Every stationary cluster is then of the form $(c,r,\ell)$, and \eqref{eq:plateau-multiplier} determines its multiplier as $\ell=(1-q)^{-1}+\beta^2p(1-q^{p-1})$. The quantities $d_L$ and $h_L$ in \eqref{sel:prefix-norm} and \eqref{sel:prefix-energy} then do not depend on the sequence, and the energy $e_\infty=(\ell-1)/(p\beta)$ in \eqref{sel:prefix-energy} is the limit of the energy $e_\beta(t)$; see Step 1 of the proof below.
+
+\begin{proposition}[Threshold-saturating prefix centers]
+\label{sel:threshold-centers}
+Let $p\in\{3,4\}$ and $\beta>0$. Suppose that the translated kernels converge along every sequence $T\to\infty$ to one stationary profile $(c,r)$, and that its plateau $q$ is positive and satisfies $\beta^2p(p-1)q^{p-2}(1-q)^2=1$. Let $d_L$ and $h_L$ be defined by \eqref{sel:prefix-norm} and \eqref{sel:prefix-energy} for this profile. Then
+\begin{equation}
+ \delta_L=\Eth-\frac{h_L}{d_L^{p/2}}\ge0\quad(L\ge0),
+ \qquad \lim_{L\to\infty}\delta_L=0.
+ \label{sel:center-deficit}
+\end{equation}
+Moreover, for every $L\ge0$ and every integer $H\ge0$,
+\begin{equation}
+ \limsup_{t\to\infty}
+ \norm{\Pi_{\le H}P_{t-L}v_t}^2
+ \le d_L\bigl\{\kappa_p(H+1)\delta_L\bigr\}^{1/2},
+ \label{sel:low-height-center-bound}
+\end{equation}
+where $\kappa_3=4\sqrt{2/3}$ and $\kappa_4=\sqrt3$ are the constants of \cref{cor:tree-ceiling-energy}.
+\end{proposition}
+
+The normalized prefix center approaches the threshold; the proposition makes no threshold assertion about the state $v_t$ itself.
+
+\begin{proof}
+The proof has three steps. We first show that the limits of \cref{sel:prefix-reflection} hold as $T\to\infty$ without passing to a sequence. Then we prove \eqref{sel:center-deficit} from part~\ref{item:threshold-ceiling} of \cref{prop:threshold-inputs} and the identity \eqref{sel:center-amgm}. Finally, we apply \cref{cor:tree-ceiling-energy} to normalized centers.
+
+\paragraph{Step 1: reflection along every sequence.}
+Let $T_n\to\infty$ be arbitrary. Using the precompactness in \cref{prop:stationary-clusters}, we see that every subsequence of $(T_n)$ has a further subsequence along which $(C_{T_n},R_{T_n},\lambda_{T_n})$ converges to a stationary cluster. By hypothesis, this cluster is $(c,r,\ell)$, with the multiplier $\ell$ given above. Along the further subsequence, \cref{sel:prefix-reflection} gives the limits \eqref{sel:prefix-norm} and \eqref{sel:prefix-energy}, with values $d_L$ and $h_L$ that do not depend on the subsequence, and $\lambda(T_n)\to\ell$. Since every subsequence has a further subsequence with the same limits, the whole sequence has them. As $(T_n)$ was arbitrary, we conclude that, for every $L\ge0$,
+\begin{equation}\label{eq:tree-reflection-all-times}
+ \lim_{T\to\infty}\norm{M_T(L)}^2=d_L,\qquad \lim_{T\to\infty}h\bigl(M_T(L)\bigr)=h_L,
+\end{equation}
+and that $\lambda(T)\to\ell$, so that $e_\beta(T)\to e_\infty$ by \eqref{eq:energy-identity}.
+
+\paragraph{Step 2: the deficits.}
+Recall that $c$ is nonincreasing with limit $q>0$. Then $d_L\ge q>0$, and $\delta_L$ is well defined. By part~\ref{item:threshold-ceiling} of \cref{prop:threshold-inputs}, proved in \cref{sec:tree-input-ceiling}, we have $h_L\le\Eth d_L^{p/2}$, that is, $\delta_L\ge0$. To prove that $\delta_L\to0$, recall from \cref{lem:center-energy} that $d_L\to q$ and $h_L\to h$ as $L\to\infty$, where $h$ is given by \eqref{sel:limiting-center-energy}, and that
+\[
+ \frac h{q^{p/2}}=\sqrt{\frac{p-1}p}\Bigl(z+\frac1z\Bigr),\qquad z=\beta\sqrt{p(p-1)}\,q^{(p-2)/2}(1-q),
+\]
+by \eqref{sel:center-amgm}. The hypothesis $\beta^2p(p-1)q^{p-2}(1-q)^2=1$ says that $z^2=1$. Since $z>0$, we obtain $z=1$ and $h/q^{p/2}=2\sqrt{(p-1)/p}=\Eth$. We conclude that
+\[
+ \lim_{L\to\infty}\frac{h_L}{d_L^{p/2}}=\frac h{q^{p/2}}=\Eth,
+\]
+which proves \eqref{sel:center-deficit}.
+
+\paragraph{Step 3: the mass at low heights.}
+Fix $L\ge0$ and $H\ge0$. By \eqref{eq:tree-reflection-all-times}, we have $\norm{M_T(L)}^2\to d_L>0$, and in particular $M_T(L)\ne0$ for all large $T$. We let $U_T=M_T(L)/\norm{M_T(L)}$. Using the homogeneity of $h$ and \eqref{eq:tree-reflection-all-times}, we find that
+\[
+ h(U_T)=\frac{h(M_T(L))}{\norm{M_T(L)}^p}\longrightarrow\frac{h_L}{d_L^{p/2}}=\Eth-\delta_L\qquad(T\to\infty).
+\]
+By \cref{cor:tree-ceiling-energy}, we have $\norm{\Pi_{\le H}U_T}^2\le\{\kappa_p(H+1)(\Eth-h(U_T))\}^{1/2}$, and therefore
+\[
+ \limsup_{T\to\infty}\norm{\Pi_{\le H}U_T}^2\le\bigl\{\kappa_p(H+1)\delta_L\bigr\}^{1/2}.
+\]
+Since $\norm{\Pi_{\le H}M_T(L)}^2=\norm{M_T(L)}^2\norm{\Pi_{\le H}U_T}^2$ and $\norm{M_T(L)}^2\to d_L$, we see that
+\[
+ \limsup_{T\to\infty}\norm{\Pi_{\le H}M_T(L)}^2\le d_L\bigl\{\kappa_p(H+1)\delta_L\bigr\}^{1/2}.
+\]
+Setting $T=t-L$, we have $M_{t-L}(L)=P_{t-L}v_t$, and $t\to\infty$ if and only if $T\to\infty$. This proves \eqref{sel:low-height-center-bound}.
+\end{proof}
+
+\section{Forgetting at marginal saturation}\label{sec:tree-input-forgetting}
+
+We now prove the second threshold input. When $s\le t-L$, a fixed earlier state $v_s$ lies in the range of $P_{t-L}$, and its overlap with the late state $v_t$ equals its overlap with the prefix center $P_{t-L}v_t$. \Cref{sel:threshold-centers} shows that the center has almost no mass at low heights once $L$ is large, while the earlier states $v_s$, $s\le S$, have almost all their mass at bounded heights. The overlap is therefore small.
+
+\begin{proof}[Proof of part~\ref{item:threshold-forgetting} of \cref{prop:threshold-inputs} for $p\in\{3,4\}$]
+Suppose that the hypotheses of part~\ref{item:threshold-forgetting} hold, and fix $0\le S<\infty$. The proof uses three parameters: the offset $L\ge0$, the height cutoff $H\ge0$, and the time $t$. We first let $t\to\infty$ with $L$ and $H$ fixed, then let $L\to\infty$, and finally let $H\to\infty$.
+
+Let $L,H\ge0$, let $t\ge S+L$, and let $0\le s\le S$. Then $s\le t-L$, and $v_s\in\mathcal H_s\subset\mathcal H_{t-L}$ by \cref{prop:geometry-tree-realization}, that is, $P_{t-L}v_s=v_s$. As $P_{t-L}$ is an orthogonal projection, we have
+\[
+ C(t,s)=\ip{v_t}{v_s}=\ip{v_t}{P_{t-L}v_s}=\ip{P_{t-L}v_t}{v_s}.
+\]
+We split $v_s=\Pi_{\le H}v_s+(\Id-\Pi_{\le H})v_s$ and move the first projection to the other side of the inner product. Using $\norm{v_s}=1$ and $\norm{P_{t-L}v_t}\le1$, we find
+\begin{equation}\label{eq:tree-forgetting-split}
+ |C(t,s)|\le\norm{\Pi_{\le H}P_{t-L}v_t}+\norm{(\Id-\Pi_{\le H})v_s}.
+\end{equation}
+
+We first show that the second term is small uniformly in $s\le S$. Let
+\[
+ \varepsilon_H=\sup_{0\le s\le S}\norm{(\Id-\Pi_{\le H})v_s}.
+\]
+The map $s\mapsto v_s$ is norm-continuous by \cref{prop:geometry-tree-realization}, and the set $\{v_s:0\le s\le S\}$ is compact. Recall that $\sum_j\Pi_j=\Id$ strongly, which means that $(\Id-\Pi_{\le H})x\to0$ as $H\to\infty$ for every $x\in\mathcal H$. Let $\varepsilon>0$. There exist $s_1,\dots,s_k\in[0,S]$ such that every $v_s$ with $s\le S$ lies within $\varepsilon$ of some $v_{s_i}$, and there exists $H_0$ such that $\norm{(\Id-\Pi_{\le H})v_{s_i}}<\varepsilon$ for all $i$ and $H\ge H_0$. Since $\Id-\Pi_{\le H}$ is a contraction, this implies $\norm{(\Id-\Pi_{\le H})v_s}<2\varepsilon$ for all $s\le S$ and $H\ge H_0$. As $\varepsilon$ is arbitrary, we have shown that $\varepsilon_H\to0$ as $H\to\infty$.
+
+We now take the limits in the stated order. Taking the supremum over $s\le S$ in \eqref{eq:tree-forgetting-split} and letting $t\to\infty$, we obtain from \eqref{sel:low-height-center-bound} that
+\[
+ \limsup_{t\to\infty}\sup_{0\le s\le S}|C(t,s)|
+ \le d_L^{1/2}\bigl\{\kappa_p(H+1)\delta_L\bigr\}^{1/4}+\varepsilon_H.
+\]
+The left side depends on neither $L$ nor $H$. We let $L\to\infty$ with $H$ fixed. Since $d_L\le1$ and $\delta_L\to0$ by \eqref{sel:center-deficit}, the first term on the right tends to zero. Then we let $H\to\infty$, and $\varepsilon_H\to0$. We conclude that $\lim_{t\to\infty}\sup_{0\le s\le S}|C(t,s)|=0$, which is \eqref{eq:threshold-input-forgetting}.
+\end{proof}
+
+This completes the proof of \cref{prop:threshold-inputs} for $p\in\{3,4\}$.

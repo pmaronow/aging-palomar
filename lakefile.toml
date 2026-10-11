@@ -1,0 +1,39 @@
+name = "spherical-aging"
+version = "0.1.0"
+defaultTargets = ["SphericalAging"]
+
+[leanOptions]
+autoImplicit = false
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "065356127b1dc0016f66b7283ce0ce2c4055aa55"
+
+[[lean_lib]]
+name = "SphericalAging"
+
+[[lean_lib]]
+name = "AbsorptionCutoff"
+
+[[lean_lib]]
+name = "BrownianMotion"
+srcDir = "vendor/hard-sphere-foundations/src"
+
+[[lean_lib]]
+name = "FourPapersCommon"
+srcDir = "vendor/hard-sphere-foundations/src"
+
+[[lean_lib]]
+name = "KolmogorovExtension4"
+srcDir = "vendor/hard-sphere-foundations/src"
+
+[[lean_lib]]
+name = "StochasticCalculus"
+srcDir = "vendor/hard-sphere-foundations/src"
+
+[[lean_lib]]
+name = "Challenge"
+
+[[lean_lib]]
+name = "Solution"

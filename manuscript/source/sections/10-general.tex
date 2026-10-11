@@ -1,0 +1,1667 @@
+\chapter{The threshold inputs for general pure models}\label{app:general-selection}
+
+In this section, we prove \cref{prop:threshold-inputs} for every $p\ge3$.
+For $p\in\{3,4\}$, \cref{sec:tree-ceilings} proves both parts of that
+proposition by a deterministic inequality for tree vectors. The argument
+given here does not use the tree ceilings and works for every pure model.
+Part~\ref{item:threshold-ceiling} of \cref{prop:threshold-inputs} is the
+input to the proof of marginality in \cref{sel:positive-marginality}, and
+part~\ref{item:threshold-forgetting} is the input to the proof of forgetting
+in \cref{sel:fixed-wait-forgetting}. The finite forks of \cref{sec:general-forks}, the overlap penalty of
+\cref{sel:absolute-field-cost}, and the saturation identity
+\eqref{sel:fork-saturation} are used again in \cref{resp:appendix-p}, where
+we extend the localization of the response to every $p\ge3$.
+
+We use the landscape bounds of \cref{lem:landscape-moments}, the fixed-horizon bridge of \cref{prop:hard-bridge}, and the Brownian form of the
+averaged response in \cref{lem:brown-force-response}. From
+\cref{sec:ck-structure}, we use the energy identity of \cref{prop:energy-bridge} and the bound
+\eqref{eq:finite-lag-flow-moments} on the moments of the response, proved there. From
+\cref{sec:entropy-clusters}, we use the entropy budget of
+\cref{lem:entropy-budget}, the integration by parts formula
+\eqref{eq:gibbs-current-integration-by-parts}, the Fisher majorant of
+\cref{thm:fisher-clock}, and the stationary clusters of
+\cref{prop:stationary-clusters}. We also use the formulas
+\eqref{sel:prefix-norm} and \eqref{sel:prefix-energy} for $d_L$ and $h_L$.
+The proof of part~\ref{item:threshold-forgetting} uses, in addition, the
+identities \eqref{sel:limiting-center-energy} and \eqref{sel:center-amgm}
+and the correlation modulus \eqref{eq:global-modulus}.
+
+\paragraph{Ideas of the proof.}
+We obtain the energy ceiling in part~\ref{item:threshold-ceiling} from the
+algorithmic threshold of Huang and Sellke. At a late time $T$, we continue
+the trajectory by $K$ independent Brownian futures of length $L$, which we
+call a fork, and average their endpoints. The current identity of
+\cref{sec:entropy-clusters} shows that two branches of the fork have
+overlap close to $c(a+d)$, where $a$ and $d$ are their lengths. We compute
+the energy of the average exactly by Gaussian integration by parts.
+Subtracting the energy of a single branch removes the common past in the
+dimension limit. Using the hard--soft approximation of Sellke, we approximate the average by
+a function of the disorder that is Lipschitz with a constant independent of
+the dimension. The algorithmic threshold then bounds its energy. Letting
+$K\to\infty$, we obtain part~\ref{item:threshold-ceiling}.
+
+For part~\ref{item:threshold-forgetting}, we add a deterministic field to
+the threshold. By convex duality, the field version of the threshold
+penalizes the overlap of a near-threshold algorithm with any direction
+that is independent of the disorder. However, at positive times, an earlier state $X_s$ depends on the disorder. We therefore disclose the disorder in stages,
+along a finite sequence of gradient queries, and apply the penalty to one
+new direction at each stage. An Euler--Maruyama approximation places $X_s$
+close to the span
+of finitely many such queries. Under marginality, the normalized average of
+a fork saturates the threshold, and the penalty forces its overlap with
+$X_s$ to vanish. Up to normalization, this overlap is $C(t,s)$.
+
+\paragraph{Attribution.}
+The algorithmic threshold is \cite[Theorem~1 and Corollary~1.8]{hs2023};
+for even $p$ it was proved earlier in \cite{hs2021}. In
+\cite[Section~3]{sellke2024}, Sellke combined it with a Lipschitz
+approximation of Langevin dynamics on a fixed time interval to show that
+the energy of the dynamics stays below the threshold. We follow that
+argument in \cref{sec:general-forks}. Trajectories with a common past and
+independent future noise are a standard construction in the physics of
+aging. Cugliandolo and Dean considered replicas that share their noise up
+to a waiting time and receive independent noise afterward in
+\cite[arXiv version~1, Section~II]{cugliandolodean1995}. Barrat, Burioni, and M\'ezard classified aging through the overlaps of such copies in
+\cite[Sections~2 and~4]{bbm1996}. Franz and Virasoro
+proposed averaging cloned futures to estimate a quasi-state magnetization in
+\cite[arXiv version~3, Section~III]{franzvirasoro2000}, and noise-averaged
+magnetizations are central to Biroli's dynamical TAP approach in
+\cite[arXiv version~2, Section~III.B]{biroli1999}. Here we prove the overlap and energy identities of the forks from the
+current identity of \cref{sec:entropy-clusters} and from Gaussian
+integration by parts. The
+disclosure argument of \cref{sec:general-disclosure} is a Gaussian
+conditioning argument; we credit its antecedents there.
+
+\paragraph{Order of limits.}
+Every horizon, number of branches, field strength, approximation accuracy,
+and Lipschitz constant below is fixed while the dimension tends to
+infinity, and we take the long-time and outer limits only afterward.
+We take dimension limits along the subsequence $(N_j)$ of
+\cref{thm:fisher-clock}, and we often write $N\to\infty$ for $N=N_j$,
+$j\to\infty$. The parameters and their order are as follows:
+\begin{equation}\label{sel:aging-limit-order}
+ N_j\to\infty,\qquad n\to\infty,\qquad \varepsilon\downarrow0,\qquad
+ K\to\infty,\qquad L\to\infty,\qquad M\to\infty.
+\end{equation}
+Here $n$ indexes a sequence of late times ($T_n$ in
+\cref{sec:general-forks} and $t_n$ in \cref{sec:general-transfer}),
+$\varepsilon$ is the accuracy of the Lipschitz approximation in
+\cref{sel:finite-forks}, $K$ is the number of branches of a fork, $L$ is
+their length, and $M$ is the number of steps of the Euler--Maruyama scheme of
+the proof of \cref{sel:general-fixed-wait}. Each parameter is fixed while the limits to its
+left are taken. Part~\ref{item:threshold-ceiling} uses only the first four
+limits, at a fixed $L$; part~\ref{item:threshold-forgetting} uses all six.
+For the forgetting proof, it suffices to take the approximation accuracies
+$\varepsilon=1/(m+1)$, $m\in\mathbb N$, so $\varepsilon\downarrow0$ there
+means $m\to\infty$.
+We remove the tolerance and the field strengths of the threshold theorem
+inside the proof of \cref{sel:absolute-field-cost}, after the dimension
+limit at fixed values of all other parameters. Constants of the Lipschitz
+maps may depend on every fixed parameter, and they are used only before the
+limits in which that parameter varies.
+
+\section{The algorithmic threshold and its overlap penalty}
+\label{sec:general-field-threshold}
+
+Throughout this section, $\norm{\cdot}$ is the Euclidean norm,
+\[
+ B_N=\{x\in\R^N:\norm x\le\sqrt N\},
+\]
+and $\Pi_{B_N}$ is the metric projection onto $B_N$, which is $1$-Lipschitz.
+The coefficient tensor $J$ of \eqref{eq:hamiltonian} lies in the
+$N^p$-dimensional space $(\R^N)^{\otimes p}$, with its Euclidean norm, and
+has the standard Gaussian law there. More explicitly, we keep the ordered
+coefficients and use the Hilbert norm
+\[
+ \norm J_{\mathrm{coef}}^2
+ =\sum_{i_1,\dots,i_p=1}^N J_{i_1\dots i_p}^2 .
+\]
+This norm is not rescaled with the dimension. When the dependence on $J$ matters, we
+write $H_{N,J}$ for $H_N$. An algorithm is a measurable map
+$\mathcal A_N=\mathcal A_N(J,\zeta)$ with values in $B_N$, where the seed
+$\zeta$ is a random variable independent of $J$ (possibly absent). For
+$0\le L_{\mathrm{Lip}}<\infty$, we say that $\mathcal A_N$ is $L_{\mathrm{Lip}}$-Lipschitz if, for
+almost every value of $\zeta$,
+\[
+ \norm{\mathcal A_N(J,\zeta)-\mathcal A_N(J',\zeta)}\le L_{\mathrm{Lip}}\norm{J-J'}_{\mathrm{coef}}
+ \qquad\text{for all }J,J'\in(\R^N)^{\otimes p}.
+\]
+The constant $L_{\mathrm{Lip}}$ is deterministic and does not depend on $N$ or on the
+seed.
+
+Recall the tensor norm $Q_N$ of \eqref{eq:tensor-norm} and the constants
+$A_p,c_p>0$ of \cref{lem:landscape-moments}, for which
+$\Prob(Q_N>A_p)\le e^{-c_pN}$. We write
+\[
+ Q_*=\sup_N(\E Q_N^2)^{1/2},
+\]
+which is finite by \cref{lem:landscape-moments}. By the definition of
+$Q_N$, a contraction of $J$ against vectors $u_1,\dots,u_p$ is at most
+$\sqrt N\,Q_N\norm{u_1}\cdots\norm{u_p}$ in absolute value. A derivative of
+order $k\le2$ of $H_N$ at $x$, applied to $k$ vectors, is
+$N^{-(p-1)/2}$ times a sum of $p(p-1)\cdots(p-k+1)$ such contractions in
+which $p-k$ slots equal $x$. For $R\ge1$ and $\norm x\le R\sqrt N$, this
+implies that
+\begin{equation}\label{eq:general-ball-derivatives}
+\begin{gathered}
+ \frac{|H_N(x)|}N\le R^pQ_N,\qquad
+ \norm{\nabla H_N(x)}\le pR^{p-1}Q_N\sqrt N,\\
+ \norm{\nabla^2H_N(x)}_\op\le p(p-1)R^{p-2}Q_N.
+\end{gathered}
+\end{equation}
+For $R=1$, the first two bounds read
+\begin{equation}\label{sel:tensor-ui}
+ \sup_{x\in B_N}\frac{|H_N(x)|}N\le Q_N,\qquad
+ \sup_{x\in B_N}\norm{\nabla H_N(x)}\le pQ_N\sqrt N.
+\end{equation}
+In particular, the normalized energy of any algorithm is bounded by $Q_N$,
+whose moments are bounded uniformly in $N$. Now let $x$ and $y$ be random
+vectors of norm at most $R\sqrt N$. The segment between them lies in the
+same ball. Using the mean value theorem, \eqref{eq:general-ball-derivatives},
+and the Cauchy--Schwarz inequality, we find
+\begin{equation}\label{eq:general-energy-transfer}
+ \frac{\E|H_N(x)-H_N(y)|}N
+ \le pR^{p-1}Q_*\left(\E\frac{\norm{x-y}^2}N\right)^{1/2}.
+\end{equation}
+
+For $\kappa\ge0$, let $q_1(\kappa)=(\kappa^2/(p(p-2)))^{1/(p-1)}$, and
+define
+\begin{equation}\label{eq:alg-field}
+ \ALG_p(\kappa)=
+ \begin{cases}
+ \Eth+\dfrac{p-2}{p}\sqrt{p(p-1)}\,q_1(\kappa)^{p/2},
+   &\kappa^2\le p(p-2),\\[3mm]
+ \sqrt{p+\kappa^2},&\kappa^2\ge p(p-2).
+ \end{cases}
+\end{equation}
+In terms of $\kappa$, the first line equals
+$\Eth+\gamma_p\kappa^{p/(p-1)}$ with
+$\gamma_p=((p-2)/p)\sqrt{p(p-1)}\,[p(p-2)]^{-p/(2(p-1))}$.
+
+\begin{theorem}[External-field Lipschitz threshold of Huang and Sellke]
+\label{sel:published-field-threshold}
+Fix an integer $p\ge3$, $0\le L_{\mathrm{Lip}}<\infty$, $\kappa\ge0$, and $\eta>0$. There exist $c>0$
+and $N_0$, depending only on $p$, $L_{\mathrm{Lip}}$, $\kappa$, and $\eta$, such that
+the following holds for every $N\ge N_0$. Let $w\in\R^N$ be deterministic
+with $\norm w=\sqrt N$, and let $\mathcal A_N:(\R^N)^{\otimes p}\to B_N$ be
+$L_{\mathrm{Lip}}$-Lipschitz. Then
+\begin{equation}\label{sel:field-threshold}
+ \Prob\left(\frac{H_N(\mathcal A_N(J))+\kappa\ip{w}{\mathcal A_N(J)}}N
+ \ge\ALG_p(\kappa)+\eta\right)\le e^{-cN}.
+\end{equation}
+\end{theorem}
+
+\Cref{sel:published-field-threshold} is the case of one species and
+$\xi(q)=q^p$ of \cite[Theorem~1 and Corollary~1.8]{hs2023}. We now check
+that our setting satisfies the hypotheses there.
+In \cite{hs2023}, the Hamiltonian is $\ip{h}{\sigma}$ plus a Gaussian part
+on the ball of radius $\sqrt N$, the field is $h$ times the all-ones vector
+$\mathbf 1$ with $h\ge0$, and an algorithm is a function of the disorder
+coefficients, concatenated into one vector with the Euclidean distance.
+Theorem~1 there states that, for fixed $\tau,\eta>0$ and $N$ large, every
+$\tau$-Lipschitz algorithm reaches energy at least $\ALG+\eta$ with
+probability at most $e^{-cN}$, with $c$ and the threshold for $N$ depending
+on $\tau$, $\eta$, the covariance, and the field only. For one species with
+$\xi(q)=q^p$, the Gaussian part is exactly $H_N$ of \eqref{eq:hamiltonian},
+whose ordered coefficients are independent standard Gaussians; we take
+$h=\kappa$. Our algorithms are functions of $J$ alone, the field being
+deterministic. Corollary~1.8 of \cite{hs2023}, which covers odd and even
+$p$, states that $\ALG=(\xi'(1)+\kappa^2)^{1/2}$ if
+$\xi'(1)+\kappa^2\ge\xi''(1)$, and otherwise
+\[
+ \ALG=q_1\,\xi''(q_1)^{1/2}+\int_{q_1}^1\xi''(q)^{1/2}\,\dd q,
+\]
+where $q_1\in[0,1)$ solves $\xi'(q_1)+\kappa^2=q_1\xi''(q_1)$. For
+$\xi(q)=q^p$, the first condition reads $\kappa^2\ge p(p-2)$, the equation
+for $q_1$ reads $\kappa^2=p(p-2)q_1^{p-1}$, and
+\[
+\begin{aligned}
+ q_1\xi''(q_1)^{1/2}+\int_{q_1}^1\xi''(q)^{1/2}\,\dd q
+ &=\sqrt{p(p-1)}\left(q_1^{p/2}+\frac2p\big(1-q_1^{p/2}\big)\right)\\
+ &=\Eth+\frac{p-2}p\sqrt{p(p-1)}\,q_1^{p/2},
+\end{aligned}
+\]
+where we used $2\sqrt{p(p-1)}/p=\Eth$. This is \eqref{eq:alg-field}. At
+$\kappa^2=p(p-2)$, we have $q_1=1$ and both lines of \eqref{eq:alg-field}
+equal $\sqrt{p(p-1)}$.
+
+It remains to replace $\mathbf 1$ by an arbitrary direction $w$. Let $O$ be
+an orthogonal matrix such that $O\mathbf 1=w$. The map $J\mapsto O^{\otimes p}J$ is
+a linear isometry of $(\R^N)^{\otimes p}$ that preserves the standard
+Gaussian law, and $H_{N,O^{\otimes p}J}(Ox)=H_{N,J}(x)$ for all $x$. Given
+$\mathcal A_N$, the map $\mathcal A'_N(J)=O^{\mathsf T}\mathcal A_N(O^{\otimes p}J)$
+is $L_{\mathrm{Lip}}$-Lipschitz with values in $B_N$, and, with $J'=O^{\otimes p}J$,
+\[
+ H_{N,J}(\mathcal A'_N(J))+\kappa\ip{\mathbf 1}{\mathcal A'_N(J)}
+ =H_{N,J'}(\mathcal A_N(J'))+\kappa\ip{w}{\mathcal A_N(J')}.
+\]
+The tensor $J'$ has the law of $J$, and \cite[Theorem~1]{hs2023} applied to
+$\mathcal A'_N$ gives \eqref{sel:field-threshold}, with constants that do
+not depend on $w$ or on $\mathcal A_N$. For $\kappa=0$, we have
+$\ALG_p(0)=\Eth$, and \cref{sel:published-field-threshold} is the
+pure-model threshold, recorded in this form in
+\cite[Proposition~1.9]{sellke2024}.
+
+In this argument, we may always use the larger positive bound
+$L_{\mathrm{Lip}}+1$. This includes
+$L_{\mathrm{Lip}}=0$ and gives the same uniform choice of $c$ and $N_0$
+for every algorithm with the prescribed original bound. We need no separate
+measurability assumption on a deterministic algorithm, since Lipschitz maps
+are continuous.
+
+\paragraph{Constructive finite-tree qualifications.}
+The branching proof of the threshold uses finite trees whose depth and
+branching degrees are fixed before the dimension tends to infinity. Two
+auxiliary statements in \cite[Appendix~A]{hs2023} require qualifications
+in a constructive version. In Lemma~A.8, if the absolute values of the leaf
+energies are bounded by $C>0$ and the depth is $D\ge1$, the retained branching
+degree $\lfloor K\varepsilon/(3CD)\rfloor$ is obtained in the range
+$0<\varepsilon\le CD$, and $K$ is then taken large enough to make this
+degree positive. This is the range used when $\varepsilon\downarrow0$;
+an unrestricted error can make the displayed degree exceed $K$.
+
+For the base-preserving fork correction of Lemma~A.9, we impose $k<N$
+when $k$ orthogonal increments are retained. After dividing
+the vertices by $\sqrt N$, suppose that the base $x$ has squared norm
+$q\ge q_0>0$, the target increment has squared norm $q'\ge0$, and the
+approximate increments $y_1,\dots,y_k$ satisfy, for $\varepsilon\ge0$,
+\[
+ |\norm{y_i}^2-q'|\le\varepsilon,\qquad
+ |\ip x{y_i}|\le\varepsilon,\qquad
+ |\ip{y_i}{y_j}|\le\varepsilon\quad(i\ne j).
+\]
+Under the sufficient small-error conditions
+$\sqrt\varepsilon\le q_0$ and $4(k+1)\sqrt\varepsilon\le1$, the base can
+be kept exactly and the increments corrected to mutually orthogonal
+vectors $z_i\perp x$ with $\norm{z_i}^2=q'$ and
+$\norm{z_i-y_i}\le e_k(\varepsilon)$, where
+\[
+ e_k(\varepsilon)
+ =(4\sqrt{k+1}+1)\sqrt\varepsilon
+   +2\sqrt{\sqrt\varepsilon}.
+\]
+This bound permits $q'=0$ and tends to zero for fixed $k$ as
+$\varepsilon\downarrow0$. It supplies a vanishing modulus, independent of the dimension, in place of
+the piecewise numerical modulus printed in that lemma.
+
+We handle a schedule with zero initial overlap before this correction.
+For fixed $\delta\in(0,1)$, we scale the normalized vertices, which have norm
+at most one, by $\sqrt{1-\delta}$ and add a common orthogonal vector of norm
+$\sqrt\delta$. The new schedule of target overlaps is
+$q_i^{(\delta)}=(1-\delta)q_i+\delta$, so its root is at least $\delta$;
+the terminal vectors change by at most $2\sqrt\delta$. We choose the dimension larger than the number of vertices of the retained
+finite tree, as well as its branching degree, so that the common orthogonal
+direction and all fork corrections exist. For fixed depth and retained
+branching, the accumulated correction tends to zero, and $\delta$ can be
+removed afterward. Repeated overlap levels are allowed: their target
+increments have norm zero.
+
+In the algorithmic application, we can retain a fixed deterministic set of children, because the success event imposes the desired energy bound
+at every original terminal leaf. Internal vertices are first obtained
+from averages of the original terminal outputs. Restricting the independent Gaussian increments of the tree to this fixed
+set preserves their joint law. We therefore need no distributional assertion
+about an adaptively selected subtree. The depths, branching degrees, error
+tolerances, and dimension cutoffs are chosen before the algorithm and the
+deterministic field direction. The calibrated overlap schedule may depend on the algorithm,
+since the finite-tree ceiling is uniform over all admissible schedules.
+This is the uniformity asserted in \cref{sel:published-field-threshold}.
+
+The field version of the threshold penalizes the overlap of an algorithm
+with a direction independent of $J$. To state the penalty, recall
+$\qd=(p-2)/(p-1)$ and $\bd^2=(p-1)^{p-1}/(p(p-2)^{p-2})$. The constant $\bd$
+is the dynamical transition point, and it enters here only as the
+coefficient of the penalty. The inverse temperature $\beta$ of the dynamics
+plays no role in \cref{sel:published-field-threshold,sel:absolute-field-cost}.
+
+\begin{lemma}[Absolute-overlap energy cost]\label{sel:absolute-field-cost}
+Fix an integer $p\ge3$ and $0\le L_{\mathrm{Lip}}<\infty$. There exist
+finite real numbers $\phi_N=\phi_N(p,L_{\mathrm{Lip}})\ge0$, for every $N\ge1$,
+with $\phi_N\to0$ as $N\to\infty$
+such that the following holds. Let $\zeta$ be a random variable independent of $J$, let
+$w=w(\zeta)\in\R^N$ satisfy $\norm w=\sqrt N$, let $\mathcal A_N$ be an
+$L_{\mathrm{Lip}}$-Lipschitz algorithm with seed $\zeta$, and set
+$a_N=\ip{w}{\mathcal A_N}/N$. Then, almost surely,
+\begin{equation}\label{eq:conditional-field-cost}
+ \E\left[\frac{H_N(\mathcal A_N)}N+\bd|a_N|^p\,\middle|\,\zeta\right]
+ \le\Eth+\phi_N.
+\end{equation}
+In particular,
+\begin{equation}\label{sel:absolute-field-cost-equation}
+ \limsup_{N\to\infty}
+ \left\{\E\frac{H_N(\mathcal A_N)}N+\bd\,\E|a_N|^p\right\}\le\Eth.
+\end{equation}
+\end{lemma}
+
+The lemma makes no assumption on the concentration of $a_N$, and the seed
+may be absent, in which case $w$ is deterministic.
+
+\begin{proof}
+The proof has three steps. We first compute the best ceiling that the field
+thresholds give for a given overlap, then we use finitely many fields at
+once, and finally we refine the set of fields after the dimension limit.
+
+\paragraph{Step 1: the conjugate ceiling.}
+For $0\le a\le1$, we define
+\[
+ \mathcal E_p(a)=\inf_{\kappa\ge0}\{\ALG_p(\kappa)-\kappa a\}.
+\]
+We claim that
+\begin{equation}\label{eq:conjugate-ceiling}
+ \mathcal E_p(a)=
+ \begin{cases}
+ \Eth-\bd a^p,&0\le a\le\sqrt{\qd},\\
+ \sqrt{p(1-a^2)},&\sqrt{\qd}\le a\le1,
+ \end{cases}
+ \qquad\text{and}\qquad
+ \Eth-\mathcal E_p(a)\ge\bd a^p\quad(0\le a\le1).
+\end{equation}
+The function $\ALG_p$ is convex on $[0,\infty)$, since $\kappa^{p/(p-1)}$ and
+$\sqrt{p+\kappa^2}$ are convex. It is also continuously differentiable. Indeed, let $\kappa_*=\sqrt{p(p-2)}$. On $[0,\kappa_*]$, its derivative
+is $p(p-1)^{-1}\gamma_p\kappa^{1/(p-1)}$, which increases from $0$ to
+\[
+ \frac p{p-1}\gamma_p\kappa_*^{1/(p-1)}
+ =\frac{p-2}{p-1}\sqrt{\frac{p(p-1)}{p(p-2)}}=\sqrt{\qd}.
+\]
+On $[\kappa_*,\infty)$, its derivative is $\kappa/\sqrt{p+\kappa^2}$,
+which increases from $\sqrt{\qd}$ to $1$. By convexity, for $0\le a<1$ the
+infimum defining $\mathcal E_p(a)$ is attained where $\ALG_p'(\kappa)=a$.
+
+If $a\le\sqrt{\qd}$, this point is
+$\kappa=((p-1)a/(p\gamma_p))^{p-1}$. At this point, we have $\gamma_p\kappa^{1/(p-1)}=(p-1)a/p$, and therefore
+\[
+ \mathcal E_p(a)=\Eth+\kappa\big(\gamma_p\kappa^{1/(p-1)}-a\big)
+ =\Eth-\frac{\kappa a}p
+ =\Eth-\frac1p\left(\frac{p-1}{p\gamma_p}\right)^{p-1}a^p.
+\]
+Inserting the value of $\gamma_p$, we have
+\[
+\begin{aligned}
+ \left(\frac{p-1}{p\gamma_p}\right)^{p-1}
+ &=\left(\frac{p-1}{p-2}\right)^{p-1}\big(p(p-1)\big)^{-(p-1)/2}
+  \big(p(p-2)\big)^{p/2}\\
+ &=p^{1/2}(p-1)^{(p-1)/2}(p-2)^{-(p-2)/2},
+\end{aligned}
+\]
+and dividing by $p$, we find that the coefficient of $a^p$ is
+$((p-1)^{p-1}/(p(p-2)^{p-2}))^{1/2}=\bd$.
+
+If $\sqrt{\qd}\le a<1$, the point is $\kappa=\sqrt p\,a/\sqrt{1-a^2}$, and
+\[
+ \mathcal E_p(a)=\sqrt{\frac p{1-a^2}}-\frac{\sqrt p\,a^2}{\sqrt{1-a^2}}
+ =\sqrt{p(1-a^2)}.
+\]
+At $a=1$, we have $\mathcal E_p(1)=0$, because the function
+$\sqrt{p+\kappa^2}-\kappa$ decreases to $0$ as $\kappa\to\infty$. The two formulas agree at
+$a=\sqrt{\qd}$, where both equal $\sqrt{p/(p-1)}$. This proves the first
+part of \eqref{eq:conjugate-ceiling}, and shows that $\mathcal E_p$ is
+continuous on $[0,1]$.
+
+Let $D_p(a)=\Eth-\mathcal E_p(a)$. For $a\le\sqrt{\qd}$, we have
+$D_p(a)=\bd a^p$. For $\sqrt{\qd}<a<1$, we have
+$D_p'(a)=\sqrt p\,a/\sqrt{1-a^2}$. The function $a^{p-2}\sqrt{1-a^2}$ on
+$[0,1]$ is maximal at $a^2=\qd$, where it equals
+\[
+ \qd^{(p-2)/2}(1-\qd)^{1/2}=(p-2)^{(p-2)/2}(p-1)^{-(p-1)/2}
+ =\frac{1}{\sqrt p\,\bd}.
+\]
+Since $D_p'(a)/(p\bd a^{p-1})=(\sqrt p\,\bd\,a^{p-2}\sqrt{1-a^2})^{-1}$, we conclude that $D_p'(a)\ge p\bd a^{p-1}$ on $(\sqrt{\qd},1)$. Integrating this
+inequality from $\sqrt{\qd}$, where $D_p(\sqrt{\qd})=\bd\qd^{p/2}$, and
+using the continuity of $D_p$ at $a=1$, we find that $D_p(a)\ge\bd a^p$ on
+$[\sqrt{\qd},1]$. This proves \eqref{eq:conjugate-ceiling}.
+
+\paragraph{Step 2: finitely many fields.}
+Fix a finite set $\mathcal G\subset[0,\infty)$ with $0\in\mathcal G$, and
+$\eta>0$. We define
+\[
+ V_{\mathcal G}(a)=\min_{\kappa\in\mathcal G}\{\ALG_p(\kappa)-\kappa a\},
+ \qquad 0\le a\le1.
+\]
+Note that $|V_{\mathcal G}|\le M_{\mathcal G}$, where
+$M_{\mathcal G}=\Eth+\max\mathcal G$, because $0\in\mathcal G$ and
+$\ALG_p\ge0$. We condition on $\zeta$. Then $w$ is
+fixed, $J$ is standard Gaussian, and $J\mapsto\mathcal A_N(J,\zeta)$ is
+$L_{\mathrm{Lip}}$-Lipschitz. For each $\kappa\in\mathcal G$, we use
+\cref{sel:published-field-threshold} with the field strength $\kappa$ and the
+directions $w$ and $-w$. Let $c(\mathcal G,\eta)>0$ and $N_0(\mathcal G,\eta)$
+be the smallest constant and the largest threshold for $N$ among these
+$|\mathcal G|$ applications. For $N\ge N_0(\mathcal G,\eta)$, the event
+\[
+ \mathfrak B=\bigcup_{\kappa\in\mathcal G}\left\{
+ \frac{H_N(\mathcal A_N)}N+\kappa|a_N|\ge\ALG_p(\kappa)+\eta\right\}
+\]
+has conditional probability at most $2|\mathcal G|e^{-c(\mathcal G,\eta)N}$,
+uniformly in $\zeta$. Off $\mathfrak B$, we have
+$H_N(\mathcal A_N)/N<V_{\mathcal G}(|a_N|)+\eta$; note that $|a_N|\le1$,
+since $\norm w=\sqrt N$ and $\mathcal A_N\in B_N$. On $\mathfrak B$, we use
+$|H_N(\mathcal A_N)|/N\le Q_N$ from \eqref{sel:tensor-ui}. Recall that $J$ is
+independent of $\zeta$, which gives $\E[Q_N^2\mid\zeta]=\E Q_N^2\le Q_*^2$.
+Let
+\[
+ r_N(\mathcal G,\eta)=(Q_*+M_{\mathcal G})
+ \big(2|\mathcal G|e^{-c(\mathcal G,\eta)N}\big)^{1/2}.
+\]
+Using the Cauchy--Schwarz inequality, we obtain
+\begin{equation}\label{eq:finite-grid-cost}
+ \E\left[\frac{H_N(\mathcal A_N)}N-V_{\mathcal G}(|a_N|)\,\middle|\,\zeta\right]
+ \le\eta+r_N(\mathcal G,\eta)
+\end{equation}
+for $N\ge N_0(\mathcal G,\eta)$. For $1\le N<N_0(\mathcal G,\eta)$, we set
+$r_N(\mathcal G,\eta)=Q_*+M_{\mathcal G}$. Then
+\eqref{eq:finite-grid-cost} still holds, directly from
+$|H_N(\mathcal A_N)|/N\le Q_N$ and $|V_{\mathcal G}|\le M_{\mathcal G}$.
+The finite quantity $r_N(\mathcal G,\eta)$ depends only on $p$, $L_{\mathrm{Lip}}$, $\mathcal G$, and $\eta$, and tends to zero as $N\to\infty$.
+
+\paragraph{Step 3: refining the fields.}
+Let $\mathcal G_k=\{i2^{-k}:0\le i\le4^k\}$. These sets increase with $k$,
+and their union is dense in $[0,\infty)$. The functions
+$V_{\mathcal G_k}$ are continuous on $[0,1]$ and decrease in $k$. For each
+$a\in[0,1]$, the map $\kappa\mapsto\ALG_p(\kappa)-\kappa a$ is continuous,
+and its infimum over the dense set $\bigcup_k\mathcal G_k$ equals
+$\mathcal E_p(a)$. The limit $\mathcal E_p$ is continuous on $[0,1]$. By
+Dini's theorem, the quantity
+$s_k=\sup_{0\le a\le1}\{V_{\mathcal G_k}(a)-\mathcal E_p(a)\}$ tends to zero.
+By \eqref{eq:conjugate-ceiling} and \eqref{eq:finite-grid-cost} with
+$\mathcal G=\mathcal G_k$ and $\eta=1/k$, we have
+\[
+\begin{aligned}
+ \E\left[\frac{H_N(\mathcal A_N)}N+\bd|a_N|^p\,\middle|\,\zeta\right]
+ &\le\Eth+\E\left[\frac{H_N(\mathcal A_N)}N-\mathcal E_p(|a_N|)\,\middle|\,\zeta\right]\\
+ &\le\Eth+s_k+\frac1k+r_N(\mathcal G_k,1/k)
+\end{aligned}
+\]
+for every $k\ge1$. We define
+$\phi_N=\inf_{k\ge1}\{s_k+1/k+r_N(\mathcal G_k,1/k)\}$, which depends only on
+$p$ and $L_{\mathrm{Lip}}$. This infimum is nonnegative and finite for every
+$N\ge1$, since already the term with $k=1$ is finite. Then
+\eqref{eq:conditional-field-cost} holds. Moreover,
+$\limsup_N\phi_N\le s_k+1/k$ for every $k$, and in particular $\phi_N\to0$. Taking
+expectations in \eqref{eq:conditional-field-cost} and letting $N\to\infty$
+gives \eqref{sel:absolute-field-cost-equation}.
+\end{proof}
+
+\section{Finite forks and the exact energy subtraction}\label{sec:general-forks}
+
+In this section, we fix $\beta>0$ and a stationary cluster $(c,r,\ell)$ of
+the translated CK kernels, as in \cref{prop:stationary-clusters}, realized
+along a sequence $T_n\to\infty$. Its plateau is $q$ and its energy is
+$e_\infty=(\ell-1)/(p\beta)$. Recall from \eqref{eq:cluster-fdt-properties}
+that $0\le c\le1$, that $r=-c'\ge0$, so that $c$ is nonincreasing, and that
+$\int_0^\infty r(\tau)\,\dd\tau=1-q$. Recall also that $e_\beta(T_n+a)\to e_\infty$
+for every $a\ge0$, by \eqref{eq:energy-identity} and the convergence of
+the translated multipliers.
+
+\paragraph{Entropy notation.}
+We use the notation of \cref{sec:entropy-clusters}. For fixed disorder,
+$\rho_t$ is the density of $X_t$ with respect to $\omega_N$ and $g_N$ is the
+Gibbs density. We write
+\[
+ v^{\mathrm{cur}}_t=\nabla_S\log(\rho_t/g_N),\qquad
+ I_H(t)=\int\norm{v^{\mathrm{cur}}_t}^2\rho_t\,\dd\omega_N,\qquad
+ a_N(t)=\frac1N\E I_H(t)
+\]
+for the relative score, the Fisher information, and its normalized mean.
+This is the notation of \cref{sec:entropy-clusters}; the superscript
+distinguishes the score from the tree vectors $v_t$. Let $\mu_N(\dd t)=a_N(t)\,\dd t$. \Cref{lem:entropy-budget} implies that
+$\mu_N([0,\infty))\le\beta^2/2$. By \eqref{eq:fisher-density-budget},
+$\mu_{N_j}(I)\to\mu(I)$ for every
+bounded interval $I$, where $\mu(\dd t)=a_F(t)\,\dd t$ is the finite measure
+of \eqref{eq:entropy-measure}. We write $P^H_t$ for the diffusion
+semigroup at fixed disorder and $\mathcal L_N$ for its generator.
+
+\paragraph{Forks.}
+For each fixed integer $K\ge1$, we use the product probability space
+carrying $J$, the uniform initial point $X_0$, a full Brownian path
+$(B_u)_{u\ge0}$, and $K$ full Brownian paths $B^{(1)},\dots,B^{(K)}$
+on $[0,\infty)$. These coordinate blocks are mutually independent. We call
+\[
+ \zeta_N=\big(X_0,(B^{(b)})_{1\le b\le K},B\big)
+\]
+the fork seed, with its uniform-initial and Wiener product law; the
+disorder has its independent standard Gaussian law. The seed space and law
+depend on $K$, which we suppress in the notation. Fix $T\ge0$ and $L\ge0$. The trajectory $X$
+solves \eqref{eq:hard-sde} driven by $B$. For $b\le K$, let $Z_b$ be the
+solution of \eqref{eq:hard-sde} on $[0,T+L]$ with $Z_b(0)=X_0$, driven by
+the Brownian motion that equals $B_u$ for $u\le T$ and
+$B_T+B^{(b)}_{u-T}$ for $u\ge T$. Then $Z_b(u)=X_u$ for $u\le T$, and after
+time $T$ the paths $Z_1,\dots,Z_K$ are continuations of $X$ from $X_T$ by
+independent noises. We write
+\[
+ Y_b=Z_b(T+L),\qquad m_{N,T}=\frac1K\sum_{b=1}^KY_b,
+\]
+and call $m_{N,T}$ the center of the fork. When needed, we indicate the
+dependence on $K$ and $L$ in the notation. The Brownian motion that drives
+$Z_b$ is a standard Brownian motion independent of $(J,X_0)$. Hence each
+pair $(J,Z_b)$ has the same law as $(J,(X_u)_{u\le T+L})$. The branches
+share their past before $T$ and are not independent. Note that $\norm{m_{N,T}}\le\sqrt N$, because
+$\norm{Y_b}=\sqrt N$.
+
+\paragraph{Response moments.}
+Let $U_b(t,u)$ be the variational response matrix of the path $Z_b$, defined as in \eqref{eq:response-matrix}. Each driving process is Brownian for its own full filtration and is independent of $(J,X_0)$, even though the branches share a common past. Therefore the proof of \eqref{eq:finite-lag-flow-moments} applies to every branch. With the constants $K_S$ and $\Theta_S$ defined there, its coordinate columns and normalized trace have fourth moment at most $K_S$ whenever $0\le t-u\le S$. In particular,
+\[
+ \E\left|\frac{\tr U_b(t,u)}N\right|^2\le\Theta_S^2,
+ \qquad \E\norm{U_b(t,u)}_{\op}^2\le N\Theta_S^2.
+\]
+We use these estimates on the whole interval $[0,T+L]$, with $S=T+L$, and on the final interval $[T,T+L]$, with $S=L$. The latter bounds are uniform in $T$.
+
+\begin{lemma}[Entropy comparison for two branches]\label{sel:fork-moments}
+Let $T,a,d\ge0$, and let $Y$ and $Z$ be the endpoints of two branches at
+time $T$ of lengths $a$ and $d$, that is, of two continuations of $X$ from
+$X_T$ driven by independent Brownian motions. Set
+$Q_{N,T}(a,d)=\ip{Y}{Z}/N$. Then, for $k\in\{1,2\}$,
+\begin{equation}\label{sel:fork-moment-comparison}
+ \left|\E Q_{N,T}(a,d)^k-\E C_N(T+2a+d,T+a)^k\right|
+ \le2k\,e^{\beta p^2A_p(a+d)}\sqrt{a\,\mu_N([T,T+a])}+2e^{-c_pN}.
+\end{equation}
+Moreover, if $T_n\to\infty$ is a sequence along which the translated kernels
+converge to a stationary cluster with correlation profile $c$, then, for
+every $L<\infty$,
+\begin{equation}\label{sel:fork-overlap-concentration}
+ \lim_{n\to\infty}\limsup_{j\to\infty}\sup_{0\le a,d\le L}
+ \E\left|Q_{N_j,T_n}(a,d)-c(a+d)\right|^2=0.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+For $k\in\{1,2\}$, let $\Phi_k(x)=(x/\sqrt N)^{\otimes k}$, with values in
+$(\R^N)^{\otimes k}$ and its Euclidean norm, so that
+$\ip{\Phi_k(x)}{\Phi_k(y)}=(\ip xy/N)^k$. On $S_N$, we have
+$\norm{\Phi_k}=1$ and $\norm{D_S\Phi_k}_\op\le k/\sqrt N$. Fix the disorder.
+For $0\le z\le a$, we define
+\[
+ f_z=P^H_{a-z}\Phi_k,\qquad g_z=P^H_{d+z}\Phi_k,\qquad
+ F_J(z)=\int_{S_N}\rho_{T+z}\ip{f_z}{g_z}\,\dd\omega_N,
+\]
+where the semigroup acts on each coordinate of $\Phi_k$.
+
+We first identify the endpoint values. By the Markov property and the
+conditional independence of the two branches given the past up to time $T$,
+we have $\E F_J(0)=\E Q_{N,T}(a,d)^k$. By the semigroup property,
+$F_J(a)$ is the conditional expectation of
+$\ip{\Phi_k(X_{T+a})}{\Phi_k(X_{T+2a+d})}$ given $J$, so that
+$\E F_J(a)=\E C_N(T+2a+d,T+a)^k$.
+
+Next we compute $F_J'$. We have $\partial_zf_z=-\mathcal L_Nf_z$, $\partial_zg_z=\mathcal L_Ng_z$, and
+$\partial_z\rho_{T+z}=\mathcal L_N^*\rho_{T+z}$. By the product rule for the
+generator, applied to each pair of coordinates,
+$\mathcal L_N\ip{f}{g}=\ip{\mathcal L_Nf}{g}+\ip{f}{\mathcal L_Ng}
++2\sum_i\ip{D_Sf[e_i]}{D_Sg[e_i]}$, where $(e_i)$ is an orthonormal frame of
+the tangent space. Using these identities, we find
+\[
+\begin{aligned}
+ F_J'(z)&=\int\rho_{T+z}\left\{\mathcal L_N\ip{f_z}{g_z}
+ -\ip{\mathcal L_Nf_z}{g_z}+\ip{f_z}{\mathcal L_Ng_z}\right\}\dd\omega_N\\
+ &=2\int\rho_{T+z}\left\{\ip{f_z}{\mathcal L_Ng_z}
+ +\sum_i\ip{D_Sf_z[e_i]}{D_Sg_z[e_i]}\right\}\dd\omega_N.
+\end{aligned}
+\]
+When we apply \eqref{eq:gibbs-current-integration-by-parts} to each
+coordinate of $f_z$ and $g_z$, the gradient terms cancel, and we obtain the
+exact current identity
+\begin{equation}\label{sel:fork-current-identity}
+ F_J'(z)=-2\int\rho_{T+z}
+ \ip{P^H_{a-z}\Phi_k}{D_S\big(P^H_{d+z}\Phi_k\big)\big[v^{\mathrm{cur}}_{T+z}\big]}
+ \,\dd\omega_N.
+\end{equation}
+Note that this identity does not use stationarity of $\rho_{T+z}$: the
+score $v^{\mathrm{cur}}_{T+z}$ records how far $\rho_{T+z}$ is from the
+Gibbs density.
+
+We now bound the right side of \eqref{sel:fork-current-identity} on the
+event $G_N=\{Q_N\le A_p\}$. By Jensen's inequality,
+$\norm{P^H_t\Phi_k}\le1$. In the proof of \cref{lem:waiting-clock-current},
+the Bochner formula, the nonnegative Ricci curvature of $S_N$, and the Hessian bound of \eqref{eq:landscape-derivative-bounds} give the gradient
+bound $\norm{\nabla_SP^H_t\varphi}^2\le e^{2\beta p^2Q_Nt}P^H_t\norm{\nabla_S\varphi}^2$
+for smooth scalar $\varphi$; this is the classical gradient bound under a
+lower bound on the curvature. Applied to $\varphi=\ip{w}{\Phi_k}$ for a unit
+vector $w$ in $(\R^N)^{\otimes k}$, and followed by the supremum over $w$, it
+gives
+\[
+ \norm{D_SP^H_t\Phi_k}_\op\le\frac k{\sqrt N}e^{\beta p^2A_pt}
+ \qquad\text{on }G_N,
+\]
+with no factor depending on the dimension of $(\R^N)^{\otimes k}$. Using the
+Cauchy--Schwarz inequality, we find that, on $G_N$ and for $z\le a$,
+\[
+ |F_J'(z)|\le\frac{2k}{\sqrt N}e^{\beta p^2A_p(a+d)}
+ \int\rho_{T+z}\norm{v^{\mathrm{cur}}_{T+z}}\,\dd\omega_N
+ \le2k\,e^{\beta p^2A_p(a+d)}\left(\frac{I_H(T+z)}N\right)^{1/2}.
+\]
+Taking expectations and using Jensen's inequality, then integrating in $z$
+and using the Cauchy--Schwarz inequality, we obtain
+\[
+\begin{aligned}
+ \int_0^a\E\big[\1_{G_N}|F_J'(z)|\big]\,\dd z
+ &\le2k\,e^{\beta p^2A_p(a+d)}\int_0^a\sqrt{a_N(T+z)}\,\dd z\\
+ &\le2k\,e^{\beta p^2A_p(a+d)}\sqrt{a\,\mu_N([T,T+a])}.
+\end{aligned}
+\]
+On $G_N^c$, we have $|F_J(0)|,|F_J(a)|\le1$, and $\Prob(G_N^c)\le e^{-c_pN}$.
+Writing
+$\E[F_J(0)-F_J(a)]=-\E[\1_{G_N}\int_0^aF_J'(z)\,\dd z]+\E[\1_{G_N^c}(F_J(0)-F_J(a))]$
+and combining the last two bounds with the identification of the endpoint
+values, we obtain \eqref{sel:fork-moment-comparison}.
+
+For \eqref{sel:fork-overlap-concentration}, fix $L$ and let $a,d\le L$. In
+\eqref{sel:fork-moment-comparison}, we may replace $a\,\mu_N([T,T+a])$ by
+$L\,\mu_N([T,T+L])$ and the exponential factor by $e^{2\beta p^2A_pL}$. Then
+\eqref{eq:fisher-density-budget} implies that
+$\mu_{N_j}([T,T+L])\to\mu([T,T+L])$ for each fixed $T$. By
+\cref{prop:hard-bridge} on the horizon $T+3L$ and $|C_N|\le1$, the moments
+$\E C_N(T+2a+d,T+a)^k$ converge to $C(T+2a+d,T+a)^k$ uniformly in
+$a,d\le L$. Combining these facts with \eqref{sel:fork-moment-comparison},
+we find
+\[
+ \limsup_{j\to\infty}\sup_{0\le a,d\le L}
+ \left|\E Q_{N_j,T}(a,d)^k-C(T+2a+d,T+a)^k\right|
+ \le4e^{2\beta p^2A_pL}\sqrt{L\,\mu([T,T+L])}.
+\]
+Along $T=T_n$, the right side tends to zero because $\mu$ is a finite
+measure, and $C(T_n+2a+d,T_n+a)\to c(a+d)$ uniformly in $a,d\le L$, by the
+locally uniform convergence of the translated correlations on
+$[0,3L]^2$. Finally, writing $Q=Q_{N,T}(a,d)$ and $c_0=c(a+d)\in[0,1]$, we
+have
+\[
+ \E|Q-c_0|^2=(\E Q^2-c_0^2)-2c_0(\E Q-c_0),
+\]
+and the convergence of the first two moments, uniformly in $a,d\le L$,
+proves \eqref{sel:fork-overlap-concentration}.
+\end{proof}
+
+We now state the main result of this section. For $K\ge1$ and $L\ge0$, we
+define
+\begin{align}
+ Q_{K,L}&=\frac1K+\left(1-\frac1K\right)c(2L),
+ \label{sel:fork-norm}\\
+ k_{K,L}(\tau)&=\frac{c(\tau)+(K-1)c(2L-\tau)}K,\qquad 0\le\tau\le L,
+ \label{sel:fork-mixed-overlap}\\
+ h_{K,L}&=e_\infty-\beta p\int_0^Lr(\tau)
+ \left\{c(\tau)^{p-1}-k_{K,L}(\tau)^{p-1}\right\}\dd\tau.
+ \label{sel:fork-center-energy}
+\end{align}
+Note that $Q_{K,L}$ is a convex combination of $1$ and $c(2L)$, so that
+$q\le c(2L)\le Q_{K,L}\le1$, and that $0\le k_{K,L}\le1$.
+
+\begin{proposition}[Finite forks and their center]\label{sel:finite-forks}
+Fix $\beta>0$ and let $(c,r,\ell)$ be a stationary cluster with plateau
+$q>0$ and energy $e_\infty$, realized along $T_n\to\infty$. Fix $K\ge1$ and
+$L\ge0$, and let $m_{N,T}$ be the center of the fork at time $T$ with $K$
+branches of length $L$.
+\begin{enumerate}[label=(\alph*)]
+\item\label{item:fork-limits}
+The squared norm and the energy of the center satisfy
+\begin{align}
+ &\lim_{n\to\infty}\limsup_{j\to\infty}
+ \E\left|\frac{\norm{m_{N_j,T_n}}^2}{N_j}-Q_{K,L}\right|^2=0,
+ \label{sel:fork-center-concentration}\\
+ &\lim_{n\to\infty}\limsup_{j\to\infty}
+ \left|\frac{\E H_{N_j}(m_{N_j,T_n})}{N_j}-h_{K,L}\right|=0.
+ \label{sel:fork-center-energy-limit}
+\end{align}
+\item\label{item:fork-ceiling}
+The limiting energy is below the threshold:
+\begin{equation}\label{sel:fork-center-threshold}
+ h_{K,L}\le\Eth\,Q_{K,L}^{p/2}.
+\end{equation}
+\item\label{item:fork-lipschitz}
+For every $T\ge0$ and $\varepsilon>0$, there exist algorithms
+$\mathcal A^\varepsilon_{N,T}=\mathcal A^\varepsilon_{N,T}(J,\zeta_N)$ with
+values in $B_N$ and seed $\zeta_N$, which are $L_{\mathrm{Lip}}$-Lipschitz for a
+constant $L_{\mathrm{Lip}}$ depending only on $p$, $\beta$, $T$, $K$, $L$, and
+$\varepsilon$, such that
+\begin{equation}\label{sel:fork-lipschitz}
+ \limsup_{j\to\infty}\frac1{N_j}\E\norm{\mathcal A^\varepsilon_{N_j,T}
+ -\Pi_{B_{N_j}}\big(m_{N_j,T}/\sqrt{Q_{K,L}}\big)}^2\le\varepsilon^2.
+\end{equation}
+Moreover, along $T=T_n$, the vector $\Pi_{B_N}(m_{N,T}/\sqrt{Q_{K,L}})$ may
+be replaced by $m_{N,T}/\sqrt{Q_{K,L}}$, or by
+$\widehat m_{N,T}=\sqrt N\,m_{N,T}/\norm{m_{N,T}}$ (with $\widehat m_{N,T}=0$
+if $m_{N,T}=0$): the scaled mean-square distance between
+$\Pi_{B_N}(m_{N,T}/\sqrt{Q_{K,L}})$ and either vector tends to zero as
+$j\to\infty$ and then $n\to\infty$.
+\end{enumerate}
+\end{proposition}
+
+By \eqref{sel:tensor-ui}, the normalized energies of the algorithms in
+part~\ref{item:fork-lipschitz} are bounded by $Q_N$. Part~\ref{item:fork-lipschitz}
+also transfers overlaps. If $V_N$ is a random vector on the same probability
+space with $\norm{V_N}\le\sqrt N$ (for example $V_N=X_s$ with $s\le T$), then, by the Cauchy--Schwarz inequality, we have
+\begin{equation}\label{eq:fork-overlap-transfer}
+ \left|\E\frac{\ip{\mathcal A^\varepsilon_{N,T}}{V_N}}N
+ -\E\frac{\ip{m_{N,T}}{V_N}}{N\sqrt{Q_{K,L}}}\right|
+ \le\left(\frac1N\E\norm{\mathcal A^\varepsilon_{N,T}
+ -m_{N,T}/\sqrt{Q_{K,L}}}^2\right)^{1/2}.
+\end{equation}
+
+\begin{proof}
+The proof has five steps. In the first two, we compute the energy of the
+center exactly by Gaussian integration by parts and subtract the energy of
+a single branch. In the third, we show that the common past before $T$
+contributes nothing in the dimension limit, and in the fourth we evaluate
+the contribution of the last $L$ units of time; this proves
+part~\ref{item:fork-limits}. In the fifth step, we construct the Lipschitz
+algorithms of part~\ref{item:fork-lipschitz} and deduce
+part~\ref{item:fork-ceiling} from the threshold. We write $t=T+L$.
+
+\paragraph{Step 1: Gaussian integration by parts.}
+For an ordered index $I=(i_1,\dots,i_p)$, let
+$G_I(x)=N^{-(p-1)/2}x_{i_1}\cdots x_{i_p}$, so that
+$H_N=\sum_IJ_IG_I$. Since $\sum_IG_I(x)G_I(z)=N(\ip xz/N)^p$,
+differentiating first in $x_i$ and then in $z_l$ gives
+\begin{equation}\label{sel:fork-covariance-derivative}
+ \sum_I\partial_iG_I(x)\,\partial_lG_I(z)
+ =p\left(\frac{\ip xz}N\right)^{p-1}\delta_{il}
+ +\frac{p(p-1)}N\left(\frac{\ip xz}N\right)^{p-2}z_ix_l.
+\end{equation}
+Differentiating the actual terminal solution into $L^2$ with respect to the disorder, as in the proof of
+\cref{prop:energy-bridge}, we have
+\[
+ \partial_{J_I}m_{N,T}
+ =\frac\beta K\sum_{b=1}^K\int_0^tU_b(t,u)\nabla G_I(Z_b(u))\,\dd u.
+\]
+The seed is independent of $J$, and the response has the column and operator moments above. As in the proof of \cref{prop:energy-bridge}, apply Gaussian integration by parts to the expected coordinate observable in each disorder coefficient, using its genuine $L^2$ derivative:
+\[
+ \E\big[J_IG_I(m_{N,T})\big]=\E\big[\ip{\nabla G_I(m_{N,T})}{\partial_{J_I}m_{N,T}}\big],
+\]
+and $\E H_N(m_{N,T})$ is the sum of these terms over $I$. For $u\le t$, we
+write
+\[
+ \gamma_b(u)=\frac{\ip{Y_b}{Z_b(u)}}N,\qquad
+ \bar\gamma_b(u)=\frac{\ip{m_{N,T}}{Z_b(u)}}N
+ =\frac1K\sum_{b'=1}^K\frac{\ip{Y_{b'}}{Z_b(u)}}N.
+\]
+Contracting \eqref{sel:fork-covariance-derivative} with $U_b(t,u)$ gives the
+exact identity
+\begin{align}
+ \frac{\E H_N(m_{N,T})}N
+ ={}&\frac{\beta p}K\sum_{b=1}^K\int_0^t
+ \E\left[\frac{\tr U_b(t,u)}N\,\bar\gamma_b(u)^{p-1}\right]\dd u
+ +\mathcal R_{N,T},\label{sel:fork-exact-ibp}\\
+ \mathcal R_{N,T}={}&\frac{\beta p(p-1)}K\sum_{b=1}^K\int_0^t
+ \E\left[\bar\gamma_b(u)^{p-2}
+ \frac{\ip{Z_b(u)}{U_b(t,u)m_{N,T}}}{N^2}\right]\dd u.\notag
+\end{align}
+Using $\norm{m_{N,T}},\norm{Z_b(u)}\le\sqrt N$ and $|\bar\gamma_b|\le1$, we
+find that $|\mathcal R_{N,T}|\le\beta p(p-1)t\,\Theta_t/\sqrt N$.
+
+\paragraph{Step 2: the exact subtraction.}
+The same computation with $m_{N,T}$ replaced by $Y_b$ gives
+$\E H_N(Y_b)/N=\beta p\int_0^t\E[N^{-1}\tr U_b(t,u)\gamma_b(u)^{p-1}]\,\dd u
++O(t\,\Theta_t/\sqrt N)$. The pair $(J,Y_b)$ has the law of $(J,X_t)$, and
+therefore $\E H_N(Y_b)/N=e_N(t)$, where $e_N(t)=\E H_N(X_t)/N$. Averaging over $b$ and
+subtracting \eqref{sel:fork-exact-ibp}, before taking any limit, we obtain
+\begin{equation}\label{sel:fork-exact-subtraction}
+\begin{aligned}
+ e_N(t)-\frac{\E H_N(m_{N,T})}N
+ ={}&\frac{\beta p}K\sum_{b=1}^K\int_0^t
+ \E\left[\frac{\tr U_b(t,u)}N
+ \big\{\gamma_b(u)^{p-1}-\bar\gamma_b(u)^{p-1}\big\}\right]\dd u\\
+ &+O\big(t\,\Theta_tN^{-1/2}\big),
+\end{aligned}
+\end{equation}
+where the implicit constant depends only on $p$ and $\beta$.
+Note that this identity retains the whole history of the trajectory.
+
+\paragraph{Step 3: the common past.}
+Let $u\le T$. Then $Z_b(u)=X_u$ for every $b$, and the pair $(Y_b,X_u)$ has
+the law of $(X_t,X_u)$. By \cref{prop:hard-bridge} and $|C_N|\le1$, we
+have $\E|\gamma_b(u)-C(t,u)|^2\to0$ as $N\to\infty$, uniformly in $u\le T$.
+The same holds for $\bar\gamma_b(u)$, which is the average of
+$\gamma_{b'}(u)$ over $b'$. The function $x\mapsto x^{p-1}$ is
+$(p-1)$-Lipschitz on $[-1,1]$, and the normalized trace has second moment at most $\Theta_t^2$. Using the
+Cauchy--Schwarz inequality, we find that the part of the integral in
+\eqref{sel:fork-exact-subtraction} over $u\le T$ is at most
+\[
+ \beta p(p-1)\,T\,\Theta_t
+ \sup_{b\le K,\,u\le T}\big(\E|\gamma_b(u)-\bar\gamma_b(u)|^2\big)^{1/2}
+\]
+in absolute value. This tends to zero as $N\to\infty$ with $T$ fixed. We
+use no estimate on the decay of the memory here. The contribution of the
+past is small because, at a fixed time horizon, both overlaps concentrate
+around the same deterministic value $C(t,u)$.
+
+\paragraph{Step 4: the last $L$ units of time.}
+Let $u=T+v$ with $0\le v\le L$, and write $\tau=L-v$. The pair
+$(Y_b,Z_b(T+v))$ has the law of $(X_t,X_{T+v})$. By \cref{prop:hard-bridge},
+the overlap $\gamma_b(T+v)$ converges in $L^2$ to $C(T+L,T+v)$ as
+$N\to\infty$, uniformly in $v$. Along $T=T_n$, this tends to $c(L-v)=c(\tau)$, uniformly in
+$v\le L$. For $b'\ne b$, the vectors $Y_{b'}$ and $Z_b(T+v)$ are the
+endpoints of two branches at $T$ of lengths $L$ and $v$. By
+\eqref{sel:fork-overlap-concentration}, the overlap
+$\ip{Y_{b'}}{Z_b(T+v)}/N$ converges in $L^2$ to $c(L+v)=c(2L-\tau)$, in the
+double limit $j\to\infty$ and then $n\to\infty$, uniformly in $v\le L$.
+Averaging over $b'$, we find
+\[
+ \lim_{n\to\infty}\limsup_{j\to\infty}\sup_{0\le v\le L}
+ \Big(\E|\gamma_b(T_n+v)-c(L-v)|^2
+ +\E|\bar\gamma_b(T_n+v)-k_{K,L}(L-v)|^2\Big)=0.
+\]
+On this interval, we have $t-u\le L$, and the normalized response trace has second moment at most $\Theta_L^2$, uniformly in $T$. As in Step~3, using the Cauchy--Schwarz inequality, we may replace $\gamma_b^{p-1}-\bar\gamma_b^{p-1}$ in
+\eqref{sel:fork-exact-subtraction} by the deterministic weight
+\[
+ \omega(\tau)=c(\tau)^{p-1}-k_{K,L}(\tau)^{p-1},\qquad\tau=t-u,
+\]
+with an error whose $\limsup_j$ tends to zero as $n\to\infty$.
+
+It remains to pass to the limit in
+$\beta p\int_T^t\bar r_N(t,u)\,\omega(t-u)\,\dd u$, where
+$\bar r_N(t,u)=\E\tr U_b(t,u)/N$ is the averaged response of
+\cref{lem:brown-force-response}, which does not depend on $b$.
+\Cref{lem:brown-force-response} and \cref{prop:hard-bridge} imply that
+$\int_{s_1}^{s_2}\bar r_N(t,u)\,\dd u\to\int_{s_1}^{s_2}R(t,u)\,\dd u$
+for all $T\le s_1\le s_2\le t$. The signed measure $\bar r_N(t,u)\,\dd u$ on
+$[T,t]$ has total variation
+\[
+ \int_T^t|\bar r_N(t,u)|\,\dd u
+ \le\int_T^t\E\left|\frac{\tr U_b(t,u)}N\right|\,\dd u
+ \le L\,\Theta_L.
+\]
+As $R\ge0$, the integral of $R(t,\cdot)$ over $[T,t]$ is the limit of the
+masses of these signed measures and obeys the same bound. The weight $\omega$ is continuous on $[0,L]$ and
+is the uniform limit of step functions. For a step function, the integral converges as $N\to\infty$, and the total variation bound controls the error
+of the approximation, uniformly in $N$. We conclude that, for fixed $T$,
+\[
+ \lim_{N\to\infty}\int_T^t\bar r_N(t,u)\,\omega(t-u)\,\dd u
+ =\int_T^tR(t,u)\,\omega(t-u)\,\dd u.
+\]
+Along $T=T_n$, we have $R(T_n+L,T_n+v)\to r(L-v)$ uniformly in $v\le L$, by
+the translated convergence on the closed causal triangle. Moreover,
+$e_N(t)\to e_\beta(T+L)$ by \cref{prop:energy-bridge}, and
+$e_\beta(T_n+L)\to e_\infty$. Inserting these limits into
+\eqref{sel:fork-exact-subtraction}, we obtain
+\[
+ \lim_{n\to\infty}\limsup_{j\to\infty}
+ \left|\frac{\E H_{N_j}(m_{N_j,T_n})}{N_j}
+ -e_\infty+\beta p\int_0^Lr(\tau)\,\omega(\tau)\,\dd\tau\right|=0,
+\]
+which is \eqref{sel:fork-center-energy-limit} by the definition
+\eqref{sel:fork-center-energy}.
+
+For the norm, we have
+\[
+ \frac{\norm{m_{N,T}}^2}N=\frac1K+\frac1{K^2}\sum_{b\ne b'}
+ \frac{\ip{Y_b}{Y_{b'}}}N.
+\]
+Each overlap $\ip{Y_b}{Y_{b'}}/N$ with $b\ne b'$ has the law of
+$Q_{N,T}(L,L)$, which tends to $c(2L)$ in $L^2$ in the double limit, by
+\eqref{sel:fork-overlap-concentration}. There are $K(K-1)$ such terms, and
+$K(K-1)/K^2=1-1/K$. This proves \eqref{sel:fork-center-concentration} and
+completes the proof of part~\ref{item:fork-limits}.
+
+\paragraph{Step 5: Lipschitz algorithms and the threshold.}
+Fix $T$ and $\varepsilon>0$. We may assume that $\varepsilon<1$. Let
+$\varepsilon_1=\varepsilon/(2\sqrt K)$. We use the hard--soft approximation
+of \cite[Lemmas~3.1--3.2]{sellke2024}. We first check its hypotheses.
+In \cite{sellke2024}, the Hamiltonian is our $H_N$, with an ordered tensor of
+independent standard Gaussian coefficients and the Euclidean distance between
+coefficient tensors, and the dynamics is
+$\dd x_v=(\beta_{\mathrm S}\nabla_{\mathrm{sp}}H_N(x_v)
+-(N-1)(2N)^{-1}x_v)\,\dd v+P_{x_v}\,\dd W_v$, with noise coefficient one.
+With $\beta_{\mathrm S}=\beta/2$, $X_u=x_{2u}$, and $B_u=W_{2u}/\sqrt2$, this
+is \eqref{eq:hard-sde}, as in the proof of \cref{prop:hard-bridge}, and our
+horizon $t$ becomes $2t$. Lemma~3.1 there states that, for a fixed initial
+point on $S_N$ and a Hamiltonian satisfying their derivative bounds (which
+hold for $H_N$ with probability at least $1-e^{-c_1N}$, by
+\cite[Proposition~1.11]{sellke2024}), the hard dynamics stays within
+$\varepsilon_1\sqrt N$ of a soft spherical dynamics driven by the same
+Brownian motion, on the whole horizon, with probability at least
+$1-e^{-c_1N}$. Here the confinement parameter of the soft dynamics is chosen large, depending on $p$, $\beta$, $t$, and $\varepsilon_1$, and $c_1>0$ and the
+threshold for $N$ depend on the same parameters. Lemma~3.2 there states that, for a fixed initial point and
+almost every Brownian path, there exists a map $\ell$ from coefficient tensors
+to $B_N$, Lipschitz with a constant depending only on $p$, $\beta$, $t$, and
+$\varepsilon_1$, such that $(1+\varepsilon_1)\ell(J)$ equals the soft
+endpoint with probability at least $1-e^{-c_1N}$, where the probability is
+over both the disorder and the Brownian motion. The coefficient-Lipschitz extension uses Kirszbraun's theorem in the proof of
+Lemma~3.2 of \cite{sellke2024}; footnote~2 there gives a constructive choice
+that depends measurably on the Brownian path.
+
+The construction of \cite{sellke2024} is for a fixed initial point. To
+include the uniform initial point, we choose measurably an orthogonal matrix
+$O_{x_0}$ such that $O_{x_0}(\sqrt N e_1)=x_0$. Rotating the tensor by
+$(O_{x_0}^{\mathsf T})^{\otimes p}$ and the Brownian path by
+$O_{x_0}^{\mathsf T}$, solving from $\sqrt Ne_1$, and rotating the output back
+by $O_{x_0}$ gives the solution from $x_0$, because $H_N$ and
+\eqref{eq:hard-sde} are equivariant under rotations. Conditionally on
+$X_0=x_0$, the rotated tensor and Brownian path have the same joint law as
+the original ones, and the tensor rotation is an isometry of
+$(\R^N)^{\otimes p}$, which does not change Lipschitz constants.
+
+We apply this to each concatenated path $Z_b$, whose driving Brownian
+motion is a function of the seed $\zeta_N$. We obtain maps
+$\ell_b(J)=\ell_b(J,\zeta_N)\in B_N$, $b\le K$, which are Lipschitz in $J$
+with a constant $L_{\mathrm{Lip},1}$ depending only on $p$, $\beta$, $t$, and
+$\varepsilon_1$. Let $\mathcal G_N$ be the event on which $H_N$ satisfies the
+derivative bounds of \cite{sellke2024} and, for every $b\le K$, the
+conclusions of both lemmas hold for the branch $b$. On $\mathcal G_N$, we
+have $\norm{(1+\varepsilon_1)\ell_b(J)-Y_b}\le\varepsilon_1\sqrt N$ for every
+$b\le K$, and a union bound gives $\Prob(\mathcal G_N^c)\le3Ke^{-c_1N}$. The
+union bound does not require the branches to be independent. We define
+\begin{equation}\label{sel:fork-projected-algorithm}
+ \mathcal A^\varepsilon_{N,T}(J)
+ =\Pi_{B_N}\left(\frac{1+\varepsilon_1}{\sqrt{Q_{K,L}}}
+ \frac1K\sum_{b=1}^K\ell_b(J)\right).
+\end{equation}
+Since $\Pi_{B_N}$ is $1$-Lipschitz and $Q_{K,L}\ge1/K$, this is an
+$L_{\mathrm{Lip}}$-Lipschitz algorithm with seed $\zeta_N$ and
+$L_{\mathrm{Lip}}=2L_{\mathrm{Lip},1}\sqrt K$. On $\mathcal G_N$, the distance between
+$\mathcal A^\varepsilon_{N,T}$ and $\Pi_{B_N}(m_{N,T}/\sqrt{Q_{K,L}})$ is at
+most $\varepsilon_1\sqrt N/\sqrt{Q_{K,L}}\le\varepsilon_1\sqrt{KN}
+=\varepsilon\sqrt N/2$; on
+$\mathcal G_N^c$, it is at most $2\sqrt N$. Using
+$\Prob(\mathcal G_N^c)\le3Ke^{-c_1N}$, we find
+\[
+ \frac1N\E\norm{\mathcal A^\varepsilon_{N,T}
+ -\Pi_{B_N}(m_{N,T}/\sqrt{Q_{K,L}})}^2
+ \le\frac{\varepsilon^2}4+12Ke^{-c_1N},
+\]
+which proves \eqref{sel:fork-lipschitz}.
+
+Next we compare the three normalizations. Let
+$\nu_N=\norm{m_{N,T}}^2/N$. For $x\ge0$, we have
+\begin{equation}\label{eq:sqrt-comparison}
+ \left|\sqrt{x/Q_{K,L}}-1\right|
+ =\frac{|x-Q_{K,L}|}{\sqrt{Q_{K,L}}\,(\sqrt x+\sqrt{Q_{K,L}})}
+ \le\frac{|x-Q_{K,L}|}{Q_{K,L}}.
+\end{equation}
+The scaled distance between $m_{N,T}/\sqrt{Q_{K,L}}$ and its projection
+onto $B_N$ is $(\sqrt{\nu_N/Q_{K,L}}-1)_+$. If $m_{N,T}\ne0$, the scaled
+distance between the projection and $\widehat m_{N,T}$ is
+$(1-\sqrt{\nu_N/Q_{K,L}})_+$, and both vectors vanish if $m_{N,T}=0$. By
+\eqref{eq:sqrt-comparison} and $Q_{K,L}\ge q$, both distances are at most
+$|\nu_N-Q_{K,L}|/q$. Then \eqref{sel:fork-center-concentration} implies that
+their mean squares tend to zero as $j\to\infty$ and then $n\to\infty$. This completes
+the proof of part~\ref{item:fork-lipschitz}.
+
+Finally, we prove part~\ref{item:fork-ceiling}. Since
+$\mathcal A^\varepsilon_{N,T}$ is an $L_{\mathrm{Lip}}$-Lipschitz algorithm with seed
+$\zeta_N$, \cref{sel:absolute-field-cost}, applied with any
+$\zeta_N$-measurable direction and with the nonnegative overlap term
+dropped, gives
+\[
+ \limsup_{N\to\infty}\frac{\E H_N(\mathcal A^\varepsilon_{N,T})}N\le\Eth.
+\]
+This is the pure-model threshold, the case $\kappa=0$ of
+\cref{sel:published-field-threshold}, averaged over the seed. Next we
+compare energies. Note that $m_{N,T}/\sqrt{Q_{K,L}}$ has norm at most
+$\sqrt{N/q}$. Using \eqref{eq:general-energy-transfer} with $R=q^{-1/2}$ and
+the homogeneity $H_N(m_{N,T}/\sqrt{Q_{K,L}})=Q_{K,L}^{-p/2}H_N(m_{N,T})$, we
+find
+\[
+ Q_{K,L}^{-p/2}\frac{\E H_N(m_{N,T})}N
+ \le\frac{\E H_N(\mathcal A^\varepsilon_{N,T})}N
+ +p\,q^{-(p-1)/2}Q_*\,\Delta_{N,T},
+\]
+where
+\[
+ \Delta_{N,T}=\left(\frac1N\E\norm{\mathcal A^\varepsilon_{N,T}
+ -m_{N,T}/\sqrt{Q_{K,L}}}^2\right)^{1/2}.
+\]
+By \eqref{sel:fork-lipschitz} and the comparison of normalizations, we have
+\[
+ \limsup_{n\to\infty}\limsup_{j\to\infty}\Delta_{N_j,T_n}\le\varepsilon.
+\]
+We take
+$j\to\infty$ with $T=T_n$ fixed, then $n\to\infty$, and finally
+$\varepsilon\downarrow0$, in the order \eqref{sel:aging-limit-order}. By
+\eqref{sel:fork-center-energy-limit}, we obtain
+$Q_{K,L}^{-p/2}h_{K,L}\le\Eth$, which is \eqref{sel:fork-center-threshold}.
+The constants of the algorithms depend on $T$, but we use them only at a
+fixed $T$, before the limit $n\to\infty$.
+\end{proof}
+
+We next record the limits of the fork parameters as $K\to\infty$ and then
+$L\to\infty$. Recall that $d_L=c(2L)$ and $h_L$ are given by
+\eqref{sel:prefix-norm} and \eqref{sel:prefix-energy}, with the cluster
+energy $e_\infty$, and that $h$ is the quantity in
+\eqref{sel:limiting-center-energy}.
+
+\begin{lemma}[The fork parameters as $K\to\infty$ and $L\to\infty$]
+\label{lem:fork-parameter-limits}
+Let $(c,r,\ell)$ be a stationary cluster with plateau $q\ge0$ and energy
+$e_\infty$.
+\begin{enumerate}[label=(\roman*)]
+\item\label{item:fork-K-limit}
+For every $L\ge0$ and $K\ge1$,
+\begin{equation}\label{eq:fork-K-limit}
+ 0\le Q_{K,L}-d_L\le\frac1K,\qquad
+ |h_{K,L}-h_L|\le\frac{\beta p(p-1)}K.
+\end{equation}
+\item\label{item:fork-L-limit}
+As $L\to\infty$, we have $d_L\to q$ and
+$h_L\to h=e_\infty-\beta\{1-q^p-pq^{p-1}(1-q)\}$.
+\item\label{item:fork-saturation}
+If $q>0$ and $\beta^2p(p-1)q^{p-2}(1-q)^2=1$, then
+\begin{equation}\label{sel:fork-saturation}
+ \lim_{L\to\infty}\lim_{K\to\infty}\frac{h_{K,L}}{Q_{K,L}^{p/2}}=\Eth.
+\end{equation}
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+For part~\ref{item:fork-K-limit}, we have
+$Q_{K,L}-d_L=(1-c(2L))/K\in[0,1/K]$. By \eqref{sel:prefix-energy} and
+\eqref{sel:fork-center-energy},
+\[
+ h_{K,L}-h_L=\beta p\int_0^Lr(\tau)
+ \left\{k_{K,L}(\tau)^{p-1}-c(2L-\tau)^{p-1}\right\}\dd\tau.
+\]
+The integrand is dominated by $r(\tau)$ times a quantity that tends to zero
+uniformly. Indeed, $k_{K,L}(\tau)-c(2L-\tau)=(c(\tau)-c(2L-\tau))/K$, and both
+$k_{K,L}(\tau)$ and $c(2L-\tau)$ lie in $[0,1]$. By the mean value theorem,
+\[
+ \left|k_{K,L}(\tau)^{p-1}-c(2L-\tau)^{p-1}\right|\le\frac{p-1}K.
+\]
+Together with $\int_0^Lr\le1$, this proves \eqref{eq:fork-K-limit}.
+
+Part~\ref{item:fork-L-limit} is part of \cref{lem:center-energy}. For
+completeness, we recall the computation. Using $r=-c'$, we find that
+$\int_0^Lr(\tau)c(\tau)^{p-1}\,\dd\tau=(1-c(L)^p)/p$. As $c$ is
+nonincreasing, we have $c(2L-\tau)\in[q,c(L)]$ for $0\le\tau\le L$, and $\int_0^Lr=1-c(L)$. Thus the integral of
+$r(\tau)c(2L-\tau)^{p-1}$ over $[0,L]$ lies between $q^{p-1}(1-c(L))$ and $c(L)^{p-1}(1-c(L))$. Both bounds
+tend to $q^{p-1}(1-q)$. Inserting these two integrals into
+\eqref{sel:prefix-energy}, we find that $h_L$ tends to
+$e_\infty+\beta pq^{p-1}(1-q)-\beta(1-q^p)=h$.
+
+For part~\ref{item:fork-saturation}, part~\ref{item:fork-K-limit} and
+$d_L\ge q>0$ imply that $h_{K,L}/Q_{K,L}^{p/2}\to h_L/d_L^{p/2}$ as $K\to\infty$,
+and part~\ref{item:fork-L-limit} gives $h_L/d_L^{p/2}\to h/q^{p/2}$ as
+$L\to\infty$. By the equality case of \eqref{sel:center-amgm} in
+\cref{lem:center-energy}, the marginality hypothesis implies that
+$h/q^{p/2}=\Eth$.
+\end{proof}
+
+Part~\ref{item:fork-saturation} uses marginality, which is proved in
+\cref{sel:positive-marginality} from part~\ref{item:threshold-ceiling} of
+\cref{prop:threshold-inputs}. The proof of that part in
+\cref{sec:general-proof-inputs} uses only \cref{sel:finite-forks} and
+part~\ref{item:fork-K-limit}, and there is no circularity.
+
+\section{Adaptive disclosure and orthogonality to early queries}
+\label{sec:general-disclosure}
+
+The overlap penalty of \cref{sel:absolute-field-cost} applies to directions
+independent of $J$. At positive times, however, an earlier state $X_s$ depends on $J$. The goal of this section is to prove that an algorithm that saturates the threshold is almost
+orthogonal to every subspace explored by a fixed finite number of gradient
+queries. We condition $J$ on the information revealed by the queries. This is adaptive Gaussian conditioning, in the line of Bolthausen's
+iterative construction of solutions of the TAP equations
+\cite[Section~3]{bolthausen2014}. Bayati and Montanari used the same method
+in their analysis of approximate message passing
+\cite[arXiv version~4, Section~3.8, Lemma~11]{bayatimontanari2011}, and
+they credit it to Bolthausen. The underlying facts on Gaussian vectors and
+their orthogonal decompositions are classical; see \cite[Chapter~9, Theorem~9.1, pp.~127--128, and Theorems~9.8--9.9, pp.~131--132]{janson1997}. We use projection onto the span of the deterministic observations, which also permits linearly dependent observation families.
+El Alaoui, Montanari, and Sellke conditioned the disorder tensor on adaptive
+gradient observations in their analysis of message passing for spin
+glasses \cite[arXiv version~1, Appendix~A, Lemma~A.2, and Theorem~7(a)]{eams2021}, and Huang and Sellke extended this conditioning to
+multi-species spherical models \cite[arXiv version~1, Appendix~A, Lemma~A.2, and Theorem~3(a)]{hs2024amp}. The displayed inverse-Gram formulas in these AMP analyses use rank and conditioning hypotheses. Our projection-based disclosure below also covers dependent queries. Here we disclose all tensor blocks needed to
+determine gradients throughout the explored span. We combine this disclosure with the external-field threshold to prove forgetting of a fixed
+finite history.
+
+\paragraph{Outer parameters.}
+Let $\theta$ be a finite list of outer parameters with a prescribed order of
+limits; in \cref{sec:general-transfer}, $\theta=(n,\varepsilon,K,L)$, in the
+order \eqref{sel:aging-limit-order}. For nonnegative quantities
+$F_{N,\theta}$, we write $\lim_\theta\limsup_NF_{N,\theta}=0$ if the upper
+limit in $N$, followed by the upper limits in the outer parameters in their
+prescribed order, vanishes. We do not assume that any intermediate limit
+exists.
+
+\paragraph{Standing hypotheses.}
+For each $N$ and $\theta$, let $\zeta_{N,\theta}$ be a random variable independent of $J$, which contains all
+auxiliary randomness used both by the algorithms and by the disclosure
+procedure below. Its measurable space and law may depend on $\theta$;
+below we write $\zeta_N$ with $\theta$ suppressed. For each $N$ and $\theta$, let
+$\mathcal A_{N,\theta}=\mathcal A_{N,\theta}(J,\zeta_N)$ be an
+$L_{\mathrm{Lip},\theta}$-Lipschitz algorithm with seed $\zeta_N$. The constant
+$L_{\mathrm{Lip},\theta}$ is deterministic and independent of $N$, but it may be
+unbounded in the outer limits. We define the energy deficit
+\begin{equation}\label{sel:adaptive-deficit}
+ \delta_\theta=\max\left\{0,\;\Eth-\liminf_{N\to\infty}
+ \E\frac{H_N(\mathcal A_{N,\theta})}N\right\}.
+\end{equation}
+\Cref{sel:absolute-field-cost} implies that
+$\limsup_N\E H_N(\mathcal A_{N,\theta})/N\le\Eth$. The hypothesis
+$\lim_\theta\delta_\theta=0$ says exactly that the algorithms saturate the
+threshold in mean.
+
+For a subspace $W\subset\R^N$, we write
+\[
+ \mathcal T(W)=(W^\perp)^{\otimes p}\subset(\R^N)^{\otimes p},
+\]
+and $P_V$ for the orthogonal projection onto a subspace $V$ of $\R^N$ or of
+$(\R^N)^{\otimes p}$. If $W\subset W'$, then $\mathcal T(W')\subset\mathcal T(W)$,
+and we write $\mathcal T(W)\ominus\mathcal T(W')$ for the orthogonal
+complement of $\mathcal T(W')$ in $\mathcal T(W)$. We choose orthonormal
+bases of measurable subspaces measurably, by Gram--Schmidt in a fixed order
+with deterministic fallbacks.
+
+\begin{lemma}[Adaptive tensor disclosure]\label{sel:adaptive-disclosure}
+Let $W_0\subset\R^N$ be a $\zeta_N$-measurable subspace, and let
+$\mathcal F_0$ be the $\sigma$-algebra generated by $\zeta_N$ and
+$P_{\mathcal T(W_0)^\perp}J$. For $j\ge0$, given $W_j$ and $\mathcal F_j$,
+let $u_j$ be an $\mathcal F_j$-measurable vector that is either zero or a
+unit vector in $W_j^\perp$, and set
+\[
+ W_{j+1}=W_j+\Span(u_j),\qquad
+ \mathcal F_{j+1}=\sigma\Big(\mathcal F_j,\;
+ P_{\mathcal T(W_j)\ominus\mathcal T(W_{j+1})}J\Big).
+\]
+Then, for every $j$:
+\begin{enumerate}[label=(\roman*)]
+\item\label{item:disclosure-gaussian}
+$P_{\mathcal T(W_j)^\perp}J$ is $\mathcal F_j$-measurable, and conditionally
+on $\mathcal F_j$, the tensor $P_{\mathcal T(W_j)}J$ is standard Gaussian on
+$\mathcal T(W_j)$;
+\item\label{item:disclosure-gradient}
+if $x_j\in W_j$ is $\mathcal F_j$-measurable, then $\nabla H_N(x_j)$ is
+$\mathcal F_j$-measurable. In particular, $u_j$ may be chosen as the
+normalized projection of $\nabla H_N(x_j)$ onto $W_j^\perp$, and as zero if
+that projection vanishes.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The conditional Gaussian assertions are understood almost surely with respect to the disclosed history. A zero query discloses the zero tensor block and leaves the residual law unchanged.
+We prove part~\ref{item:disclosure-gaussian} by induction on $j$. For
+$j=0$, conditionally on $\zeta_N$, the tensor $J$ is standard Gaussian,
+because it is independent of $\zeta_N$, and the subspaces $\mathcal T(W_0)$
+and $\mathcal T(W_0)^\perp$ are fixed. The projections of a standard
+Gaussian vector onto two complementary orthogonal subspaces are independent
+standard Gaussian vectors on them. Revealing $P_{\mathcal T(W_0)^\perp}J$
+leaves $P_{\mathcal T(W_0)}J$ standard Gaussian on
+$\mathcal T(W_0)$.
+
+Suppose that part~\ref{item:disclosure-gaussian} holds for $j$. Conditionally on
+$\mathcal F_j$, the vector $u_j$ and the subspaces in the orthogonal
+decomposition
+\[
+ \mathcal T(W_j)=\mathcal T(W_{j+1})\oplus
+ \big(\mathcal T(W_j)\ominus\mathcal T(W_{j+1})\big)
+\]
+are fixed, and $P_{\mathcal T(W_j)}J$ is standard Gaussian on
+$\mathcal T(W_j)$. Its projections onto the two summands are
+independent standard Gaussian vectors. Revealing the second leaves the
+first, which is $P_{\mathcal T(W_{j+1})}J$, standard Gaussian on
+$\mathcal T(W_{j+1})$. Since
+$\mathcal T(W_{j+1})^\perp=\mathcal T(W_j)^\perp\oplus
+(\mathcal T(W_j)\ominus\mathcal T(W_{j+1}))$, the projection
+$P_{\mathcal T(W_{j+1})^\perp}J$ is $\mathcal F_{j+1}$-measurable. This
+completes the induction. At each step, we choose the new direction before we reveal the
+corresponding part of $J$; this is what makes the induction work, and we
+never condition on a subspace that depends on undisclosed randomness.
+
+For part~\ref{item:disclosure-gradient}, let $x\in W_j$ and $y\in\R^N$. We
+have
+\[
+ \ip{\nabla H_N(x)}{y}=N^{-(p-1)/2}\Big\langle J,\;\sum_{i=1}^p
+ x^{\otimes(i-1)}\otimes y\otimes x^{\otimes(p-i)}\Big\rangle.
+\]
+Since $p\ge2$, each tensor in the sum has at least one factor $x\in W_j$.
+It is orthogonal to every product tensor with all factors in $W_j^\perp$,
+and these product tensors span $\mathcal T(W_j)$. The right side is equal to
+$N^{-(p-1)/2}$ times the inner product of $P_{\mathcal T(W_j)^\perp}J$ with
+that tensor. By part~\ref{item:disclosure-gaussian}, it is
+$\mathcal F_j$-measurable when $x=x_j$ is.
+\end{proof}
+
+\begin{proposition}[Orthogonality to every fixed finite query span]
+\label{sel:adaptive-orthogonality}
+Assume the standing hypotheses and $\lim_\theta\delta_\theta=0$. Fix integers
+$k_0\ge0$ and $M\ge0$. For each $N$ and $\theta$, let
+$W_0\subset W_1\subset\dots\subset W_M$ be subspaces constructed as in
+\cref{sel:adaptive-disclosure} from the seed $\zeta_N$, with
+$\dim W_0\le k_0$. Then
+\begin{equation}\label{sel:finite-span-orthogonality}
+ \lim_\theta\limsup_{N\to\infty}
+ \E\frac{\norm{P_{W_M}\mathcal A_{N,\theta}}^2}N=0.
+\end{equation}
+In particular, if $Y_N\in W_M\cap B_N$ is a random vector, then
+$\lim_\theta\limsup_N\E|\ip{\mathcal A_{N,\theta}}{Y_N}/N|^2=0$.
+\end{proposition}
+
+\begin{proof}
+For $0\le j\le M$, we define
+\[
+ \psi_{j,\theta}=\limsup_{N\to\infty}
+ \E\frac{\norm{P_{W_j}\mathcal A_{N,\theta}}^2}N.
+\]
+We bound $\psi_{0,\theta}$ directly and then show by induction that
+$\psi_{j+1,\theta}$ is controlled by $\psi_{j,\theta}$ and $\delta_\theta$.
+We use the constants of the threshold only at fixed $\theta$, before any
+outer limit, and the argument does not require $L_{\mathrm{Lip},\theta}$ to stay
+bounded.
+
+\paragraph{Step 1: the initial span.}
+Let $e_1,\dots,e_{k_0}$ be a $\zeta_N$-measurable orthonormal basis of
+$W_0$, completed by zero vectors if $\dim W_0<k_0$. We obtain such a frame by Gram--Schmidt on the projected coordinate vectors,
+keeping nonzero columns in a fixed order and then padding by zero columns. For $N\ge1$, fix a
+deterministic unit vector $e_{\mathrm{ref}}\in\R^N$, and for every $i$ set
+$w_i=\sqrt N e_i$ on $\{e_i\ne0\}$ and
+$w_i=\sqrt N e_{\mathrm{ref}}$ on $\{e_i=0\}$. This gives a
+$\zeta_N$-measurable direction of norm $\sqrt N$ on every seed event.
+We apply \cref{sel:absolute-field-cost} with
+$L_{\mathrm{Lip}}=L_{\mathrm{Lip},\theta}$ and direction $w_i$, and we drop
+its nonnegative overlap penalty on $\{e_i=0\}$. Since the pairing with
+$e_i$ vanishes there, this yields
+\[
+ \bd\limsup_{N\to\infty}\E\left|\frac{\ip{\mathcal A_{N,\theta}}{e_i}}{\sqrt N}\right|^p
+ \le\Eth-\liminf_{N\to\infty}\E\frac{H_N(\mathcal A_{N,\theta})}N
+ \le\delta_\theta.
+\]
+For each $i$, by Jensen's inequality and $p\ge2$, we have
+$\E|\ip{\mathcal A_{N,\theta}}{e_i}|^2/N
+\le(\E|\ip{\mathcal A_{N,\theta}}{e_i}/\sqrt N|^p)^{2/p}$. Summing over $i$,
+we obtain
+\begin{equation}\label{sel:adaptive-initial-estimate}
+ \psi_{0,\theta}\le k_0\left(\frac{\delta_\theta}{\bd}\right)^{2/p}.
+\end{equation}
+
+\paragraph{Step 2: the energy of the residual.}
+Fix $j<M$, write $W=W_j$, and let
+$\mathcal A^\perp=P_{W^\perp}\mathcal A_{N,\theta}$. Both
+$\mathcal A_{N,\theta}$ and $\mathcal A^\perp$ lie in $B_N$. Using \eqref{sel:tensor-ui} and the mean value theorem, we have
+\[
+ \frac{|H_N(\mathcal A_{N,\theta})-H_N(\mathcal A^\perp)|}N
+ \le pQ_N\frac{\norm{P_W\mathcal A_{N,\theta}}}{\sqrt N}.
+\]
+By the Cauchy--Schwarz inequality, the expectation of the right side has
+upper limit at most $pQ_*\sqrt{\psi_{j,\theta}}$. Combining this with the
+definition \eqref{sel:adaptive-deficit} of $\delta_\theta$, we find
+\begin{equation}\label{eq:residual-energy-lower}
+ \liminf_{N\to\infty}\E\frac{H_N(\mathcal A^\perp)}N
+ \ge\Eth-\delta_\theta-pQ_*\sqrt{\psi_{j,\theta}}.
+\end{equation}
+
+\paragraph{Step 3: the residual model.}
+Since $k_0$ and $M$ are fixed before the dimension limit, we may restrict
+to $N>k_0+M$. Every residual dimension below is then positive.
+We now show that $\mathcal A^\perp$ is the output of a Lipschitz algorithm
+for a pure $p$-spin model in dimension $N'=N-\dim W$, and that its
+energy has the same normalization up to a factor tending to one. We
+condition on $\mathcal F_j$. Then $W$ and $u_j$ are fixed, and we choose an
+$\mathcal F_j$-measurable orthonormal basis $f_1,\dots,f_{N'}$ of
+$W^\perp$. Let $J'\in(\R^{N'})^{\otimes p}$ be the coordinates of
+$P_{\mathcal T(W)}J$ in the basis
+$(f_{i_1}\otimes\dots\otimes f_{i_p})$. By
+\cref{sel:adaptive-disclosure}\ref{item:disclosure-gaussian}, $J'$ is a
+standard Gaussian vector in the $N'^p$-dimensional space
+$(\R^{N'})^{\otimes p}$, conditionally on $\mathcal F_j$. Let
+$y'\in\R^{N'}$ be the coordinates of $\mathcal A^\perp$ in the basis
+$(f_i)$, and set $x=\sqrt{N'/N}\,y'$. Then $\norm x\le\sqrt{N'}$, that is,
+$x\in B_{N'}$. Since $(\mathcal A^\perp)^{\otimes p}\in\mathcal T(W)$, only
+$P_{\mathcal T(W)}J$ contributes to $H_N(\mathcal A^\perp)$, and a change of
+normalization yields
+\begin{equation}\label{sel:residual-normalization}
+ \frac{H_N(\mathcal A^\perp)}N
+ =N^{-(p+1)/2}\ip{J'}{y'^{\otimes p}}
+ =\sqrt{\frac{N'}N}\,\frac{H'_{N'}(x)}{N'},
+\end{equation}
+where $H'_{N'}(x)=N'^{-(p-1)/2}\ip{J'}{x^{\otimes p}}$ is the pure $p$-spin
+Hamiltonian in dimension $N'$ with coefficient tensor $J'$. Indeed,
+$\ip{J'}{y'^{\otimes p}}=(N/N')^{p/2}\ip{J'}{x^{\otimes p}}$, and
+$N^{-(p+1)/2}(N/N')^{p/2}N'^{(p-1)/2}=(N'/N)^{1/2}N'^{-1}$. Moreover, $J$
+is an affine isometric function of $J'$ given $\mathcal F_j$, and
+$\mathcal A^\perp\mapsto x$ is a contraction. Therefore, conditionally on $\mathcal F_j$, the map $J'\mapsto x$ is $L_{\mathrm{Lip},\theta}$-Lipschitz with
+values in $B_{N'}$. Let $u'\in\R^{N'}$ be the coordinates of $u_j$ when
+$u_j\ne0$, and the first coordinate vector otherwise. The direction
+$w'=\sqrt{N'}u'$ has norm $\sqrt{N'}$, and when $u_j\ne0$,
+\[
+ \frac{\ip{w'}{x}}{N'}=\frac{\ip{u'}{y'}}{\sqrt N}
+ =\frac{\ip{u_j}{\mathcal A_{N,\theta}}}{\sqrt N},
+\]
+where we used $u_j\in W^\perp$ in the last equality.
+
+\paragraph{Step 4: the penalty in the residual model.}
+Let $\alpha_j=\ip{u_j}{\mathcal A_{N,\theta}}/\sqrt N$, which is zero if
+$u_j=0$. The conditional law of $J'$ given $\mathcal F_j$ is standard
+Gaussian, and on each event $\{N'=n'\}$ the tensor $J'$ is independent of
+$\mathcal F_j$. We may therefore apply \eqref{eq:conditional-field-cost} in
+dimension $N'$, with $\mathcal F_j$ in the role of the seed, to the
+algorithm $J'\mapsto x$ and the direction $w'$. If $u_j\ne0$, its overlap
+term is $\bd|\alpha_j|^p$; if $u_j=0$, we drop its nonnegative overlap
+term. Since $N'\ge N-k_0-j$ and $\phi_N\ge0$, we obtain
+\[
+ \E\left[\frac{H'_{N'}(x)}{N'}+\bd|\alpha_j|^p\,\middle|\,\mathcal F_j\right]
+ \le\Eth+\sup_{N''\ge N-k_0-j}\phi_{N''}(p,L_{\mathrm{Lip},\theta}).
+\]
+We use \eqref{sel:residual-normalization} to write
+\[
+ \frac{H_N(\mathcal A^\perp)}N+\bd|\alpha_j|^p
+ =\sqrt{\frac{N'}N}\left(\frac{H'_{N'}(x)}{N'}+\bd|\alpha_j|^p\right)
+ +\left(1-\sqrt{\frac{N'}N}\right)\bd|\alpha_j|^p.
+\]
+Here $\sqrt{N'/N}\le1$, $0\le1-\sqrt{N'/N}\le(k_0+j)/N$, and $|\alpha_j|\le1$.
+Taking expectations and letting $N\to\infty$, we find
+\[
+ \limsup_{N\to\infty}\left\{\E\frac{H_N(\mathcal A^\perp)}N
+ +\bd\,\E|\alpha_j|^p\right\}\le\Eth.
+\]
+Combining this with \eqref{eq:residual-energy-lower}, we obtain
+$\bd\limsup_N\E|\alpha_j|^p\le\delta_\theta+pQ_*\sqrt{\psi_{j,\theta}}$. By
+Jensen's inequality as in Step~1, and since
+$\norm{P_{W_{j+1}}\mathcal A_{N,\theta}}^2=\norm{P_{W_j}\mathcal A_{N,\theta}}^2
++N|\alpha_j|^2$, we conclude that
+\begin{equation}\label{sel:adaptive-recursion}
+ \psi_{j+1,\theta}\le\psi_{j,\theta}
+ +\left(\frac{\delta_\theta+pQ_*\sqrt{\psi_{j,\theta}}}{\bd}\right)^{2/p}.
+\end{equation}
+
+\paragraph{Step 5: the outer limits.}
+The right sides of \eqref{sel:adaptive-initial-estimate} and
+\eqref{sel:adaptive-recursion} are continuous nondecreasing functions of
+$(\delta_\theta,\psi_{j,\theta})$ that vanish at $(0,0)$. Upper limits pass
+through such functions. Taking the outer limits in their prescribed order
+and inducting on $j\le M$, we find
+$\lim_\theta\psi_{j,\theta}=0$ for every $j\le M$. This is
+\eqref{sel:finite-span-orthogonality}. Finally, if
+$Y_N\in W_M\cap B_N$, then
+\[
+ \left|\frac{\ip{\mathcal A_{N,\theta}}{Y_N}}N\right|^2
+ =\left|\frac{\ip{P_{W_M}\mathcal A_{N,\theta}}{Y_N}}N\right|^2
+ \le\frac{\norm{P_{W_M}\mathcal A_{N,\theta}}^2}N,
+\]
+which proves the last assertion.
+\end{proof}
+
+\section{Transfer to a fixed waiting-time state}\label{sec:general-transfer}
+
+We now combine the forks with finite-query orthogonality on their fixed
+product probability spaces. The hypotheses of the next proposition are those of
+\cref{prop:threshold-inputs}\ref{item:threshold-forgetting}. Under them,
+the translated family $(C_T,R_T,\lambda_T)$ converges along every sequence
+$T_n\to\infty$ to one stationary cluster $(c,r,\ell)$. Indeed, by the
+precompactness in \cref{prop:stationary-clusters}, every subsequence of
+$(T_n)$ has a further subsequence along which the family converges, and the
+limit is a stationary cluster whose kernels are $(c,r)$. Its multiplier is
+determined by $r$: setting $\tau=0$ in \eqref{eq:stationary-cluster-response}
+and using $r(0)=1$, we find $\ell=-r'(0)$. All subsequential limits are
+therefore equal. In particular, \cref{sel:finite-forks} applies along every
+sequence $T_n\to\infty$.
+
+\begin{proposition}[Fixed-waiting-time decorrelation]
+\label{sel:general-fixed-wait}
+Fix $p\ge3$ and $\beta>0$. Suppose that the translated kernels converge
+along every sequence $T\to\infty$ to one stationary profile $(c,r)$, and
+that its plateau $q$ is positive and satisfies
+$\beta^2p(p-1)q^{p-2}(1-q)^2=1$. Then
+\[
+ \lim_{t\to\infty}C(t,s)=0\qquad\text{for every fixed }s\ge0.
+\]
+\end{proposition}
+
+\begin{proof}
+The proof is by contradiction. Recall from \eqref{eq:ck-physical-bounds}
+that $C\ge0$. Suppose that, for some $s\ge0$, there exist
+$\gamma>0$ and $t_n\to\infty$ such that $C(t_n,s)\ge\gamma$ for all $n$. The
+proof has three steps. We first express $C(t_n,s)$ through the center of a
+fork that ends at $t_n$. Then we show that the Lipschitz algorithms
+approximating the normalized center saturate the threshold in the order
+\eqref{sel:aging-limit-order}. Finally, on the fixed fork product law, we approximate $X_s$ by a
+finite-query Euler vector and use \cref{sel:adaptive-orthogonality} to force
+their overlap with $X_s$ to vanish, which contradicts the first step.
+
+\paragraph{Step 1: the overlap of the center.}
+Fix $K\ge1$ and $L\ge0$, and set $T_n=\max\{s+1,t_n-L\}$ for every $n$.
+Then $T_n\to\infty$, $T_n\ge s$, and for all sufficiently large $n$ we have
+$T_n+L=t_n$. Let $m_{N,n}$ be the center of the fork at time $T_n$ with $K$
+branches of length $L$. For these sufficiently large $n$, the branches
+end at time $t_n$. The time $s$ lies in the common past,
+and each pair $(Y_b,X_s)$ has the law of $(X_{t_n},X_s)$. This implies that
+\begin{equation}\label{sel:fork-fixed-wait-overlap}
+ \E\frac{\ip{m_{N,n}}{X_s}}N=\E C_N(t_n,s),
+\end{equation}
+and by \cref{prop:hard-bridge}, the right side tends to $C(t_n,s)$ as
+$N\to\infty$. In the limit in $n$, the endpoint of the fork is the time $t_n$ itself,
+so we do not need any regularity of $C(\cdot,s)$ in its first variable.
+
+\paragraph{Step 2: saturation of the threshold.}
+Let $\theta=(n,\varepsilon,K,L)$, where $\varepsilon=1/(m+1)$ and
+$K=k+1$ for $m,k\in\mathbb N$, with the order of
+\eqref{sel:aging-limit-order}, and let
+$\mathcal A_{N,\theta}=\mathcal A^\varepsilon_{N,T_n}$ be the algorithms of
+\cref{sel:finite-forks}\ref{item:fork-lipschitz} for this fork. They satisfy
+the standing hypotheses of \cref{sec:general-disclosure} on the fixed fork
+product law of \cref{sec:general-forks}, with seed $\zeta_N$ consisting
+of $X_0$, the $K$ full future Wiener paths, and the full trunk Wiener path $B$,
+jointly independent of $J$, and with a constant $L_{\mathrm{Lip},\theta}$
+depending only on $p$, $\beta$, the fixed waiting time $s$, the horizon
+$T_n+L$, $K$, and $\varepsilon$. We write
+$Q=Q_{K,L}$, and recall that $q\le Q\le1$. Let
+\[
+ \Delta_{N,\theta}=\left(\frac1N\E\norm{\mathcal A_{N,\theta}
+ -m_{N,n}/\sqrt Q}^2\right)^{1/2}.
+\]
+By \eqref{sel:fork-lipschitz} and the comparison of normalizations in
+\cref{sel:finite-forks}\ref{item:fork-lipschitz}, we have
+\begin{equation}\label{eq:transfer-approximation}
+ \limsup_{n\to\infty}\limsup_{j\to\infty}\Delta_{N_j,\theta}\le\varepsilon.
+\end{equation}
+The vector $m_{N,n}/\sqrt Q$ has norm at most $\sqrt{N/q}$. Using
+\eqref{eq:general-energy-transfer} with $R=q^{-1/2}$ and the homogeneity of
+$H_N$, we find
+\[
+ \E\frac{H_N(\mathcal A_{N,\theta})}N
+ \ge Q^{-p/2}\E\frac{H_N(m_{N,n})}N-C_q\Delta_{N,\theta},\qquad
+ C_q=p\,q^{-(p-1)/2}Q_*.
+\]
+The constant $C_q$ does not depend on $n$, $\varepsilon$, $K$, or $L$; this
+is where we use $q>0$. Then \eqref{sel:fork-center-energy-limit} implies that
+$\lim_n\liminf_jQ^{-p/2}\E H_{N_j}(m_{N_j,n})/N_j=Q^{-p/2}h_{K,L}$.
+Together with \eqref{eq:transfer-approximation}, this gives
+\[
+ \limsup_{n\to\infty}\delta_\theta
+ \le\max\left\{0,\;\Eth-\frac{h_{K,L}}{Q_{K,L}^{p/2}}+C_q\varepsilon\right\}.
+\]
+We let $\varepsilon\downarrow0$, then $K\to\infty$, then $L\to\infty$. By
+\eqref{sel:fork-saturation}, which applies because $q$ is marginal, we
+conclude that $\lim_\theta\delta_\theta=0$ in the order
+\eqref{sel:aging-limit-order}.
+
+\paragraph{Step 3: orthogonality on the fork product law and the contradiction.}
+We use the algorithms of Step~2 on precisely the fork seed and disorder
+product space just described, and take the limits in precisely the order
+\eqref{sel:aging-limit-order}, with $\varepsilon=1/(m+1)$. All disclosure
+histories below include the full fork seed. If $s=0$, then $X_0$ lies in the
+seed-measurable subspace $W_0=\Span(X_0)$, and
+\cref{sel:adaptive-orthogonality} with $k_0=1$ and no disclosure steps gives
+zero limiting squared overlap. For $s>0$, fix $M\ge1$ before any limit.
+We construct the Euler--Maruyama approximation
+\cite[Sections~4--5]{higham2001} of this fork's trunk state $X_s$ and prove
+the required normalized error directly.
+
+\subparagraph{The coefficients.}
+Let $\Psi_N=\Pi_{B_N}$ be the metric projection onto the ball of radius $\sqrt N$.
+We use $P_y=I-yy^{\mathsf T}/N$ for every $y\in\R^N$, as in \cref{sec:model}.
+For $x\in\R^N$, we define
+\[
+ b_N(x)=\beta P_{\Psi_N(x)}\nabla H_N(\Psi_N(x))-\frac{N-1}N\Psi_N(x),\qquad
+ \sigma_N(x)=\sqrt2\,P_{\Psi_N(x)}.
+\]
+Since $\Psi_N(x)=x$ on $S_N$, these are the coefficients of
+\eqref{eq:hard-sde} on $S_N$, and
+\[
+ X_t=X_0+\int_0^tb_N(X_r)\,\dd r+\int_0^t\sigma_N(X_r)\,\dd B_r.
+\]
+Let $G_N=\{Q_N\le A_p\}$, and let $y=\Psi_N(x)$ and $z=\Psi_N(x')$, so that
+$\norm y,\norm z\le\sqrt N$ and $\norm{y-z}\le\norm{x-x'}$. The matrix $P_y$
+has eigenvalues $1$ and $1-\norm y^2/N\in[0,1]$, which gives
+$\norm{P_y}_\op\le1$ and $\norm{P_y}_{\HS}^2\le N$. Moreover,
+\[
+ \norm{P_y-P_z}_{\HS}=\frac{\norm{yy^{\mathsf T}-zz^{\mathsf T}}_{\HS}}N
+ \le\frac{(\norm y+\norm z)\norm{y-z}}N\le\frac{2\norm{x-x'}}{\sqrt N}.
+\]
+On $G_N$, \eqref{eq:general-ball-derivatives} with $R=2$ gives
+$\norm{\nabla H_N(y)}\le p2^{p-1}A_p\sqrt N$ and
+$\norm{\nabla H_N(y)-\nabla H_N(z)}\le p(p-1)2^{p-2}A_p\norm{y-z}$. Writing
+$P_y\nabla H_N(y)-P_z\nabla H_N(z)
+=P_y(\nabla H_N(y)-\nabla H_N(z))+(P_y-P_z)\nabla H_N(z)$, we obtain, on
+$G_N$ and for all $x,x'\in\R^N$,
+\begin{equation}\label{eq:euler-coefficient-bounds}
+\begin{gathered}
+ \norm{b_N(x)-b_N(x')}\le K_b\norm{x-x'},\qquad
+ \norm{\sigma_N(x)-\sigma_N(x')}_{\HS}\le\frac{2\sqrt2}{\sqrt N}\norm{x-x'},\\
+ \norm{b_N(x)}^2\le K_b'N,\qquad\norm{\sigma_N(x)}_{\HS}^2\le2N,
+\end{gathered}
+\end{equation}
+with $K_b=1+\beta pA_p2^{p-2}(3p+5)$ and
+$K_b'=(3\beta p2^{p-1}A_p+2)^2$. The Hilbert--Schmidt bound on
+$\sigma_N(x)-\sigma_N(x')$ is the reason that the error below does not grow with $N$: a bound of order one for each matrix entry would lose a factor of
+$N$.
+
+\subparagraph{The Euler--Maruyama scheme.}
+Let $t_i=is/M$ for $0\le i\le M$. We define $Z_0=X_0$ and
+\[
+ Z_{i+1}=Z_i+\frac sM\,b_N(Z_i)+\sigma_N(Z_i)\big(B_{t_{i+1}}-B_{t_i}\big),
+ \qquad 0\le i<M.
+\]
+For $r\in[t_i,t_{i+1})$, let $r_-=t_i$, and let
+$Z_r=Z_i+(r-t_i)b_N(Z_i)+\sigma_N(Z_i)(B_r-B_{t_i})$, so that
+\[
+ Z_t=X_0+\int_0^tb_N(Z_{r_-})\,\dd r+\int_0^t\sigma_N(Z_{r_-})\,\dd B_r
+\]
+and $Z_s=Z_M$. We set $Y_{N,M}=\Pi_{B_N}(Z_M)$.
+
+\subparagraph{The error on $G_N$.}
+Fix $J\in G_N$ and $X_0$, and let $\E_B$ denote expectation over the
+Brownian motion. Let $u(t)=\E_B\norm{X_t-Z_t}^2/N$ and
+$v(r)=\E_B\norm{Z_r-Z_{r_-}}^2/N$. Since $Z_{r_-}$ is independent of
+$B_r-B_{r_-}$, the It\^o isometry and \eqref{eq:euler-coefficient-bounds}
+give
+\[
+ v(r)\le2\Big(\frac sM\Big)^2K_b'+2\,\frac sM\,\frac{2N}N
+ \le C_1\frac sM,\qquad C_1=2sK_b'+4.
+\]
+Subtracting the integral equations for $X_t$ and $Z_t$, and using the
+Cauchy--Schwarz inequality for the drift and the It\^o isometry for the
+noise, we find, for $t\le s$,
+\[
+ u(t)\le2sK_b^2\int_0^t\E_B\frac{\norm{X_r-Z_{r_-}}^2}N\,\dd r
+ +\frac{16}N\int_0^t\E_B\frac{\norm{X_r-Z_{r_-}}^2}N\,\dd r.
+\]
+Inserting the bound $\E_B\norm{X_r-Z_{r_-}}^2/N\le2u(r)+2v(r)$, we obtain
+$u(t)\le C_2\int_0^tu(r)\,\dd r+C_2C_1s^2/M$ with $C_2=4sK_b^2+32$. By
+Gronwall's inequality,
+\[
+ u(s)\le C_1C_2s\,e^{C_2s}\,\frac sM.
+\]
+The projection $\Pi_{B_N}$ is $1$-Lipschitz and fixes $X_s\in S_N$, which
+gives
+$\E_B\norm{X_s-Y_{N,M}}^2/N\le u(s)$ on $G_N$. On $G_N^c$, we have
+$\norm{X_s-Y_{N,M}}^2/N\le4$, and $\Prob(G_N^c)\le e^{-c_pN}$. Thus, with $C=C_1C_2se^{C_2s}$,
+\begin{equation}\label{sel:euler-approximation}
+ \limsup_{N\to\infty}\E\frac{\norm{X_s-Y_{N,M}}^2}N\le C\,\frac sM.
+\end{equation}
+The expectation here is on the fixed fork product law. Its projection
+onto $(J,X_0,B)$ has exactly the original disorder, uniform initial and
+Wiener product law, so the error bound is independent of $n$, $\varepsilon$,
+$K$, and $L$.
+
+\subparagraph{The query span.}
+Let $W_0$ be the span of $X_0$ and the increments $B_{t_{i+1}}-B_{t_i}$,
+$0\le i<M$. It is measurable with respect to the full fork seed $\zeta_N$ and has dimension at
+most $M+1$. Suppose that $Z_i\in W_i$ and that $Z_i$ is
+$\mathcal F_i$-measurable, where $\mathcal F_i$ is the disclosure history
+generated using this full fork seed, which holds for $i=0$. The point $\Psi_N(Z_i)$
+is a multiple of $Z_i$ and lies in $W_i$. By \cref{sel:adaptive-disclosure}\ref{item:disclosure-gradient}, the gradient
+$g_i=\nabla H_N(\Psi_N(Z_i))$ is $\mathcal F_i$-measurable. We choose $u_i$
+as the normalized projection of $g_i$ onto $W_i^\perp$ (zero if it
+vanishes), so that $g_i\in W_{i+1}$. Since
+$P_yw=w-y\ip yw/N$, the step from $Z_i$ to $Z_{i+1}$ is a linear
+combination of $Z_i$, $\Psi_N(Z_i)$, $g_i$, and $B_{t_{i+1}}-B_{t_i}$, with
+coefficients that are $\mathcal F_i$-measurable. This shows that
+$Z_{i+1}\in W_{i+1}$ and that $Z_{i+1}$ is $\mathcal F_{i+1}$-measurable. After $M$ steps, $Z_M\in W_M$,
+and $Y_{N,M}$, a multiple of $Z_M$, lies in $W_M$. Each step adds at most
+one dimension, which gives $\dim W_M\le2M+1$.
+
+\subparagraph{Passing from the Euler vector to the waiting state.}
+By Step~2, \cref{sel:adaptive-orthogonality} applies to these particular
+full-fork disclosure histories, with $k_0=M+1$ and $M$ queries. Hence the
+squared overlap of $\mathcal A_{N,\theta}$ with $Y_{N,M}$ vanishes after the
+dimension limit and then the limits in $n$, $\varepsilon=1/(m+1)$, $K$, and $L$.
+Since $\norm{\mathcal A_{N,\theta}}\le\sqrt N$, we have
+\[
+ \E\left|\frac{\ip{\mathcal A_{N,\theta}}{X_s}}N\right|^2
+ \le2\E\left|\frac{\ip{\mathcal A_{N,\theta}}{Y_{N,M}}}N\right|^2
+ +2\E\frac{\norm{X_s-Y_{N,M}}^2}N.
+\]
+By \eqref{sel:euler-approximation}, the nested upper limit of the left side
+is at most $2Cs/M$. It does not depend on $M$. Sending $M\to\infty$ last
+(and using the $s=0$ argument above when needed), we obtain
+\begin{equation}\label{eq:transfer-orthogonality}
+ \lim_\theta\limsup_{N\to\infty}
+ \E\left|\frac{\ip{\mathcal A_{N,\theta}}{X_s}}N\right|^2=0.
+\end{equation}
+On the other hand, by \eqref{eq:fork-overlap-transfer} with $V_N=X_s$ and by
+\eqref{sel:fork-fixed-wait-overlap}, we have
+\[
+ \frac{\E C_N(t_n,s)}{\sqrt Q}
+ \le\left(\E\left|\frac{\ip{\mathcal A_{N,\theta}}{X_s}}N\right|^2\right)^{1/2}
+ +\Delta_{N,\theta}.
+\]
+As $N=N_j\to\infty$, the left side tends to $C(t_n,s)/\sqrt Q$, which is at
+least $\gamma$ because $Q\le1$. We conclude that, for every fixed
+$\varepsilon$, $K$, and $L$ and all sufficiently large $n$,
+\[
+ \gamma\le\limsup_{j\to\infty}
+ \left(\E\left|\frac{\ip{\mathcal A_{N_j,\theta}}{X_s}}{N_j}\right|^2\right)^{1/2}
+ +\limsup_{j\to\infty}\Delta_{N_j,\theta}.
+\]
+We take the upper limit as $n\to\infty$, then let $\varepsilon\downarrow0$, $K\to\infty$, and $L\to\infty$, in the order \eqref{sel:aging-limit-order}.
+By \eqref{eq:transfer-orthogonality}, the first term tends to zero, and by
+\eqref{eq:transfer-approximation}, the second is at most $\varepsilon$ after
+the limit in $n$. Hence $\gamma\le0$, which contradicts $\gamma>0$. This completes the proof.
+\end{proof}
+
+\section{Proof of \texorpdfstring{\cref{prop:threshold-inputs}}{the threshold inputs}}
+\label{sec:general-proof-inputs}
+
+We now prove both parts of \cref{prop:threshold-inputs} for every $p\ge3$.
+
+\begin{proof}[Proof of \cref{prop:threshold-inputs}\ref{item:threshold-ceiling}]
+Let $T_n\to\infty$ be a sequence along which the translated kernels converge
+to a stationary cluster $(c,r,\ell)$ with plateau $q>0$, and fix $L\ge0$.
+For every $K\ge1$, \cref{sel:finite-forks} applies along $T_n$, and
+\eqref{sel:fork-center-threshold} gives
+\[
+ h_{K,L}\le\Eth\,Q_{K,L}^{p/2}.
+\]
+By \cref{lem:fork-parameter-limits}\ref{item:fork-K-limit}, we have
+$|Q_{K,L}-d_L|\le1/K$ and $|h_{K,L}-h_L|\le\beta p(p-1)/K$. The second bound
+is the dominated convergence argument made explicit: the difference
+$h_{K,L}-h_L$ is $\beta p$ times the integral of $r(\tau)$ times
+$k_{K,L}(\tau)^{p-1}-c(2L-\tau)^{p-1}$, which is at most $(p-1)/K$ in absolute
+value, and $\int_0^Lr\le1$. Letting $K\to\infty$ and using the continuity of
+$x\mapsto x^{p/2}$, we obtain
+\[
+ h_L\le\Eth\,d_L^{p/2},
+\]
+which is \eqref{eq:threshold-input-ceiling}.
+\end{proof}
+
+Letting $L\to\infty$ in \eqref{eq:threshold-input-ceiling} and using
+\cref{lem:fork-parameter-limits}\ref{item:fork-L-limit}, we obtain
+\begin{equation}\label{sel:general-positive-upper-bound}
+ h\le\Eth\,q^{p/2},
+\end{equation}
+where $h$ is given by \eqref{sel:limiting-center-energy}. This is the form
+in which part~\ref{item:threshold-ceiling} enters the proof of
+\cref{sel:positive-marginality}. It holds for every stationary cluster with
+positive plateau, and its proof does not use marginality.
+
+\begin{proof}[Proof of \cref{prop:threshold-inputs}\ref{item:threshold-forgetting}]
+The hypotheses of part~\ref{item:threshold-forgetting} are those of
+\cref{sel:general-fixed-wait}, which gives $C(t,s)\to0$ as $t\to\infty$ for
+each fixed $s$. It remains to make the convergence uniform in
+$s\in[0,S]$. Let $k\ge1$ be an integer and let $s_i=i/k$ for
+$0\le i\le\lceil kS\rceil$. Every $s\in[0,S]$ is within $1/k$ of some
+$s_i$, and by the correlation modulus \eqref{eq:global-modulus} in the
+second variable,
+\[
+ |C(t,s)-C(t,s_i)|\le\frac{D_{p,\beta}}k+\sqrt{\frac2k}
+\]
+for all $t$. Since $C\ge0$, we obtain
+\[
+ \sup_{0\le s\le S}|C(t,s)|\le\max_{i}C(t,s_i)+\frac{D_{p,\beta}}k+\sqrt{\frac2k}.
+\]
+The maximum is over finitely many points, and it tends to zero as
+$t\to\infty$ by \cref{sel:general-fixed-wait}. Letting $t\to\infty$ and then
+$k\to\infty$ proves \eqref{eq:threshold-input-forgetting}.
+\end{proof}

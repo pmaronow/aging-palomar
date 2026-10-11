@@ -1,0 +1,13 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "SphericalAging.PalomarCompleteTheorems.exists_complete_conclusions",
+    "SphericalAging.PalomarStationarityCertificate.proposition5_7"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ]
+}

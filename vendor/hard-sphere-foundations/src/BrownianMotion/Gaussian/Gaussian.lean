@@ -1,0 +1,33 @@
+module
+
+
+/-
+Modified for this project: compatibility adaptations and source-comment cleanup.
+Apache-2.0: vendor/LICENSE. Provenance: vendor/PROVENANCE.json.
+-/
+
+public import Mathlib.Probability.Distributions.Gaussian.CharFun
+public import Mathlib.Probability.Distributions.Gaussian.HasGaussianLaw.Basic
+
+@[expose] public section
+
+/-!
+# Facts about Gaussian characteristic function
+-/
+
+open Complex MeasureTheory WithLp NormedSpace
+
+open scoped Matrix NNReal Real InnerProductSpace ProbabilityTheory
+
+namespace ProbabilityTheory
+
+variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [SecondCountableTopology E]
+  [CompleteSpace E] [MeasurableSpace E] [BorelSpace E] {μ : Measure E}
+
+lemma HasGaussianLaw.charFun_map_real {Ω : Type*} {mΩ : MeasurableSpace Ω} {P : Measure Ω}
+    {X : Ω → ℝ} (h : HasGaussianLaw X P) (t : ℝ) :
+    charFun (P.map X) t = cexp (t * P[X] * I - t ^ 2 * Var[X; P] / 2) := by
+  rw [h.map_eq_gaussianReal, IsGaussian.charFun_eq', covarianceBilin_real_self]
+  simp [variance_nonneg, integral_complex_ofReal, mul_comm]
+
+end ProbabilityTheory

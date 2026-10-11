@@ -1,0 +1,531 @@
+\chapter{Structural identities and uniform estimates}\label{sec:ck-structure}
+
+In this section, we prove the structural identities of the CK solution and the estimates on it that hold uniformly in time. \Cref{prop:energy-bridge} shows that the CK integral $e_\beta(t)$ is the limit of the mean energy of the diffusion, and that $\lambda(t)=1+p\beta e_\beta(t)$. \Cref{prop:green-covariance}, the Green covariance identity, expresses the correlation as an explicit quadratic functional of the response. We realize it by unit vectors $Z_t$ in a Hilbert space. From these, we deduce an energy--response tradeoff and the bound $1\le\lambda\le\Lambda$ (\cref{prop:uniform-bounds}), Lipschitz and H\"older bounds in time (\cref{prop:global-regularity}), an equation for the response in its earlier time (\cref{prop:backward-response}), and the domination $R\le C$ together with the compactness of the CK solution along late time windows (\cref{prop:response-compactness}). All constants are uniform over the half-line $[0,\infty)$.
+
+We use the results of \cref{sec:model}. \Cref{prop:energy-bridge} uses \cref{prop:hard-bridge,lem:brown-force-response,lem:landscape-moments}, and \cref{prop:global-regularity} uses \cref{prop:hard-bridge,lem:landscape-moments,prop:energy-bridge}. All other proofs in this section are deterministic, and they use only the CK equations \eqref{eq:ck-response}--\eqref{eq:ck-boundary} and the published facts of \cref{prop:ck-wellposed}. The results of this section are used throughout the rest of the paper. The bounds and the compactness enter the construction of stationary limits in \cref{sec:entropy-clusters}. The Green covariance identity is the starting point of the tree realization in \cref{sec:geometry-core} and of the response estimates in \cref{resp:chapter}. The energy identity identifies the energy of a stationary cluster in \cref{sec:entropy-clusters,sec:stationary-selection}. We use the backward response equation in \cref{resp:chapter,resp:fisher-chapter}, and the domination $R\le C$ transfers the forgetting of correlations to the response in \cref{sec:stationary-selection}.
+
+The Green covariance identity is the variation-of-constants formula for the linear effective process of dynamical mean-field theory, in which a single coordinate is driven by its own response kernel, by white noise, and by a Gaussian noise with covariance $\beta^2\xi'(C)$. The single-coordinate retarded equation and its colored Gaussian noise are described in \cite[arXiv version~2, Section~9.5, Equation~(9.56), p.~55; see also Equations~(9.13)--(9.14), p.~45]{cugliandolo2004}. The dynamical equations behind this picture are those of Cugliandolo and Kurchan \cite[arXiv version~1, Equations~(2)--(4), pp.~2--3]{ck1993}, established for the soft-spherical model in \cite[arXiv version~1, Theorem~1.2, p.~5]{bag2006}; for a conditional Gaussian-field description in a related setting, see \cite[arXiv version~2, Remark~1.4, Equations~(1.23)--(1.24), p.~5]{ds2020}. These works provide the background. We prove the identity in the exact form \eqref{eq:green-covariance} directly from the CK equations, so that the later uses of the complete memory are transparent. The other estimates of this section are elementary, and we include their proofs for completeness.
+
+Throughout this section, $(C,R,\lambda)$ is the solution of the hard-spherical CK system given by \cref{prop:ck-wellposed}, and $e_\beta$ is defined by \eqref{eq:energy-chi-def}.
+
+\section{The energy identity}\label{sec:energy-identity}
+
+\begin{proposition}[Energy identity on fixed horizons]\label{prop:energy-bridge}
+For every $T<\infty$, the annealed normalized energy converges uniformly on $[0,T]$, and its limit is
+\begin{equation}
+e_\beta(t)=\lim_{N\to\infty}\frac1N\E H_N(X_t)
+=\beta p\int_0^t C(t,u)^{p-1}R(t,u)\,\dd u,
+\qquad
+\lambda(t)=1+p\beta e_\beta(t).
+\label{eq:energy-identity}
+\end{equation}
+\end{proposition}
+
+In the physics literature, the energy is expressed in the same way through the correlation--response integral of \cite[Equation~(5)]{ck1993}. The sentence after that equation prints the energy with the sign opposite to their equation~(9); the dictionary of \cref{sec:conventions}, with $E(t)=-e_\beta(t)/\sqrt2$, agrees with the sign in equation~(9). The proof below justifies the hard-sphere form through the primitives of the response and a rank-one correction in finite dimension. It is a Gaussian integration by parts in the disorder. Differentiating the trajectory with respect to one Gaussian coefficient produces the pathwise response matrix $U_N(t,u)$ of \eqref{eq:response-matrix}, and differentiating the covariance \eqref{eq:hamiltonian-covariance} splits the result into a trace term and a rank-one correction. The trace term carries the correlation weight $C_N(t,u)^{p-1}$ against the response; in the limit, it becomes the CK integral. Two estimates make this rigorous. The first is a fourth-moment bound for the response columns and normalized trace that is uniform in the dimension and in the waiting time $u$, and the second is the convergence \eqref{eq:trace-response-primitive} of the primitives of the annealed response. The rank-one correction is controlled by the operator norm, whose second moment is at most a constant times $N$.
+
+\begin{proof}
+The proof has four steps. In Step~1, we bound the drift derivative and the noise derivative trace along the sphere. In Step~2, a stopped fourth-moment estimate gives uniform bounds on the response columns and normalized trace. In Step~3, we integrate by parts in the disorder and obtain the exact identity \eqref{eq:hard-energy-ibp}. In Step~4, we pass to the limit $N\to\infty$.
+
+Recall the variational definition \eqref{eq:response-matrix} and the normalized trace \eqref{eq:annealed-response}. The physical coefficients are
+\[
+ b(x)=\beta P_x\nabla H_N(x)-\kappa_Nx,\qquad
+ \sigma_j(x)=\sqrt2P_xe_j,\quad j=1,\dots,N.
+\]
+
+\paragraph{Step 1: bounds for the variational coefficients.}
+The landscape derivative bounds give $\norm{Db(x)[v]}\le A_N\norm v$ on $S_N$, with $A_N=1+\beta p(p+1)Q_N$.
+For the noise, $D\sigma_j(x)[v]=-\sqrt2N^{-1}(vx_j+xv_j)$. Since $\norm x^2=N$, the inequality $\norm{a+b}^2\le2\norm a^2+2\norm b^2$ implies
+\begin{equation}\label{eq:tangent-flow-lognorm}
+ \sum_{j=1}^N\norm{D\sigma_j(x)[v]}^2\le B_N\norm v^2,
+ \qquad B_N=\frac8N.
+\end{equation}
+These estimates apply to all ambient vectors, so no samplewise diffeomorphism or invertibility assertion is needed.
+
+\paragraph{Step 2: column, trace and operator moments.}
+Fix $u\ge0$ and a deterministic $v\in\R^N$. The true variational solution starts from $P_{X_u}v$, which is $\mathcal F_u$-measurable and has norm at most $\norm v$. Apply It\^o's formula to the fourth power of its norm, stopped at the first exit from a ball. The bounds in Step~1, Gronwall's inequality, and Fatou's lemma when removing the stopping give, conditionally on the disorder,
+\begin{equation}\label{eq:tangent-flow-bound}
+ \E_B\norm{U_N(t,u)v}^4
+ \le\norm v^4\exp\bigl\{(4A_N+2+6B_N)(t-u)\bigr\},
+ \qquad 0\le u\le t.
+\end{equation}
+For a $\mathcal F_u$-measurable initial direction of norm at most a deterministic $a$, the same estimate holds with $a^4$ in place of $\norm v^4$. For $N\ge1$, the rate in \eqref{eq:tangent-flow-bound} is at most $54+4\beta p(p+1)Q_N$. Consequently, for $T<\infty$, the constant
+\[
+ K_T=e^{54T}\sup_N\E e^{4\beta p(p+1)TQ_N}<\infty,
+ \qquad \Theta_T=\sqrt{1+K_T},
+\]
+is independent of the dimension and waiting time. Its finiteness follows from \cref{lem:landscape-moments}. Put $\tau_N(t,u)=N^{-1}\tr U_N(t,u)$. Jensen's inequality for the average of the diagonal entries, $|e_i\cdot U_Ne_i|\le\norm{U_Ne_i}$, and the elementary bound $\norm{U_N}_{\op}^2\le\sum_{i=1}^N\norm{U_Ne_i}^2$ show that
+\begin{equation}\label{eq:finite-lag-flow-moments}
+\begin{aligned}
+ \sup_N\sup_{u\ge0,\,0\le t-u\le T}\sup_{1\le i\le N}
+ \E\norm{U_N(t,u)e_i}^4&\le K_T,\\
+ \sup_N\sup_{u\ge0,\,0\le t-u\le T}
+ \E|\tau_N(t,u)|^4&\le K_T,\\
+ \E\norm{U_N(t,u)}_{\op}^2&\le N\Theta_T^2,
+ \qquad 0\le t-u\le T.
+\end{aligned}
+\end{equation}
+In particular, $\E|\tau_N(t,u)|^2\le\Theta_T^2$, $\E|\tau_N(t,u)|\le\Theta_T$, and $\E\norm{U_N(t,u)}_{\op}\le\sqrt N\Theta_T$. The bounds depend only on the lag window $T$, even though the waiting state depends on the disorder and the past. Jointly measurable response representatives and their product-time integrability follow from the actual projected-restart derivative and these column moments.
+
+\paragraph{Step 3: Gaussian integration by parts.}
+For a multi-index $\nu=(i_1,\dots,i_p)\in\{1,\dots,N\}^p$, let $f_\nu(x)=N^{-(p-1)/2}x_{i_1}\cdots x_{i_p}$, so that $H_N=\sum_\nu J_\nu f_\nu$. On $S_N$, we have $|x_i|\le\sqrt N$, so $|f_\nu|\le\sqrt N$ and $\norm{\nabla f_\nu}\le p$. Changing the coefficient $J_\nu$ by $\varepsilon$ adds $\varepsilon\beta P_x\nabla f_\nu(x)$ to the drift of \eqref{eq:hard-sde}, which is a tangent force $\varepsilon\beta P_{X_u}\nabla f_\nu(X_u)$ at time $u$. As in \eqref{eq:response-variation}, the variation-of-constants formula yields
+\begin{equation}\label{eq:disorder-variation}
+ \partial_{J_\nu}X_t=\beta\int_0^tU_N(t,u)\nabla f_\nu(X_u)\,\dd u,
+\end{equation}
+where the derivative is taken in $L^2$ for the actual terminal solution. The first-order expansion of $f_\nu$ on the compact sphere gives
+\[
+\begin{aligned}
+ \partial_{J_\nu}\E_{X_0,B}f_\nu(X_t)
+ &=\E_{X_0,B}[\nabla f_\nu(X_t)\cdot\partial_{J_\nu}X_t],\\
+ \left|\partial_{J_\nu}\E_{X_0,B}f_\nu(X_t)\right|
+ &\le\beta p^2\int_0^t\E_{X_0,B}\norm{U_N(t,u)}_{\op}\,\dd u.
+\end{aligned}
+\]
+Step~2 makes the right side integrable under the disorder law at every fixed $N$. As $X_0$ and $B$ are independent of $J$, we apply Gaussian integration by parts to $J\mapsto\E_{X_0,B}f_\nu(X_t)$, conditionally on the other disorder coefficients. Summing over the $N^p$ multi-indices and using Fubini's theorem, we obtain
+\[
+ \E H_N(X_t)=\sum_\nu\E[J_\nu f_\nu(X_t)]
+ =\beta\int_0^t\E\tr\Bigl[U_N(t,u)\sum_\nu\nabla f_\nu(X_u)\nabla f_\nu(X_t)^{\mathsf T}\Bigr]\dd u.
+\]
+To compute the sum over $\nu$, we differentiate the identity $\sum_\nu f_\nu(x)f_\nu(y)=N^{-(p-1)}(x\cdot y)^p$, the middle expression in \eqref{eq:hamiltonian-covariance}, once in $x_j$ and once in $y_i$. With $c=x\cdot y/N$, this gives
+\[
+ \sum_\nu\partial_if_\nu(y)\,\partial_jf_\nu(x)=pc^{p-1}\delta_{ij}+\frac{p(p-1)}Nc^{p-2}x_iy_j.
+\]
+Taking $x=X_t$ and $y=X_u$, so that $c=C_N(t,u)$, we have
+\[
+ \sum_\nu\nabla f_\nu(X_u)\nabla f_\nu(X_t)^{\mathsf T}
+ =pC_N(t,u)^{p-1}I+\frac{p(p-1)}NC_N(t,u)^{p-2}X_tX_u^{\mathsf T}.
+\]
+Inserting this into the previous display, using $\tr(U_NX_tX_u^{\mathsf T})=X_u^{\mathsf T}U_NX_t$, and dividing by $N$, we obtain
+\begin{align}
+\frac1N\E H_N(X_t)
+={}&\beta p\int_0^t
+ \E\Bigl[C_N(t,u)^{p-1}\,\frac{\tr U_N(t,u)}N\Bigr]\dd u
+ \nonumber\\
+&+\frac{\beta p(p-1)}{N^2}\int_0^t
+ \E\bigl[C_N(t,u)^{p-2}X_u^{\mathsf T}U_N(t,u)X_t\bigr]\dd u.
+\label{eq:hard-energy-ibp}
+\end{align}
+The second line is a rank-one correction. Using $|C_N|\le1$, $|X_u^{\mathsf T}U_N(t,u)X_t|\le N\norm{U_N(t,u)}_{\op}$, and Step~2, its absolute value is at most $\beta p(p-1)T\Theta_T/\sqrt N$ for $0\le t\le T$. This tends to zero uniformly in $t\le T$.
+
+\paragraph{Step 4: the limit $N\to\infty$.}
+Fix $T<\infty$. In this step, only the dimension tends to infinity, with the horizon $T$ fixed. We first replace the random weight $C_N(t,u)^{p-1}$ in the first line of \eqref{eq:hard-energy-ibp} by $C(t,u)^{p-1}$. Using that $x\mapsto x^{p-1}$ is $(p-1)$-Lipschitz on $[-1,1]$, the bound $\E|\tau_N(t,u)|^2\le\Theta_T^2$, and the Cauchy--Schwarz inequality, we find that the error is at most
+\[
+\begin{aligned}
+ &\beta p(p-1)\int_0^t\E\bigl[|C_N(t,u)-C(t,u)|\,|\tau_N(t,u)|\bigr]\dd u\\
+ &\qquad\le\beta p(p-1)T\,\Theta_T\Bigl(\E\sup_{0\le u\le t\le T}|C_N(t,u)-C(t,u)|^2\Bigr)^{1/2},
+\end{aligned}
+\]
+which tends to zero uniformly in $t\le T$ by \eqref{eq:bridge-l1}. After this replacement, and by Fubini's theorem, the first line of \eqref{eq:hard-energy-ibp} becomes $\beta p\int_0^tw(t,u)\bar r_N(t,u)\,\dd u$, where
+\[
+ w(t,u)=C(t,u)^{p-1},\qquad 0\le u\le t\le T.
+\]
+
+It remains to show that
+\begin{equation}\label{eq:weighted-response-limit}
+ \lim_{N\to\infty}\sup_{0\le t\le T}\Bigl|\int_0^tw(t,u)\bigl(\bar r_N(t,u)-R(t,u)\bigr)\,\dd u\Bigr|=0.
+\end{equation}
+The convergence of primitives \eqref{eq:trace-response-primitive} does not imply this by itself, because $\bar r_N(t,\cdot)$ may change sign; we also need a bound on the total variation of the signed measure $\bar r_N(t,u)\,\dd u$. Because $|\bar r_N(t,u)|\le\E|\tau_N(t,u)|\le\Theta_T$, we have
+\[
+ \int_0^t|\bar r_N(t,u)|\,\dd u\le T\Theta_T,\qquad 0\le t\le T,
+\]
+for every $N$. Let $r_T$ be the maximum of the continuous function $R$ on the triangle. Let
+\[
+ \eta_N=\sup_{0\le s\le t\le T}\Bigl|\int_0^s\bigl(\bar r_N(t,u)-R(t,u)\bigr)\,\dd u\Bigr|,
+\]
+which tends to zero by \eqref{eq:trace-response-primitive}. Fix $\delta>0$ and a partition $0=\tau_0<\tau_1<\dots<\tau_m=T$ of mesh at most $\delta$. Let $w_\delta(t,u)=w(t,\tau_{k-1})$ for $u\in[\tau_{k-1},\tau_k)$, and let $\omega_T(\delta)$ be the modulus of continuity of $w$ on the compact triangle $\{0\le u\le t\le T\}$, so that $\sup|w-w_\delta|\le\omega_T(\delta)$ and $\omega_T(\delta)\to0$ as $\delta\to0$. For fixed $t\le T$, the integral $\int_0^tw_\delta(t,u)(\bar r_N-R)(t,u)\,\dd u$ is a sum of at most $m$ terms $w(t,\tau_{k-1})\int_{\tau_{k-1}\wedge t}^{\tau_k\wedge t}(\bar r_N-R)(t,u)\,\dd u$. Each integral, including the one over a possibly truncated last interval, is a difference of two primitives evaluated at points of $[0,t]$, and $|w|\le1$. This gives
+\[
+ \sup_{0\le t\le T}\Bigl|\int_0^tw(t,u)\bigl(\bar r_N-R\bigr)(t,u)\,\dd u\Bigr|
+ \le\omega_T(\delta)\,T\,(\Theta_T+r_T)+2m\eta_N,
+\]
+where the first term bounds the integral of $(w-w_\delta)(\bar r_N-R)$ by the total variation bounds above. We first let $N\to\infty$ with the partition fixed, which removes the term $2m\eta_N$, and then let $\delta\to0$. This proves \eqref{eq:weighted-response-limit}.
+
+Combining Step~3, the replacement of the weight, and \eqref{eq:weighted-response-limit}, we conclude that
+\[
+ \lim_{N\to\infty}\sup_{0\le t\le T}\Bigl|\frac1N\E H_N(X_t)-\beta p\int_0^tC(t,u)^{p-1}R(t,u)\,\dd u\Bigr|=0,
+\]
+which is the first assertion of \eqref{eq:energy-identity}. The identity $\lambda(t)=1+p\beta e_\beta(t)$ follows from \eqref{eq:ck-multiplier}.
+\end{proof}
+
+\section{The Green covariance identity}\label{sec:green-covariance}
+
+We now regard the CK solution as fixed and use its coefficients to define a linear problem. Let
+\begin{equation}
+\Sigma(t,u)=\beta^2p(p-1)C(t,u)^{p-2}R(t,u),\qquad 0\le u\le t,
+\label{eq:self-energy-kernel}
+\end{equation}
+which is continuous and, by \eqref{eq:ck-physical-bounds}, nonnegative. Let $\mathcal D$ be the linear Volterra operator
+\[
+\mathcal D f(t)=f'(t)+\lambda(t)f(t)-\int_0^t\Sigma(t,u)f(u)\,\dd u.
+\]
+Note that $\beta^2\xi''(C)R=\Sigma$ and $\beta^2\xi'(C)=\beta^2pC^{p-1}$. The CK equations take the following form. We extend $R(\cdot,s)$ by zero on $[0,s)$. Then, for fixed $s$, \eqref{eq:ck-response} says that $\mathcal DR(\cdot,s)(t)=0$ for $t>s$, with $R(s,s)=1$. That is, the response is the causal Green kernel of $\mathcal D$, with unit diagonal. Also, \eqref{eq:ck-correlation} says that
+\begin{equation}\label{eq:ck-correlation-linear}
+ \mathcal DC(\cdot,s)(t)=\beta^2p\int_0^sC(t,u)^{p-1}R(s,u)\,\dd u,\qquad t>s.
+\end{equation}
+Although the coefficients $\lambda$ and $\Sigma$ come from the nonlinear CK system, they are fixed continuous functions in what follows.
+
+\begin{proposition}[Green covariance identity]\label{prop:green-covariance}
+For every $t,s\ge0$,
+\begin{align}
+C(t,s)={}&R(t,0)R(s,0)
+ +2\int_0^{t\wedge s}R(t,u)R(s,u)\,\dd u
+ \nonumber\\
+&+\beta^2p\int_0^t\int_0^s
+       R(t,u)R(s,v)C(u,v)^{p-1}\,\dd v\,\dd u.
+\label{eq:green-covariance}
+\end{align}
+In particular,
+\begin{equation}
+C(t,0)=R(t,0),\qquad
+2\int_0^tR(t,u)^2\,\dd u\le1.
+\label{eq:initial-response-row-bound}
+\end{equation}
+\end{proposition}
+
+The three terms of \eqref{eq:green-covariance} are the contributions of the initial condition, of the white noise, whose covariance is $2$ in our convention, and of the colored noise with covariance $\beta^2pC^{p-1}=\beta^2\xi'(C)$, each propagated by the response.
+
+\begin{proof}
+Let $Q(t,s)$ be the right side of \eqref{eq:green-covariance}. It is continuous and symmetric. The proof has four steps. We verify that $Q$ satisfies the same linear equation as $C$ off the diagonal, and the same equation as $C$ along the diagonal; a Gronwall argument then shows that $Q=C$. Finally, we deduce \eqref{eq:initial-response-row-bound}. Throughout, all integrands are continuous and bounded on bounded sets, and whenever we exchange the order of integration below, we apply Fubini's theorem on a bounded region.
+
+\paragraph{Step 1: the off-diagonal equation.}
+We write $Q=Q_1+Q_2+Q_3$ for the three terms:
+\[
+ Q_1(t,s)=R(t,0)R(s,0),\qquad
+ Q_2(t,s)=2\int_0^{t\wedge s}R(t,u)R(s,u)\,\dd u,
+\]
+\[
+ Q_3(t,s)=\beta^2p\int_0^t\int_0^sR(t,u)R(s,v)K(u,v)\,\dd v\,\dd u,\qquad K(u,v)=C(u,v)^{p-1}.
+\]
+Fix $s$ and let $t>s$. By \eqref{eq:ck-response}, we have $\partial_tR(t,0)=-\lambda(t)R(t,0)+\int_0^t\Sigma(t,z)R(z,0)\,\dd z$, and hence
+\[
+ \partial_tQ_1(t,s)=-\lambda(t)Q_1(t,s)+\int_0^t\Sigma(t,z)Q_1(z,s)\,\dd z.
+\]
+For $t>s$, we have $Q_2(t,s)=2\int_0^sR(t,u)R(s,u)\,\dd u$. Differentiating under the integral and using \eqref{eq:ck-response} gives
+\[
+ \partial_tQ_2(t,s)=-\lambda(t)Q_2(t,s)+2\int_0^sR(s,u)\int_u^t\Sigma(t,z)R(z,u)\,\dd z\,\dd u.
+\]
+The region $\{0\le u\le s,\ u\le z\le t\}$ is $\{0\le z\le t,\ 0\le u\le z\wedge s\}$, and exchanging the integrals yields
+\[
+ \partial_tQ_2(t,s)=-\lambda(t)Q_2(t,s)+\int_0^t\Sigma(t,z)Q_2(z,s)\,\dd z.
+\]
+Note that the inner integral produces $Q_2(z,s)$ with its upper limit $z\wedge s$, which accounts correctly for the memory times $z<s$. For the colored term, differentiating in the upper limit $t$ produces a boundary term with $R(t,t)=1$, and differentiating $R(t,u)$ inside the integral produces the memory term after the same exchange of integrals. We obtain
+\[
+ \partial_tQ_3(t,s)=-\lambda(t)Q_3(t,s)+\int_0^t\Sigma(t,z)Q_3(z,s)\,\dd z+\beta^2p\int_0^sK(t,v)R(s,v)\,\dd v.
+\]
+Adding the three equations, we conclude that, for $t>s$,
+\begin{equation}\label{eq:green-off-diagonal}
+ \partial_tQ(t,s)=-\lambda(t)Q(t,s)+\int_0^t\Sigma(t,z)Q(z,s)\,\dd z+\beta^2p\int_0^sC(t,v)^{p-1}R(s,v)\,\dd v.
+\end{equation}
+By \eqref{eq:ck-correlation-linear}, the correlation $C$ satisfies the same equation. Note that the white-noise integral has no boundary term when $t>s$, because its upper limit $t\wedge s=s$ does not move.
+
+\paragraph{Step 2: the diagonal equation.}
+Along the diagonal, the upper limit of the white-noise integral moves. We differentiate $Q(t,t)=Q_1(t,t)+Q_2(t,t)+Q_3(t,t)$, using \eqref{eq:ck-response}, $R(t,t)=1$, and the symmetry of $K$. Both arguments now move, and the computations of Step~1 give
+\[
+ \frac{\dd}{\dd t}Q_i(t,t)
+ =-2\lambda(t)Q_i(t,t)
+  +2\int_0^t\Sigma(t,u)Q_i(u,t)\,\dd u+b_i(t),
+ \qquad i=1,2,3,
+\]
+where $b_1(t)=0$, $b_2(t)=2$, and $b_3(t)=2\beta^2p\int_0^tK(t,u)R(t,u)\,\dd u$. Adding these identities, we obtain
+\begin{equation}\label{eq:green-diagonal}
+\frac{\dd}{\dd t}Q(t,t)
+=-2\lambda(t)Q(t,t)
+ +2\int_0^t\Sigma(t,u)Q(u,t)\,\dd u
+ +2\beta^2p\int_0^t C(t,u)^{p-1}R(t,u)\,\dd u+2.
+\end{equation}
+The last term $2$ is the boundary term $2R(t,t)^2$ from the moving upper limit of the white-noise integral. The constant function $C(t,t)=1$ satisfies the same equation. Indeed, if we substitute $Q=C$ and $C(t,t)=1$, the right side of \eqref{eq:green-diagonal} becomes
+\[
+ -2\lambda(t)+2\int_0^t\Sigma(t,u)C(t,u)\,\dd u+2\beta^2p\int_0^tC(t,u)^{p-1}R(t,u)\,\dd u+2,
+\]
+and since $\Sigma(t,u)C(t,u)=\beta^2p(p-1)C(t,u)^{p-1}R(t,u)$, this vanishes by the multiplier equation \eqref{eq:ck-multiplier}. Both $Q$ and $C$ equal one at $(0,0)$.
+
+\paragraph{Step 3: uniqueness.}
+Let $D=Q-C$. It is continuous and symmetric, $D(0,0)=0$, and by Steps~1 and~2 it satisfies the homogeneous equations
+\[
+\begin{aligned}
+ \partial_tD(t,s)&=-\lambda(t)D(t,s)+\int_0^t\Sigma(t,z)D(z,s)\,\dd z,\qquad t>s,\\
+ \frac{\dd}{\dd t}D(t,t)&=-2\lambda(t)D(t,t)+2\int_0^t\Sigma(t,z)D(z,t)\,\dd z.
+\end{aligned}
+\]
+Fix $T<\infty$, and let $\bar\lambda_T=\sup_{[0,T]}|\lambda|$, $\bar\Sigma_T=\sup_{0\le u\le t\le T}|\Sigma(t,u)|$, and
+\[
+ d(t)=\sup_{0\le u,v\le t}|D(u,v)|,\qquad 0\le t\le T,
+\]
+which is nondecreasing and bounded. Integrating the diagonal equation from $0$ to $s$ and bounding $|D(z,v)|\le d(v)$ for $z\le v$, we find
+\[
+ |D(s,s)|\le(2\bar\lambda_T+2\bar\Sigma_TT)\int_0^sd(v)\,\dd v.
+\]
+For $t>s$, we integrate the off-diagonal equation from $s$ to $t$ and find
+\[
+ |D(t,s)|\le|D(s,s)|+(\bar\lambda_T+\bar\Sigma_TT)\int_s^td(v)\,\dd v,
+\]
+where we used that for $v\in[s,t]$ and $z\le v$, both arguments of $D(v,s)$ and $D(z,s)$ lie in $[0,v]$. These two bounds and the symmetry of $D$ imply that $|D(t',s')|\le(2\bar\lambda_T+2\bar\Sigma_TT)\int_0^td(v)\,\dd v$ whenever $t',s'\le t$. Taking the supremum over $t'$ and $s'$, we have
+\[
+ d(t)\le(2\bar\lambda_T+2\bar\Sigma_TT)\int_0^td(v)\,\dd v,\qquad 0\le t\le T.
+\]
+By Gronwall's inequality, $d\equiv0$ on $[0,T]$. Since the horizon $T$ was arbitrary, we conclude that $Q=C$, which is \eqref{eq:green-covariance}.
+
+\paragraph{Step 4: consequences.}
+At $s=0$, the white-noise and colored terms of \eqref{eq:green-covariance} vanish and $R(0,0)=1$, so that $C(t,0)=R(t,0)$. At $s=t$, the left side of \eqref{eq:green-covariance} is one, and the three terms on the right are nonnegative, because $R\ge0$ and $C\ge0$ by \eqref{eq:ck-physical-bounds}. In particular, $2\int_0^tR(t,u)^2\,\dd u\le1$.
+\end{proof}
+
+\paragraph{Feature vectors.}
+We now realize \eqref{eq:green-covariance} as a Gram identity. By \cref{prop:ck-wellposed}, $C$ is a positive-semidefinite kernel, and the Schur product theorem \cite[Section~4, Satz~VII, p.~14]{schur1911} implies that its entrywise power $K=C^{p-1}$ is positive semidefinite as well. Let $\mathcal K$ be the Hilbert space generated by vectors $V_u$, $u\ge0$, with
+\[
+ \ip{V_u}{V_v}=C(u,v)^{p-1}.
+\]
+Explicitly, we take finite formal linear combinations of the symbols $V_u$, define the inner product by bilinearity, take the quotient by the vectors of norm zero, and complete. This is the classical positive-kernel Hilbert-space construction \cite[Part~I, Section~2(4), p.~344]{aronszajn1950}. We call $\mathcal K$ the colored feature space. The vectors $V_u$ have norm one, and
+\begin{equation}
+\norm{V_u-V_v}^2=2\{1-C(u,v)^{p-1}\},
+\label{eq:colored-feature-modulus}
+\end{equation}
+so $u\mapsto V_u$ is norm-continuous, because $C$ is continuous. We may therefore define the Bochner integral
+\[
+ A_t=\int_0^tR(t,u)V_u\,\dd u\in\mathcal K
+\]
+of a continuous function on a compact interval. Since bounded linear functionals commute with the integral, we have
+\[
+ \ip{A_t}{A_s}=\int_0^t\int_0^sR(t,u)R(s,v)C(u,v)^{p-1}\,\dd v\,\dd u,\qquad
+ \ip{V_t}{A_t}=\int_0^tC(t,u)^{p-1}R(t,u)\,\dd u.
+\]
+In the direct sum $\R\oplus L^2(\R_+)\oplus\mathcal K$, we define
+\begin{equation}\label{eq:full-feature}
+Z_t=R(t,0)\ \oplus\ \sqrt2\,R(t,\cdot)\mathbf 1_{[0,t]}\ \oplus\ \beta\sqrt p\,A_t.
+\end{equation}
+Adding the inner products of the three orthogonal components, we see that \eqref{eq:green-covariance} says exactly
+\[
+ \ip{Z_t}{Z_s}=C(t,s),\qquad \norm{Z_t}=1.
+\]
+The initial, white-noise, and colored contributions to the correlation are orthogonal components of $Z_t$, and the colored component retains the complete history. \Cref{sec:geometry-core} refines the colored component into a causal realization graded by trees.
+
+\section{The energy--response tradeoff and the multiplier bound}\label{sec:uniform-bounds}
+
+\begin{proposition}[Energy--response tradeoff and uniform multiplier bound]\label{prop:uniform-bounds}
+For every $t\ge0$,
+\begin{equation}
+\frac{e_\beta(t)^2}{p}+C(t,0)^2
+                +2\int_0^tR(t,u)^2\,\dd u\le1,
+\label{eq:energy-response-tradeoff}
+\end{equation}
+and
+\begin{equation}
+1\le\lambda(t)\le
+\Lambda,\qquad\Lambda=\frac{1+\sqrt{1+4\beta^2p^3}}2.
+\label{eq:uniform-multiplier}
+\end{equation}
+\end{proposition}
+
+Both estimates are deterministic consequences of the CK equations and of \cref{prop:ck-wellposed}. \Cref{prop:energy-bridge} is needed only to interpret $e_\beta(t)$ as an energy.
+
+\begin{proof}
+The proof has three steps. We first prove the tradeoff, then deduce a first bound on the multiplier, and finally improve it to \eqref{eq:uniform-multiplier} using a lower bound on the response.
+
+\paragraph{Step 1: the tradeoff.}
+Let $M_t=\int_0^tC(t,u)^{p-1}R(t,u)\,\dd u$. With the notation of the feature vectors above, we have $M_t=\ip{V_t}{A_t}$, and since $\norm{V_t}=1$, the Cauchy--Schwarz inequality yields $M_t^2\le\norm{A_t}^2$. On the diagonal, \eqref{eq:green-covariance} reads $1=R(t,0)^2+2\int_0^tR(t,u)^2\,\dd u+\beta^2p\norm{A_t}^2$. Combining these two facts, we find
+\[
+ \beta^2pM_t^2+R(t,0)^2+2\int_0^tR(t,u)^2\,\dd u\le1.
+\]
+Since $e_\beta(t)=\beta pM_t$ and $\lambda(t)-1=\beta^2p^2M_t$, we have $e_\beta(t)^2/p=\beta^2pM_t^2=(\lambda(t)-1)^2/(\beta^2p^3)$. Using $C(t,0)=R(t,0)$ from \eqref{eq:initial-response-row-bound}, we obtain \eqref{eq:energy-response-tradeoff}, and equivalently
+\begin{equation}
+\frac{(\lambda(t)-1)^2}{\beta^2p^3}
+ +R(t,0)^2+2\int_0^tR(t,u)^2\,\dd u\le1.
+\label{eq:multiplier-response-tradeoff}
+\end{equation}
+
+\paragraph{Step 2: a first bound.}
+Note that $M_t\ge0$ and $\lambda(t)\ge1$, because $C\ge0$ and $R\ge0$. By \eqref{eq:multiplier-response-tradeoff}, we also have $\lambda(t)\le1+\beta p^{3/2}$. In particular, $\Lambda_0=\sup_{t\ge0}\lambda(t)$ satisfies $1\le\Lambda_0<\infty$.
+
+\paragraph{Step 3: the improvement.}
+Since $\Sigma\ge0$ and $R\ge0$, \eqref{eq:ck-response} implies that $\partial_tR(t,u)\ge-\lambda(t)R(t,u)$ for $t\ge u$. Then $t\mapsto R(t,u)\exp\int_u^t\lambda(v)\,\dd v$ is nondecreasing, and since $R(u,u)=1$, we have
+\[
+ R(t,u)\ge\exp\Bigl(-\int_u^t\lambda(v)\,\dd v\Bigr)\ge e^{-\Lambda_0(t-u)}.
+\]
+Squaring this bound and integrating gives
+\[
+ R(t,0)^2+2\int_0^tR(t,u)^2\,\dd u
+ \ge e^{-2\Lambda_0t}+\frac{1-e^{-2\Lambda_0t}}{\Lambda_0}
+ \ge\frac1{\Lambda_0},
+\]
+where in the last inequality we used that the middle expression is a convex combination of $1$ and $1/\Lambda_0$, and that $\Lambda_0\ge1$. Inserting this into \eqref{eq:multiplier-response-tradeoff}, we find $(\lambda(t)-1)^2\le\beta^2p^3(1-\Lambda_0^{-1})$ for every $t$. Taking times $t$ with $\lambda(t)\to\Lambda_0$ (the supremum need not be attained), we obtain
+\[
+ (\Lambda_0-1)^2\le\beta^2p^3\bigl(1-\Lambda_0^{-1}\bigr)=\beta^2p^3\,\frac{\Lambda_0-1}{\Lambda_0}.
+\]
+If $\Lambda_0>1$, we divide by $\Lambda_0-1$ and find $\Lambda_0^2-\Lambda_0-\beta^2p^3\le0$, which implies that $\Lambda_0$ is at most the positive root $\Lambda$ of $x^2-x-\beta^2p^3$. If $\Lambda_0=1$, then $\Lambda_0\le\Lambda$ because $\Lambda\ge1$. This proves \eqref{eq:uniform-multiplier}.
+\end{proof}
+
+\section{Regularity in time}\label{sec:regularity}
+
+\begin{proposition}[Uniform regularity in time]\label{prop:global-regularity}
+There exist finite constants $D_{p,\beta}$ and $L_{p,\beta}$, depending only on $p$ and $\beta$, such that $e_\beta$ and $\lambda$ are $L_{p,\beta}$-Lipschitz on $[0,\infty)$, and, for all $u,v\ge0$ and $h\ge0$,
+\begin{equation}
+|C(u+h,v)-C(u,v)|\le D_{p,\beta}h+\sqrt{2h},\qquad
+|C(u,v+h)-C(u,v)|\le D_{p,\beta}h+\sqrt{2h}.
+\label{eq:global-modulus}
+\end{equation}
+Moreover, with $\Lambda$ as in \eqref{eq:uniform-multiplier}, for all $t\ge s\ge0$,
+\begin{equation}\label{eq:diagonal-increment}
+ 0\le1-C(t,s)\le\Lambda(t-s).
+\end{equation}
+\end{proposition}
+
+We obtain the estimates \eqref{eq:global-modulus} from the diffusion in finite dimension and pass them to the limit with $u$, $v$, and $h$ fixed; their constants do not depend on the times involved. The bound \eqref{eq:diagonal-increment} is stronger near the diagonal. It implies that any unit vectors $v_t$ in a Hilbert space with $\ip{v_t}{v_s}=C(t,s)$, such as $Z_t$ in \eqref{eq:full-feature}, satisfy
+\[
+ \norm{v_t-v_s}^2=2\{1-C(t,s)\}\le2\Lambda|t-s|,
+\]
+so that $t\mapsto v_t$ is $1/2$-H\"older. The modulus \eqref{eq:global-modulus} alone would only yield the exponent $1/4$.
+
+\begin{proof}
+Let $\gamma_j=\sup_N\E Q_N^j$ for $j=1,2$, which are finite by \cref{lem:landscape-moments} and depend only on $p$.
+
+\paragraph{Step 1: the energy and the multiplier.}
+Let $e_N(t)=N^{-1}\E H_N(X_t)$. By It\^o's formula on $S_N$ and \eqref{eq:generator},
+\[
+ H_N(X_t)-H_N(X_s)=\int_s^t\bigl[\Delta_SH_N(X_r)+\beta\norm{\nabla_SH_N(X_r)}^2\bigr]\dd r+\sqrt2\int_s^t\nabla_SH_N(X_r)\cdot\dd B_r.
+\]
+For fixed $J$, the integrand of the stochastic integral is bounded, and the stochastic integral has mean zero; by \eqref{eq:landscape-derivative-bounds}, the integrands are integrable over the disorder as well. By \eqref{eq:landscape-derivative-bounds}, we have $|\Delta_SH_N|/N\le p^2Q_N$ and $\norm{\nabla_SH_N}^2/N\le\norm{\nabla H_N}^2/N\le p^2Q_N^2$ on $S_N$. Taking expectations gives
+\[
+ |e_N(t)-e_N(s)|\le p^2(\gamma_1+\beta\gamma_2)|t-s|,
+\]
+with a constant independent of $N$, $s$, and $t$. By \cref{prop:energy-bridge}, we have $e_N(t)\to e_\beta(t)$ for every $t$, and the Lipschitz bound passes to the limit, showing that $e_\beta$ is Lipschitz with constant $L_e=p^2(\gamma_1+\beta\gamma_2)$. By \eqref{eq:energy-identity}, $\lambda=1+p\beta e_\beta$ is Lipschitz with constant $p\beta L_e$. We take $L_{p,\beta}=\max\{1,p\beta\}L_e$.
+
+\paragraph{Step 2: the correlation modulus.}
+We decompose the increment of the path into its drift and martingale parts:
+\[
+ X_{u+h}-X_u=\int_u^{u+h}\bigl[\beta P_{X_r}\nabla H_N(X_r)-\kappa_NX_r\bigr]\dd r+\sqrt2\int_u^{u+h}P_{X_r}\,\dd B_r.
+\]
+By \eqref{eq:landscape-derivative-bounds}, the drift has norm at most $(1+\beta pQ_N)\sqrt N$. By the It\^o isometry and $\tr(P_x^2)=\tr P_x=N-1$, the martingale part has mean square norm $2(N-1)h\le2Nh$. Using the Cauchy--Schwarz inequality for the martingale part, we find
+\[
+ \E\frac{\norm{X_{u+h}-X_u}}{\sqrt N}\le(1+\beta p\gamma_1)h+\sqrt{2h}.
+\]
+By the Cauchy--Schwarz inequality and $\norm{X_v}=\sqrt N$, we also have, pathwise,
+\[
+ |C_N(u+h,v)-C_N(u,v)|=\frac{|(X_{u+h}-X_u)\cdot X_v|}N\le\frac{\norm{X_{u+h}-X_u}}{\sqrt N},
+\]
+and no relation between the times $u$ and $v$ is needed. Taking expectations, we deduce that $|\E C_N(u+h,v)-\E C_N(u,v)|\le D_{p,\beta}h+\sqrt{2h}$ with $D_{p,\beta}=1+\beta p\gamma_1$. We now let $N\to\infty$ with $u$, $v$, and $h$ fixed. By \cref{prop:hard-bridge}, applied on the horizon $\max\{u+h,v\}$ and using the symmetry of $C_N$ and $C$, we have $\E C_N\to C$ at both points, which proves the first bound in \eqref{eq:global-modulus}. The second bound follows from the first and the symmetry of $C$.
+
+\paragraph{Step 3: the diagonal increment.}
+Let $t>s$. All terms on the right side of \eqref{eq:ck-correlation} other than the first are nonnegative, by \eqref{eq:ck-physical-bounds}. Since $0\le C\le1$ and $\lambda\le\Lambda$ by \cref{prop:uniform-bounds}, we find
+\[
+ \partial_tC(t,s)\ge-\lambda(t)C(t,s)\ge-\Lambda.
+\]
+Integrating from $s$ to $t$ and using $C(s,s)=1$, we obtain $C(t,s)\ge1-\Lambda(t-s)$, which is the upper bound in \eqref{eq:diagonal-increment}. The lower bound is $C\le1$.
+\end{proof}
+
+\section{The backward response equation}\label{sec:backward-response}
+
+The response equation \eqref{eq:ck-response} is an equation in the later time $t$. The next proposition gives the corresponding equation in the earlier time $s$.
+
+\begin{proposition}[Backward response equation]\label{prop:backward-response}
+For $t>s\ge0$, the response satisfies
+\begin{equation}
+\partial_sR(t,s)=\lambda(s)R(t,s)
+                  -\int_s^tR(t,u)\Sigma(u,s)\,\dd u.
+\label{eq:backward-response}
+\end{equation}
+Both partial derivatives $\partial_tR$ and $\partial_sR$ extend continuously from $\{0<s<t\}$ to each compact causal triangle $\{0\le s\le t\le T\}$. At $s=0<t$, $\partial_sR$ is the right derivative; on the positive diagonal, $\partial_tR$ is the right derivative and $\partial_sR$ the left derivative along their causal rows. At $(0,0)$ these symbols denote the continuous extensions of the interior slopes.
+\end{proposition}
+
+\begin{proof}
+The idea is to write the response as a series of Volterra compositions, to reverse the order of the factors, and to differentiate the resulting formula in its lower endpoint; this needs only the continuity of $\Sigma$, not its derivative. Guionnet and Mazza give a related positive noncrossing expansion for the normalized response in a nonlinear Kraichnan equation \cite[arXiv version~1, Section~2.1 and Lemma~2.1, pp.~7--8]{guionnetmazza2005}. Here we keep $\Sigma$ fixed and use the Neumann series of the resulting linear Volterra equation.
+For continuous kernels $k_1$ and $k_2$ on the causal triangle, we define the Volterra composition
+\[
+ (k_1*k_2)(t,s)=\int_s^tk_1(t,u)k_2(u,s)\,\dd u,\qquad 0\le s\le t,
+\]
+which is associative by Fubini's theorem on bounded regions. Let
+\[
+ G(t,s)=\exp\Bigl(-\int_s^t\lambda(v)\,\dd v\Bigr),\qquad 0\le s\le t.
+\]
+Note that $0<G\le1$, because $\lambda\ge1$ by \cref{prop:uniform-bounds}.
+
+\paragraph{Step 1: the Neumann series.}
+By \eqref{eq:ck-response}, $\partial_t[R(t,s)/G(t,s)]=(\Sigma*R)(t,s)/G(t,s)$ for $t\ge s$. Integrating from $s$ to $t$ and using $R(s,s)=1$ gives the variation-of-constants formula $R=G+G*\Sigma*R$. Fix $T$, and let $\bar\Sigma_T=\sup_{0\le u\le t\le T}\Sigma(t,u)$. The kernel $(G*\Sigma)^n*G$ is an integral over $2n$ ordered intermediate times in $[s,t]$ of a product of $n$ factors $\Sigma$ and $n+1$ factors $G$. As $0<G\le1$, it is at most $\bar\Sigma_T^n$ times the volume of the simplex of ordered times:
+\[
+ \bigl|(G*\Sigma)^n*G\bigr|(t,s)\le\bar\Sigma_T^n\,\frac{(t-s)^{2n}}{(2n)!},\qquad 0\le s\le t\le T.
+\]
+The Neumann series $\sum_{n\ge0}(G*\Sigma)^n*G$ therefore converges uniformly on the triangle, and its sum $\tilde R$ satisfies $\tilde R=G+G*\Sigma*\tilde R$. The difference $\tilde R-R$ satisfies the homogeneous equation $f=G*\Sigma*f$, and iterating this equation $n$ times shows that $|f|\le\bar\Sigma_T^nT^{2n}\sup|f|/(2n)!$ for every $n$, which forces $f=0$. We have shown that
+\[
+ R=\sum_{n\ge0}(G*\Sigma)^n*G.
+\]
+
+\paragraph{Step 2: reversing the composition.}
+By associativity, $(G*\Sigma)^n*G=G*(\Sigma*G)^n$, and both are the composition of the word $G\Sigma G\cdots\Sigma G$. Separating the last two factors $\Sigma*G$ of each term with $n\ge1$, we obtain
+\[
+ R=G+\sum_{n\ge0}(G*\Sigma)^n*G*\Sigma*G=G+R*\Sigma*G.
+\]
+Explicitly, for $0\le s\le t$,
+\[
+ R(t,s)=G(t,s)+\int_s^tR(t,u)\,(\Sigma*G)(u,s)\,\dd u,\qquad
+ (\Sigma*G)(u,s)=\int_s^u\Sigma(u,v)G(v,s)\,\dd v.
+\]
+
+\paragraph{Step 3: differentiation in the earlier time.}
+We have $\partial_sG(v,s)=\lambda(s)G(v,s)$ and $G(s,s)=1$. Differentiating the inner integral in its lower endpoint yields
+\[
+ \partial_s(\Sigma*G)(u,s)=-\Sigma(u,s)+\lambda(s)(\Sigma*G)(u,s),
+\]
+which is continuous in $(u,s)$. The outer integral has lower endpoint $s$, and its boundary term vanishes because $(\Sigma*G)(s,s)=0$. By the Leibniz rule, we have
+\[
+\begin{aligned}
+ \partial_sR(t,s)&=\lambda(s)G(t,s)+\int_s^tR(t,u)\bigl[-\Sigma(u,s)+\lambda(s)(\Sigma*G)(u,s)\bigr]\dd u\\
+ &=\lambda(s)\bigl[G+R*\Sigma*G\bigr](t,s)-(R*\Sigma)(t,s).
+\end{aligned}
+\]
+Since $G+R*\Sigma*G=R$, this is \eqref{eq:backward-response}. We differentiated only continuous integrands through their moving endpoints.
+
+The right side of \eqref{eq:backward-response} is continuous on the closed triangle $\{0\le s\le t\le T\}$, with value $\lambda(t)$ at $s=t$. The forward derivative given by \eqref{eq:ck-response} is also continuous there, with value $-\lambda(s)$ at $t=s$. This proves the assertions about continuity.
+\end{proof}
+
+\section{Response domination and compactness}\label{sec:response-compactness}
+
+For $T\ge0$, we consider the translated kernels
+\begin{equation}\label{eq:translated-kernels}
+ C_T(a,b)=C(T+a,T+b),\quad
+ R_T(a,b)=R(T+a,T+b)\ \ (a\ge b),\quad
+ \lambda_T(a)=\lambda(T+a),
+\end{equation}
+defined for offsets $a,b\ge-T$. On every compact set of offsets, they are defined once $T$ is large enough. We consider correlations on squares of offsets, and responses only on closed causal triangles $\{a\ge b\}$, where their diagonal value is one.
+
+\begin{proposition}[Response domination and bounded-lag compactness]\label{prop:response-compactness}
+Let $a_{p,\beta}=\beta^2p(p-1)$. For every $t\ge s\ge0$,
+\begin{equation}
+ 0\le R(t,s)\le C(t,s)\le1,
+ \qquad
+ |\partial_tR(t,s)|+|\partial_sR(t,s)|
+ \le2\{\Lambda+a_{p,\beta}(t-s)\},
+ \label{eq:response-derivative-bounds}
+\end{equation}
+with the boundary interpretations of \cref{prop:backward-response}. The translated triples $(C_T,R_T,\lambda_T)$ are precompact for locally uniform convergence as $T\to\infty$, in the sense that every sequence $T_n\to\infty$ has a subsequence along which $C_{T_n}$, $R_{T_n}$, and $\lambda_{T_n}$ converge uniformly on every compact subset of $\R^2$, of $\{(a,b)\in\R^2:a\ge b\}$, and of $\R$, respectively.
+\end{proposition}
+
+\begin{proof}
+The proof has three steps. We first prove the domination $R\le C$, then the derivative bounds, and finally the compactness.
+
+\paragraph{Step 1: the domination.}
+Fix $s\ge0$, and let $D_s(t)=C(t,s)-R(t,s)$ for $t\ge s$. We split the first memory integral of \eqref{eq:ck-correlation} at $s$. With the notation \eqref{eq:self-energy-kernel}, the correlation satisfies
+\[
+ \partial_tC(t,s)=-\lambda(t)C(t,s)+\int_s^t\Sigma(t,u)C(u,s)\,\dd u+F_s(t),\qquad t\ge s,
+\]
+where
+\[
+ F_s(t)=\int_0^s\Sigma(t,u)C(u,s)\,\dd u+\beta^2p\int_0^s C(t,u)^{p-1}R(s,u)\,\dd u\ge0.
+\]
+In words, for fixed $s$, the correlation solves the same linear Volterra equation as the response, with the same initial value one at $t=s$ and the additional nonnegative forcing $F_s$, which collects the memory from times before $s$. Subtracting \eqref{eq:ck-response}, we find
+\[
+ D_s'(t)=-\lambda(t)D_s(t)+\int_s^t\Sigma(t,u)D_s(u)\,\dd u+F_s(t),\qquad D_s(s)=0.
+\]
+Let $\tilde D_s(t)=\int_s^tR(t,v)F_s(v)\,\dd v$. Differentiating, using $R(t,t)=1$ and \eqref{eq:ck-response}, and exchanging the order of integration over $\{s\le v\le u\le t\}$, we find that $\tilde D_s$ satisfies the same equation with $\tilde D_s(s)=0$. The difference $f=D_s-\tilde D_s$ satisfies $f'=-\lambda f+\int_s^t\Sigma(t,u)f(u)\,\dd u$ and $f(s)=0$. On $[s,T]$, with $\bar f(t)=\sup_{[s,t]}|f|$, we obtain $\bar f(t)\le(\bar\lambda_T+\bar\Sigma_TT)\int_s^t\bar f(v)\,\dd v$, with $\bar\lambda_T$ and $\bar\Sigma_T$ as in the proof of \cref{prop:green-covariance}, and Gronwall's inequality shows that $f=0$. We have shown that
+\[
+ C(t,s)-R(t,s)=\int_s^tR(t,v)F_s(v)\,\dd v\ge0.
+\]
+Together with \eqref{eq:ck-physical-bounds}, this implies that $0\le R\le C\le1$.
+
+\paragraph{Step 2: the derivative bounds.}
+By Step~1 and \eqref{eq:ck-physical-bounds}, we have $0\le\Sigma(t,u)\le a_{p,\beta}$. In the forward equation \eqref{eq:ck-response}, the memory term is therefore at most $a_{p,\beta}(t-s)$ in absolute value, and the multiplier term is at most $\Lambda$ by \eqref{eq:uniform-multiplier}. This gives $|\partial_tR(t,s)|\le\Lambda+a_{p,\beta}(t-s)$. The same argument applied to the backward equation \eqref{eq:backward-response} gives $|\partial_sR(t,s)|\le\Lambda+a_{p,\beta}(t-s)$. This proves \eqref{eq:response-derivative-bounds}; at $t=s$, we use the continuous extensions of \cref{prop:backward-response}.
+
+\paragraph{Step 3: compactness.}
+For $m\in\N$, let $W_m=[-m,m]^2$ and $W_m^{\mathrm{caus}}=\{(a,b)\in W_m:a\ge b\}$. For $T\ge m$, the translated kernels are defined on these sets. On them, we have the following bounds, uniformly in $T\ge m$:
+\begin{itemize}
+\item $|C_T|\le1$, and $C_T$ has the modulus of continuity \eqref{eq:global-modulus} in each coordinate, by \cref{prop:global-regularity};
+\item $0\le R_T\le1$, and $R_T$ is Lipschitz on the convex set $W_m^{\mathrm{caus}}$ with constant $2\{\Lambda+2a_{p,\beta}m\}$, by \eqref{eq:response-derivative-bounds}, since the lag is at most $2m$ there;
+\item $1\le\lambda_T\le\Lambda$, and $\lambda_T$ is $L_{p,\beta}$-Lipschitz, by \cref{prop:uniform-bounds,prop:global-regularity}.
+\end{itemize}
+Let $T_n\to\infty$. By the Arzel\`a--Ascoli theorem, there exists a subsequence along which the three components converge uniformly on $W_1$, $W_1^{\mathrm{caus}}$, and $[-1,1]$. From it, we extract a further subsequence that converges uniformly on $W_2$, $W_2^{\mathrm{caus}}$, and $[-2,2]$, and so on. The diagonal subsequence converges uniformly on $W_m$, $W_m^{\mathrm{caus}}$, and $[-m,m]$ for every $m$. Every compact set of offsets in the respective domains lies in one of these sets for $m$ large, and this proves the precompactness. Offsets may be negative; each compact set lies in the domain once $T_n$ exceeds its distance from the origin. We use the response only inside the causal triangles, and we need no continuity across the diagonal.
+\end{proof}

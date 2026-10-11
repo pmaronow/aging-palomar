@@ -1,0 +1,71 @@
+\chapter{Further questions}\label{sec:discussion}
+
+We have proved correlation aging for the uniformly initialized CK solution and identified its stationary endpoint. For every $p\ge3$ and $\beta\ge\bd$, the solution satisfies the stationary fluctuation--dissipation theorem at fixed lag, selects a positive marginal plateau and an explicit limiting energy, and forgets every fixed earlier state (\cref{thm:main-aging}). For $\beta>\bd$, we have also proved an integrated violation of the fluctuation--dissipation theorem (\cref{thm:main-response}). In the cubic model, we obtained quantitative restrictions on correlations at three late times for $\beta\ge\bd$ and on relaxation below the plateau for $\beta>\bd$ (\cref{thm:main-geometry,thm:main-fisher-cost}). Several central parts of the physical picture of Cugliandolo and Kurchan \cite{ck1993} remain to be proved. We now formulate them in terms of observables of the CK solution itself, without an asymptotic ansatz.
+
+\section{The complete slow fluctuation--dissipation relation}\label{sec:discussion-fdr}
+
+Fix $\beta>\bd$, write $q=q_\beta$, and let $x=(p-2)(1-q)/q$. For a level $c\in(0,q)$, the predicted integrated relation in the aging regime is
+\begin{equation}
+ \chi(t_n,s_n)\longrightarrow 1-q+x(q-c)
+ \quad\text{if }s_n\to\infty,\ t_n-s_n\to\infty,
+ \ C(t_n,s_n)\to c.
+ \label{eq:discussion-slow-fdr}
+\end{equation}
+This is the slow fluctuation--dissipation relation of Cugliandolo and Kurchan, with the ratio $x$ given after \cite[Equation~(12)]{ck1993}. We write it in the conventions of \cref{sec:model}, in which the fluctuation--dissipation theorem in the stationary regime reads $R(t,s)=\partial_sC(t,s)$. We refer to \cite[Sections~3.3--3.4]{bckm1998} for a review of the two time sectors and their response, and to \cite{kimlatz2001} for a numerical test of the relation on the CK equations. The weighted ratio in \eqref{eq:main-weighted-ratio} identifies one moment of the slow response. Proving \eqref{eq:discussion-slow-fdr} requires more information than this moment.
+
+A natural intermediate target is the weak convergence, as finite measures on $[0,1]$, of the response-weighted correlation measures
+\[
+ \nu_t=\int_0^t R(t,u)\,\delta_{C(t,u)}\,\dd u
+\]
+to the predicted measure
+\[
+ x\mathbf1_{(0,q)}(y)\,\dd y
+       +\mathbf1_{(q,1)}(y)\,\dd y.
+\]
+This target includes the statement that no mass accumulates near correlation zero,
+\[
+ \lim_{\varepsilon\downarrow0}\limsup_{t\to\infty}\nu_t([0,\varepsilon])=0,
+\]
+and, since $\nu_t([0,1])=\chi(t,0)$, it also includes the convergence of $\chi(t,0)$ to the total mass $1-q+xq$ of the predicted measure. Such a statement concerns the amount of response at each correlation level. To deduce \eqref{eq:discussion-slow-fdr} from it, we must also link the correlation levels to chronological order. Specifically, we would need the response masses
+\[
+ \int_0^{s_n}R(t_n,u)\,
+       \mathbf1_{\{C(t_n,u)>C(t_n,s_n)\}}\,\dd u
+ \quad\text{and}\quad
+ \int_{s_n}^{t_n}R(t_n,u)\,
+       \mathbf1_{\{C(t_n,u)<C(t_n,s_n)\}}\,\dd u
+\]
+to vanish, together with control at the boundary level $C(t_n,s_n)$. These masses measure returns of the row $u\mapsto C(t_n,u)$ across the level $C(t_n,s_n)$. The product inequality \eqref{eq:main-product} constrains the correlations at three times, but it does not exclude such returns. Note also that the vanishing of the squared defect in \eqref{eq:main-defect-l2} does not control the integrated negative part of the defect over a growing interval.
+
+\section{The sharp susceptibility upper bound}\label{sec:discussion-susceptibility}
+
+In the cubic model with $\beta\ge\bd$, we proved in \eqref{eq:main-susceptibility} that $\liminf_{t\to\infty}\chi(t,0)\ge2(1-q)$. The expected matching estimate is
+\begin{equation}
+ \limsup_{t\to\infty}\chi(t,0)\le2(1-q).
+ \label{eq:discussion-susceptibility-upper}
+\end{equation}
+For $p=3$, we have $xq=1-q$, so $2(1-q)$ is the total mass $1-q+xq$ of the predicted measure in \cref{sec:discussion-fdr}. Together with the lower bound \eqref{eq:main-susceptibility}, the estimate \eqref{eq:discussion-susceptibility-upper} would determine the limit of the total response mass. This is much more precise than the bound $\chi(t,0)=o(\sqrt t)$ in \eqref{eq:main-uniform-response}. A related scalar target is
+\[
+ \int_0^t C(t,u)R(t,u)\,\dd u
+          \longrightarrow\frac{(1-q)(1+2q)}2,
+\]
+which is the first moment of the predicted measure when $p=3$. The energy identity fixes the moment with $C^2$ in place of $C$, since $e_\beta(t)=3\beta\int_0^tC(t,u)^2R(t,u)\,\dd u$ converges to the value $e_\beta(\infty)$ given by \eqref{eq:main-energy}. It does not determine the first moment, nor the unweighted mass near correlation zero. In the proof of \cref{thm:geometry-susceptibility-lower}, we obtained the lower bound by positivity, through a trace argument. An upper bound requires a separate estimate on the response-weighted frame used in that proof. Even equality in \eqref{eq:discussion-susceptibility-upper} would leave open the question of chronological returns raised in \cref{sec:discussion-fdr}.
+
+\section{A nondegenerate clock and physical relaxation rates}\label{sec:discussion-clock}
+
+The noncommutation of limits in \eqref{eq:main-aging} does not specify the time scale on which correlations move below $q$. A stronger description would exhibit an increasing function $\mathfrak h\colon[0,\infty)\to(0,\infty)$ and a nonconstant profile $\mathcal C\colon(0,1)\to[0,q]$ such that, for every $a\in(0,1)$,
+\[
+ C(t_n,s_n)\longrightarrow\mathcal C(a)
+ \quad\text{whenever }s_n\to\infty,\ t_n-s_n\to\infty
+ \text{ and }\frac{\mathfrak h(s_n)}{\mathfrak h(t_n)}\to a,
+\]
+and such that sequences with these properties exist for every $a\in(0,1)$. The last requirement excludes clocks for which the statement is vacuous, such as $\mathfrak h(t)=e^t$, for which $\mathfrak h(s_n)/\mathfrak h(t_n)\to0$ whenever $t_n-s_n\to\infty$. Our results fix neither the shape of $\mathcal C$ nor the growth of $\mathfrak h$. In the physical theory, the asymptotic equations for the aging regime admit reparametrizations of time, as observed by Cugliandolo and Kurchan \cite{ck1994}, so they do not select $\mathfrak h$ either. The clock has been studied by numerical integration of the CK equations \cite{kimlatz2001}, and by a matching calculation \cite{andreanovlefevre2006} that proposes a clock within a scaling expansion whose remaining exponent is estimated numerically. For $p=3$ and $\beta\ge\bd$, the composition inequalities for last-crossing times in \cref{cor:geometry-last-crossing} give one-sided restrictions on passage times. A composition law in the limit that is compatible with these inequalities, such as the triangle relations of \cite{ck1994}, would give much more information on the time scale.
+
+For $p=3$, $\beta>\bd$, and a level $c\in(0,q)$, the local Fisher cost \eqref{eq:main-passage-cost} is a constraint in physical time: relaxation to the level $c$ costs a positive amount of $\tau_c(s)\int_s^{s+\tau_c(s)}a_F(u)\,\dd u$. It does not determine the growth of $\tau_c(s)$. We expect that quantitative estimates on the energy current or on the tail of the Fisher density, together with matching dynamical bounds on passage times, would help to determine this growth. The majorant $a_F$ need not be unique, and we do not claim that it defines a physical aging clock. By contrast, the exponent $a$ in \eqref{eq:main-tail-exponent} describes stationary relaxation in the lag variable after the waiting-time limit. It is not an exponent of the aging dynamics.
+
+\section{Selection below the dynamical transition}\label{sec:discussion-below}
+
+In the interval $\beta_{\mathrm m}\le\beta<\bd$, we proved convergence in \cref{sel:all-temperature}, but we did not decide between the zero plateau and the upper marginal root $q_+(\beta)$. The physical picture of the dynamical transition \cite{ck1993,chs1993} predicts the zero plateau throughout the interval, and proving this requires excluding the positive alternative. One sufficient estimate would be $e_\beta(\infty)\le\beta$ throughout the interval, since by \cref{sel:intermediate-range} the positive branch has $e_\beta(\infty)>\beta$. Such an estimate would complete the classification of the stationary plateau from below.
+
+\section{Other orders of limits}\label{sec:discussion-limits}
+
+All of these questions concern a fixed positive temperature and the order of limits in which the dimension tends to infinity before the times do. The bridge of \cref{prop:hard-bridge} transfers the conclusions about correlations and about primitives of the response to the Langevin dynamics in this order, and \cref{prop:energy-bridge} gives the limit of the annealed energy. The annealed response means also converge uniformly on fixed causal time windows. The concentration statement in the bridge concerns the Brownian observables representing their primitives; see \cref{rem:no-pointwise-response}. These fixed-window results give no information on observation times that grow with the dimension, and the low-temperature limit in \cref{rem:low-temperature} is taken after all other limits. We regard a description of the dynamics on time scales that grow with the dimension, and a theorem at zero temperature, as separate problems.

@@ -1,0 +1,417 @@
+\chapter{Saturated tree vectors and the product inequality}\label{sec:geometry-results}
+
+This section and the next concern the cubic model. In this section, we study unit vectors of the tree Hilbert space whose cubic tree energy is close to the ceiling $\Eth$ of \cref{thm:geometry-tree-ceiling}. We prove two results about such vectors. The first, \cref{thm:geometry-universal-root}, states that the root operator $\mathcal I^*v$ of a vector close to the ceiling is close, in suitable coordinates, to one universal integral operator on $L^2(0,1)$. The second, \cref{thm:geometry-threshold-product}, is a product inequality for three such vectors whose overlaps are nonnegative at every height. \Cref{lem:geometry-coherent-root,lem:geometry-pair-deficit} are the intermediate steps.
+
+The section is deterministic. It uses the tree Hilbert space of \cref{sec:geometry-core} and the cubic ceiling of \cref{thm:geometry-tree-ceiling}, with the retained defects \eqref{eq:geometry-height-defect} and \eqref{eq:geometry-angular-young-defects} proved in \cref{sec:tree-ceilings}. Nothing about the CK equations is used. In \cref{sec:three-time}, we apply both theorems to the normalized prefix centers of the cubic CK solution: \cref{thm:geometry-threshold-product} gives the three-time product inequality of \cref{thm:geometry-actual-product}, and \cref{thm:geometry-universal-root} is the main input of the susceptibility bound in \cref{thm:geometry-susceptibility-lower}.
+
+\paragraph{Notation.}
+Throughout this section, $p=3$, so that the grafting map $\mathcal I\colon\mathcal H\otimes\mathcal H\to\mathcal H$ is binary. Recall from \cref{sec:geometry-core} that $\mathcal H$ is a real separable Hilbert space, that $\mathcal I$ is an isometry, and that its range is the orthogonal complement of the one-leaf summand. The one-leaf summand is the subspace of height zero, and we have
+\begin{equation}\label{eq:geometry-graft-range}
+ \mathcal I\mathcal I^*=\Id-\Pi_0 .
+\end{equation}
+We write $\Pi_j$ for the projection onto trees of height exactly $j$ and $\Pi_{\le H}=\sum_{j=0}^H\Pi_j$; the projections $\Pi_j$ are orthogonal and sum to the identity. As in \cref{sec:geometry-core}, we identify a tensor $x\otimes y$ with the Hilbert--Schmidt operator $|x\rangle\langle y|$, which maps $z$ to $\ip{y}{z} x$. Then $\mathcal I^*v$ is a Hilbert--Schmidt operator on $\mathcal H$, and $\norm{\mathcal I^*v}_{\HS}\le\norm{v}$. We write $\ip{A}{B}_{\HS}=\tr(A^*B)$, so that
+\[
+ \bigl\langle |a\rangle\langle b|,|c\rangle\langle d|\bigr\rangle_{\HS}
+ =\ip{a}{c}\ip{b}{d} .
+\]
+For $v\in\mathcal H$, let
+\[
+ f(v)=\ip{v}{\mathcal I(v\otimes v)}
+ =\bigl\langle\mathcal I^*v,|v\rangle\langle v|\bigr\rangle_{\HS},
+ \qquad F_*=\frac{2\sqrt2}{3},
+\]
+and, for a unit vector $v$, let $\delta(v)=F_*-f(v)$ be its \emph{deficit}. By \cref{thm:geometry-tree-ceiling}, we have $\delta(v)>0$ for every unit vector $v$. The cubic tree energy of \eqref{eq:geometry-tree-energy} is $h(v)=\sqrt3 f(v)$, and $\Eth=\sqrt3F_*$. Hence the deficit $\delta(v)=(\Eth-h(v))/\sqrt3$ is the energy deficit divided by $\sqrt3$.
+
+For a unit vector $v$, we use the height masses of \cref{thm:geometry-tree-ceiling}:
+\[
+ v_j=\Pi_jv,\qquad b_j=\norm{v_j}^2,\qquad B_j=\sum_{i\le j}b_i,\qquad
+ a_j=\sqrt{b_j},\qquad \bar b=\sup_{j\ge0}b_j,
+\]
+with $B_{-1}=B_{-2}=0$. Note that $B_j\uparrow1$ as $j\to\infty$.
+
+\paragraph{The height rule.}
+A graft has height one plus the larger of the heights of its two children. This means that $\mathcal I$ maps $\Pi_i\mathcal H\otimes\Pi_k\mathcal H$ into $\Pi_{\max(i,k)+1}\mathcal H$, and
+\begin{equation}\label{eq:geometry-height-rule}
+ \Pi_j\mathcal I(x\otimes y)=\sum_{\max(i,k)=j-1}\mathcal I(\Pi_ix\otimes\Pi_ky)\quad(j\ge1),
+ \qquad \Pi_0\mathcal I=0 .
+\end{equation}
+Taking adjoints, we find that $\mathcal I^*\Pi_0=0$ and, for $j\ge1$,
+\begin{equation}\label{eq:geometry-root-blocks}
+ \mathcal I^*\Pi_jv=\sum_{\max(i,k)=j-1}\Pi_i(\mathcal I^*v)\Pi_k .
+\end{equation}
+In words, the height-$j$ component of $v$ is carried by the blocks $\Pi_i(\mathcal I^*v)\Pi_k$ of the root operator with $\max(i,k)=j-1$. We call $j$ the \emph{root height} of these blocks. Blocks with different root heights are orthogonal in the Hilbert--Schmidt inner product, and the restriction of $\mathcal I^*$ to $\Pi_j\mathcal H$ is an isometry for $j\ge1$, by \eqref{eq:geometry-graft-range}.
+
+\paragraph{The retained defects.}
+Let $v$ be a unit vector with deficit $\delta$. By \eqref{eq:geometry-height-rule} and the isometry of $\mathcal I$ (see also \cref{lem:tree-graft-heights}), the projected graft $g_j=\Pi_j\mathcal I(v\otimes v)$ satisfies
+\begin{equation}\label{eq:geometry-graft-norm}
+ \norm{g_j}^2=\sum_{\max(i,k)=j-1}b_ib_k=B_{j-1}^2-B_{j-2}^2=b_{j-1}s_j^2,
+ \qquad s_j=\sqrt{B_{j-1}+B_{j-2}} .
+\end{equation}
+Let $\theta_j$ be the angle between $v_j$ and $g_j$, with the convention $\cos\theta_j=1$ when $v_j=0$ or $g_j=0$. We use three consequences of \cref{thm:geometry-tree-ceiling}. The first inequality in \eqref{eq:geometry-height-defect} implies that
+\begin{equation}\label{eq:geometry-mesh-bound}
+ \bar b\le\Bigl(\sum_{j\ge0}b_j^2\Bigr)^{1/2}\le(4\sqrt2\,\delta)^{1/2}=2^{5/4}\delta^{1/2},
+\end{equation}
+and \eqref{eq:geometry-angular-young-defects} states that
+\begin{equation}\label{eq:geometry-retained-recalled}
+ \sum_{j\ge1}a_ja_{j-1}s_j(1-\cos\theta_j)\le\delta,
+ \qquad
+ \frac12\sum_{j\ge1}s_j(a_j-a_{j-1})^2\le\delta .
+\end{equation}
+
+\section{The universal operator at a saturated root}
+
+By \eqref{eq:geometry-mesh-bound}, a vector close to the ceiling has small mass at every height. The retained defects \eqref{eq:geometry-retained-recalled} give more information: they bound weighted sums of the variations $a_j-a_{j-1}$ of the height amplitudes and of the angular errors $1-\cos\theta_j$ between $v_j$ and the projected graft $g_j$ of the lower components. The next lemma shows that, as a consequence, the root operator of $v$ is close to an operator whose coefficients in the normalized height directions $v_j/\sqrt{b_j}$, for $b_j>0$, depend only on the height masses.
+
+\begin{lemma}[Coherent approximation of a root]
+\label{lem:geometry-coherent-root}
+Let $v$ be a unit tree vector with $\delta=\delta(v)\le1$. There exists a symmetric Hilbert--Schmidt operator $\widetilde A_v$ with $\norm{\widetilde A_v}_{\HS}=1$ and height blocks
+\begin{equation}
+ \Pi_i\widetilde A_v\Pi_k
+ =\frac{|v_i\rangle\langle v_k|}{\sqrt{B_h+B_{h-1}}},\qquad h=\max(i,k),
+ \label{eq:geometry-coherent-root-blocks}
+\end{equation}
+where a zero denominator means a zero block, such that
+\begin{equation}
+ \norm{\mathcal I^*v-\widetilde A_v}_{\HS}\le K\delta^{1/4}.
+ \label{eq:geometry-coherent-root-error}
+\end{equation}
+Here $K$ is an absolute constant; one can take $K=5$.
+\end{lemma}
+
+\begin{proof}
+The proof has three steps. First, we define $\widetilde A_v$ one root height at a time and compute its norm. Second, we compute the error at each root height. Third, we sum the errors: at root heights above a small cumulative mass $\varepsilon$, we use the retained defects; the remaining root heights form an initial segment of small mass.
+
+\paragraph{Step 1: definition and normalization.}
+For $j\ge1$, let $g_j$ and $s_j$ be as in \eqref{eq:geometry-graft-norm}. We define the component of $\widetilde A_v$ at root height $j$ by
+\[
+ \widetilde A^{(j)}=\frac{\mathcal I^*g_j}{s_j}\quad\text{if } s_j>0,
+ \qquad \widetilde A^{(j)}=0\quad\text{if } s_j=0,
+\]
+and we set $\widetilde A_v=\sum_{j\ge1}\widetilde A^{(j)}$. Using \eqref{eq:geometry-height-rule} and $\mathcal I^*\mathcal I=\Id$, we have
+\[
+ \mathcal I^*g_j=\sum_{\max(i,k)=j-1}|v_i\rangle\langle v_k| .
+\]
+With $h=j-1$, the denominator $s_j$ equals $\sqrt{B_h+B_{h-1}}$, and the blocks of $\widetilde A_v$ are those in \eqref{eq:geometry-coherent-root-blocks}. The block with indices $(k,i)$ is the adjoint of the block with indices $(i,k)$, and therefore $\widetilde A_v$ is symmetric. By \eqref{eq:geometry-graft-norm} and the isometry of $\mathcal I$, we have $\norm{\widetilde A^{(j)}}_{\HS}^2=\norm{g_j}^2/s_j^2=b_{j-1}$ when $s_j>0$. When $s_j=0$, we have $B_{j-1}=0$, and in particular $b_{j-1}=0$. The components with different root heights are orthogonal. Summing over $j$, we find
+\[
+ \norm{\widetilde A_v}_{\HS}^2=\sum_{j\ge1}b_{j-1}=\sum_{h\ge0}b_h=1 .
+\]
+
+\paragraph{Step 2: the error at one root height.}
+By \eqref{eq:geometry-root-blocks}, we have $\mathcal I^*v=\sum_{j\ge1}\mathcal I^*v_j$, and $\mathcal I^*v_j$ lies in the same root-height component as $\widetilde A^{(j)}$. By orthogonality,
+\[
+ \norm{\mathcal I^*v-\widetilde A_v}_{\HS}^2=\sum_{j\ge1}\norm{\mathcal I^*v_j-\widetilde A^{(j)}}_{\HS}^2 .
+\]
+For $j\ge1$, the vector $v_j$ lies in the range of $\mathcal I$, and \eqref{eq:geometry-graft-range} gives $\norm{\mathcal I^*v_j}_{\HS}^2=b_j$. If $s_j>0$, then, since $g_j$ also lies in the range of $\mathcal I$,
+\[
+ \bigl\langle\mathcal I^*v_j,\widetilde A^{(j)}\bigr\rangle_{\HS}
+ =\frac{\ip{v_j}{\mathcal I\mathcal I^*g_j}}{s_j}
+ =\frac{\ip{v_j}{g_j}}{s_j}
+ =a_ja_{j-1}\cos\theta_j,
+\]
+where we used $\norm{g_j}=a_{j-1}s_j$ from \eqref{eq:geometry-graft-norm}. The error at root height $j$ is
+\begin{equation}\label{eq:geometry-root-height-error}
+ \norm{\mathcal I^*v_j-\widetilde A^{(j)}}_{\HS}^2
+ =b_j+b_{j-1}-2a_ja_{j-1}\cos\theta_j
+ =(a_j-a_{j-1})^2+2a_ja_{j-1}(1-\cos\theta_j).
+\end{equation}
+If $s_j=0$, then $b_{j-1}=0$ and the error is $b_j$, in agreement with \eqref{eq:geometry-root-height-error}.
+
+\paragraph{Step 3: summation.}
+If $\delta=1$, then \eqref{eq:geometry-coherent-root-error} holds with $K=2$, because both operators have Hilbert--Schmidt norm at most one. We assume from now on that $\delta<1$. Fix $\varepsilon\in(0,1)$.
+
+We first consider the root heights $j\ge1$ with $B_{j-2}\ge\varepsilon$. For these, $s_j^2=B_{j-1}+B_{j-2}\ge2\varepsilon$. Multiplying each term of \eqref{eq:geometry-root-height-error} by $s_j/\sqrt{2\varepsilon}\ge1$ and using \eqref{eq:geometry-retained-recalled}, we obtain
+\[
+ \sum_{j:\,B_{j-2}\ge\varepsilon}\norm{\mathcal I^*v_j-\widetilde A^{(j)}}_{\HS}^2
+ \le\frac1{\sqrt{2\varepsilon}}\sum_{j\ge1}s_j\Bigl[(a_j-a_{j-1})^2+2a_ja_{j-1}(1-\cos\theta_j)\Bigr]
+ \le\frac{4\delta}{\sqrt{2\varepsilon}} .
+\]
+
+The remaining root heights form an initial segment. Let $m_\varepsilon=\min\{k\ge0:B_k\ge\varepsilon\}$, which is finite because $B_k\uparrow1$. The condition $B_{j-2}<\varepsilon$ holds exactly when $1\le j\le m_\varepsilon+1$, because $B$ is nondecreasing. On this segment,
+\[
+ \sum_{j=1}^{m_\varepsilon+1}b_j\le B_{m_\varepsilon-1}+b_{m_\varepsilon}+b_{m_\varepsilon+1}\le\varepsilon+2\bar b,
+ \qquad
+ \sum_{j=1}^{m_\varepsilon+1}b_{j-1}=B_{m_\varepsilon}\le\varepsilon+\bar b .
+\]
+Using $\norm{x-y}^2\le2\norm{x}^2+2\norm{y}^2$ together with $\norm{\mathcal I^*v_j}_{\HS}^2=b_j$ and $\norm{\widetilde A^{(j)}}_{\HS}^2=b_{j-1}$, we find that the errors on this segment sum to at most $4\varepsilon+6\bar b$.
+
+Adding the two bounds and using \eqref{eq:geometry-mesh-bound}, we obtain
+\[
+ \norm{\mathcal I^*v-\widetilde A_v}_{\HS}^2
+ \le4\varepsilon+6\cdot2^{5/4}\delta^{1/2}+\frac{4\delta}{\sqrt{2\varepsilon}} .
+\]
+We choose $\varepsilon=\delta^{1/2}$. Then $\delta^{3/4}\le\delta^{1/2}$, because $\delta<1$, and the right side is at most $(4+6\cdot2^{5/4}+2\sqrt2)\delta^{1/2}\le25\delta^{1/2}$. This proves \eqref{eq:geometry-coherent-root-error} with $K=5$.
+\end{proof}
+
+When the height mesh $\bar b$ is small, the denominator in \eqref{eq:geometry-coherent-root-blocks} is close to $\sqrt{2B_h}$, and $B_h$ varies almost continuously with the height. In the coordinate $x=B_h$ on $(0,1)$, the blocks then become the values of one function of two variables. This is the content of the next theorem.
+
+\begin{theorem}[Universal threshold root]
+\label{thm:geometry-universal-root}
+Let $\mathcal K$ be a fixed separable infinite-dimensional Hilbert space, and let $\mathbf1$ denote the constant function one in $L^2(0,1)$. If $\norm{v_n}=1$ and $f(v_n)\to F_*$, then there exist isometric embeddings $V_n\colon\mathcal H\to L^2(0,1)\oplus\mathcal K$ satisfying $V_nv_n=\mathbf1$, for which
+\begin{equation}
+ V_n\mathcal I^*v_nV_n^*\longrightarrow\mathcal T\oplus0
+ \quad\text{in Hilbert--Schmidt norm},
+ \qquad
+ T(x,y)=\frac1{\sqrt{2\max(x,y)}} .
+ \label{eq:geometry-universal-root}
+\end{equation}
+Here $\mathcal T$ is the integral operator on $L^2(0,1)$ with kernel $T$. The operator $\mathcal T$ is positive and trace class, with the positive frame
+\begin{equation}
+ \mathcal T=\frac1{\sqrt2}|\mathbf1\rangle\langle\mathbf1|
+ +\frac1{2\sqrt2}\int_0^1z^{-3/2}
+ |\mathbf1_{[0,z]}\rangle\langle\mathbf1_{[0,z]}|\,\dd z .
+ \label{eq:geometry-universal-root-frame}
+\end{equation}
+In particular, $\tr\mathcal T=\sqrt2$ and $\norm{\mathcal T}_{\HS}=1$.
+\end{theorem}
+
+\begin{remark}[Interpretation of the universal kernel]\label{rem:geometry-universal-kernel}
+In the coordinates of \cref{thm:geometry-universal-root}, a point $x\in(0,1)$ stands for the height at which the cumulative squared mass of $v_n$ reaches $x$. The kernel says that, at the threshold, the root of $v_n$ couples two children at cumulative masses $x$ and $y$ with a weight that depends only on the larger of the two, that is, on the taller child. In this continuum description, the weight $(2\max(x,y))^{-1/2}$ is, up to null sets, the unique nonnegative function of $\max(x,y)$ that gives squared root mass $\dd x$ to each band of cumulative mass $\dd x$: the pairs $(x',y')$ with $\max(x',y')\in[x,x+\dd x]$ have area $2x\,\dd x$, and $T^2\cdot2x\,\dd x=\dd x$. (At a finite root height $j$, the coherent approximation of \cref{lem:geometry-coherent-root} carries the squared mass $b_{j-1}$ of the height below.) The threshold value itself is the quadratic form of $\mathcal T$ on the constant function:
+\[
+ \ip{\mathbf1}{\mathcal T\mathbf1}=2\int_0^1\frac{x}{\sqrt{2x}}\,\dd x=\frac{2\sqrt2}3=F_* .
+\]
+This is consistent with $f(v_n)=\langle\mathcal I^*v_n,|v_n\rangle\langle v_n|\rangle_{\HS}\to F_*$. The convergence \eqref{eq:geometry-universal-root} holds in Hilbert--Schmidt norm only, and we do not claim that the traces of the operators $\mathcal I^*v_n$ converge to $\tr\mathcal T$. For this reason, \cref{sec:geometry-susceptibility} uses the frame \eqref{eq:geometry-universal-root-frame} only through the lower semicontinuity of the trace.
+\end{remark}
+
+\begin{proof}[Proof of \cref{thm:geometry-universal-root}]
+The proof has six steps. After a bound on the height mesh, we embed each $v_n$ so that its heights become consecutive intervals of $(0,1)$. In these coordinates, the coherent approximation of \cref{lem:geometry-coherent-root} becomes an integral operator with a step kernel. We then replace the step kernel by a simpler one and show that it converges to $T$. In the last step, we prove the properties of $\mathcal T$.
+
+We write $\delta_n=\delta(v_n)$, and $b_{n,j}$, $B_{n,j}$, and $\bar b_n$ for the height masses of $v_n$. When no confusion can arise, we drop the index $n$.
+
+\paragraph{Step 1: the height mesh.}
+By \eqref{eq:geometry-mesh-bound}, we have $\bar b_n\le2^{5/4}\delta_n^{1/2}$, which tends to zero because $\delta_n\to0$.
+
+\paragraph{Step 2: the embedding.}
+For each $j$ with $b_j>0$, let $\hat v_j=v_j/\sqrt{b_j}$ and $J_j=(B_{j-1},B_j)$. The vectors $\hat v_j$ are orthonormal, and so are the functions $b_j^{-1/2}\mathbf1_{J_j}$, because the intervals $J_j$ are disjoint and have lengths $b_j$. Let $E_n$ be the closed span of the vectors $\hat v_j$, and let $W_n\colon E_n\to L^2(0,1)$ be the isometry with $W_n\hat v_j=b_j^{-1/2}\mathbf1_{J_j}$. The orthogonal complement $E_n^\perp$ is separable, because $\mathcal H$ is separable (it is a countable direct sum of tensor powers of a separable space). It is also infinite-dimensional, because it contains every vector of the one-leaf summand that is orthogonal to $\hat v_0$ (or the whole summand if $b_0=0$), and the one-leaf summand is infinite-dimensional by \cref{sec:tree-space}. We may therefore choose a unitary map $U_n\colon E_n^\perp\to\mathcal K$. We define $V_n(x+y)=W_nx\oplus U_ny$ for $x\in E_n$ and $y\in E_n^\perp$. Then $V_n$ is an isometry, and
+\[
+ V_nv_n=\sum_{j:\,b_j>0}\sqrt{b_j}\,W_n\hat v_j=\sum_{j:\,b_j>0}\mathbf1_{J_j}=\mathbf1,
+\]
+since the intervals $J_j$ cover $(0,1)$ up to a countable set. Conjugation by $V_n$ preserves Hilbert--Schmidt norms, positivity, and traces, because $V_n^*V_n$ is the identity of $\mathcal H$. Further, $V_n|x\rangle\langle y|V_n^*=|V_nx\rangle\langle V_ny|$.
+
+\paragraph{Step 3: the coherent approximation as a step kernel.}
+Let $\widetilde A_n=\widetilde A_{v_n}$ be the operator of \cref{lem:geometry-coherent-root}, which applies once $\delta_n\le1$. Since $V_nv_{n,i}=\mathbf1_{J_i}$, the blocks \eqref{eq:geometry-coherent-root-blocks} are transported to
+\[
+ V_n\frac{|v_{n,i}\rangle\langle v_{n,k}|}{\sqrt{B_h+B_{h-1}}}V_n^*
+ =\frac{|\mathbf1_{J_i}\rangle\langle\mathbf1_{J_k}|}{\sqrt{B_h+B_{h-1}}},
+ \qquad h=\max(i,k).
+\]
+In other words, $V_n\widetilde A_nV_n^*$ is the integral operator on $L^2(0,1)$, extended by zero on $\mathcal K$, with the step kernel
+\[
+ \widetilde T_n(x,y)=\frac1{\sqrt{B_h+B_{h-1}}},\qquad x\in J_i,\ y\in J_k,\ h=\max(i,k).
+\]
+Recall that the Hilbert--Schmidt norm of an integral operator is the $L^2$ norm of its kernel. Then \cref{lem:geometry-coherent-root} implies that
+\[
+ \norm{V_n\mathcal I^*v_nV_n^*-\widetilde T_n}_{\HS}=\norm{\mathcal I^*v_n-\widetilde A_n}_{\HS}\le5\delta_n^{1/4}\to0 .
+\]
+Here and below, we identify a kernel with its integral operator.
+
+\paragraph{Step 4: replacement of the denominator.}
+Let $T_n$ be the step kernel equal to $(2B_h)^{-1/2}$ on $J_i\times J_k$, with $h=\max(i,k)$. The set of pairs $(x,y)$ with $\max(i,k)=h$ has area $\sum_{\max(i,k)=h}b_ib_k=B_h^2-B_{h-1}^2=b_h(B_h+B_{h-1})$. Using $B_h+B_{h-1}=2B_h-b_h$, we find
+\[
+ \norm{\widetilde T_n-T_n}_{L^2}^2
+ =\sum_{h:\,b_h>0}b_h\Bigl(1-\sqrt{1-\frac{b_h}{2B_h}}\Bigr)^2
+ \le\sum_{h:\,b_h>0}\min\Bigl\{b_h,\frac{b_h^3}{4B_h^2}\Bigr\},
+\]
+where we used $0\le1-\sqrt{1-x}\le x$ for $x\in[0,1]$. Fix $\varepsilon\in(0,1)$. The heights with $B_h<\varepsilon$ form an initial segment, on which $\sum b_h<\varepsilon$. On the heights with $B_h\ge\varepsilon$, we use the second term in the minimum and $\sum_hb_h=1$. We obtain
+\[
+ \norm{\widetilde T_n-T_n}_{L^2}^2\le\varepsilon+\frac{\bar b_n^2}{4\varepsilon^2} .
+\]
+By Step 1, the upper limit of the right side as $n\to\infty$ is $\varepsilon$, and letting $\varepsilon\downarrow0$ gives $\norm{\widetilde T_n-T_n}_{L^2}\to0$.
+
+\paragraph{Step 5: convergence to the universal kernel.}
+Let $x\in J_i$ and $y\in J_k$, with $h=\max(i,k)$. Then $\max(x,y)<\max(B_i,B_k)=B_h$, because $x<B_i$, $y<B_k$, and $B$ is nondecreasing. If $h=i$, then $x>B_{h-1}\ge B_h-\bar b_n$, and if $h=k$, the same holds for $y$. This gives
+\[
+ \max(x,y)<B_h<\max(x,y)+\bar b_n .
+\]
+Recalling that $T_n(x,y)=(2B_h)^{-1/2}$, we find
+\[
+ T(x,y)\Bigl(\frac{\max(x,y)}{\max(x,y)+\bar b_n}\Bigr)^{1/2}\le T_n(x,y)\le T(x,y).
+\]
+The union of the rectangles $J_i\times J_k$ has full measure, and $\bar b_n\to0$ by Step 1. Hence $T_n\to T$ almost everywhere, with $0\le T_n\le T$. The kernel $T$ is square integrable:
+\[
+ \int_0^1\!\!\int_0^1T(x,y)^2\,\dd y\,\dd x=2\int_0^1\!\!\int_0^x\frac1{2x}\,\dd y\,\dd x=1 .
+\]
+By dominated convergence with the dominating function $T^2$, we have $\norm{T_n-T}_{L^2}\to0$. Combining Steps 3--5, we obtain
+\[
+ \norm{V_n\mathcal I^*v_nV_n^*-\mathcal T\oplus0}_{\HS}
+ \le\norm{\mathcal I^*v_n-\widetilde A_n}_{\HS}+\norm{\widetilde T_n-T_n}_{L^2}+\norm{T_n-T}_{L^2}\longrightarrow0,
+\]
+which is \eqref{eq:geometry-universal-root}. The computation above also shows that $\norm{\mathcal T}_{\HS}=\norm{T}_{L^2}=1$.
+
+\paragraph{Step 6: the frame.}
+For $z\in(0,1]$, let $P_z=|\mathbf1_{[0,z]}\rangle\langle\mathbf1_{[0,z]}|$. It is positive, of rank one, and has trace $z$. The map $z\mapsto P_z$ is continuous in trace norm, and
+\[
+ \int_0^1z^{-3/2}\norm{P_z}_1\,\dd z=\int_0^1z^{-1/2}\,\dd z=2 .
+\]
+Thus the integral in \eqref{eq:geometry-universal-root-frame} converges in trace norm, and the right side of \eqref{eq:geometry-universal-root-frame} defines a positive trace-class operator $\mathcal T'$ with
+\[
+ \tr\mathcal T'=\frac1{\sqrt2}+\frac1{2\sqrt2}\int_0^1z^{-3/2}\cdot z\,\dd z=\frac1{\sqrt2}+\frac1{\sqrt2}=\sqrt2 .
+\]
+The kernel of $P_z$ is $\mathbf1\{\max(x,y)\le z\}$. For $f,g\in L^2(0,1)$, Fubini's theorem gives
+\begin{align*}
+ \ip{f}{\mathcal T'g}
+ &=\int_0^1\!\!\int_0^1f(x)g(y)\Bigl[\frac1{\sqrt2}+\frac1{2\sqrt2}\int_{\max(x,y)}^1z^{-3/2}\,\dd z\Bigr]\dd x\,\dd y\\
+ &=\int_0^1\!\!\int_0^1f(x)T(x,y)g(y)\,\dd x\,\dd y .
+\end{align*}
+Fubini's theorem applies because $|f(x)g(y)|$ times the bracket is integrable: the bracket equals $T(x,y)$, since $\int_m^1z^{-3/2}\,\dd z=2(m^{-1/2}-1)$, and $T$ is square integrable. We have shown that $\mathcal T'=\mathcal T$, which proves \eqref{eq:geometry-universal-root-frame}, the positivity of $\mathcal T$, and the value of its trace.
+\end{proof}
+
+\section{Positive saturated triples}
+
+We next compare different vectors close to the ceiling. When two vectors have nonnegative inner products at every height, the overlaps at different heights cannot cancel. The pair-deficit lemma below shows that, for two vectors close to the ceiling, little cross mass is carried by heights at which a smoothed cosine between their prefixes is far from one. For three vectors, we choose for each of two pairs a prefix that carries almost all of the overlap of the pair and on which the two vectors are nearly parallel. These two prefixes are nested, and this gives the product inequality.
+
+For two unit vectors $v,w$, we write $B^v_j$ and $B^w_j$ for their cumulative height masses.
+
+\begin{lemma}[Prefix alignment measured by a pair deficit]
+\label{lem:geometry-pair-deficit}
+Let $v,w$ be unit tree vectors with $d_j=\ip{\Pi_jv}{\Pi_jw}\ge0$ for all $j\ge0$. Let $D_j=\sum_{i\le j}d_i$, with $D_{-1}=0$, and set
+\[
+ \rho_j=\frac{D_j+D_{j-1}}{\sqrt{(B_j^v+B_{j-1}^v)(B_j^w+B_{j-1}^w)}},\qquad
+ \Delta(v,w)=\sum_{j\ge0}d_j(1-\rho_j),
+\]
+with $\rho_j=0$ when the denominator vanishes. Then $0\le\rho_j\le1$ for all $j$. If moreover $\delta(v)\le1$ and $\delta(w)\le1$, then
+\begin{equation}
+ 0\le\Delta(v,w)\le K\bigl(\delta(v)^{1/4}+\delta(w)^{1/4}\bigr),
+ \label{eq:geometry-pair-deficit}
+\end{equation}
+where $K$ is an absolute constant.
+\end{lemma}
+
+The quantity $\Delta(v,w)$ is an average of $1-\rho_j$ with respect to the cross masses $d_j$, whose total is $\ip{v}{w}$. The ratio $\rho_j$ is a smoothed version of $D_j/\sqrt{B^v_jB^w_j}$, the cosine of the angle between the prefixes $\Pi_{\le j}v$ and $\Pi_{\le j}w$. When the overlap of $v$ and $w$ is bounded away from zero and both deficits are small, the bound \eqref{eq:geometry-pair-deficit} says that most of the overlap of $v$ and $w$, measured by the cross masses $d_j$, is collected at heights where $\rho_j$ is close to one.
+
+\begin{proof}
+The ratio $\rho_j$ is nonnegative, because all $d_j$ are nonnegative. By the Cauchy--Schwarz inequality on prefixes, $D_j=\ip{\Pi_{\le j}v}{\Pi_{\le j}w}\le(B_j^vB_j^w)^{1/2}$, and the same holds with $j-1$ in place of $j$. The two-term Cauchy--Schwarz inequality $\sqrt{\alpha_1\beta_1}+\sqrt{\alpha_2\beta_2}\le\sqrt{(\alpha_1+\alpha_2)(\beta_1+\beta_2)}$ then gives
+\[
+ D_j+D_{j-1}\le\sqrt{(B_j^v+B_{j-1}^v)(B_j^w+B_{j-1}^w)} .
+\]
+This shows that $\rho_j\le1$, and $\Delta(v,w)\ge0$ follows.
+
+Next, we compute the Hilbert--Schmidt inner product of the coherent approximations of \cref{lem:geometry-coherent-root}. Blocks with different index pairs $(i,k)$ are orthogonal, and the block $(i,k)$ contributes $\ip{v_i}{w_i}\ip{v_k}{w_k}=d_id_k$ divided by the two denominators in \eqref{eq:geometry-coherent-root-blocks}. For each $h$, we have $\sum_{\max(i,k)=h}d_id_k=D_h^2-D_{h-1}^2=d_h(D_h+D_{h-1})$. Therefore
+\begin{equation}\label{eq:geometry-coherent-pair}
+ \ip{\widetilde A_v}{\widetilde A_w}_{\HS}
+ =\sum_{h\ge0}\frac{D_h^2-D_{h-1}^2}{\sqrt{(B_h^v+B_{h-1}^v)(B_h^w+B_{h-1}^w)}}
+ =\sum_{h\ge0}d_h\rho_h
+ =\ip{v}{w}-\Delta(v,w).
+\end{equation}
+If a denominator vanishes, then the corresponding components of $v$ or $w$ vanish at all heights up to $h$, and the terms on both sides are zero. The series converge absolutely, since the sum of the absolute values of the block inner products is at most $\norm{\widetilde A_v}_{\HS}\norm{\widetilde A_w}_{\HS}=1$ by the Cauchy--Schwarz inequality. In the last equality, we used $\sum_hd_h=\ip{v}{w}$.
+
+On the other hand, by \eqref{eq:geometry-graft-range}, we have
+\[
+ \ip{\mathcal I^*v}{\mathcal I^*w}_{\HS}=\ip{v}{\mathcal I\mathcal I^*w}=\ip{v}{w}-d_0 .
+\]
+Subtracting this from \eqref{eq:geometry-coherent-pair}, we find
+\[
+ \Delta(v,w)=d_0+\ip{\mathcal I^*v}{\mathcal I^*w}_{\HS}-\ip{\widetilde A_v}{\widetilde A_w}_{\HS}.
+\]
+Using $\norm{\mathcal I^*w}_{\HS}\le1$, $\norm{\widetilde A_v}_{\HS}=1$, and \cref{lem:geometry-coherent-root}, we bound the difference of the two inner products by
+\[
+ \norm{\mathcal I^*v-\widetilde A_v}_{\HS}\norm{\mathcal I^*w}_{\HS}+\norm{\widetilde A_v}_{\HS}\norm{\mathcal I^*w-\widetilde A_w}_{\HS}
+ \le5\delta(v)^{1/4}+5\delta(w)^{1/4} .
+\]
+The leaf overlap satisfies $d_0\le(b_0^v+b_0^w)/2$, and \eqref{eq:geometry-mesh-bound} implies that $b_0^v\le2^{5/4}\delta(v)^{1/2}\le2^{5/4}\delta(v)^{1/4}$, and similarly for $w$. Combining these bounds, we obtain \eqref{eq:geometry-pair-deficit} with $K=7$.
+\end{proof}
+
+We now state the product inequality. Note that if $\ip{\Pi_hv_i}{\Pi_hv_j}\ge0$ for all $h$, then $\ip{v_i}{v_j}=\sum_h\ip{\Pi_hv_i}{\Pi_hv_j}$ lies in $[0,1]$.
+
+\begin{theorem}[Product inequality for positive threshold states]
+\label{thm:geometry-threshold-product}
+For $\delta\in(0,1]$, let $\omega(\delta)$ be the supremum of
+\[
+ \bigl[\ip{v_1}{v_3}\ip{v_2}{v_3}-\ip{v_1}{v_2}\bigr]_+
+\]
+over all triples of unit tree vectors $v_1,v_2,v_3$ such that $\ip{\Pi_hv_i}{\Pi_hv_j}\ge0$ for all $h\ge0$ and $i,j\in\{1,2,3\}$, and such that $\max_i\delta(v_i)\le\delta$. Then $\omega(\delta)\to0$ as $\delta\downarrow0$. In other words, every such triple satisfies
+\begin{equation}
+ \ip{v_1}{v_2}\ge
+ \ip{v_1}{v_3}\ip{v_2}{v_3}-\omega\Bigl(\max_i\delta(v_i)\Bigr),
+ \label{eq:geometry-threshold-product}
+\end{equation}
+with an error that tends to zero uniformly over such triples as their maximal deficit tends to zero.
+\end{theorem}
+
+\begin{proof}
+The proof has four steps. We fix $\kappa\in(0,1]$ and first treat triples with $\ip{v_1}{v_3}\ge\kappa$ and $\ip{v_2}{v_3}\ge\kappa$. For each $i\in\{1,2\}$, we choose a height $H_i$ such that the prefix $\Pi_{\le H_i}$ contains almost all of the overlap between $v_i$ and $v_3$, and such that the prefixes of $v_i$ and $v_3$ up to $H_i$ are nearly parallel. The prefixes up to $H_1$ and $H_2$ are nested, which lets us compare $v_1$ and $v_2$ on the shorter one. The last step treats triples with a small overlap.
+
+Throughout, we write
+\[
+ c_{ij}=\ip{v_i}{v_j},\qquad d_{ij,h}=\ip{\Pi_hv_i}{\Pi_hv_j},\qquad
+ D_{ij,h}=\sum_{k\le h}d_{ij,k},\qquad B_{i,h}=\sum_{k\le h}\norm{\Pi_kv_i}^2 .
+\]
+We let $\rho_{i3,h}$ be the ratio of \cref{lem:geometry-pair-deficit} for the pair $(v_i,v_3)$, and set
+\[
+ \bar b=\sup_{i,h}\norm{\Pi_hv_i}^2,\qquad
+ \varepsilon=\bar b+\Delta(v_1,v_3)+\Delta(v_2,v_3),\qquad \eta=\sqrt\varepsilon .
+\]
+Let $\delta=\max_i\delta(v_i)\le1$. By \eqref{eq:geometry-mesh-bound} and \cref{lem:geometry-pair-deficit}, we have
+\begin{equation}\label{eq:geometry-triple-epsilon}
+ \varepsilon\le2^{5/4}\delta^{1/2}+28\delta^{1/4}\le K_0\delta^{1/4}
+\end{equation}
+with the absolute constant $K_0=31$. In Steps 1--3, we assume that $c_{13},c_{23}\ge\kappa$ and that $\eta\le\kappa/4$; in particular, $\varepsilon\le1$, so that $\varepsilon\le\eta\le\varepsilon^{1/4}$.
+
+\paragraph{Step 1: the choice of the grades $H_i$.}
+Fix $i\in\{1,2\}$. As $h\to\infty$, the partial sums $D_{i3,h}$ increase to $c_{i3}$. Let $h_0$ be the first height with $D_{i3,h_0}\ge c_{i3}-\eta$. The heights $h\ge h_0$ carry the cross mass
+\[
+ \sum_{h\ge h_0}d_{i3,h}=c_{i3}-D_{i3,h_0-1}>\eta,
+\]
+since either $h_0=0$ and $c_{i3}\ge\kappa>\eta$, or $D_{i3,h_0-1}<c_{i3}-\eta$. We claim that there exists $H_i\ge h_0$ with
+\begin{equation}\label{eq:geometry-grade-choice}
+ d_{i3,H_i}>0\qquad\text{and}\qquad 1-\rho_{i3,H_i}\le\frac{2\Delta(v_i,v_3)}\eta\le2\eta .
+\end{equation}
+Indeed, if $1-\rho_{i3,h}>2\Delta(v_i,v_3)/\eta$ for every $h\ge h_0$ with $d_{i3,h}>0$, then
+\[
+ \Delta(v_i,v_3)\ge\sum_{h\ge h_0}d_{i3,h}(1-\rho_{i3,h})>\frac{2\Delta(v_i,v_3)}\eta\cdot\eta=2\Delta(v_i,v_3),
+\]
+which is impossible, since $\Delta(v_i,v_3)\ge0$. (The strict inequality holds because some $d_{i3,h}$ with $h\ge h_0$ is positive.) The second inequality in \eqref{eq:geometry-grade-choice} follows from $\Delta(v_i,v_3)\le\varepsilon=\eta^2$. This is the reason for the choice of $H_i$: the pair deficit is an average of $1-\rho_{i3,h}$ with weights $d_{i3,h}$, the alignment can fail only at heights where the cross mass is small, and the heights beyond $h_0$ carry cross mass at least $\eta$. Because $H_i\ge h_0$, we also have
+\begin{equation}\label{eq:geometry-grade-mass}
+ D_{i3,H_i}\ge c_{i3}-\eta .
+\end{equation}
+
+\paragraph{Step 2: alignment on the prefix up to $H_i$.}
+Let $x_i=\Pi_{\le H_i}v_i$ and $z_i=\Pi_{\le H_i}v_3$, and write
+\[
+ \Gamma=D_{i3,H_i}=\ip{x_i}{z_i},\qquad X=B_{i,H_i}=\norm{x_i}^2,\qquad Z=B_{3,H_i}=\norm{z_i}^2 .
+\]
+By \eqref{eq:geometry-grade-mass}, we have $\Gamma\ge\kappa-\kappa/4=3\kappa/4$. Using $\Gamma\le\sqrt{XZ}$ and $X,Z\le1$, we find $X,Z\ge\Gamma^2\ge9\kappa^2/16$. The last increments $\xi=\norm{\Pi_{H_i}v_i}^2$, $\zeta=\norm{\Pi_{H_i}v_3}^2$, and $\gamma=d_{i3,H_i}$ satisfy $\xi,\zeta\le\bar b\le\varepsilon$ and $\gamma\ge0$, and
+\[
+ \rho_{i3,H_i}=\frac{\Gamma-\gamma/2}{\sqrt{(X-\xi/2)(Z-\zeta/2)}}\le\frac{\Gamma}{\sqrt{XZ}}\cdot\frac1{1-\sigma},
+ \qquad \sigma=\frac{8\varepsilon}{9\kappa^2}\le\frac1{18},
+\]
+where we used $(X-\xi/2)/X\ge1-\sigma$, $(Z-\zeta/2)/Z\ge1-\sigma$, and $\varepsilon\le\kappa^2/16$. Using $\Gamma/\sqrt{XZ}\le1$ and $1/(1-\sigma)\le1+2\sigma$, we have $\rho_{i3,H_i}\le\Gamma/\sqrt{XZ}+2\sigma$. Combining this with \eqref{eq:geometry-grade-choice}, we obtain
+\[
+ 1-\frac{\Gamma}{\sqrt{XZ}}\le(1-\rho_{i3,H_i})+2\sigma\le2\eta+\frac{16\varepsilon}{9\kappa^2}\le\frac{4\eta}{\kappa^2} .
+\]
+Let $\alpha_i=\Gamma/Z$. Then
+\[
+ \norm{x_i-\alpha_iz_i}^2=X-\frac{\Gamma^2}Z=X\Bigl(1-\frac{\Gamma^2}{XZ}\Bigr)\le2\Bigl(1-\frac{\Gamma}{\sqrt{XZ}}\Bigr)\le\frac{8\eta}{\kappa^2},
+\]
+and $\norm{\alpha_iz_i}=\Gamma/\sqrt Z\le\sqrt X\le1$. We have established that
+\begin{equation}\label{eq:geometry-prefix-alignment}
+ x_i=\alpha_iz_i+e_i,\qquad \norm{e_i}\le\frac{2\sqrt2}{\kappa}\varepsilon^{1/4},\qquad\norm{\alpha_iz_i}\le1\qquad(i=1,2).
+\end{equation}
+
+\paragraph{Step 3: comparison on the shorter prefix.}
+By symmetry in the indices $1$ and $2$, we may assume that $H_1\le H_2$. Applying $\Pi_{\le H_1}$ to \eqref{eq:geometry-prefix-alignment} with $i=2$, and using $\Pi_{\le H_1}z_2=\Pi_{\le H_1}v_3=z_1$, we find $\Pi_{\le H_1}v_2=\alpha_2z_1+e_2'$ with $\norm{e_2'}\le\norm{e_2}$. Because the overlaps $d_{12,h}$ are all nonnegative, we have
+\[
+ c_{12}=\sum_hd_{12,h}\ge\sum_{h\le H_1}d_{12,h}=\ip{x_1}{\Pi_{\le H_1}v_2}
+ =\ip{\alpha_1z_1+e_1}{\alpha_2z_1+e_2'} .
+\]
+We expand the last inner product. We have $\norm{\alpha_1z_1}\le1$, $\norm{\alpha_2z_1}\le\norm{\alpha_2z_2}\le1$, and $\norm{e_1}\le\norm{x_1}+\norm{\alpha_1z_1}\le2$. The three cross terms are therefore bounded in absolute value by $\norm{e_2'}+\norm{e_1}+2\norm{e_2'}\le(8\sqrt2/\kappa)\varepsilon^{1/4}$, and
+\[
+ c_{12}\ge\alpha_1\alpha_2B_{3,H_1}-\frac{8\sqrt2}{\kappa}\varepsilon^{1/4} .
+\]
+For the main term, we use \eqref{eq:geometry-grade-mass}, $B_{3,H_2}\le1$, and $c_{13},c_{23}\le1$:
+\[
+ \alpha_1\alpha_2B_{3,H_1}=D_{13,H_1}\frac{D_{23,H_2}}{B_{3,H_2}}
+ \ge(c_{13}-\eta)(c_{23}-\eta)\ge c_{13}c_{23}-2\eta\ge c_{13}c_{23}-2\varepsilon^{1/4}.
+\]
+Combining the last two displays, we find
+\begin{equation}\label{eq:geometry-product-quantitative}
+ c_{12}\ge c_{13}c_{23}-\frac{14}{\kappa}\varepsilon^{1/4}
+ \qquad\text{whenever } c_{13},c_{23}\ge\kappa\text{ and }\varepsilon\le\frac{\kappa^2}{16} .
+\end{equation}
+
+\paragraph{Step 4: uniformity.}
+Let $\kappa\in(0,1]$, and let $\delta\le1$ be so small that $K_0\delta^{1/4}\le\kappa^2/16$. Let $v_1,v_2,v_3$ be an admissible triple with $\max_i\delta(v_i)\le\delta$. If $c_{13}<\kappa$ or $c_{23}<\kappa$, then $c_{13}c_{23}-c_{12}\le c_{13}c_{23}<\kappa$, because all overlaps lie in $[0,1]$. Otherwise, \eqref{eq:geometry-triple-epsilon} and \eqref{eq:geometry-product-quantitative} imply that $c_{13}c_{23}-c_{12}\le14\kappa^{-1}K_0^{1/4}\delta^{1/16}$. This shows that
+\[
+ \omega(\delta)\le\max\bigl\{\kappa,\,14\kappa^{-1}K_0^{1/4}\delta^{1/16}\bigr\},
+\]
+and $\limsup_{\delta\downarrow0}\omega(\delta)\le\kappa$. Since $\kappa\in(0,1]$ is arbitrary, we conclude that $\omega(\delta)\to0$, as desired.
+\end{proof}

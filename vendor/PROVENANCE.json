@@ -1,0 +1,837 @@
+{
+  "schema_version": 1,
+  "toolchain": "leanprover/lean4:v4.35.0-rc2",
+  "mathlib_commit": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "original_project_license": "MIT",
+  "original_project_license_file": "LICENSE",
+  "providers": [
+    {
+      "name": "Stochastic foundations",
+      "repository": "https://github.com/pmaronow/codex",
+      "commit": "185b6771825ef8dd988aa7f31f10ee1452bbdee1",
+      "license": "Apache-2.0",
+      "license_file": "vendor/LICENSE",
+      "adaptation": "Retained Brownian, Kolmogorov-extension and stochastic-calculus proofs; full-filtration local extensions and quadratic-variation adaptations. Imports, module visibility and compatibility proofs are adapted to the pinned Lean/Mathlib versions. Applicable source copyright and author notices are retained.",
+      "files": [
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/ItoFormulaGeneral.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/ItoFormulaGeneral.lean",
+              "sha256": "1b9580d42a0bfc2a3f4f8f1e194b0b189eeb75ec7c69a085be1eaef3a436c42e"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/ItoFormulaPartition.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/ItoFormulaPartition.lean",
+              "sha256": "e9a7978a9f0794db4e4ded6e05ee76ccdcbcaa59c35233502b6873b7b59697a0"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/TightProduct.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/TightProduct.lean",
+              "sha256": "67790554264d60500633b392f341afbc6fc464cc605a2f08e9dfaf85d6780690"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/QuadraticVariationTightness.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/QuadraticVariationTightness.lean",
+              "sha256": "ade4c93ff376ecbf53ede8a2f52d13b929917372acad2d5d5f18c027440baf45"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/QuadraticVariationDensity.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/QuadraticVariationDensity.lean",
+              "sha256": "c1102648fb290f39ae7f27f38f3ba8be163ded4615b9dfca0d3de506391919c8"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/QuadraticVariationElementary.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/QuadraticVariationElementary.lean",
+              "sha256": "581e0788f51db72ede3d2f5c4a8d97ded927e2c6537150d83786ca7ebc257fec"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/QuadraticVariation.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/QuadraticVariation.lean",
+              "sha256": "fc9c13ca2107bb09b31758e7b97b3a7a8fdb32c29c069be9fc79e20a1158c3f5"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/QuadraticVariationContract.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/QuadraticVariationContract.lean",
+              "sha256": "9dd720c63bd783d19a0a9a35fd3cadb9ce84ccfbeebf07d9dc4c060fb47d51ad"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/UniformPartitionSums.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/UniformPartitionSums.lean",
+              "sha256": "71f662347467445f6dbe5c9da12243ae18a112f3a5ecd54a36384e88f0ef7311"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/TendstoInMeasureAlgebra.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/TendstoInMeasureAlgebra.lean",
+              "sha256": "58ad6629ade2970efa142423432b400a276935cea4fdb5b69e3ec81bd0b5f27b"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/ItoProcess.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/ItoProcess.lean",
+              "sha256": "008cc6967b9dcd81b53e5e0ed288fc5f4a3f5035c30861842cdc5418485e80ee"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/ItoConstruction.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/ItoConstruction.lean",
+              "sha256": "2e10cc97eb16f8f4b71d6b855ea44a4838c3ac45456dc6fca9e30ff86c3d67a5"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/PredictableDensity.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/PredictableDensity.lean",
+              "sha256": "05918baa78dff6861167f7cac2430f633b1adcb43ccb8779807ceb03d592640e"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/PredictableProcess.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/PredictableProcess.lean",
+              "sha256": "909dc22379414d541a14c2a8c4a006d40d3b7d122b0ffae21cf422807272a3ea"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/WienerIntegral.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/WienerIntegral.lean",
+              "sha256": "85bdb727b784846d5396e4e66011c3e4055b36f76320150bbf861792d8f2fbf0"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/IteratedIntegral.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/IteratedIntegral.lean",
+              "sha256": "03312cff157d8925a2033fc2f98233c35ae374a4309be88b707844354cc6e75d"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/Simplex.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/Simplex.lean",
+              "sha256": "de97aa5c74eb478b59a73a1b9e1e4a8b323c6b0fa92e2c9aa72e53566294ab5c"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/Symmetrization.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/Symmetrization.lean",
+              "sha256": "48ade5e3307df2a8a0736aded609a6df032e5a4c96f4e46ea089b3f9bcb2f157"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/CameronMartinTheorem.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/CameronMartinTheorem.lean",
+              "sha256": "b72bd96c8a99b6df72df6ae586ec7aa113fb0d392058245b7aca9b978666d4f4"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/CameronMartin.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/CameronMartin.lean",
+              "sha256": "ad6c62b9ce88301a413dd7f3b1e16b99ea5efd07bef2148754b98105ccfed9c2"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/FubiniLift.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/FubiniLift.lean",
+              "sha256": "935f1295df15d59d6622768853f51b99adc620dde4296317fd733154a77af6f5"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/ElementaryIto.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/ElementaryIto.lean",
+              "sha256": "1f0c294c7dab891c19ca8afb37cf0fe02e8771023d81c71dabf7ddc62581cfff"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/QuadraticVariationGrid.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/QuadraticVariationGrid.lean",
+              "sha256": "6207e4a8c8bbfc93b0a64e7af534c970dbdbd5d079ca20d0a99859608c498f3e"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/ItoMaximal.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/ItoMaximal.lean",
+              "sha256": "e0bd3010e237586e1df2f864465788d6393df9cce3bf72684023d04a9d2d5796"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/ItoFormula.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/ItoFormula.lean",
+              "sha256": "d5f48b0f5f82f14bd3499d473c72cc56e573118b6c47a3108d8686aac03572c3"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/FourPapersCommon/FilteredContinuousBrownianIntegral.lean",
+          "source": [
+            {
+              "path": "FourPapersCommon/FilteredContinuousBrownianIntegral.lean",
+              "sha256": "311c86e6eca89e1fe85c22c08fae6509c734f6224052e7c84f67bfa05b779f69"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/FourPapersCommon/ContinuousAdaptedBrownianIntegral.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/FourPapersCommon/ContinuousAdaptedBrownianIntegral.lean",
+              "sha256": "c7f96711651a10dd89a9401d74c6c09b3e3048044c0e747f48248c4b28a7b05d"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/MartingaleLeftSum.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/MartingaleLeftSum.lean",
+              "sha256": "cf53c4a4bd8e7bf723a6dc9b37119fbd5f77e671f7a4ded5e41ff07a4378c3da"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/PartitionStoppingTime.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/PartitionStoppingTime.lean",
+              "sha256": "6714fa528c63ef784359b25435ce95f9e6d3c2a495f5f7327211452b2624a668"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/LocalizingStoppedProcess.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/LocalizingStoppedProcess.lean",
+              "sha256": "5ab875bcfd639824fac43847451140ce1989acd81b77e17938728cc8c78bda14"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/ElementaryMartingaleIntegral.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/ElementaryMartingaleIntegral.lean",
+              "sha256": "2494b9590b5626a63cd9e7066cf75d5063d956d487c00c05d953a76861e7971f"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/ContinuousExitTime.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/ContinuousExitTime.lean",
+              "sha256": "4978d97fb1a5cbdc3a7b1b8fcc54603e41ef10b1eada651cc494c564471c23b8"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/LocalMartingaleContract.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/LocalMartingaleContract.lean",
+              "sha256": "4d0a59ca8c960cf5c1b3d4902422282d948dba72cebe3b4d57ecc3541ae5f0a3"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/StochasticCalculus/WeightedBracketRiemann.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/WeightedBracketRiemann.lean",
+              "sha256": "70e3c6860b177a268a98e36605e96b9cff3d675bd7b093b5a00ae9a24bba800b"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/FourPapersCommon/ContinuousAdaptedPredictable.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/FourPapersCommon/ContinuousAdaptedPredictable.lean",
+              "sha256": "4bd83f5ba231b319db278a51436a7b877d3c885d1baa86ce246a77f4d7d1711c"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/FourPapersCommon/ContinuousAdaptedSteps.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/FourPapersCommon/ContinuousAdaptedSteps.lean",
+              "sha256": "e9846b536d3fe3738ed5883c122b3fbd60648e7b844a941ef19b953ff2210845"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/FourPapersCommon/FilteredBrownianIntegral.lean",
+          "source": [
+            {
+              "path": "FourPapersCommon/FilteredBrownianIntegral.lean",
+              "sha256": "8362e6696bdade55b2b0a8ff06c57d53b83522580c0baa9655b9468fb802d2c9"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/FourPapersCommon/FilteredBrownianElementary.lean",
+          "source": [
+            {
+              "path": "FourPapersCommon/FilteredBrownianElementary.lean",
+              "sha256": "ee5d6781ea04a18c356a1c9da7fe969e802238c573d52baf592d57ddca3e4b2d"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Gaussian/BrownianMotion.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Gaussian/BrownianMotion.lean",
+              "sha256": "51a407bed10dec8099d7ca77503f93e45b100cbd6d14e9dabde892e281f596db"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Gaussian/ProjectiveLimit.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Gaussian/ProjectiveLimit.lean",
+              "sha256": "0383e10ef62ec0f3aaff30cfd64ec9a90c1ab78fbb64f7f23668d693e8e97840"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/KolmogorovExtension4/KolmogorovExtension.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/KolmogorovExtension4/KolmogorovExtension.lean",
+              "sha256": "9c3c88a446a92b55254cc7180eac49eae8a110e0454c5f035a73ed7914c91778"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/KolmogorovExtension4/RegularContent.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/KolmogorovExtension4/RegularContent.lean",
+              "sha256": "fbd5badca4a85ef33655e8a9051183b3158ad38dbae5e24b49f6699be20c1a6b"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/KolmogorovExtension4/CompactSystem.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/KolmogorovExtension4/CompactSystem.lean",
+              "sha256": "e7356efc8317663f1c2edd7bed857faa424e898ee04c35ed6510c3d06444195b"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Gaussian/Gaussian.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Gaussian/Gaussian.lean",
+              "sha256": "7970de8c7bceb385a286a4dc9b5ddbf377102fdd9943c68baf852a12b66f7a64"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Auxiliary/NNReal.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Auxiliary/NNReal.lean",
+              "sha256": "92dbb17acfc90d8544d9021074814bbba164de8c85b4796603a261237bd87336"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Auxiliary/MeasureTheory.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Auxiliary/MeasureTheory.lean",
+              "sha256": "6792d2d55e8d05aa83b0faadd256092129bf834c64c483c76d74af9b7ea46f94"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Auxiliary/Metric.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Auxiliary/Metric.lean",
+              "sha256": "13f5040961175788f8631ba4551a00ef4671a0c172ba85f145c57b025f7b7d9e"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Auxiliary/Algebra.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Auxiliary/Algebra.lean",
+              "sha256": "80e5f68a8895d1e451cd13cba4b03ea168c0005d8dc3b45fd6dd2570f6cef736"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Gaussian/Moment.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Gaussian/Moment.lean",
+              "sha256": "1ec420407465231b2bdee35a8923b5786c22336ca4c7efcf07cef05eab9fbb3c"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Gaussian/GaussianProcess.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Gaussian/GaussianProcess.lean",
+              "sha256": "0a51f1274533938eb90b61d2f038ce6edf1fe5000f883cfbae45542eda123dfe"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Gaussian/CovMatrix.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Gaussian/CovMatrix.lean",
+              "sha256": "89ec93a4bbf3671bc6eb34803c1000777ec00a600732b878d4623cd0457d7ea8"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Auxiliary/ContinuousBilinForm.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Auxiliary/ContinuousBilinForm.lean",
+              "sha256": "6a2092c753f4236b1199eb1ac422c195ba053b18958e38ecd9677f49d4e5fd91"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Auxiliary/LinearAlgebra.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Auxiliary/LinearAlgebra.lean",
+              "sha256": "9d01184f8cbf9b79e29a7fa28f0ddd73c2d5dc3cbda690a02a7fd90ea7594a64"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Continuity/KolmogorovChentsov.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Continuity/KolmogorovChentsov.lean",
+              "sha256": "b77ac25bfd59ec357142fb17b99c580a656e28ab205e9d89e082b37a51637ffe"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Gaussian/StochasticProcesses.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Gaussian/StochasticProcesses.lean",
+              "sha256": "c5fc98b72eb3044fe49add5b47ce10ec8a9aeb1e47aa11aa32a91a2e0c393f81"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Continuity/KolmogorovChentsovInequality.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Continuity/KolmogorovChentsovInequality.lean",
+              "sha256": "0e3d9f8b665d5c3b215ad0c6ffdf88f9e7058dbb0ac28c8dc8bd1a30b979a56c"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Continuity/IsKolmogorovProcess.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Continuity/IsKolmogorovProcess.lean",
+              "sha256": "e2ab3360724b02661981dc8d46164ed943d52fbf96b85b5586481077bf90b02f"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Continuity/HasBoundedInternalCoveringNumber.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Continuity/HasBoundedInternalCoveringNumber.lean",
+              "sha256": "d169aba72155a5b7dfcb89cd13568082f9146da3f8ebdf83c72a2489d969e588"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Continuity/CoveringNumber.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Continuity/CoveringNumber.lean",
+              "sha256": "0a066df0cd9ef5fd55f453578de9866672baea986d65ea86f2fdc4d18e4867ea"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Auxiliary/Nat.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Auxiliary/Nat.lean",
+              "sha256": "637f1fa12fb1cd584ce886f06b9a5167b5a7e96415740112e0ed60157916be10"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Auxiliary/ENNReal.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Auxiliary/ENNReal.lean",
+              "sha256": "45e32bb046b5e29dc428795644c1e24bdfb22f46d1b7a53d71a0db823caebd10"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Continuity/Chaining.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Continuity/Chaining.lean",
+              "sha256": "db0efcab2f9383b2e7d086336a707afbadffc1cdc4a24a06ec503bb8a0b9f0d2"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Auxiliary/MeanInequalities.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Auxiliary/MeanInequalities.lean",
+              "sha256": "396701f3112dea060898d6e5c3e979786f0f541618e22f290118251b00b2106e"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Auxiliary/FiniteInf.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Auxiliary/FiniteInf.lean",
+              "sha256": "5731080f16cb712effaffa72739ff36d4a4835f9385e5bbb8e06d88c6617425d"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Continuity/LimitModification.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Continuity/LimitModification.lean",
+              "sha256": "971828f61f311578c0a88233e82504ea7838cdc818bb50a00f26678c0c97868e"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Auxiliary/DenseCountable.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Auxiliary/DenseCountable.lean",
+              "sha256": "a80476377e6c0e2b573816f728db930ccbd8bc2469709ea3b7f03615474c8b58"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Auxiliary/Topology.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Auxiliary/Topology.lean",
+              "sha256": "ce23e4180f97416196f30f05f52756ecc46c99737ec9bb674c9ed3f16014e2b6"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/BrownianMotion/Auxiliary/HasLaw.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/brownian-foundations/BrownianMotion/Auxiliary/HasLaw.lean",
+              "sha256": "990e35242e14e80f00f290de63d1da4ba1d70c3c14f757312170dce8d0a478f6"
+            }
+          ]
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/FourPapersCommon/FilteredItoProcess.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/ItoProcess.lean",
+              "sha256": "008cc6967b9dcd81b53e5e0ed288fc5f4a3f5035c30861842cdc5418485e80ee"
+            }
+          ],
+          "relationship": "local extension of retained stochastic foundations"
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/FourPapersCommon/FilteredItoL2Continuity.lean",
+          "source": [],
+          "relationship": "project-authored full-filtration mean-square time continuity and Bochner-time L2 integral extension"
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/FourPapersCommon/FilteredItoContinuous.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/QuadraticVariationElementary.lean",
+              "sha256": "581e0788f51db72ede3d2f5c4a8d97ded927e2c6537150d83786ca7ebc257fec"
+            },
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/QuadraticVariationDensity.lean",
+              "sha256": "c1102648fb290f39ae7f27f38f3ba8be163ded4615b9dfca0d3de506391919c8"
+            },
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/ItoMaximal.lean",
+              "sha256": "e0bd3010e237586e1df2f864465788d6393df9cce3bf72684023d04a9d2d5796"
+            },
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/ItoFormulaGeneral.lean",
+              "sha256": "1b9580d42a0bfc2a3f4f8f1e194b0b189eeb75ec7c69a085be1eaef3a436c42e"
+            }
+          ],
+          "relationship": "local extension of retained stochastic foundations"
+        },
+        {
+          "file": "vendor/hard-sphere-foundations/src/FourPapersCommon/ContinuousAEAdaptedPredictable.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/FourPapersCommon/ContinuousAdaptedPredictable.lean",
+              "sha256": "4bd83f5ba231b319db278a51436a7b877d3c885d1baa86ce246a77f4d7d1711c"
+            }
+          ],
+          "relationship": "local extension of retained stochastic foundations"
+        },
+        {
+          "file": "SphericalAging/FilteredQuadraticVariation.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/QuadraticVariation.lean",
+              "sha256": "fc9c13ca2107bb09b31758e7b97b3a7a8fdb32c29c069be9fc79e20a1158c3f5"
+            },
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/QuadraticVariationElementary.lean",
+              "sha256": "581e0788f51db72ede3d2f5c4a8d97ded927e2c6537150d83786ca7ebc257fec"
+            },
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/QuadraticVariationDensity.lean",
+              "sha256": "c1102648fb290f39ae7f27f38f3ba8be163ded4615b9dfca0d3de506391919c8"
+            },
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/QuadraticVariationGrid.lean",
+              "sha256": "6207e4a8c8bbfc93b0a64e7af534c970dbdbd5d079ca20d0a99859608c498f3e"
+            }
+          ],
+          "relationship": "Adaptation to an enlarged Brownian filtration, using actual increment independence."
+        },
+        {
+          "file": "SphericalAging/VectorQuadraticVariation.lean",
+          "source": [
+            {
+              "path": "vendor/prior-formalization/foundations/vendor/lean-stochastic-calculus/StochasticCalculus/QuadraticVariation.lean",
+              "sha256": "fc9c13ca2107bb09b31758e7b97b3a7a8fdb32c29c069be9fc79e20a1158c3f5"
+            }
+          ],
+          "relationship": "Adaptation to independent Brownian coordinate drivers and full-filtration coefficients."
+        }
+      ]
+    },
+    {
+      "name": "AbsorptionCutoff renewal proofs",
+      "repository": "https://github.com/BennyAvelin/AbsorptionCutoff",
+      "commit": "41c45c6d72e979419e46224bb7b4be5cee31f2b5",
+      "license": "Apache-2.0",
+      "license_file": "vendor/LICENSE",
+      "attribution": "Copyright 2026 Benny Avelin",
+      "adaptation": "Five-module renewal proof closure, with Lean/Mathlib compatibility and public-module adaptations. The code was identified through openai/math at its pinned revision.",
+      "discovery": {
+        "repository": "https://github.com/openai/math",
+        "commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
+        "module": "lean/OAI/NumberTheory/Jacobsthal/Renewal/OccupationAge.lean"
+      },
+      "files": [
+        {
+          "file": "AbsorptionCutoff/Supercritical/Renewal.lean",
+          "source": [
+            {
+              "path": "AbsorptionCutoff/Supercritical/Renewal.lean",
+              "sha256": "df6bfe832bbacefd8bbbb7b348892748ceb3f72267b3d5dbccbb09873d8d3602"
+            }
+          ]
+        },
+        {
+          "file": "AbsorptionCutoff/Supercritical/RenewalAbel.lean",
+          "source": [
+            {
+              "path": "AbsorptionCutoff/Supercritical/RenewalAbel.lean",
+              "sha256": "e418359d9f3d9fac7d5b55e38969f0793b3d5623c9133d351bb36e0396db92df"
+            }
+          ]
+        },
+        {
+          "file": "AbsorptionCutoff/Supercritical/RenewalKernel.lean",
+          "source": [
+            {
+              "path": "AbsorptionCutoff/Supercritical/RenewalKernel.lean",
+              "sha256": "e4a4ed2c877fff041e5f954731334aa32a1e3838e8a9fa5b21f2b44b21140b9b"
+            }
+          ]
+        },
+        {
+          "file": "AbsorptionCutoff/Supercritical/RenewalSinc.lean",
+          "source": [
+            {
+              "path": "AbsorptionCutoff/Supercritical/RenewalSinc.lean",
+              "sha256": "67f198c07be9e3f2d0f31facf539e78f985c122aea94939bdd7150072217f349"
+            }
+          ]
+        },
+        {
+          "file": "AbsorptionCutoff/Supercritical/RenewalApprox.lean",
+          "source": [
+            {
+              "path": "AbsorptionCutoff/Supercritical/RenewalApprox.lean",
+              "sha256": "b4518a484ef58dd6cc0e331c3d2990418f64b6773e6987597e9515004692700d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "OAI product-L2 tensor proofs",
+      "repository": "https://github.com/openai/math",
+      "commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
+      "license": "Apache-2.0",
+      "license_file": "vendor/LICENSE",
+      "adaptation": "Real-valued product L² pure-product proofs are adapted in SphericalAging/LpProductTensor.lean; the completed extension, positivity cone, and subsequent onto product-L² proof are constructed in this project.",
+      "files": [
+        {
+          "file": "SphericalAging/LpProductTensor.lean",
+          "source": [
+            {
+              "path": "lean/OAI/Dynamics/MultipleMixing/Tensors.lean",
+              "sha256": "7e3f31e0416abee4efd3a30445b16bf336d6d38ff909940e9eaa0e9224cd0b4e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "OAI Gaussian comparison proofs",
+      "repository": "https://github.com/openai/math",
+      "commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
+      "license": "Apache-2.0",
+      "license_file": "vendor/LICENSE",
+      "adaptation": "Gaussian interpolation dependency closure: actual product integration by parts, soft maximum, finite maximum and compact Gaussian supremum comparison. Namespaces and imports localized for this pinned Lean/mathlib version. No comparison axiom retained. GaussianIncrementComparison and GaussianLinearSupBound are new project derivations.",
+      "files": [
+        {
+          "file": "SphericalAging/GaussianComparisonProduct.lean",
+          "source": [
+            {
+              "path": "lean/OAI/Probability/SKGap/Gaussian/StandardGaussianProduct.lean",
+              "sha256": "6419a8cb93a4e18cdad2267129daacf4ec3b4404f6fd1081873a6c941c0485f4"
+            }
+          ]
+        },
+        {
+          "file": "SphericalAging/GaussianComparisonSoftMax.lean",
+          "source": [
+            {
+              "path": "lean/OAI/Probability/SKGap/Localization/ExpSum.lean",
+              "sha256": "b6d141799d3c878f3a0e74909b21c7674fc9c68c931b12b963b473321eea1260"
+            }
+          ]
+        },
+        {
+          "file": "SphericalAging/GaussianComparisonFiniteMax.lean",
+          "source": [
+            {
+              "path": "lean/OAI/Probability/SKGap/Localization/FiniteMax.lean",
+              "sha256": "eea7e64622acda580bb12fe2d75da5f2c0488996acc3df497f90669a8bfb0252"
+            }
+          ]
+        },
+        {
+          "file": "SphericalAging/GaussianCompactComparison.lean",
+          "source": [
+            {
+              "path": "lean/OAI/Probability/SKGap/Gaussian/GaussianCoordinates.lean",
+              "sha256": "6ac5bf8dc3cf66b5e4f6e35270a266c9e85e84d18c30493270bf991fd2e53879"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "notice": "Current source files are the retained adaptations listed here. Source hashes identify the pinned upstream originals, not the adapted submission files. Applicable author and copyright notices and concise change notices remain in those source files. Source-comment cleanup does not alter Lean code."
+}

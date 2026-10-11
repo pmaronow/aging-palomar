@@ -1,0 +1,486 @@
+\chapter{The model and the hard-spherical Cugliandolo--Kurchan equations}\label{sec:model}
+
+In this section, we fix the model, the dynamics, and our conventions, and state the hard-spherical Cugliandolo--Kurchan (CK) equations together with the published results that connect them with the Langevin dynamics. We prove three statements. \Cref{prop:hard-bridge} transfers Sellke's convergence theorem for the hard-spherical diffusion on fixed time horizons \cite[arXiv version~5, Theorem~4.3, p.~23]{sellke2024} to our normalization and to a uniform initial point. \Cref{lem:brown-force-response} identifies the Brownian observable in that theorem with the integrated response to an additive force. \Cref{lem:landscape-moments} collects bounds on the Hamiltonian and its derivatives that are uniform in the dimension. This section also uses the variational-response estimates from Steps~1 and~2 of the proof of \cref{prop:energy-bridge}, which depend only on \cref{lem:landscape-moments}: \cref{rem:fdt-convention} uses the actual $L^2$ derivative and the quenched moment estimate \eqref{eq:tangent-flow-bound}, and the proof of \cref{lem:brown-force-response} uses \eqref{eq:finite-lag-flow-moments}.
+
+These results are the finite-dimensional input of the paper, and we use them throughout \cref{sec:ck-structure}. The landscape bounds enter again in the entropy estimates of \cref{sec:entropy-clusters} and in the branched trajectories of \cref{app:general-selection}, and we use the bridge wherever we obtain a statement about the CK solution as a limit of the diffusion, in \cref{sec:entropy-clusters,app:general-selection,resp:chapter}.
+
+Throughout the paper, $p\ge3$ and $\beta>0$ are fixed, and $\xi(q)=q^p$.
+
+\section{The Langevin dynamics}\label{sec:langevin}
+
+For $N\ge2$, let $S_N=\{x\in\R^N:\norm{x}^2=N\}$, and let $\omega_N$ be the uniform probability measure on $S_N$. The disorder is an ordered coefficient tensor $J=(J_{i_1\cdots i_p})_{i_1,\dots,i_p=1}^N$ whose $N^p$ entries are independent standard Gaussian random variables. The Hamiltonian is
+\begin{equation}
+ H_N(x)=N^{-(p-1)/2}\sum_{i_1,\ldots,i_p=1}^N
+ J_{i_1\cdots i_p}x_{i_1}\cdots x_{i_p},\qquad x\in\R^N.
+ \label{eq:hamiltonian}
+\end{equation}
+Since the entries of $J$ are independent and the tensor is not symmetrized, we have
+\begin{equation}\label{eq:hamiltonian-covariance}
+ \E H_N(x)H_N(y)
+ =N^{-(p-1)}\sum_{i_1,\ldots,i_p=1}^N\prod_{j=1}^px_{i_j}y_{i_j}
+ =N^{-(p-1)}(x\cdot y)^p
+ =N\xi\Bigl(\frac{x\cdot y}{N}\Bigr)
+\end{equation}
+for all $x,y\in\R^N$. No factor $p!$ appears, because the coefficients are ordered.
+
+We write $\nabla H_N$ and $\nabla^2H_N$ for the Euclidean gradient and Hessian. For $x\in\R^N$, let $P_x=I-xx^{\mathsf T}/N$. For $x\in S_N$, the matrix $P_x$ is the orthogonal projection onto the tangent space $T_xS_N=\{v\in\R^N:v\cdot x=0\}$. We write $\nabla_S$, $\nabla_S^2$, and $\Delta_S$ for the gradient, the Riemannian Hessian, and the Laplace--Beltrami operator of $S_N$, with the metric induced from $\R^N$. Note that $\nabla_SH_N(x)=P_x\nabla H_N(x)$. We also write
+\[
+ \kappa_N=\frac{N-1}{N}.
+\]
+
+We consider the diffusion
+\begin{equation}
+ \dd X_t=\beta P_{X_t}\nabla H_N(X_t)\,\dd t
+ +\sqrt2P_{X_t}\,\dd B_t-\kappa_NX_t\,\dd t,
+ \label{eq:hard-sde}
+\end{equation}
+where $B$ is a standard Brownian motion in $\R^N$. The initial point $X_0$ has law $\omega_N$, and $X_0$, $J$, and $B$ are independent. The equation has a unique strong solution up to its explosion time, because its coefficients are polynomials. The solution stays on $S_N$. By It\^o's formula, $Z_t=\norm{X_t}^2-N$ satisfies a linear equation $\dd Z_t=Z_t\,\dd A_t$ for a continuous semimartingale $A$, because $x\cdot P_xv=-(\norm x^2-N)(x\cdot v)/N$ and $2\tr(P_x^2)-2\kappa_N\norm x^2$ vanishes on $S_N$; since $Z_0=0$, we have $Z\equiv0$, and there is no explosion.
+
+For a smooth function $F$ on $\R^N$ and $x\in S_N$, It\^o's formula shows that the generator of \eqref{eq:hard-sde} is
+\begin{equation}\label{eq:generator}
+ \mathcal L_NF(x)=\tr\bigl(P_x\nabla^2F(x)\bigr)-\kappa_N\,x\cdot\nabla F(x)
+ +\beta\,\nabla_SH_N(x)\cdot\nabla F(x).
+\end{equation}
+The first two terms are $\Delta_SF(x)$, by the classical formula for the Laplacian of a sphere of radius $\sqrt N$, and the last one is $\beta\,\nabla_SH_N\cdot\nabla_SF$. This shows that $\mathcal L_N=\Delta_S+\beta\nabla_SH_N\cdot\nabla_S$. Equivalently, $\mathcal L_NF=g_N^{-1}\operatorname{div}_S(g_N\nabla_SF)$ with
+\[
+ g_N=Z_{N,\beta}^{-1}e^{\beta H_N},\qquad Z_{N,\beta}=\int e^{\beta H_N}\,\dd\omega_N,
+\]
+so that the Gibbs measure $g_N\,\dd\omega_N$ is reversible. The sign convention is gradient ascent, in the sense that the drift pushes $X_t$ toward large values of $H_N$, and the limiting energies of this paper are positive. Because the noise amplitude is $\sqrt2$, the diffusion part of $\mathcal L_N$ is the Laplacian itself.
+
+We write
+\[
+ C_N(t,s)=\frac{X_t\cdot X_s}N,\qquad s,t\ge0,
+\]
+for the empirical correlation.
+
+\paragraph{Response.}
+We measure the response to an additive tangent force in the drift, without a factor $\beta$. Write
+\[
+ b(x)=\beta P_x\nabla H_N(x)-\kappa_Nx,\qquad
+ \sigma_j(x)=\sqrt2P_xe_j,\quad j=1,\dots,N.
+\]
+On each finite horizon, the response to a bounded continuous deterministic force $h$ is the zero-initial-state strong solution of the forced linearized equation
+\begin{equation}\label{eq:perturbed-sde}
+ \dd V_t=Db(X_t)[V_t]\,\dd t
+ +P_{X_t}h(t)\,\dd t
+ +\sum_{j=1}^ND\sigma_j(X_t)[V_t]\,\dd B^j_t,
+ \qquad V_0=0.
+\end{equation}
+It is constructed on each finite horizon in the space of predictable square-integrable processes. More generally, the predictable $L^2$ construction provides an affine variational strong solution for arbitrary predictable square-integrable drift and noise sources. We state the response-kernel representation below for bounded continuous deterministic forces and bounded continuous adapted random directions.
+For each fixed waiting time $u\ge0$ and finite horizon $H\ge u$, the response matrix $U_N(t,u)$, $u\le t\le H$, is the continuous adapted matrix whose columns solve the homogeneous variational equation along the actual trajectory $X$:
+\begin{equation}\label{eq:response-matrix}
+\begin{aligned}
+ \dd\bigl(U_N(t,u)v\bigr)
+ &=Db(X_t)[U_N(t,u)v]\,\dd t
+ +\sum_{j=1}^ND\sigma_j(X_t)[U_N(t,u)v]\,\dd B^j_t,
+ \\
+ U_N(u,u)v&=P_{X_u}v,
+\end{aligned}
+\end{equation}
+for $v\in\R^N$. The equation is constructed from the $N$ coordinate columns; linearity and pathwise uniqueness identify every direction with their linear combination. The choices on different finite horizons agree on their common time interval, on one event for all vectors. The matrix acts as zero in the normal direction $X_u$ and maps every vector into $T_{X_t}S_N$. For each fixed $H>u$, its terminal values are also the Fr\'echet derivatives into $L^2(\Prob_B;\R^N)$ of the nonlinear solution restarted at $X_u+P_{X_u}v$, evaluated at $v=0$. For this ambient restart, choose smooth compactly supported extensions agreeing with the displayed coefficients on a neighborhood of the sphere; the variational equation along $X$ uses those physical coefficients. This definition needs no simultaneous samplewise smoothness in all starting points. For classical background on smooth spatial stochastic flows, see \cite[Section~1, pp.~1022--1023]{kunita1987icm} and \cite[Section~4.6, Theorem~4.6.5, p.~173]{kunita1990}.
+
+For every bounded continuous deterministic force $h$, the forced variational equation has the Bochner integral representation in $L^2(\Prob_B;\R^N)$,
+\begin{equation}\label{eq:response-variation}
+ V_t=\int_0^tU_N(t,u)h(u)\,\dd u.
+\end{equation}
+To justify the representation on a fixed horizon, integrate the causal homogeneous response in its forcing time and apply stochastic Fubini. This gives the forced variational equation, and pathwise uniqueness identifies the result with $V$. The same causal-source argument applies to bounded continuous adapted random directions, including the disorder directions used in \cref{prop:energy-bridge}. In words, $U_N(t,u)$ is the homogeneous linearized response to a tangent-projected impulse at time $u$. We define its annealed normalized trace by
+\begin{equation}\label{eq:annealed-response}
+ \bar r_N(t,u)=\frac1N\E\tr U_N(t,u),\qquad 0\le u\le t.
+\end{equation}
+This expectation is finite by the fourth-moment bound \eqref{eq:finite-lag-flow-moments} below. The finite-$N$ diagonal is $\bar r_N(t,t)=\kappa_N$, because $U_N(t,t)=P_{X_t}$ and $\tr P_x=N-1$ on $S_N$; the limiting response will have diagonal value one.
+
+\begin{remark}[The equilibrium fluctuation--dissipation relation in this convention]\label{rem:fdt-convention}
+In this convention, stationary equilibrium FDT reads $r=-c'$, with no factor of $\beta$; at lag zero, the derivative is taken from the right. To see this, fix $J$ and let $P^H_\tau=e^{\tau\mathcal L_N}$. For the Gibbs initial law, the correlation and response at lag $\tau$ are
+\[
+ c_{N,G}(\tau)=\frac1N\sum_{i=1}^N\int x_iP^H_\tau x_i\,g_N\,\dd\omega_N,\qquad
+ r_{N,G}(\tau)=\frac1N\sum_{i=1}^N\int\nabla_Sx_i\cdot\nabla_SP^H_\tau x_i\,g_N\,\dd\omega_N.
+\]
+The second formula is the trace of the mean of $U_N$ for the Gibbs initial law. The actual tangent-projected restart is Fr\'echet differentiable into $L^2$, and the bounded linear expectation operator commutes with that derivative. The Markov restart property identifies the expected response with the expected derivative of $P^H_{t-u}\operatorname{id}$ at the waiting state. Gibbs stationarity then gives the displayed integral, whose integrand is $\sum_i\nabla_Sx_i\cdot\nabla_SP^H_{t-u}x_i$ because $\nabla_Sx_i=P_xe_i$. The fixed-disorder moment estimate \eqref{eq:tangent-flow-bound} ensures integrability. Since $\mathcal L_N$ is symmetric with respect to $g_N\,\dd\omega_N$, we have
+\[
+ c_{N,G}'(\tau)=\frac1N\sum_{i=1}^N\int x_i\,\mathcal L_NP^H_\tau x_i\,g_N\,\dd\omega_N
+ =-r_{N,G}(\tau).
+\]
+A force written as $\beta P_xh$ would have response $\beta r_{N,G}$, and the relation would read $r=-\beta c'$ in that convention.
+\end{remark}
+
+\section{The hard-spherical CK system}\label{sec:hard-ck}
+
+By a solution of the hard-spherical CK system, we mean a triple $(C,R,\lambda)$ of continuous functions, with $C$ defined and symmetric on $[0,\infty)^2$, $R$ defined on the causal triangle $\{(t,s):0\le s\le t\}$, and $\lambda$ defined on $[0,\infty)$, such that, for every $s\ge0$, the functions $t\mapsto C(t,s)$ and $t\mapsto R(t,s)$ are continuously differentiable on $[s,\infty)$ and satisfy, for $t\ge s$,
+\begin{align}
+ \partial_tR(t,s)&=-\lambda(t)R(t,s)
+ +\beta^2\int_s^t\xi''(C(t,u))R(t,u)R(u,s)\,\dd u,
+ \label{eq:ck-response}\\
+ \partial_tC(t,s)&=-\lambda(t)C(t,s)
+ +\beta^2\int_0^t\xi''(C(t,u))R(t,u)C(u,s)\,\dd u\notag\\
+ &\hspace{1em}+\beta^2\int_0^s\xi'(C(t,u))R(s,u)\,\dd u,
+ \label{eq:ck-correlation}\\
+ \lambda(t)&=1+\beta^2\int_0^t
+ \bigl[\xi'(C(t,u))+C(t,u)\xi''(C(t,u))\bigr]R(t,u)\,\dd u\notag\\
+ &=1+\beta^2p^2\int_0^tC(t,u)^{p-1}R(t,u)\,\dd u,
+ \label{eq:ck-multiplier}
+\end{align}
+with the boundary data
+\begin{equation}\label{eq:ck-boundary}
+ C(t,t)=R(t,t)=1,\qquad t\ge0.
+\end{equation}
+At $t=s$, the derivatives are one-sided. The second line of \eqref{eq:ck-multiplier} holds because $\xi'(q)+q\xi''(q)=pq^{p-1}+p(p-1)q^{p-1}=p^2q^{p-1}$.
+
+The correlation equation \eqref{eq:ck-correlation} describes $C$ only on the causal side $t\ge s$, and the diagonal requires a word. At $s=t$, the symmetry $C(u,t)=C(t,u)$ and \eqref{eq:ck-multiplier} turn \eqref{eq:ck-correlation} into
+\begin{equation}\label{eq:ck-diagonal-slope}
+ \partial_tC(t,s)\big|_{s=t}=-\lambda(t)+\bigl(\lambda(t)-1\bigr)=-1.
+\end{equation}
+The derivative in \eqref{eq:ck-diagonal-slope} holds the earlier argument fixed and approaches the diagonal from the causal side. The function $t\mapsto C(t,t)$ is constant; its derivative is zero. For the diffusion, It\^o's formula gives $\dd(X_t\cdot X_t)/N=2X_t\cdot\dd X_t/N+2\kappa_N\,\dd t$, where the drift part of $2X_t\cdot\dd X_t/N$ is $-2\kappa_N\,\dd t$. Thus the inward drift and the quadratic variation balance exactly at finite $N$, and their coefficients tend to $-2$ and $+2$ as $N\to\infty$. The multiplier $\lambda$ enforces the limiting balance and keeps $C(t,t)=1$; this is the meaning of the term $1$ in \eqref{eq:ck-multiplier}.
+
+We write
+\begin{equation}\label{eq:energy-chi-def}
+ e_\beta(t)=\beta p\int_0^tC(t,u)^{p-1}R(t,u)\,\dd u,\qquad
+ \chi(t,s)=\int_s^tR(t,u)\,\dd u.
+\end{equation}
+By \eqref{eq:ck-multiplier}, we have $\lambda(t)=1+p\beta e_\beta(t)$, and \cref{prop:energy-bridge} shows that $e_\beta(t)$ is the limit of the mean energy $N^{-1}\E H_N(X_t)$. The quantity $\chi(t,s)$ is the integrated response, or susceptibility.
+
+We use the following published facts throughout the paper.
+
+\begin{proposition}[Well-posedness and positivity]\label{prop:ck-wellposed}
+The hard-spherical CK system \eqref{eq:ck-response}--\eqref{eq:ck-boundary} has a unique solution $(C,R,\lambda)$. It satisfies
+\begin{equation}
+0\le C(t,s)\le1\quad(s,t\ge0),\qquad R(t,s)\ge0\quad(t\ge s\ge0),
+\label{eq:ck-physical-bounds}
+\end{equation}
+and $C$ is a positive-semidefinite kernel: for all $n\ge1$, times $t_1,\dots,t_n\ge0$, and $a\in\R^n$, we have $\sum_{i,j=1}^na_ia_jC(t_i,t_j)\ge0$.
+\end{proposition}
+
+Existence and uniqueness, the bounds \eqref{eq:ck-physical-bounds}, and the positive semidefiniteness of $C$ are proved by Dembo, Guionnet, and Mazza \cite[arXiv version~1, Proposition~1.1, p.~4, and Lemma~2.1, p.~6]{dgm2007} for the hard-spherical equations in the noise-one convention recalled in \cref{sec:conventions}. Their hypotheses are met by the polynomial $\xi(q)=q^p$, the initial value $C(0,0)=1$, and any fixed temperature; their Proposition~1.1 has no restriction to high temperature. Existence and uniqueness in the noise-one convention are also recorded in \cite[arXiv version~5, Proposition~4.2, p.~23]{sellke2024}. The time change \eqref{eq:sellke-timechange} below, which is a bijection between solutions of the two systems, transfers all of these properties to \eqref{eq:ck-response}--\eqref{eq:ck-boundary}. The positive semidefiniteness of $C$ can also be read off from \cref{prop:hard-bridge}. For fixed times $t_i$ and coefficients $a_i$, we have
+\[
+ \sum_{i,j=1}^na_ia_jC_N(t_i,t_j)=\frac1N\Bigl\|\sum_{i=1}^na_iX_{t_i}\Bigr\|^2\ge0,
+\]
+and the left side converges in probability to $\sum_{i,j}a_ia_jC(t_i,t_j)$.
+
+We record two consequences that are used constantly. Because $C$ and $R$ are continuous, each of them is bounded on every compact set of its domain. The right sides of \eqref{eq:ck-response} and \eqref{eq:ck-correlation} are continuous on the causal triangle $\{0\le s\le t\}$, and so are the partial derivatives $\partial_tR$ and $\partial_tC$.
+
+\section{Comparison of conventions}\label{sec:conventions}
+
+The factors of two in the CK equations depend on the noise amplitude, on the normalization of time, temperature, and covariance, and on how an external force enters the drift. We compare our convention with the two conventions of the works on which we rely.
+
+\paragraph{The noise-one convention.}
+The works of Ben Arous, Dembo, and Guionnet \cite{bag2006}, of Dembo, Guionnet, and Mazza \cite{dgm2007}, and of Sellke \cite{sellke2024} use the noise coefficient one. On $S_N$, the generator is
+\[
+ \tfrac12\Delta_S+\alpha\nabla_SH_N\cdot\nabla_S,
+\]
+with the same covariance $N\xi(x\cdot y/N)$. Here $\alpha>0$ is the drift coefficient, which Sellke denotes by $\beta$; his Gibbs measure is proportional to $e^{2\alpha H_N}$ \cite[arXiv version~5, Equation~(1.2) and the following paragraph, p.~2]{sellke2024}. In \cite{dgm2007}, the dynamics descends a Hamiltonian, and reversing its sign gives the law of $H_N$. In \cite[Equations~(1.2), (1.6), and~(1.7)]{bag2006}, specialized to $\nu(q)=q^p$, the displayed Hamiltonian $H^{\mathrm{BAG}}$ has the law of $-2H_N$, and the force in the drift is $-\nabla H^{\mathrm{BAG}}/2$, which has the law of $\nabla H_N$.
+If $x_v$ is the noise-one diffusion with $\alpha=\beta/2$, then $X_t=x_{2t}$ is our diffusion; this is Step~1 of the proof of \cref{prop:hard-bridge}. Under this time change, the multiplier of the noise-one system is multiplied by two, its memory coefficient $\alpha^2$ is multiplied by four, and its noise diagonal one becomes two. This produces exactly \eqref{eq:ck-response}--\eqref{eq:ck-multiplier}. We do not rescale the covariance $N\xi$.
+
+\paragraph{The convention of Cugliandolo and Kurchan.}
+In \cite[Equations~(1)--(4)]{ck1993}, the couplings $J_{i_1\cdots i_p}$, $i_1<\dots<i_p$, have variance $p!/(2N^{p-1})$, so that the Hamiltonian $H^{\mathrm{CK}}$ has covariance $N(x\cdot y/N)^p/2$ up to terms that do not affect the limiting equations, and the energy is minimized. The Langevin equation is $\partial_ts=-\beta^{\mathrm{CK}}\nabla H^{\mathrm{CK}}(s)-z(t)s+\eta$, with white noise of variance $2$, and the response has diagonal value one. At the level of the limiting CK equations, the covariance of $-\sqrt2H^{\mathrm{CK}}$ has the normalization of the covariance of $H_N$, and the identification is
+\[
+ H_N\leftrightarrow-\sqrt2\,H^{\mathrm{CK}},\qquad
+ \beta^{\mathrm{CK}}=\sqrt2\,\beta,
+\]
+with no change of time. With these substitutions, the causal forms of equations~(3)--(4) of \cite{ck1993}, for $t>s$, coincide with \eqref{eq:ck-response}--\eqref{eq:ck-correlation},\footnote{In arXiv:cond-mat/9303036v1, the factor $C^{p-1}(t,t')$ in the first memory integral of equation~(3) should read $C^{p-1}(t,t'')$.} their multiplier $z(t)=1-p\beta^{\mathrm{CK}}E(t)$ is $\lambda(t)$, and their energy per spin is $E(t)=-e_\beta(t)/\sqrt2$. Their equation~(7) for the threshold plateau is the marginality relation $\beta^2p(p-1)q^{p-2}(1-q)^2=1$.
+
+\Cref{tab:conventions} collects the dictionary.
+
+\begin{table}[ht]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+ & this paper & noise one \cite{dgm2007,sellke2024} & CK \cite{ck1993}\\
+\midrule
+time & $t$ & $v=2t$ & $t$\\
+covariance of $H$ & $Nq^p$ & $Nq^p$ & $Nq^p/2$\\
+temperature parameter & $\beta$ & $\alpha=\beta/2$ & $\beta^{\mathrm{CK}}=\sqrt2\,\beta$\\
+diffusion part of generator & $\Delta_S$ & $\Delta_S/2$ & $\Delta_S$\\
+multiplier & $\lambda(t)$ & $\mu(v)=\lambda(v/2)/2$ & $z(t)=\lambda(t)$\\
+constant term of multiplier & $1$ & $1/2$ & $1$\\
+memory coefficients & $\beta^2\xi''$, $\beta^2\xi'$ & $\alpha^2\xi''$, $\alpha^2\xi'$ & $(\beta^{\mathrm{CK}})^2\xi''/2$, $(\beta^{\mathrm{CK}})^2\xi'/2$\\
+noise diagonal & $2$ & $1$ & $2$\\
+mean energy & $e_\beta(t)$ & $e_\beta(v/2)$ & $E(t)=-e_\beta(t)/\sqrt2$\\
+equilibrium FDT & $r=-c'$ & $r=-2c'$ & $r=-c'$\\
+transition, $p=3$ & $\bd^2=4/3$ & $\alpha_{\mathrm d}^2=1/3$ & $(\beta^{\mathrm{CK}}_{\mathrm d})^2=8/3$\\
+transition, general $p$ & $\bd$ & $\alpha_{\mathrm d}=\bd/2$ & $\beta^{\mathrm{CK}}_{\mathrm d}=\sqrt2\,\bd$\\
+plateau at transition & $\qd$ & $\qd$ & $\qd$\\
+\bottomrule
+\end{tabular}
+\caption{The dictionary between the conventions. The CK column refers to the normalization of the limiting CK equations. In each column, $r$ and $c$ denote the stationary response and correlation as functions of the lag measured in that column's time, and $\bd^2=(p-1)^{p-1}/(p(p-2)^{p-2})$ and $\qd=(p-2)/(p-1)$. In the convention of \cite{ck1993}, the transition temperature for $p=3$ is $(3/8)^{1/2}$.}
+\label{tab:conventions}
+\end{table}
+
+In our convention, the predicted dynamical transition $(\bd,\qd)$ is the point of the marginality curve $\beta^2p(p-1)q^{p-2}(1-q)^2=1$ at which $x=(p-2)(1-q)/q$ equals one; see the text after equation~(12) and the concluding discussion in \cite{ck1993}. The condition $x=1$ gives $\qd=(p-2)/(p-1)$. Substituting this value into the marginality relation, we obtain $\bd^2=(p-1)^{p-1}/(p(p-2)^{p-2})$. Equivalently, $\bd^2=1/(p\,g(\qd))$ with $g(q)=q^{p-2}(1-q)$. Indeed, we have $g'(q)=q^{p-3}[(p-2)-(p-1)q]$, and $g$ is maximal on $[0,1]$ at $\qd$, with $g(\qd)=(p-2)^{p-2}/(p-1)^{p-1}$.
+
+\section{The bridge on fixed time horizons}\label{sec:published-inputs}
+
+The CK equations describe the diffusion \eqref{eq:hard-sde} only after we send the dimension to infinity on a fixed time horizon. Three published results combine to give this limit.
+Ben Arous, Dembo, and Guionnet proved the limit for the soft-spherical diffusion, including the empirical correlation and the Brownian observable for the integrated response \cite[arXiv version~1, Equation~(1.9), p.~4, and Theorem~1.2, p.~5]{bag2006}. Dembo, Guionnet, and Mazza proved that the deterministic soft-spherical equations converge to the hard-spherical ones \cite[Proposition~1.1 and its proof]{dgm2007}. The convergence of the deterministic equations is not by itself a statement about the hard-spherical diffusion. Sellke proved the convergence theorem for the hard-spherical diffusion itself \cite[arXiv version~5, Theorem~4.3, p.~23]{sellke2024}, by coupling it with soft-spherical diffusions \cite[arXiv version~5, Lemma~3.1, pp.~16--18]{sellke2024}. We use Sellke's theorem for the correlation and for the Brownian observable. The next proposition states it in our normalization.
+
+\begin{proposition}[The bridge on fixed time horizons]\label{prop:hard-bridge}
+Let $(C,R,\lambda)$ be the solution of the hard-spherical CK system of \cref{prop:ck-wellposed}, and let
+\[
+ C_N(t,s)=\frac{X_t\cdot X_s}N,\qquad
+ \Gamma_N(t,s)=\frac{X_t\cdot B_s}{\sqrt2\,N}.
+\]
+For every fixed $0\le T<\infty$, we have, uniformly on $0\le s\le t\le T$,
+\begin{equation}
+ C_N(t,s)\longrightarrow C(t,s),\qquad
+ \Gamma_N(t,s)\longrightarrow\int_0^sR(t,u)\,\dd u
+ \quad\text{in probability}.
+\label{eq:hard-bridge}
+\end{equation}
+That is, for every $\varepsilon>0$,
+\begin{equation}\label{eq:hard-bridge-precise}
+ \lim_{N\to\infty}\Prob\Bigl(\sup_{0\le s\le t\le T}\Bigl\{|C_N(t,s)-C(t,s)|+\Bigl|\Gamma_N(t,s)-\int_0^sR(t,u)\,\dd u\Bigr|\Bigr\}>\varepsilon\Bigr)=0.
+\end{equation}
+Both convergences also hold after taking expectations, uniformly on the same triangle. The limiting response satisfies $R(t,t)=1$.
+\end{proposition}
+
+\begin{proof}
+The proof has five steps. In Step~1, we write our diffusion as a time change of Sellke's diffusion. In Steps~2 and~3, we check that the same time change maps Sellke's CK kernels to the solution of \eqref{eq:ck-response}--\eqref{eq:ck-boundary} and his Brownian observable to $\Gamma_N$; this proves \eqref{eq:hard-bridge} for a deterministic initial point. In Step~4, we use a rotation to extend the convergence to the uniform initial point. In Step~5, we prove the convergence of expectations by a uniform integrability bound.
+
+\paragraph{Step 1: the time change.}
+Sellke's diffusion \cite[arXiv version~5, Equation~(1.2), p.~2]{sellke2024} has noise coefficient one and drift coefficient $\alpha$ (which Sellke denotes by $\beta$):
+\begin{equation}\label{eq:sellke-sde}
+ \dd x_v=\alpha P_{x_v}\nabla H_N(x_v)\,\dd v+P_{x_v}\,\dd W_v-\frac{\kappa_N}2x_v\,\dd v,
+\end{equation}
+where $W$ is a standard Brownian motion in $\R^N$ and $H_N$ is the Hamiltonian \eqref{eq:hamiltonian}. We take $\alpha=\beta/2$. Given our $X_0$, $J$, and $B$, let
+\[
+ W_v=\sqrt2\,B_{v/2},\qquad x_v=X_{v/2},\qquad v\ge0.
+\]
+Then $W$ is a standard Brownian motion with respect to the filtration $(\mathcal F_{v/2})_{v\ge0}$, where $(\mathcal F_t)$ is the filtration of $X_0$, $J$, and $B$. For a continuous adapted integrand $G$, we have $\int_0^{v/2}G_r\,\dd r=\frac12\int_0^vG_{w/2}\,\dd w$ and $\sqrt2\int_0^{v/2}G_r\,\dd B_r=\int_0^vG_{w/2}\,\dd W_w$. Inserting these two identities into the integral form of \eqref{eq:hard-sde} at time $v/2$, we obtain
+\[
+ x_v=x_0+\int_0^v\Bigl[\frac\beta2P_{x_w}\nabla H_N(x_w)-\frac{\kappa_N}2x_w\Bigr]\dd w
+ +\int_0^vP_{x_w}\,\dd W_w,
+\]
+which is \eqref{eq:sellke-sde} with $\alpha=\beta/2$. Conversely, $X_t=x_{2t}$ and $B_t=W_{2t}/\sqrt2$. The disorder and the initial point are unchanged, and they remain independent of $W$.
+
+\paragraph{Step 2: the CK kernels.}
+Let $C^{\mathrm S}$, $R^{\mathrm S}$, and $\mu^{\mathrm S}$ be the hard-spherical CK kernels and multiplier of \cite[arXiv version~5, Definition~4, pp.~22--23]{sellke2024} with parameter $\alpha$; by \cite[arXiv version~5, Proposition~4.2, p.~23]{sellke2024}, which rests on \cite[arXiv version~1, Theorem~1.2, p.~5]{bag2006} and the proof of \cite[Proposition~1.1]{dgm2007}, they are the unique continuous, locally bounded solution of the following system. In our notation for $\xi$, and with the later time first as in \cite{sellke2024}, they solve, for $v\ge w\ge0$,
+\begin{align*}
+ \partial_vR^{\mathrm S}(v,w)&=-\mu^{\mathrm S}(v)R^{\mathrm S}(v,w)
+ +\alpha^2\int_w^v\xi''(C^{\mathrm S}(v,y))R^{\mathrm S}(v,y)R^{\mathrm S}(y,w)\,\dd y,\\
+ \partial_vC^{\mathrm S}(v,w)&=-\mu^{\mathrm S}(v)C^{\mathrm S}(v,w)
+ +\alpha^2\int_0^v\xi''(C^{\mathrm S}(v,y))R^{\mathrm S}(v,y)C^{\mathrm S}(y,w)\,\dd y\\
+ &\hspace{1em}+\alpha^2\int_0^w\xi'(C^{\mathrm S}(v,y))R^{\mathrm S}(w,y)\,\dd y,\\
+ \mu^{\mathrm S}(v)&=\frac12+\alpha^2p^2\int_0^vC^{\mathrm S}(v,y)^{p-1}R^{\mathrm S}(v,y)\,\dd y,
+\end{align*}
+with $C^{\mathrm S}(v,v)=R^{\mathrm S}(v,v)=1$. We claim that
+\begin{equation}
+ C(t,s)=C^{\mathrm S}(2t,2s),\quad
+ R(t,s)=R^{\mathrm S}(2t,2s),\quad
+ \lambda(t)=2\mu^{\mathrm S}(2t).
+\label{eq:sellke-timechange}
+\end{equation}
+Let $\tilde C$, $\tilde R$, and $\tilde\lambda$ denote the right sides of \eqref{eq:sellke-timechange}. By the uniqueness in \cref{prop:ck-wellposed}, it suffices to show that $(\tilde C,\tilde R,\tilde\lambda)$ solves \eqref{eq:ck-response}--\eqref{eq:ck-boundary}. The boundary data are immediate. For the multiplier, the substitution $y=2u$ gives
+\[
+ \tilde\lambda(t)=1+2\alpha^2p^2\int_0^{2t}C^{\mathrm S}(2t,y)^{p-1}R^{\mathrm S}(2t,y)\,\dd y
+ =1+4\alpha^2p^2\int_0^t\tilde C(t,u)^{p-1}\tilde R(t,u)\,\dd u,
+\]
+which is \eqref{eq:ck-multiplier} since $4\alpha^2=\beta^2$. For the response, we have $\partial_t\tilde R(t,s)=2(\partial_vR^{\mathrm S})(2t,2s)$ by the chain rule, and the substitution $y=2u$ in the memory integral yields
+\[
+ \partial_t\tilde R(t,s)=-2\mu^{\mathrm S}(2t)\tilde R(t,s)
+ +4\alpha^2\int_s^t\xi''(\tilde C(t,u))\tilde R(t,u)\tilde R(u,s)\,\dd u.
+\]
+This is \eqref{eq:ck-response}. Each memory term acquires the coefficient $4\alpha^2=\beta^2$, with one factor of two from differentiating in the new time and the other from changing the integration variable. The same computation, applied to the two memory integrals of the correlation equation, yields \eqref{eq:ck-correlation}. This proves \eqref{eq:sellke-timechange}.
+
+\paragraph{Step 3: the observables and a deterministic initial point.}
+Fix $x_0\in S_N$, and consider for the moment the diffusion started from the deterministic point $X_0=x_0$. Sellke's theorem \cite[arXiv version~5, Theorem~4.3, p.~23]{sellke2024} concerns the diffusion \eqref{eq:sellke-sde} started from a deterministic point of $S_N$, with the Hamiltonian \eqref{eq:hamiltonian}. Applied on the horizon $[0,2T]$, it states that, almost surely,
+\[
+ \frac{x_v\cdot x_w}N\longrightarrow C^{\mathrm S}(v,w),\qquad
+ \frac{x_v\cdot W_w}N\longrightarrow\int_0^wR^{\mathrm S}(v,y)\,\dd y,
+\]
+uniformly on $0\le w\le v\le2T$, for any coupling of the diffusions in different dimensions. In particular, these convergences hold in probability, which is all we use. The hypotheses of the theorem are satisfied, since the Hamiltonian is the pure $p$-spin Hamiltonian with ordered independent standard Gaussian coefficients, the initial point is deterministic, and the horizon $2T$ and the parameter $\alpha=\beta/2$ are fixed as $N\to\infty$. By Step~1, we have $C_N(t,s)=x_{2t}\cdot x_{2s}/N$ and
+\[
+ \Gamma_N(t,s)=\frac{X_t\cdot B_s}{\sqrt2\,N}=\frac12\cdot\frac{x_{2t}\cdot W_{2s}}N.
+\]
+By \eqref{eq:sellke-timechange} and the substitution $y=2u$, the limit of the latter is
+\[
+ \frac12\int_0^{2s}R^{\mathrm S}(2t,y)\,\dd y=\int_0^sR^{\mathrm S}(2t,2u)\,\dd u=\int_0^sR(t,u)\,\dd u.
+\]
+The triangle $0\le w\le v\le2T$ corresponds to $0\le s\le t\le T$. This proves \eqref{eq:hard-bridge-precise} for the diffusion started from $x_0$.
+
+\paragraph{Step 4: the uniform initial point.}
+For $x_0\in S_N$, let $\delta_N(x_0,\varepsilon)$ be the probability in \eqref{eq:hard-bridge-precise} for the diffusion started from $x_0$. We claim that $\delta_N(x_0,\varepsilon)$ does not depend on $x_0$. Let $e_1$ be the first coordinate vector, let $b=x_0/\sqrt N$, and let $O=O_{x_0}$ be the Householder reflection
+\[
+ O=I-\frac{2(e_1-b)(e_1-b)^{\mathsf T}}{\norm{e_1-b}^2}\quad(b\ne e_1),\qquad O=I\quad(b=e_1).
+\]
+It is orthogonal, depends measurably on $x_0$, and satisfies $O(\sqrt N e_1)=x_0$. Let $X$ be the diffusion started from $x_0$, and set $Y_t=O^{\mathsf T}X_t$, $B'_t=O^{\mathsf T}B_t$, and $J'=(O^{\mathsf T})^{\otimes p}J$, that is,
+\[
+ J'_{j_1\cdots j_p}=\sum_{i_1,\ldots,i_p=1}^NJ_{i_1\cdots i_p}O_{i_1j_1}\cdots O_{i_pj_p}.
+\]
+The matrix $O^{\otimes p}$ is orthogonal on $\R^{N^p}$, so $J'$ is again a tensor of independent standard Gaussian entries. Also, $B'$ is a standard Brownian motion, independent of $J'$. Let $H'_N$ be the Hamiltonian with coefficients $J'$; then $H'_N(y)=H_N(Oy)$. Using $P_{Oy}=OP_yO^{\mathsf T}$ and $\nabla H'_N(y)=O^{\mathsf T}\nabla H_N(Oy)$, and applying $O^{\mathsf T}$ to \eqref{eq:hard-sde}, we obtain
+\[
+ \dd Y_t=\beta P_{Y_t}\nabla H'_N(Y_t)\,\dd t+\sqrt2P_{Y_t}\,\dd B'_t-\kappa_NY_t\,\dd t,\qquad Y_0=\sqrt Ne_1.
+\]
+We conclude that $(Y,J',B')$ has the law of the diffusion started from $\sqrt Ne_1$, together with its disorder and its noise. The matrix $O$ is orthogonal, so that $Y_t\cdot Y_s=X_t\cdot X_s$ and $Y_t\cdot B'_s=X_t\cdot B_s$; in other words, $C_N$ and $\Gamma_N$ take the same values for both triples. This implies that $\delta_N(x_0,\varepsilon)=\delta_N(\sqrt Ne_1,\varepsilon)$.
+
+Now let $X_0$ be uniform and independent of $(J,B)$. The strong solution is a measurable function of $(X_0,J,B)$. By independence and Fubini's theorem, the probability in \eqref{eq:hard-bridge-precise} is
+\[
+ \int_{S_N}\delta_N(x_0,\varepsilon)\,\omega_N(\dd x_0)=\delta_N(\sqrt Ne_1,\varepsilon),
+\]
+which tends to zero by Step~3. This proves \eqref{eq:hard-bridge-precise}, that is, \eqref{eq:hard-bridge}.
+
+\paragraph{Step 5: expectations.}
+Since $|X_t\cdot B_s|\le\sqrt N\norm{B_s}$, we have
+\[
+ \sup_{0\le s\le t\le T}|\Gamma_N(t,s)|\le\frac{\sup_{s\le T}\norm{B_s}}{\sqrt{2N}}.
+\]
+By Doob's maximal inequality, $\E\sup_{s\le T}\norm{B_s}^2\le4\E\norm{B_T}^2=4NT$, and therefore
+\[
+ \E\sup_{0\le s\le t\le T}|\Gamma_N(t,s)|^2\le2T
+\]
+for every $N$. The function $(t,s)\mapsto\int_0^sR(t,u)\,\dd u$ is continuous on the triangle, and we let $\rho_T$ be its maximum there. Then the random variables $\sup_{0\le s\le t\le T}|\Gamma_N(t,s)-\int_0^sR(t,u)\,\dd u|$ have second moments at most $2(2T+\rho_T^2)$, and in particular they are uniformly integrable. They tend to zero in probability, and uniform integrability implies that their expectations tend to zero. The same holds for $\sup_{0\le s\le t\le T}|C_N(t,s)-C(t,s)|$, which is bounded by $2$. We have shown that
+\begin{equation}\label{eq:bridge-l1}
+ \lim_{N\to\infty}\E\sup_{0\le s\le t\le T}\Bigl(|C_N(t,s)-C(t,s)|^2
+ +\Bigl|\Gamma_N(t,s)-\int_0^sR(t,u)\,\dd u\Bigr|\Bigr)=0,
+\end{equation}
+where for the square we used $|C_N-C|^2\le2|C_N-C|$. Because $|\E Z|\le\E|Z|$, this implies the convergence of the expectations, uniformly on the triangle. Finally, $R(t,t)=1$ is part of the boundary data \eqref{eq:ck-boundary}.
+\end{proof}
+
+\section{The response as a Brownian primitive}\label{sec:brownian-primitive}
+
+\Cref{prop:hard-bridge} concerns a Brownian observable. The next lemma identifies its mean with the integrated response to an additive force, which is how the Brownian observable is used as a response in \cite[arXiv version~1, Equation~(1.9), p.~4, and Theorem~1.2, p.~5]{bag2006} and in \cite[arXiv version~5, Theorem~4.3, p.~23]{sellke2024}. The identification is the classical connection between linear response and Gaussian integration by parts. The original Wiener translation formulas of Cameron and Martin \cite[Theorems~1--2, pp.~386--387]{cameronmartin1944} assume a shift whose derivative has bounded variation and use Wiener paths with variance $t/2$; for a modern deterministic-shift formulation, see \cite[Exercise~4.29, p.~27, and Theorem~4.44, p.~31]{hairer2025spde}. We use the backward It\^o equation for the actual conditional mean, which fixes the tangent projection and the normalization of the noise directly.
+
+\begin{lemma}[Brownian primitive of the averaged force response]\label{lem:brown-force-response}
+Let $U_N(t,u)$ be the pathwise response matrix \eqref{eq:response-matrix}, and let $\bar r_N(t,u)=N^{-1}\E\tr U_N(t,u)$ as in \eqref{eq:annealed-response}. Then, for $0\le s\le t$,
+\begin{equation}
+ \int_0^s\bar r_N(t,u)\,\dd u
+ =\E\Gamma_N(t,s)
+ =\frac{\E[X_t\cdot B_s]}{\sqrt2\,N}.
+\label{eq:brown-force-response}
+\end{equation}
+The same identity holds with the disorder and the initial point fixed, and with the expectation taken over the Brownian motion only. At equal times, $\bar r_N(t,t)=(N-1)/N$.
+\end{lemma}
+
+\begin{proof}
+Fix the disorder $J$ and the initial point $x_0$, and write $\E_B$ for expectation over $B$. Put $m_\tau=P^H_\tau\operatorname{id}$, the mean of the actual solution started from a sphere point, and
+\[
+ F_u=m_{t-u}(X_u),\qquad 0\le u\le t.
+\]
+The mean has the spatial and time regularity needed for the backward Kolmogorov equation. Applying It\^o's formula along the actual sphere trajectory, the drift vanishes and
+\[
+ \dd F_u=\sqrt2\,Dm_{t-u}(X_u)P_{X_u}\,\dd B_u.
+\]
+The predictable integrand is square-integrable on this fixed horizon, $F_0=m_t(x_0)$ is deterministic, and $F_t=X_t$. The actual $L^2$ derivative of the projected restart, followed by the bounded linear expectation operator, and the Markov restart identity give
+\[
+ \E_BU_N(t,u)=\E_B[Dm_{t-u}(X_u)P_{X_u}]
+\]
+at every fixed deterministic $u$. These are statements about the constructed solution and its variational equation, rather than assumed response identities.
+
+For $0\le s\le t$, the It\^o product formula, or the covariance identity for square-integrable stochastic integrals, yields
+\[
+ \E_B[X_t^iB_s^i]
+ =\sqrt2\int_0^s\E_B[Dm_{t-u}(X_u)P_{X_u}]_{ii}\,\dd u.
+\]
+The deterministic initial mean contributes zero because $\E_BB_s^i=0$. Equivalently, the coordinate form is
+\begin{equation}\label{eq:cameron-martin-derivative}
+ \int_0^s\E_B[U_N(t,u)]_{ii}\,\dd u
+ =\frac1{\sqrt2}\E_B[X_t^iB_s^i].
+\end{equation}
+Summing over $i$ and dividing by $N$, we obtain the quenched form of \eqref{eq:brown-force-response}:
+\begin{equation}\label{eq:quenched-brown-force-response}
+ \int_0^s\frac1N\E_B\tr U_N(t,u)\,\dd u
+ =\frac{\E_B[X_t\cdot B_s]}{\sqrt2\,N}.
+\end{equation}
+The right side is integrable over the disorder and initial point, since its absolute value is bounded by $\sqrt{s/2}$. The normalized trace on the left has a fourth moment bounded uniformly on each fixed causal window by \eqref{eq:finite-lag-flow-moments}. Fubini's theorem therefore permits averaging over the independent disorder and initial point, giving \eqref{eq:brown-force-response}. Finally, $\bar r_N(t,t)=(N-1)/N$ because $U_N(t,t)=P_{X_t}$ and $\tr P_{X_t}=N-1$.
+\end{proof}
+
+Combining \cref{prop:hard-bridge,lem:brown-force-response}, we find that, for every $0\le T<\infty$,
+\begin{equation}\label{eq:trace-response-primitive}
+ \lim_{N\to\infty}\sup_{0\le s\le t\le T}\Bigl|\int_0^s\bar r_N(t,u)\,\dd u-\int_0^sR(t,u)\,\dd u\Bigr|=0.
+\end{equation}
+In particular, the susceptibility $\chi(t,s)$ of \eqref{eq:energy-chi-def} is the limit of the integrated response $\int_s^t\bar r_N(t,u)\,\dd u=\E[X_t\cdot(B_t-B_s)]/(\sqrt2N)$, uniformly on $0\le s\le t\le T$.
+
+\begin{remark}\label{rem:no-pointwise-response}
+\Cref{prop:hard-bridge,lem:brown-force-response} give the convergence \eqref{eq:trace-response-primitive} of the primitives of the annealed response. Primitive convergence alone does not imply pointwise convergence of $\bar r_N$. The published convergence theorem supplies this statement about primitives, which suffices for the integrated uses in this paper. Where a response is integrated against a continuous weight, as in the proof of \cref{prop:energy-bridge}, we may pass to the limit through the primitives, using the bound on the total variation of $\bar r_N(t,u)\,\dd u$ supplied by \eqref{eq:finite-lag-flow-moments}.
+
+The annealed means satisfy the stronger conclusion
+\[
+ \sup_{0\le s\le t\le T}|\bar r_N(t,s)-R(t,s)|\longrightarrow0
+ \qquad(N\to\infty),\qquad 0\le T<\infty.
+\]
+Indeed, the projected variational equation, its time-increment estimates, and the uniform exponential moments of the landscape give a common modulus of continuity for the annealed traces on each fixed causal time window. Together with \eqref{eq:finite-lag-flow-moments}, this gives precompactness by the Arzel\`a--Ascoli theorem. Every uniformly convergent subsequence has the same primitives as $R$ by \eqref{eq:trace-response-primitive}; continuity and uniqueness of a function from its primitives identify its limit with $R$. Precompactness then gives convergence along the whole sequence. This conclusion concerns the deterministic annealed normalized traces; we assert no convergence or concentration of the random response matrices $U_N$.
+\end{remark}
+
+\section{Landscape bounds}\label{sec:landscape}
+
+For later estimates, we define the normalized multilinear norm of the coefficient tensor,
+\begin{equation}
+Q_N=\frac1{\sqrt N}
+\sup_{\norm{v_1}=\cdots=\norm{v_p}=1}
+\left|\sum_{i_1,\ldots,i_p=1}^NJ_{i_1\cdots i_p}
+               v_1^{i_1}\cdots v_p^{i_p}\right|,
+\label{eq:tensor-norm}
+\end{equation}
+where the supremum is over unit vectors $v_1,\dots,v_p\in\R^N$. Closely related uniform tensor estimates are in \cite[arXiv version~1, Appendix~B, Lemma~B.1 and Equations~(B.5)--(B.7), pp.~27--29]{bag2006}. The next lemma shows that $Q_N$ is of order one, with uniform moments and an exponentially small probability of being large, and that it controls the Hamiltonian and its first two derivatives on $S_N$.
+
+\begin{lemma}[Uniform landscape moments]\label{lem:landscape-moments}
+For every fixed $0\le k<\infty$, we have $\sup_N\E Q_N^k<\infty$, and for every fixed $b<\infty$, we have $\sup_N\E e^{bQ_N}<\infty$. There exist constants $A_p,c_p>0$, depending only on $p$, such that $\Prob(Q_N>A_p)\le e^{-c_pN}$ for all $N\ge2$. Moreover, on $S_N$,
+\begin{equation}
+\begin{gathered}
+ \frac{|H_N|}{N}\le Q_N,\qquad
+ \frac{\norm{\nabla H_N}}{\sqrt N}\le pQ_N,\qquad
+ \norm{\nabla^2H_N}_{\op}\le p(p-1)Q_N,\\
+ \frac{|\Delta_SH_N|}{N}\le p^2Q_N,\qquad
+ \norm{\nabla^2_SH_N}_{\op}\le p^2Q_N.
+\end{gathered}
+\label{eq:landscape-derivative-bounds}
+\end{equation}
+\end{lemma}
+
+Because $\nabla_SH_N=P_x\nabla H_N$ and $\norm{P_x}_{\op}\le1$, the gradient bound implies $\norm{\nabla_SH_N}\le pQ_N\sqrt N$ on $S_N$.
+
+\begin{proof}
+The proof has three steps. We first use a net argument to reduce $Q_N$ to finitely many Gaussian variables, then deduce a tail bound, and finally prove the derivative bounds. We write $J(v_1,\dots,v_p)=\sum_{i_1,\ldots,i_p}J_{i_1\cdots i_p}v_1^{i_1}\cdots v_p^{i_p}$ for the multilinear form of $J$, and
+\[
+ M_N=\sup_{\norm{v_1}=\cdots=\norm{v_p}=1}|J(v_1,\dots,v_p)|=\sqrt N\,Q_N.
+\]
+
+\paragraph{Step 1: a net and the telescoping bound.}
+Let $\varepsilon=1/(2p)$, and let $\mathcal N$ be a maximal $\varepsilon$-separated subset of the unit sphere of $\R^N$. By maximality, every unit vector is within distance $\varepsilon$ of $\mathcal N$. The balls of radius $\varepsilon/2$ around the points of $\mathcal N$ are disjoint and contained in the ball of radius $1+\varepsilon/2$. Comparing volumes gives
+\[
+ |\mathcal N|\le\Bigl(\frac{1+\varepsilon/2}{\varepsilon/2}\Bigr)^N=\Bigl(1+\frac2\varepsilon\Bigr)^N=(1+4p)^N.
+\]
+Let $M_N^{\mathrm{net}}$ be the maximum of $|J(w_1,\dots,w_p)|$ over $w_1,\dots,w_p\in\mathcal N$. Given unit vectors $v_1,\dots,v_p$, choose $w_k\in\mathcal N$ such that $\norm{v_k-w_k}\le\varepsilon$. By multilinearity, we have the telescoping identity
+\[
+ J(v_1,\dots,v_p)-J(w_1,\dots,w_p)
+ =\sum_{k=1}^pJ(w_1,\dots,w_{k-1},v_k-w_k,v_{k+1},\dots,v_p).
+\]
+In the $k$th term, all arguments except $v_k-w_k$ are unit vectors, and by homogeneity its absolute value is at most $\norm{v_k-w_k}M_N\le\varepsilon M_N$. Summing over $k$, we have $|J(v_1,\dots,v_p)|\le M_N^{\mathrm{net}}+p\varepsilon M_N$. Taking the supremum over $v_1,\dots,v_p$, and using that $M_N$ is finite, we conclude that
+\[
+ M_N\le(1-p\varepsilon)^{-1}M_N^{\mathrm{net}}=2M_N^{\mathrm{net}}.
+\]
+
+\paragraph{Step 2: the tail bound and the moments.}
+For fixed unit vectors $w_1,\dots,w_p$, the variable $J(w_1,\dots,w_p)$ is a centered Gaussian with variance $\sum_{i_1,\ldots,i_p}(w_1^{i_1}\cdots w_p^{i_p})^2=\prod_k\norm{w_k}^2=1$, because the entries of $J$ are independent. By the Gaussian tail bound, we have $\Prob(|J(w_1,\dots,w_p)|>y)\le2e^{-y^2/2}$ for $y\ge0$. The product net $\mathcal N^p$ has at most $(1+4p)^{pN}$ elements. By Step~1 and a union bound, for $x\ge0$,
+\[
+ \Prob(Q_N>x)\le\Prob\Bigl(M_N^{\mathrm{net}}>\frac{x\sqrt N}2\Bigr)
+ \le2\exp\Bigl(N\kappa_p-\frac{Nx^2}8\Bigr),\qquad \kappa_p=p\log(1+4p).
+\]
+Let $A_p=4\sqrt{\kappa_p}$. For $x\ge A_p$, the inequality $x^2/16\ge\kappa_p$ gives
+\begin{equation}\label{eq:tensor-tail}
+ \Prob(Q_N>x)\le2e^{-Nx^2/16}\le2e^{-x^2/8},\qquad x\ge A_p,\ N\ge2.
+\end{equation}
+At $x=A_p$, the first bound in \eqref{eq:tensor-tail} is $2e^{-N\kappa_p}\le e^{-c_pN}$ with $c_p=\kappa_p-\frac12\log2>0$, because $N\ge2$. For $k>0$ and $b\ge0$, we write the moments as integrals of the tail and use \eqref{eq:tensor-tail} beyond $A_p$:
+\[
+ \E Q_N^k\le A_p^k+\int_{A_p}^\infty kx^{k-1}\,2e^{-x^2/8}\,\dd x,\qquad
+ \E e^{bQ_N}\le e^{bA_p}+\int_{A_p}^\infty be^{bx}\,2e^{-x^2/8}\,\dd x.
+\]
+Both right sides are finite and do not depend on $N$. The case $k=0$ is immediate, and for $b<0$, we have $e^{bQ_N}\le1$. This proves the assertions about the moments and the tail.
+
+\paragraph{Step 3: the derivative bounds.}
+We write a point of $S_N$ as $x=\sqrt Nv$ with $\norm v=1$. Then $H_N(x)=N^{-(p-1)/2}J(x,\dots,x)=\sqrt N\,J(v,\dots,v)$ and $|H_N(x)|\le\sqrt NM_N=NQ_N$. Each derivative of $H_N$ replaces one copy of $x$ by a test direction. For a unit vector $w$, we have
+\[
+ \nabla H_N(x)\cdot w=N^{-(p-1)/2}\sum_{k=1}^pJ(x,\dots,x,\underbrace{w}_{k},x,\dots,x),
+\]
+a sum of $p$ terms, each of absolute value at most $N^{-(p-1)/2}N^{(p-1)/2}M_N=M_N$. Summing these $p$ bounds gives $\norm{\nabla H_N(x)}\le pM_N=p\sqrt NQ_N$. Similarly, $\nabla^2H_N(x)(w,w')$ is $N^{-(p-1)/2}$ times a sum of $p(p-1)$ terms in which two of the slots carry the unit vectors $w,w'$ and the others carry $x$. Each term is at most $N^{(p-2)/2}M_N$ in absolute value, and the bound $|\nabla^2H_N(x)(w,w')|\le p(p-1)N^{-1/2}M_N=p(p-1)Q_N$ follows. This proves the first three inequalities in \eqref{eq:landscape-derivative-bounds}.
+
+For the intrinsic Hessian, let $w\in T_xS_N$ be a unit vector, and let $\gamma(r)=x\cos(r/\sqrt N)+\sqrt Nw\sin(r/\sqrt N)$ be the great circle through $x$ in the direction $w$. It is a unit-speed geodesic of $S_N$ with $\gamma''(0)=-x/N$, and we have
+\[
+ \nabla^2_SH_N(x)(w,w)=\frac{\dd^2}{\dd r^2}H_N(\gamma(r))\Big|_{r=0}
+ =\nabla^2H_N(x)(w,w)-\frac{x\cdot\nabla H_N(x)}N.
+\]
+The polynomial $H_N$ is homogeneous of degree $p$, and Euler's identity reads $x\cdot\nabla H_N(x)=pH_N(x)$. By polarization, we obtain, as quadratic forms on $T_xS_N$,
+\begin{equation}\label{eq:intrinsic-hessian}
+ \nabla^2_SH_N(x)=P_x\nabla^2H_N(x)P_x-\frac{pH_N(x)}NP_x.
+\end{equation}
+By the bounds already proved, $\norm{\nabla^2_SH_N}_{\op}\le p(p-1)Q_N+pQ_N=p^2Q_N$. Finally, $\Delta_SH_N(x)$ is the trace of $\nabla^2_SH_N(x)$ on the $(N-1)$-dimensional space $T_xS_N$, which gives $|\Delta_SH_N(x)|\le(N-1)p^2Q_N\le Np^2Q_N$. This proves the last two inequalities.
+\end{proof}

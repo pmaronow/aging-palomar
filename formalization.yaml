@@ -1,0 +1,130 @@
+version: "v0.4"
+project:
+  name: "Aging in Spherical Spin Glass Dynamics"
+  description: >-
+    Lean formalization of the spherical Gaussian spin-glass dynamics and its
+    positive-semidefinite Cugliandolo--Kurchan limit, including the physical
+    variational response, entropy and Fisher estimates, stationary translated
+    clusters, general-spin selection and aging bounds, and stationary
+    relaxation. Theorem 11.4 covers every integer p >= 3 and beta > 0. The
+    cubic product inequality includes beta = beta_d; strictly positive
+    Fisher-cost conclusions require beta > beta_d. The root Challenge
+    retains the original complete-conclusions theorem with the five principal
+    theorem groups and all-spin forward theorem, sharing CK, stationary-profile,
+    dimension-subsequence, density and Fisher-majorant witnesses. The same file
+    separately retains the original Proposition 5.7 statement for every CK
+    solution, every late sequence and every raw translated cluster.
+  authors:
+    - "P. M. Aronow"
+    - "Patrick Lopatto"
+  responsible_maintainers:
+    - "P. M. Aronow"
+  license: MIT
+classification:
+  arxiv:
+    - math.PR
+    - math.AP
+  msc2020:
+    - 60H10
+    - 82D30
+    - 60G15
+automation:
+  methods:
+    - method: autonomous
+      models: ["GPT-6"]
+      framework: "OpenAI Codex with parallel collaborating agents"
+      tool_setup: >-
+        OpenAI Codex based on GPT-6 with parallel collaborating agents,
+        Lean 4.35.0-rc2, pinned Mathlib, Lean's bundled Comparator, NanoDa
+        and con-ron. Exact dependency revisions are pinned in the Lean/Lake
+        configuration; reused providers retain source attribution and licenses
+        under vendor/.
+      notes: >-
+        Autonomous agents implemented proofs, reviewed manuscript-to-Lean
+        correspondence, corrected mathematical assumptions and proof routes,
+        and checked bibliographic attribution against original sources.
+        This automated contribution is disclosed separately from human authorship.
+review:
+  status: agent-reviewed
+  reviewers:
+    - "OpenAI Codex parallel mathematical, correspondence and trust-chain agents"
+  notes: >-
+    The compact claim ledger distinguishes 84 numbered arguments, 13
+    mathematical remarks and one example from two interpretive cautions.
+    Exact declarations and hypotheses govern the formalized claims. One
+    independently readable Mathlib-only Challenge contains both original
+    theorem statements, selected together by one configuration. The selected
+    root Solution retains the original Proposition 5.7 proof and connects the
+    complete-conclusions theorem to the included proof library.
+    Each Challenge target is intentionally left unproved as a specification.
+    The proved Solution and library permit only propext, Classical.choice and
+    Quot.sound. The standard entry files are Challenge.lean, Solution.lean and
+    comparator.json; the complete proof closure contains 1919 modules, including
+    1918 library modules. Current reproducibility commands are in README.md.
+    The current GitHub repository is private; public visibility is required
+    before Palomar intake.
+    Agent review and local mechanical checks do not constitute human peer review,
+    Palomar registration or an editorial assessment.
+sources:
+  - title: "Aging in Spherical Spin Glass Dynamics"
+    type: paper
+    authors:
+      - "P. M. Aronow"
+      - "Patrick Lopatto"
+    relationship: formalizes
+    location: "manuscript/source/main.tex"
+    note: >-
+      The matching PDF is manuscript/manuscript.pdf. The current 100 printed
+      objects and their formalization scope are indexed in submission/claims.json.
+      The bibliography contains 122 cited works. Relevant original-source
+      passages have been checked; the current citation audit records no
+      outstanding original-access limitation. This does not assert
+      cover-to-cover reading of every cited work.
+  - title: "Stochastic Flows and Stochastic Differential Equations"
+    type: book
+    authors:
+      - "Hiroshi Kunita"
+    relationship: background
+    note: >-
+      The supplied complete 1990 original was checked. Section 4.6,
+      Theorem 4.6.5, p. 173 supplies classical smooth-flow background under
+      its stated hypotheses. The paper constructs the physical variational
+      response and terminal L2 derivative locally; it does not import a
+      general nonlinear L2_loc forced-solution derivative from this source.
+related_formalizations:
+  - id: "https://github.com/pmaronow/codex/tree/185b6771825ef8dd988aa7f31f10ee1452bbdee1"
+    relationship: builds-on
+    note: >-
+      Retained Brownian, product-measure and stochastic-calculus files,
+      source paths, upstream fingerprints and local extensions are documented in
+      vendor/PROVENANCE.json; retained code uses vendor/LICENSE (Apache-2.0).
+  - id: "https://github.com/openai/math/tree/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/OAI"
+    relationship: adapts
+    note: >-
+      Exact source paths, upstream fingerprints and adaptation records are documented in
+      vendor/PROVENANCE.json;
+      retained material remains licensed under Apache-2.0.
+  - id: "https://github.com/BennyAvelin/AbsorptionCutoff/tree/41c45c6d72e979419e46224bb7b4be5cee31f2b5"
+    relationship: builds-on
+    note: >-
+      The five retained proof files, source fingerprints and current adaptations
+      are documented in vendor/PROVENANCE.json and use vendor/LICENSE (Apache-2.0).
+limitations:
+  - >-
+    Formal assertions are the exact Lean statements and their standing
+    hypotheses. The selected Comparator check covers both statements, definitions
+    and proof dependencies; it does not independently validate every sentence
+    of manuscript prose or every proof-library source.
+  - >-
+    The physical response derivative is into terminal L2 of the projected
+    nonlinear restart. Its physical response-kernel Duhamel representation
+    is proved for bounded continuous deterministic forcing and bounded
+    continuous adapted random directions. General predictable L2 sources
+    are treated by the affine variational equation; a physical U-kernel
+    representation for every deterministic L2_loc control is not asserted.
+    A full nonlinear forced-solution Frechet theorem in that domain or a
+    simultaneous samplewise smooth flow in all initial points is not asserted.
+  - >-
+    Chronological slow fluctuation-dissipation ratio, a matching susceptibility
+    upper bound and an identified aging clock remain open predictions and
+    are excluded from proved-result coverage.

@@ -1,0 +1,23 @@
+Aging in Spherical Spin Glass Dynamics
+
+Original project code and documentation: Copyright 2026 P. M. Aronow and
+Patrick Lopatto, licensed under the root MIT LICENSE.
+
+Retained stochastic foundations and adaptations from pmaronow/codex, commit
+185b6771825ef8dd988aa7f31f10ee1452bbdee1, retain their applicable source
+copyright and author notices, including Ezzeri Esa, Rémy Degenne, Etienne
+Marion, and Peter Pfaffelhuber.
+
+Product-L2 tensor and Gaussian-comparison material is adapted from openai/math,
+commit fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb.
+
+AbsorptionCutoff
+Copyright 2026 Benny Avelin
+Retained renewal proofs: commit 41c45c6d72e979419e46224bb7b4be5cee31f2b5.
+
+These third-party proofs and their adaptations retain Apache-2.0 licensing
+under vendor/LICENSE. Their source paths, adaptations and exact upstream
+revisions are listed in vendor/PROVENANCE.json.
+
+Lean, Mathlib and dependencies retain their respective licenses. Mathematical
+references are attributed in the manuscript bibliography.

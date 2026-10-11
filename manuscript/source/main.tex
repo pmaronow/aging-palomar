@@ -1,0 +1,171 @@
+\documentclass[12pt,oneside,openany]{book}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage{booktabs,array}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{environ}
+\PassOptionsToPackage{hypertexnames=false}{hyperref}
+\input{shared/trilogy-style}%
+\usepackage{xurl}%
+\usepackage[nameinlink,capitalize,noabbrev]{cleveref}
+\usepackage{aliascnt}
+\hypersetup{pdftitle={Aging in Spherical Spin Glass Dynamics},pdfauthor={P. M. Aronow and Patrick Lopatto}}
+\renewcommand{\chaptername}{Section}
+\numberwithin{equation}{chapter}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\aliascntresetthe{proposition}
+\newaliascnt{lemma}{theorem}
+\newtheorem{lemma}[lemma]{Lemma}
+\aliascntresetthe{lemma}
+\newaliascnt{corollary}{theorem}
+\newtheorem{corollary}[corollary]{Corollary}
+\aliascntresetthe{corollary}
+\theoremstyle{definition}
+\newaliascnt{definition}{theorem}
+\newtheorem{definition}[definition]{Definition}
+\aliascntresetthe{definition}
+\newaliascnt{example}{theorem}
+\newtheorem{example}[example]{Example}
+\aliascntresetthe{example}
+\theoremstyle{remark}
+\newaliascnt{remark}{theorem}
+\newtheorem{remark}[remark]{Remark}
+\aliascntresetthe{remark}
+\makeatletter
+\@addtoreset{proposition}{chapter}\@addtoreset{lemma}{chapter}\@addtoreset{corollary}{chapter}
+\@addtoreset{definition}{chapter}\@addtoreset{example}{chapter}\@addtoreset{remark}{chapter}
+\makeatother
+\crefname{theorem}{Theorem}{Theorems}
+\crefname{proposition}{Proposition}{Propositions}
+\crefname{lemma}{Lemma}{Lemmas}
+\crefname{corollary}{Corollary}{Corollaries}
+\crefname{definition}{Definition}{Definitions}
+\crefname{example}{Example}{Examples}
+\crefname{remark}{Remark}{Remarks}
+\crefname{chapter}{Section}{Sections}
+\crefname{part}{Part}{Parts}
+\crefname{section}{Section}{Sections}
+\crefname{subsection}{Section}{Sections}
+\crefname{table}{Table}{Tables}
+\crefname{equation}{}{}
+\crefformat{equation}{(#2#1#3)}
+\Crefformat{equation}{(#2#1#3)}
+\crefrangeformat{equation}{(#3#1#4)--(#5#2#6)}
+\Crefrangeformat{equation}{(#3#1#4)--(#5#2#6)}
+\crefmultiformat{equation}{(#2#1#3)}{ and~(#2#1#3)}{, (#2#1#3)}{, and~(#2#1#3)}
+\Crefmultiformat{equation}{(#2#1#3)}{ and~(#2#1#3)}{, (#2#1#3)}{, and~(#2#1#3)}
+\newcommand{\creflastconjunction}{, and~}
+\newcommand{\creflastgroupconjunction}{, and~}
+
+\makeatletter
+\newcommand{\npp@noteblock}[2]{%
+  \ifx\relax#1\relax\else{\centering\trilogy@spacedsc{#1}\par}\vspace{6pt}\fi
+  {\centering
+   \begin{minipage}{0.84\textwidth}\small\normalfont\setlength{\parindent}{1.5em}%
+     \noindent\ignorespaces#2\end{minipage}\par}}
+\NewEnviron{authorsnote}{%
+  \clearpage\thispagestyle{empty}%
+  \vspace*{\stretch{2}}%
+  \npp@noteblock{Authors' note}{\BODY}%
+  \vspace*{\stretch{3}}%
+  \clearpage}
+\NewEnviron{abstractpage}{%
+  \clearpage\thispagestyle{empty}%
+  \vspace*{\stretch{2}}%
+  \npp@noteblock{Abstract}{\BODY}%
+  \vspace*{\stretch{3}}%
+  \clearpage}
+\newcommand{\npptitlepage}[2]{%
+  \hypersetup{pageanchor=false}%
+  \begin{titlepage}
+  \centering\normalfont
+  \vspace*{1.7in}
+  {\large\strut\par}
+  \vspace{1.05in}
+  {\fontsize{28}{35}\selectfont #1\par}
+  \vspace{1.1in}
+  {\Large\def\\{\par\vspace{10pt}}#2\par}
+  \vfill
+  \end{titlepage}%
+  \hypersetup{pageanchor=true}}
+\makeatother
+
+\newcommand{\E}{\mathbb E}
+\newcommand{\1}{\mathbf 1}
+\newcommand{\norm}[1]{\lVert#1\rVert}
+
+\clubpenalty=10000
+\patchcmd{\thebibliography}{\clubpenalty4000}{\clubpenalty10000}{}{}
+
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\dd}{\mathop{}\!\mathrm d}
+\newcommand{\ip}[2]{\left\langle#1,#2\right\rangle}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\HS}{\mathrm{HS}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\Id}{\operatorname{Id}}
+\newcommand{\ALG}{\operatorname{ALG}}
+\newcommand{\Eth}{E_{\mathrm{th}}}
+\newcommand{\qd}{q_{\mathrm d}}
+\newcommand{\bd}{\beta_{\mathrm d}}
+\DeclareMathOperator{\diver}{div}
+
+
+\begin{document}
+\frontmatter
+\npptitlepage{Aging in Spherical Spin Glass Dynamics}{P.\ M.\ Aronow\\Patrick Lopatto}
+\begin{authorsnote}
+With the exception of this note, this entire document is machine written. We have taken care to supervise this writing to ensure that the proofs meet a minimum standard of readability and that previous literature is appropriately cited. However, the resulting document remains lacking in exposition and overall coherence. We are nonetheless releasing this manuscript on Hexagon to disseminate the result as quickly as possible, because we believe it may be of interest to the mathematics and physics communities. We welcome suggestions concerning mathematical corrections, omitted citations, and attribution of ideas.
+
+We thank Luca Leuzzi for many helpful comments on the theory of spherical spin glasses and his encouragement to explore their dynamics rigorously.
+
+P.L.\ was partially supported by NSF grant DMS-2450004.
+
+\end{authorsnote}
+\begin{abstractpage}
+\input{abstract}
+\end{abstractpage}
+\tableofcontents
+\mainmatter
+
+\input{sections/01-intro}
+\input{sections/02-overview}
+
+\part{The Cugliandolo--Kurchan system and its stationary limits}\label{part:foundations}
+\input{sections/03-model}
+\input{sections/04-structure}
+\input{sections/05-entropy}
+
+\part{Plateau selection, forgetting, and correlation aging}\label{part:selection}
+\input{sections/06-scalar}
+\input{sections/07-tree}
+\input{sections/08-selection}
+\input{sections/09-ceilings}
+\input{sections/10-general}
+
+\part{Response and the fluctuation--dissipation relation}\label{part:response}
+\input{sections/11-response}
+\input{sections/12-violation}
+
+\part{Three-time geometry in the cubic model}\label{part:geometry}
+\input{sections/13-saturated}
+\input{sections/14-threetime}
+\input{sections/15-fisher}
+
+\part{The stationary approach to the plateau}\label{part:relaxation}
+\input{sections/16-relaxation}
+\addtocontents{toc}{\protect\addvspace{16pt plus 2pt}}
+\input{sections/17-questions}
+
+\backmatter
+\bibliographystyle{plainnat}
+\bibliography{refs,refs-add-A,refs-add-B,refs-add-C,refs-add-D,refs-add-E,refs-add-H,refs-add-I,refs-add-O,refs-add-J,refs-add-K}
+\end{document}

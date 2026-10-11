@@ -1,0 +1,242 @@
+\chapter{Persistent integrated violation of the fluctuation--dissipation relation}\label{resp:integrated-chapter}
+
+By \cref{resp:backward-fdt}, the backward FDT defect $E(t,s)=\partial_sC(t,s)-R(t,s)$ tends to zero in $L^2(0,t)$ as $t\to\infty$. In this section, we prove that, above the dynamical transition, the defect nevertheless does not disappear. Its positive part keeps an integrated mass bounded below by a positive constant on the part of the row away from any fixed initial interval $[0,S]$ and any fixed recent strip $[t-L,t]$. This is what we mean by a persistent integrated violation: the defect is small in $L^2$, but it has positive integrated mass, spread over a history whose length grows with $t$. The two statements are compatible. By the Cauchy--Schwarz inequality, a mass $m$ spread over an interval of length $\ell$ forces a squared norm of at least $m^2/\ell$, and here $\ell$ grows like $t$.
+
+The main result is \cref{resp:persistent-defect}, and its proof has two ingredients. The first is \cref{resp:weighted-ratio}. The energy identity determines the response integrated against the weight $pC(t,u)^{p-1}$ over the whole row, and stationary convergence determines the contribution of a recent strip. The remainder identifies one weighted ratio of the slow response with the number $x=(p-2)(1-q)/q$. The second ingredient is \cref{resp:transport}, an elementary inequality for one absolutely continuous function, which converts a deficit in this weighted response budget into a lower bound on the unweighted positive defect. This inequality is sharp (\cref{rem:transport-sharp}).
+
+The proofs use the energy identity \eqref{eq:energy-identity}, the selected plateau and energy of \cref{sel:selected-sector} together with stationary convergence \eqref{sel:stationary-window}, forgetting \eqref{sel:fixed-wait-decay}, the absolute continuity of correlation rows from \cref{thm:fisher-clock}, and \cref{resp:backward-fdt}. The results of this section prove \eqref{eq:main-weighted-ratio} and \eqref{eq:main-defect-budget} in \cref{thm:main-response}. We return to them in \cref{sec:discussion}.
+
+The physical mechanism is the one described by Cugliandolo, Dean, and Kurchan in \cite[arXiv version~2, equations~(12)--(14), p.~3, equation~(18), p.~4, and the integrated-bounds discussion on p.~3]{cdk1997}. Entropy production bounds the violation of the fluctuation--dissipation relation, and the violation is therefore small at late times; its integral over a time interval that grows with the age of the system may nevertheless remain of order one. In our setting, the smallness at late times is \cref{resp:backward-fdt}, which rests on the entropy bound of \cref{thm:fisher-clock}. The lower bound on the integrated violation for the CK solution is proved here, from the energy identity.
+
+\paragraph{Standing assumptions and notation.}
+Throughout this section, we fix an integer $p\ge3$ and $\beta>\bd$. By \cref{sel:selected-sector}, the plateau $q=q_\beta$ is the larger root of
+\begin{equation}\label{eq:viol-marginality}
+ \beta^2p(p-1)q^{p-2}(1-q)^2=1,
+\end{equation}
+and the limiting energy is
+\begin{equation}\label{eq:viol-energy}
+ e_\infty=e_\beta(\infty)=\lim_{t\to\infty}e_\beta(t)=\beta\bigl[1+(p-2)q^{p-1}-(p-1)q^p\bigr].
+\end{equation}
+Since $\beta>\bd$, we have $q>\qd=(p-2)/(p-1)$, as noted before \cref{sel:selected-sector}. Indeed, the function $g(y)=y^{p-2}(1-y)^2$ is decreasing on $[q_{\mathrm m},1]$, where $q_{\mathrm m}=(p-2)/p<\qd$, and $\beta^2p(p-1)g(\qd)=\beta^2/\bd^2>1$. The larger root of \eqref{eq:viol-marginality} therefore lies in $(\qd,1)$. We set
+\begin{equation}\label{eq:viol-x-dstar}
+ x=\frac{(p-2)(1-q)}q,\qquad d_*=1-\frac{e_\infty}\beta.
+\end{equation}
+The inequality $q>\qd$ is equivalent to $(p-2)(1-q)<q$, which means that $x\in(0,1)$. Using \eqref{eq:viol-energy}, we find
+\[
+ d_*=(p-1)q^p-(p-2)q^{p-1}=q^p\Bigl[(p-1)-\frac{p-2}q\Bigr]=(1-x)q^p>0,
+\]
+where we used $(p-1)-(p-2)/q=1-(p-2)(1-q)/q$. Equivalently,
+\begin{equation}\label{eq:viol-old-budget}
+ \frac{e_\infty}\beta-(1-q^p)=q^p-d_*=xq^p.
+\end{equation}
+
+We write $E(t,s)=\partial_sC(t,s)-R(t,s)$ for $t>s>0$, as in \cref{sec:resp-earlier-derivative}, and $E_+=\max\{E,0\}$. For $t>0$, we use the right earlier derivative at $s=0$ and set $E(t,t)=0$, consistently with the left earlier derivative at the diagonal. Recall from \cref{thm:fisher-clock} that, for each $t$, the row $u\mapsto C(t,u)$ is absolutely continuous on $[0,t]$, and that its derivative on $(0,t)$ is the continuous function $\partial_uC(t,u)$. In particular, $E(t,\cdot)$ is integrable on $(0,t)$. Let $(c,r)$ be the stationary profile, with $r=-c'$, $c(0)=1$, and $c$ decreasing to $q$. Stationary convergence \eqref{sel:stationary-window} implies that, for every fixed $A\ge0$,
+\begin{equation}\label{eq:viol-recent-strip}
+ \lim_{t\to\infty}\sup_{0\le v\le A}\bigl\{|C(t,t-v)-c(v)|+|R(t,t-v)-r(v)|\bigr\}=0.
+\end{equation}
+
+\section{A weighted slow ratio}\label{sec:viol-weighted-ratio}
+
+\begin{proposition}[An exact weighted slow ratio]
+\label{resp:weighted-ratio}
+For each fixed $A>0$, the denominator below is positive for all large $t$, the ratio has a limit as $t\to\infty$, and the subsequent limit as $A\to\infty$ is
+\begin{equation}
+ \lim_{A\to\infty}\lim_{t\to\infty}
+ \frac{p\int_0^{t-A}C(t,u)^{p-1}R(t,u)\,\dd u}
+      {C(t,t-A)^p-C(t,0)^p}=x.
+ \label{resp:weighted-ratio-limit}
+\end{equation}
+Further, the weighted signed defect has the full-row limit
+\begin{equation}
+ \lim_{t\to\infty}p\int_0^tC(t,u)^{p-1}E(t,u)\,\dd u=d_*.
+ \label{resp:weighted-defect}
+\end{equation}
+\end{proposition}
+
+The idea is as follows. By the energy identity, the total weighted response $p\int_0^tC^{p-1}R$ tends to $e_\infty/\beta$. A recent strip of length $A$ contributes $1-c(A)^p$, as for an equilibrium profile, and its contribution tends to $1-q^p$ as $A\to\infty$. By \eqref{eq:viol-old-budget}, the older part of the row carries the remaining weighted response $xq^p$, while the correlation raised to the power $p$ falls from about $q^p$ to zero across it.
+
+\begin{proof}
+By the energy identity \eqref{eq:energy-identity}, we have $p\int_0^tC(t,u)^{p-1}R(t,u)\,\dd u=e_\beta(t)/\beta$, which tends to $e_\infty/\beta=1-d_*$. Fix $A>0$. Using the change of variables $u=t-v$ and \eqref{eq:viol-recent-strip}, we find
+\[
+\begin{aligned}
+ p\int_{t-A}^tC(t,u)^{p-1}R(t,u)\,\dd u&=p\int_0^AC(t,t-v)^{p-1}R(t,t-v)\,\dd v\\
+ &\longrightarrow p\int_0^Ac(v)^{p-1}r(v)\,\dd v=1-c(A)^p,
+\end{aligned}
+\]
+where we used $r=-c'$ and $c(0)=1$ in the last step. Subtracting, we see that the numerator in \eqref{resp:weighted-ratio-limit} converges to $c(A)^p-d_*$. We have $C(t,0)\to0$ by \eqref{sel:fixed-wait-decay} and $C(t,t-A)\to c(A)$ by \eqref{eq:viol-recent-strip}. The denominator therefore converges to $c(A)^p\ge q^p>0$; in particular, it is positive for all large $t$. The ratio converges to
+\[
+ \frac{c(A)^p-d_*}{c(A)^p}=1-\frac{d_*}{c(A)^p}.
+\]
+As $A\to\infty$, we have $c(A)\to q$, and this tends to $1-d_*/q^p=x$. The two limits are taken in this order, and no interchange of limits occurs.
+
+For \eqref{resp:weighted-defect}, fix $t>0$. The row $u\mapsto C(t,u)$ is absolutely continuous on $[0,t]$ with values in $[0,1]$. It follows that $u\mapsto C(t,u)^p$ is absolutely continuous, with derivative $pC(t,u)^{p-1}\partial_uC(t,u)$ almost everywhere. Integrating over $[0,t]$ and using $C(t,t)=1$, we have
+\[
+ p\int_0^tC(t,u)^{p-1}\partial_uC(t,u)\,\dd u=1-C(t,0)^p.
+\]
+Subtracting the energy identity, we arrive at the exact identity
+\[
+ p\int_0^tC(t,u)^{p-1}E(t,u)\,\dd u=1-C(t,0)^p-\frac{e_\beta(t)}\beta,
+\]
+whose right side tends to $1-(1-d_*)=d_*$. This argument does not require the row to be monotone.
+\end{proof}
+
+\begin{remark}[Interpretation of $x$]\label{rem:viol-x-interpretation}
+In the asymptotic solution of Cugliandolo and Kurchan, the number $x=(p-2)(1-q)/q$ is the value of the fluctuation--dissipation ratio in the aging regime; see the paragraph after \cite[arXiv version~1, Equation~(12), p.~6]{ck1993}. There, for late pairs of times with correlation below the plateau, the response is predicted to be $x$ times the earlier derivative of the correlation, in the normalization of this paper. \Cref{resp:weighted-ratio} identifies $x$ with one ratio of weighted integrals over the older part of the row. It does not show that the ratio $R(t,s)/\partial_sC(t,s)$ converges to $x$ along late pairs; we discuss that statement, and its integrated form, in \cref{sec:discussion}.
+\end{remark}
+
+\section{Transport of the response budget}\label{sec:viol-transport}
+
+We now remove the weight $C^{p-1}$. On the interval $[S,t-L]$, the correlation $u\mapsto C(t,u)$ rises from about zero to about $c(L)$. The weighted response budget $p\int_S^{t-L}C^{p-1}R$ on this interval tends to $c(L)^p-d_*$, which is smaller than $c(L)^p$. If the defect were nonpositive on the interval, the correlation could not rise faster than the response allows, and this budget would control the increase of $C(t,\cdot)^p$. The following lemma quantifies the failure of this control in terms of the positive part of the defect. No monotonicity is required.
+
+To see the idea, let $z\ge0$ be absolutely continuous and $r_0\ge0$. If $z'\le r_0$ almost everywhere, then $(z^p)'=pz^{p-1}z'\le pz^{p-1}r_0$, which implies that $z(v)^p\le z(u)^p+p\int_u^vz^{p-1}r_0$. The lemma bounds the positive part of $z'-r_0$ from below when this inequality fails.
+
+\begin{lemma}[Response-budget transport]
+\label{resp:transport}
+Let $u<v$, let $z:[u,v]\to[0,\infty)$ be absolutely continuous, and let $r_0\ge0$ be integrable on $[u,v]$. Set
+\[
+ J=\int_u^vz(s)^{p-1}r_0(s)\,\dd s,
+ \qquad e_0=z'-r_0,
+ \qquad D=\Bigl[z(v)-\bigl(z(u)^p+pJ\bigr)^{1/p}\Bigr]_+.
+\]
+Then
+\begin{equation}
+ \int_u^v(e_0)_+\,\dd s\ge D,
+ \qquad (v-u)\int_u^v(e_0)_+^2\,\dd s\ge D^2.
+ \label{resp:transport-bound}
+\end{equation}
+\end{lemma}
+
+Here $J$ is finite because $z$ is bounded on $[u,v]$, and $e_0$ is integrable because $z'$ and $r_0$ are. If $(e_0)_+$ is not square integrable, the left side of the second inequality is infinite.
+
+\begin{proof}
+Let $\bar z=(z(u)^p+pJ)^{1/p}$. If $\bar z\ge z(v)$, then $D=0$, and both claims hold because $(e_0)_+\ge0$. Suppose that $\bar z<z(v)$, so that $D=z(v)-\bar z>0$.
+
+We first treat the case $\bar z>0$. For $a>0$, we define the clipped power weight and its primitive by
+\[
+ w_a(y)=\min\Bigl\{\Bigl(\frac ya\Bigr)^{p-1},1\Bigr\},
+ \qquad
+ V_a(y)=\begin{cases}
+ \dfrac{y^p}{pa^{p-1}},&0\le y\le a,\\[2mm]
+ y-\dfrac{p-1}pa,&y\ge a.
+ \end{cases}
+\]
+The function $V_a$ is continuously differentiable on $[0,\infty)$, and its derivative $V_a'=w_a$ takes values in $[0,1]$. Then $V_a\circ z$ is absolutely continuous, with derivative $w_a(z)z'$ almost everywhere. We use two pointwise bounds. As $0\le w_a\le1$, we have $(e_0)_+\ge w_a(z)e_0$. As $r_0\ge0$ and $w_a(y)\le(y/a)^{p-1}$, we have $w_a(z)r_0\le z^{p-1}r_0/a^{p-1}$. Integrating, we obtain
+\[
+ \int_u^v(e_0)_+\,\dd s\ge\int_u^vw_a(z)z'\,\dd s-\int_u^vw_a(z)r_0\,\dd s
+ \ge V_a(z(v))-V_a(z(u))-\frac J{a^{p-1}}.
+\]
+We now take $a=\bar z$ and compute the right side. From $z(u)^p\le\bar z^p$, we have $z(u)\le\bar z$ and $V_{\bar z}(z(u))=z(u)^p/(p\bar z^{p-1})$. From $z(v)>\bar z$, we have $V_{\bar z}(z(v))=z(v)-(p-1)\bar z/p$. Using $z(u)^p+pJ=\bar z^p$, we find
+\[
+\begin{aligned}
+ V_{\bar z}(z(v))-V_{\bar z}(z(u))-\frac J{\bar z^{p-1}}
+ &=z(v)-\frac{p-1}p\,\bar z-\frac{z(u)^p+pJ}{p\,\bar z^{p-1}}\\
+ &=z(v)-\frac{p-1}p\,\bar z-\frac{\bar z}p=z(v)-\bar z=D.
+\end{aligned}
+\]
+This is the first inequality in \eqref{resp:transport-bound}. The primitive $V_{\bar z}$ is evaluated only at the endpoints, and excursions and returns of $z$ inside $[u,v]$ do not affect the bound.
+
+If $\bar z=0$, then $z(u)=0$ and $J=0$. For $0<\varepsilon<z(v)$, the computation above with $a=\varepsilon$ gives
+\[
+ \int_u^v(e_0)_+\,\dd s\ge V_\varepsilon(z(v))-V_\varepsilon(0)-0=z(v)-\frac{p-1}p\,\varepsilon.
+\]
+Letting $\varepsilon\downarrow0$, we find $\int_u^v(e_0)_+\ge z(v)=D$. Finally, the Cauchy--Schwarz inequality gives $D^2\le(\int_u^v(e_0)_+)^2\le(v-u)\int_u^v(e_0)_+^2$, which is the second inequality.
+\end{proof}
+
+\section{The persistent defect}\label{sec:viol-persistent}
+
+\begin{theorem}[A positive slow defect and a physical rate constraint]
+\label{resp:persistent-defect}
+Set
+\[
+ m_L=c(L)-\bigl[c(L)^p-d_*\bigr]^{1/p},
+ \qquad m_\infty=q\bigl(1-x^{1/p}\bigr)>0.
+\]
+For every fixed $S\ge0$ and $L>0$,
+\begin{align}
+ \liminf_{t\to\infty}\int_S^{t-L}E_+(t,u)\,\dd u
+       &\ge m_L,\label{resp:persistent-l1}\\
+ \liminf_{t\to\infty}(t-S-L)
+                \int_S^{t-L}E_+(t,u)^2\,\dd u
+       &\ge m_L^2.\label{resp:persistent-l2}
+\end{align}
+Further, $m_L\uparrow m_\infty$ as $L\to\infty$. In particular,
+\begin{equation}
+ \lim_{t\to\infty}\int_0^tE_+(t,u)^2\,\dd u=0,
+ \qquad
+ \liminf_{t\to\infty}t\int_0^tE_+(t,u)^2\,\dd u
+       \ge q^2\bigl(1-x^{1/p}\bigr)^2>0.
+ \label{resp:physical-rate}
+\end{equation}
+\end{theorem}
+
+The backward FDT defect tends to zero in $L^2(0,t)$, but not at a rate $o(t^{-1/2})$: by \eqref{resp:physical-rate}, we have $\liminf_t\sqrt t\,\norm{E(t,\cdot)}_{L^2(0,t)}\ge m_\infty$. The constant $m_L$ is the limit of the transport distance $D$ of \cref{resp:transport} on the interval $[S,t-L]$; we show in the proof that its radicand $c(L)^p-d_*$ is positive.
+
+\begin{proof}
+We first compute the limits of the endpoint values and of the weighted response budget on $[S,t-L]$. We then apply \cref{resp:transport} on that interval. Finally, we study $m_L$ and deduce \eqref{resp:physical-rate}.
+
+\paragraph{Step 1: the budget on the remote part of the row.}
+Fix $S\ge0$ and $L>0$, and let $t>S+L$. We set
+\[
+ J_t=\int_S^{t-L}C(t,u)^{p-1}R(t,u)\,\dd u.
+\]
+As in the proof of \cref{resp:weighted-ratio}, with $A=L$, we have $p\int_0^{t-L}C(t,u)^{p-1}R(t,u)\,\dd u\to c(L)^p-d_*$. The omitted initial interval is negligible. Indeed, since $0\le C\le1$, we have
+\[
+ 0\le p\int_0^SC(t,u)^{p-1}R(t,u)\,\dd u\le pS\sup_{0\le u\le S}R(t,u)\longrightarrow0,
+\]
+by \eqref{sel:fixed-wait-decay}. We conclude that $pJ_t\to c(L)^p-d_*$. Further, $C(t,S)\to0$ by \eqref{sel:fixed-wait-decay}, and $C(t,t-L)\to c(L)$ by \eqref{eq:viol-recent-strip}.
+
+\paragraph{Step 2: transport.}
+We use \cref{resp:transport} on $[S,t-L]$ with $z(u)=C(t,u)$ and $r_0(u)=R(t,u)$. The function $z$ is absolutely continuous with values in $[0,1]$, $r_0$ is nonnegative and bounded, and $e_0=z'-r_0=E(t,\cdot)$ almost everywhere on $(S,t-L)$. The transport distance is
+\[
+ D_t=\Bigl[C(t,t-L)-\bigl(C(t,S)^p+pJ_t\bigr)^{1/p}\Bigr]_+.
+\]
+By Step 1 and the continuity of $y\mapsto y^{1/p}$ and of $y\mapsto y_+$, we have
+\[
+ \lim_{t\to\infty}D_t=\Bigl[c(L)-\bigl(c(L)^p-d_*\bigr)^{1/p}\Bigr]_+=m_L.
+\]
+The radicand is positive: $c(L)\ge q$ and \eqref{eq:viol-old-budget} give $c(L)^p-d_*\ge q^p-d_*=xq^p>0$. It is also smaller than $c(L)^p$, because $d_*>0$. Hence $m_L>0$. Using \cref{resp:transport}, we obtain
+\[
+ \int_S^{t-L}E_+(t,u)\,\dd u\ge D_t,
+ \qquad
+ (t-L-S)\int_S^{t-L}E_+(t,u)^2\,\dd u\ge D_t^2.
+\]
+Taking the lower limit as $t\to\infty$ proves \eqref{resp:persistent-l1} and \eqref{resp:persistent-l2}.
+
+\paragraph{Step 3: the constants and the rate.}
+Let $\varphi(y)=y-(y^p-d_*)^{1/p}$ for $y>d_*^{1/p}$. Then
+\[
+ \varphi'(y)=1-y^{p-1}\bigl(y^p-d_*\bigr)^{(1-p)/p}
+ =1-\Bigl(\frac{y^p}{y^p-d_*}\Bigr)^{(p-1)/p}<0,
+\]
+and $\varphi$ is strictly decreasing. We have $q^p>d_*$, and $c(L)$ decreases to $q$ as $L\to\infty$. It follows that $m_L=\varphi(c(L))$ increases to
+\[
+ \varphi(q)=q-\bigl(q^p-d_*\bigr)^{1/p}=q-\bigl(xq^p\bigr)^{1/p}=q\bigl(1-x^{1/p}\bigr)=m_\infty,
+\]
+where we used \eqref{eq:viol-old-budget}. As $x<1$, we have $m_\infty>0$.
+
+We have $0\le E_+\le|E|$, and \cref{resp:backward-fdt} implies that $\int_0^tE_+(t,u)^2\,\dd u\to0$. For the lower bound in \eqref{resp:physical-rate}, fix $L>0$ and take $S=0$. For $t>L$, we have
+\[
+ t\int_0^tE_+(t,u)^2\,\dd u\ge(t-L)\int_0^{t-L}E_+(t,u)^2\,\dd u.
+\]
+The lower limit of the right side is at least $m_L^2$, by \eqref{resp:persistent-l2}. Letting $L\to\infty$, we find $\liminf_tt\int_0^tE_+^2\ge m_\infty^2=q^2(1-x^{1/p})^2$. This completes the proof.
+\end{proof}
+
+The lower limit in \eqref{resp:persistent-l1} is nonincreasing in $L$, because the integrand is nonnegative and the interval shrinks as $L$ grows. It therefore has a limit in $[0,\infty]$ as $L\to\infty$. Since $m_{L'}\ge m_L$ for $L'\ge L$, we obtain, for every fixed $S\ge0$,
+\begin{equation}\label{eq:viol-iterated-l1}
+ \lim_{L\to\infty}\liminf_{t\to\infty}\int_S^{t-L}E_+(t,u)\,\dd u\ge m_\infty.
+\end{equation}
+Together with \eqref{resp:physical-rate}, this is \eqref{eq:main-defect-budget}.
+
+\begin{remark}[Sharpness of the transport inequality]\label{rem:transport-sharp}
+The constant in \cref{resp:transport} is sharp for the problem with prescribed endpoint values, interval length, and weighted response budget. Let nonnegative endpoint values $z_0,z_1$ and a budget $J\ge0$ be given, with $\bar z=(z_0^p+pJ)^{1/p}<z_1$, and let $0<\varepsilon<v-u$. On $[u,u+\varepsilon]$, we let $z$ increase linearly from $z_0$ to $\bar z$ and set $r_0=z'$. Then $e_0=0$ there, and
+\[
+ \int_u^{u+\varepsilon}z^{p-1}r_0\,\dd s=\int_u^{u+\varepsilon}z^{p-1}z'\,\dd s=\frac{\bar z^p-z_0^p}p=J.
+\]
+On $[u+\varepsilon,v]$, we let $z$ increase linearly from $\bar z$ to $z_1$ and set $r_0=0$. Then $e_0=(z_1-\bar z)/(v-u-\varepsilon)$ there, and
+\[
+ \int_u^v(e_0)_+\,\dd s=z_1-\bar z=D,
+ \qquad
+ (v-u)\int_u^v(e_0)_+^2\,\dd s=\frac{v-u}{v-u-\varepsilon}\,D^2.
+\]
+The first inequality in \eqref{resp:transport-bound} is an equality for each $\varepsilon$, and the second becomes an equality as $\varepsilon\downarrow0$. This optimality concerns the inequality of \cref{resp:transport} for the stated class of functions. We do not know whether the constants $m_L$ and $m_\infty$ are optimal for the CK solution.
+\end{remark}

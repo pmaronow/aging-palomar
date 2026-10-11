@@ -1,0 +1,701 @@
+\chapter{Localization of the response and of correlation derivatives}\label{resp:chapter}
+
+In this section, we study complete rows of the response and of both partial derivatives of the correlation and show that they converge to their stationary limits. Our main result, \cref{resp:strong-row}, states that for every $p\ge3$ and $\beta>0$, the lag row $v\mapsto R(t,t-v)$, extended by zero, converges to $r$ in $L^2(0,\infty)$. From it we deduce uniform convergence of response rows (\cref{resp:uniform-row}). We also show that the earlier derivative $\partial_sC(t,s)$ converges in the same $L^2$ sense, so that the squared backward FDT defect vanishes on whole rows (\cref{resp:backward-fdt}). Further, we bound the later derivative $\partial_tC(t,s)$ far from the diagonal for every $p\ge3$ (\cref{resp:forward-derivative}), prove a smoothing estimate in the earlier time (\cref{resp:remote-earlier}), and prove that the thermal part of the Green covariance identity converges uniformly on late triangles (\cref{resp:thermal}).
+
+We use structural identities from \cref{sec:ck-structure} (\cref{prop:green-covariance,prop:uniform-bounds,prop:backward-response,prop:response-compactness}), the Fisher bound of \cref{thm:fisher-clock}, convergence and forgetting from \cref{sec:stationary-selection} (\cref{sel:all-temperature,sel:fixed-wait-forgetting}), and the causal tree realization (\cref{prop:geometry-tree-realization,lem:geometry-projected-drift,sel:prefix-reflection,sel:cluster-complete-monotonicity}). When the plateau is positive, the proof of \cref{resp:strong-row} also uses the cubic tree ceiling of \cref{sec:tree-ceilings} if $p=3$, and the finite forks of \cref{app:general-selection} for general $p$. We give the second argument at the end of this section, in \cref{resp:appendix-p}. The results of this section are used in \cref{resp:integrated-chapter}, which relies on \cref{resp:backward-fdt}, and in \cref{sec:three-time,resp:fisher-chapter}, which use \cref{resp:strong-row,resp:uniform-row,resp:forward-derivative}, together with the Fisher bound \eqref{resp:fisher-domination}. Combined with \cref{thm:fisher-clock}, they prove \eqref{eq:main-strong-rows}, \eqref{eq:main-uniform-response}, and \eqref{eq:main-defect-l2} in \cref{thm:main-response}.
+
+All convergence statements in this section are in the $L^2$ norm or in the uniform norm on a row. They do not control the integral of a row over its remote part. In \cref{resp:integrated-chapter}, we prove that the backward FDT defect, although small in $L^2$, keeps a positive integrated mass there.
+
+\paragraph{Standing assumptions and notation.}
+Throughout this section, an integer $p\ge3$ and $\beta>0$ are fixed, except where a statement restricts $p$. Let $(c,r)$ be the stationary profile of \cref{sel:all-temperature}, and let $q=\lim_{v\to\infty}c(v)\in[0,1)$ be its plateau. Recall from \cref{prop:stationary-clusters,sel:cluster-complete-monotonicity} that
+\[
+ c(0)=r(0)=1,\qquad r=-c',\qquad \int_0^\infty r(v)\,\dd v=1-q,
+\]
+and that $c$ and $r$ are completely monotone on $(0,\infty)$. In particular, $r$ is nonnegative and nonincreasing, and $r(v)\to0$ as $v\to\infty$ because $r$ is integrable.
+
+By \cref{sel:all-temperature}, the translated kernels converge along every sequence of times tending to infinity. Taking the translation time equal to $t-A$, we find that, for every fixed $0\le A<\infty$,
+\begin{equation}\label{eq:resp-recent-strip}
+ \lim_{t\to\infty}\sup_{0\le v\le A}\bigl\{|C(t,t-v)-c(v)|+|R(t,t-v)-r(v)|\bigr\}=0.
+\end{equation}
+We call $\{(t,s):t-A\le s\le t\}$ the recent strip of length $A$. Recall also the forgetting statement \eqref{sel:fixed-wait-decay}: for every fixed $S\ge0$, we have $\sup_{0\le s\le S}\{C(t,s)+R(t,s)\}\to0$ as $t\to\infty$.
+
+We use the bounds $0\le R(t,s)\le C(t,s)\le1$ for $t\ge s$ from \cref{prop:response-compactness}, and $1\le\lambda\le\Lambda$ from \eqref{eq:uniform-multiplier}. Since the memory integral in the response equation \eqref{eq:ck-response} is nonnegative, we have $\partial_tR(t,s)\ge-\lambda(t)R(t,s)$ for $t>s$. Integrating this inequality from the diagonal, where $R(s,s)=1$, we find
+\begin{equation}\label{eq:resp-response-lower}
+ R(t,s)\ge\exp\Bigl(-\int_s^t\lambda(u)\,\dd u\Bigr)\ge e^{-\Lambda(t-s)},\qquad t\ge s\ge0.
+\end{equation}
+
+For $t\ge0$, we extend the lag row of the response by zero:
+\begin{equation}
+ f_t(v)=\mathbf1_{[0,t]}(v)R(t,t-v),\qquad v\ge0.
+ \label{resp:lag-row}
+\end{equation}
+We write $\norm{\cdot}_2$ for the norm of $L^2(0,\infty)$. By \eqref{eq:initial-response-row-bound}, we have $\norm{f_t}_2^2=\int_0^tR(t,u)^2\,\dd u\le1/2$. For $t\ge L\ge0$, we write
+\[
+ S_2(t,L)=\int_0^{t-L}R(t,u)^2\,\dd u=\int_L^\infty f_t(v)^2\,\dd v
+\]
+for the squared response in the remote part of the row. Here and below, an integral with upper endpoint $t-L$ is considered only for $t\ge L$.
+
+Let $v_t$ be the tree vectors of \cref{prop:geometry-tree-realization}, so that $\ip{v_t}{v_s}=C(t,s)$ and $\norm{v_t}=1$. Let $P_T$ be the prefix projections, let $\Pi_j$ be the projections onto trees of height $j$, and let $h(v)=\sqrt p\ip{v}{\mathcal I(v^{\otimes(p-1)})}$ be the tree energy. Recall that $v_s$ belongs to the range of $P_T$ when $s\le T$. For $T,a\ge0$, we set $M_T(a)=P_Tv_{T+a}$. As the whole translated family converges, \cref{sel:prefix-reflection} applies along every sequence $T\to\infty$. For every fixed $L\ge0$, it implies that
+\begin{equation}
+ \norm{M_T(L)}^2\longrightarrow d_L=c(2L),\qquad
+ h(M_T(L))\longrightarrow h_L\qquad(T\to\infty),
+ \label{resp:prefix-norm}
+\end{equation}
+where $h_L$ is given by \eqref{sel:prefix-energy} with $e=e_\beta(\infty)$. If $q>0$, then $d_L\ge q>0$, and we define
+\[
+ \delta_L=\Eth-\frac{h_L}{d_L^{p/2}}.
+\]
+By \cref{prop:threshold-inputs}\ref{item:threshold-ceiling}, we have $\delta_L\ge0$ for every $L$. Recall also that the plateau is then marginal, by \cref{sel:positive-marginality}. We prove in \eqref{resp:p-center-deficit} below that $\delta_L\to0$ as $L\to\infty$ for every $p\ge3$. For $p\in\{3,4\}$, both properties are part of \cref{sel:threshold-centers}, whose hypotheses hold by \cref{sel:all-temperature,sel:positive-marginality}. In words, the tree energy of the normalized prefix centers $M_T(L)/\norm{M_T(L)}$ approaches the threshold energy $\Eth$ when $T\to\infty$ first and then $L\to\infty$.
+
+\section{The full response row}\label{sec:resp-full-row}
+
+\begin{theorem}[Strong localization of the response]
+\label{resp:strong-row}
+Fix $p\ge3$ and $\beta>0$. Then
+\begin{equation}
+ \lim_{t\to\infty}\norm{f_t-r}_{L^2(0,\infty)}=0.
+ \label{resp:strong-row-limit}
+\end{equation}
+Further, for each fixed $L\ge0$,
+\begin{equation}
+ \lim_{t\to\infty}\int_0^{t-L}R(t,u)^2\,\dd u=\int_L^\infty r(v)^2\,\dd v,
+ \qquad \lim_{t\to\infty}\frac{\chi(t,0)}{\sqrt t}=0.
+ \label{resp:square-tail}
+\end{equation}
+\end{theorem}
+
+The main step is to show that the response keeps no squared mass in the remote part of the row:
+\begin{equation}\label{eq:resp-remote-vanishing}
+ \lim_{L\to\infty}\limsup_{t\to\infty}S_2(t,L)=0.
+\end{equation}
+Once \eqref{eq:resp-remote-vanishing} is known, the theorem follows from stationary convergence on the recent strip. We prove \eqref{eq:resp-remote-vanishing} in three cases, which use different inputs.
+\begin{itemize}
+\item \emph{$q=0$ and every $p\ge3$.} The white-leaf component of the prefix center $M_T(L)$ carries the squared response $2S_2(T+L,L)$, and its norm is at most $\norm{M_T(L)}$. Here we use only the tree realization (\cref{prop:geometry-tree-realization}) and reflection (\cref{sel:prefix-reflection}).
+\item \emph{$q>0$ and $p=3$.} We normalize the prefix center and control its white-leaf component by the height inequality of the cubic tree ceiling (\cref{thm:geometry-tree-ceiling}). Besides the inputs of the first case, we need that $\delta_L\to0$, which is part of \cref{sel:threshold-centers} in \cref{sec:tree-ceilings}.
+\item \emph{$q>0$ and every $p\ge3$.} We test the mean of finitely many independent continuations against a Gaussian direction built from the Brownian path, and use the overlap penalty of \cref{sel:absolute-field-cost} for an independent direction. This case relies on the finite forks of \cref{app:general-selection} and is carried out in \cref{resp:appendix-p} (\cref{prop:remote-response-general}).
+\end{itemize}
+The third case contains the second. We include the second because it is short and uses only the deterministic tree geometry.
+
+\begin{proof}[Proof of \cref{resp:strong-row}]
+We prove \eqref{eq:resp-remote-vanishing} in Steps~1--3 and deduce the theorem from it in Step~4.
+
+\paragraph{Step 1: the white-leaf bound.}
+Fix $T,L\ge0$. By \eqref{eq:geometry-tree-realization}, the component of $v_{T+L}$ in the one-leaf summand $\mathbb Re_0\oplus L^2(\R_+)$ is $R(T+L,0)e_0+\sqrt2\,\mathbf1_{[0,T+L]}R(T+L,\cdot)$. The remaining term of \eqref{eq:geometry-tree-realization} lies in the range of the grafting map, which is orthogonal to that summand. Recall that $P_T$ commutes with $\Pi_0$, and that on the one-leaf summand it restricts the noise-time function to $[0,T]$. We conclude that
+\begin{equation}
+ \norm{\Pi_0M_T(L)}^2=R(T+L,0)^2+2\int_0^TR(T+L,u)^2\,\dd u.
+ \label{resp:white-prefix-norm}
+\end{equation}
+As $\Pi_0$ is an orthogonal projection, \eqref{resp:white-prefix-norm} implies that $2S_2(T+L,L)\le\norm{\Pi_0M_T(L)}^2\le\norm{M_T(L)}^2$. Letting $T\to\infty$ and using \eqref{resp:prefix-norm}, we find that, with $t=T+L$,
+\begin{equation}
+ \limsup_{t\to\infty}S_2(t,L)\le\frac{d_L}2=\frac{c(2L)}2.
+ \label{resp:basic-tail-bound}
+\end{equation}
+This bound holds for every $p\ge3$ and every plateau. If $q=0$, then $c(2L)\to0$ as $L\to\infty$, and \eqref{resp:basic-tail-bound} proves \eqref{eq:resp-remote-vanishing}.
+
+\paragraph{Step 2: a positive plateau in the cubic model.}
+Suppose that $q>0$ and $p=3$, and fix $L\ge0$. For all large $T$, we have $\norm{M_T(L)}^2\ge q/2$ by \eqref{resp:prefix-norm}; for such $T$, let $z_T=M_T(L)/\norm{M_T(L)}$. For $p=3$, the tree energy is $h=\sqrt3f$, where $f(v)=\ip{v}{\mathcal I(v\otimes v)}$ is the functional of \cref{thm:geometry-tree-ceiling}, and $\Eth=2\sqrt{2/3}=\sqrt3F_*$ with $F_*=2\sqrt2/3$. Keeping only the term $j=0$ in the first inequality of \eqref{eq:geometry-height-defect}, we have
+\[
+ \norm{\Pi_0z_T}^4\le4\sqrt2\,\bigl[F_*-f(z_T)\bigr]=4\sqrt{2/3}\,\bigl[\Eth-h(z_T)\bigr].
+\]
+On the other hand, \eqref{resp:white-prefix-norm} implies that $\norm{\Pi_0z_T}^2\ge2S_2(T+L,L)/\norm{M_T(L)}^2$. Combining the two bounds, we find
+\[
+ S_2(T+L,L)\le\frac{\norm{M_T(L)}^2}2\Bigl(4\sqrt{2/3}\,\bigl[\Eth-h(z_T)\bigr]\Bigr)^{1/2}.
+\]
+The tree energy is homogeneous of degree three, which gives $h(z_T)=h(M_T(L))/\norm{M_T(L)}^3$, and \eqref{resp:prefix-norm} implies that $h(z_T)\to h_L/d_L^{3/2}=\Eth-\delta_L$. Letting $T\to\infty$ with $L$ fixed, we obtain
+\begin{equation}
+ \limsup_{t\to\infty}S_2(t,L)
+ \le\frac{d_L}2\sqrt{4\sqrt{2/3}\,\delta_L}.
+ \label{resp:threshold-tail-bound}
+\end{equation}
+\Cref{sel:threshold-centers} states that $\delta_L\to0$ as $L\to\infty$. As $d_L\le1$, the right side of \eqref{resp:threshold-tail-bound} tends to zero, and \eqref{eq:resp-remote-vanishing} follows.
+
+\paragraph{Step 3: a positive plateau for general $p$.}
+Suppose that $q>0$ and $p\ge3$. \Cref{prop:remote-response-general} states that, for every $L>0$,
+\[
+ \limsup_{t\to\infty}S_2(t,L)\le\frac{d_L}2\,\bd^{-2/p}\,\delta_L^{2/p},
+\]
+and the right side tends to zero as $L\to\infty$ by \eqref{resp:p-center-deficit}. The proof of \cref{prop:remote-response-general}, in \cref{resp:appendix-p}, is independent of \cref{resp:strong-row} and its consequences. This completes the proof of \eqref{eq:resp-remote-vanishing} in all cases.
+
+\paragraph{Step 4: from the remote bound to strong convergence.}
+We first check that $r\in L^2(0,\infty)$. For fixed $V$, we have $f_t\to r$ uniformly on $[0,V]$ by \eqref{eq:resp-recent-strip}, so $\int_0^Vr^2=\lim_t\int_0^Vf_t^2\le1/2$. Letting $V\to\infty$, we find $\norm{r}_2^2\le1/2$.
+
+Next, fix $L>0$ and $t\ge L$. Splitting $\norm{f_t-r}_2^2$ at $L$, and using $(x-y)^2\le2x^2+2y^2$ on $[L,\infty)$ together with $\int_L^\infty f_t^2=S_2(t,L)$, we have
+\[
+ \norm{f_t-r}_2^2
+ \le L\sup_{0\le v\le L}|R(t,t-v)-r(v)|^2+2S_2(t,L)+2\int_L^\infty r(v)^2\,\dd v.
+\]
+The first term tends to zero by \eqref{eq:resp-recent-strip}, and taking the upper limit in $t$, we find
+\[
+ \limsup_{t\to\infty}\norm{f_t-r}_2^2\le2\limsup_{t\to\infty}S_2(t,L)+2\int_L^\infty r(v)^2\,\dd v.
+\]
+Letting $L\to\infty$, and using \eqref{eq:resp-remote-vanishing} and $r\in L^2$, we obtain \eqref{resp:strong-row-limit}.
+
+For the first limit in \eqref{resp:square-tail}, fix $L\ge0$. Using the triangle inequality, and the fact that restriction to $[L,\infty)$ is a contraction of $L^2(0,\infty)$, we have
+\[
+ \Bigl|S_2(t,L)^{1/2}-\Bigl(\int_L^\infty r(v)^2\,\dd v\Bigr)^{1/2}\Bigr|
+ \le\norm{\mathbf1_{[L,\infty)}(f_t-r)}_2\le\norm{f_t-r}_2,
+\]
+which tends to zero by \eqref{resp:strong-row-limit}. Finally, note that $\chi(t,0)=\int_0^tR(t,u)\,\dd u=\int_0^tf_t(v)\,\dd v$. Using the Cauchy--Schwarz inequality on $[0,t]$, we obtain
+\[
+ 0\le\chi(t,0)\le\int_0^tr(v)\,\dd v+\int_0^t|f_t(v)-r(v)|\,\dd v\le1-q+\sqrt t\,\norm{f_t-r}_2.
+\]
+After division by $\sqrt t$, the second limit in \eqref{resp:square-tail} follows from \eqref{resp:strong-row-limit}.
+\end{proof}
+
+We next upgrade \cref{resp:strong-row} to uniform convergence. The backward response equation prevents $s\mapsto R(t,s)$ from increasing quickly. A large remote value $R(t,s)$ would then force squared mass on the interval $[s-1,s]$, which \eqref{resp:square-tail} excludes.
+
+\begin{corollary}[Uniform absolute localization]
+\label{resp:uniform-row}
+Fix $p\ge3$ and $\beta>0$. Then
+\begin{equation}
+ \lim_{t\to\infty}\sup_{0\le s\le t}|R(t,s)-r(t-s)|=0.
+ \label{resp:uniform-row-limit}
+\end{equation}
+In particular, if $s_n\to\infty$ and $t_n-s_n\to\infty$, then $R(t_n,s_n)\to0$.
+\end{corollary}
+
+\begin{proof}
+Recall that the kernel $\Sigma$ in \eqref{eq:self-energy-kernel} is nonnegative. Since $R\ge0$, the backward response equation \eqref{eq:backward-response} implies that $\partial_sR(t,s)\le\lambda(s)R(t,s)\le\Lambda R(t,s)$ for $t>s$. Then $w\mapsto e^{-\Lambda w}R(t,w)$ is nonincreasing on $[0,t]$, that is, $R(t,u)\ge e^{-\Lambda(s-u)}R(t,s)$ for $u\le s\le t$. Squaring this inequality and integrating it over $u\in[s-1,s]$, we have, for $1\le s\le t$,
+\[
+ R(t,s)^2\,\frac{1-e^{-2\Lambda}}{2\Lambda}\le\int_{s-1}^sR(t,u)^2\,\dd u.
+\]
+If moreover $s\le t-L$, the integral on the right is at most $S_2(t,L)$. Using \eqref{resp:square-tail}, we find that, for every fixed $L\ge0$,
+\[
+ \limsup_{t\to\infty}\sup_{1\le s\le t-L}R(t,s)
+ \le\Bigl(\frac{2\Lambda}{1-e^{-2\Lambda}}\int_L^\infty r(v)^2\,\dd v\Bigr)^{1/2}.
+\]
+Recall from \eqref{sel:fixed-wait-decay} that $\sup_{0\le s\le1}R(t,s)\to0$. On the recent strip $t-L\le s\le t$, the difference $|R(t,s)-r(t-s)|$ tends to zero uniformly by \eqref{eq:resp-recent-strip}. On the remaining part $0\le s\le t-L$, we have $|R(t,s)-r(t-s)|\le R(t,s)+r(L)$, since $r$ is nonincreasing. Combining these three estimates, we have
+\[
+ \limsup_{t\to\infty}\sup_{0\le s\le t}|R(t,s)-r(t-s)|
+ \le\Bigl(\frac{2\Lambda}{1-e^{-2\Lambda}}\int_L^\infty r(v)^2\,\dd v\Bigr)^{1/2}+r(L).
+\]
+The right side tends to zero as $L\to\infty$, which proves \eqref{resp:uniform-row-limit}. For the last assertion, note that $R(t_n,s_n)\le|R(t_n,s_n)-r(t_n-s_n)|+r(t_n-s_n)$, and both terms tend to zero.
+\end{proof}
+
+\section{The later correlation derivative}\label{sec:resp-later-derivative}
+
+We now bound $\partial_tC(t,s)$ when $t-s$ is large. By \cref{lem:geometry-projected-drift}, the projected curve $a\mapsto M_T(a)$ is continuously differentiable for $a>0$, with
+\[
+ \frac{\dd}{\dd a}M_T(a)=P_T\mathcal B(v_{T+a}),\qquad
+ \mathcal B(v)=-v+\beta\nabla h(v)-p\beta h(v)v,
+\]
+and $\mathcal B$ is Lipschitz on the closed unit ball of $\mathcal H$. Reflection identifies limits of inner products of prefix centers, not of their derivatives. For this reason, we pass through difference quotients. This requires a modulus of continuity for the projected derivative that is uniform in $T$, which we now record.
+
+\begin{lemma}[Hölder continuity of the projected drift]\label{lem:resp-drift-holder}
+Fix $p\ge3$ and $\beta>0$. Let $L_{\mathcal B}$ be a Lipschitz constant of $\mathcal B$ on the closed unit ball of $\mathcal H$, and set $\kappa_{\mathcal B}=L_{\mathcal B}\sqrt{2\Lambda}$. Then, for all $t\ge s\ge0$,
+\[
+ 0\le1-C(t,s)\le\Lambda(t-s),\qquad \norm{v_t-v_s}\le\sqrt{2\Lambda(t-s)},
+\]
+and, for all $t,t'\ge0$ and $T\ge0$,
+\[
+ \norm{\mathcal B(v_t)-\mathcal B(v_{t'})}\le\kappa_{\mathcal B}|t-t'|^{1/2},
+ \qquad
+ \norm{P_T\mathcal B(v_t)-P_T\mathcal B(v_{t'})}\le\kappa_{\mathcal B}|t-t'|^{1/2}.
+\]
+\end{lemma}
+
+\begin{proof}
+The first bound is \eqref{eq:diagonal-increment} in \cref{prop:global-regularity}. The second bound follows from the identity $\norm{v_t-v_s}^2=2-2C(t,s)$. The vectors $v_t$ lie in the unit ball, and the third bound follows from the second and the Lipschitz property of $\mathcal B$. The last bound holds because $P_T$ is a contraction.
+\end{proof}
+
+\begin{theorem}[Remote derivative bound and forward FDT]
+\label{resp:forward-derivative}
+Fix an integer $p\ge3$ and $\beta>0$. For every fixed $L>0$,
+\begin{equation}
+ \limsup_{t\to\infty}\sup_{0\le s\le t-L}
+ |\partial_tC(t,s)|\le\sqrt{c''(2L)}
+ \le\frac{\sqrt{1-q}}{eL}.
+ \label{resp:remote-forward}
+\end{equation}
+Further,
+\begin{equation}
+ \lim_{t\to\infty}\sup_{0\le s\le t}|\partial_tC(t,s)-c'(t-s)|=0,
+ \qquad
+ \lim_{t\to\infty}\sup_{0\le s\le t}|\partial_tC(t,s)+R(t,s)|=0.
+ \label{resp:uniform-forward-fdt}
+\end{equation}
+Here $\partial_tC(t,t)$ is the right derivative of $u\mapsto C(u,t)$ at $u=t$; it equals $-1$ for every $t\ge0$. The value $c'(0)=-1$ is also the right derivative.
+\end{theorem}
+
+\begin{proof}
+All inputs to this proof hold for every integer $p\ge3$: the projected drift of \cref{lem:geometry-projected-drift}, its uniform modulus in \cref{lem:resp-drift-holder}, prefix reflection in \cref{sel:prefix-reflection}, complete monotonicity in \cref{sel:cluster-complete-monotonicity}, and uniform response localization in \cref{resp:uniform-row}.
+
+The proof has three steps. First, we bound the norm of the projected derivative $M_T'(L)$ through difference quotients and reflection. Since $\partial_tC(T+L,s)=\ip{M_T'(L)}{v_s}$ for every $s\le T$, we deduce \eqref{resp:remote-forward} from this bound. Second, we show that $\partial_tC(t,t-v)\to c'(v)$ uniformly on each recent strip, by differentiating stationary convergence through forward difference quotients. Third, we combine the two estimates with \cref{resp:uniform-row}.
+
+\paragraph{Step 1: the remote bound.}
+Fix $L>0$ and $\eta\in(0,1]$. For every $T\ge0$, we have $M_T(L+\eta)-M_T(L)=\int_0^\eta M_T'(L+w)\,\dd w$. \Cref{lem:resp-drift-holder} then implies that
+\[
+ \Bigl\|M_T'(L)-\frac{M_T(L+\eta)-M_T(L)}\eta\Bigr\|
+ \le\frac1\eta\int_0^\eta\norm{M_T'(L+w)-M_T'(L)}\,\dd w
+ \le\frac23\kappa_{\mathcal B}\sqrt\eta.
+\]
+Applying \eqref{sel:prefix-gram} to the three inner products in the expansion of the squared norm, we have
+\[
+ \lim_{T\to\infty}\Bigl\|\frac{M_T(L+\eta)-M_T(L)}\eta\Bigr\|^2
+ =\frac{c(2L+2\eta)-2c(2L+\eta)+c(2L)}{\eta^2}.
+\]
+Combining the last two displays, we find
+\[
+ \limsup_{T\to\infty}\norm{M_T'(L)}
+ \le\frac23\kappa_{\mathcal B}\sqrt\eta
+ +\Bigl(\frac{c(2L+2\eta)-2c(2L+\eta)+c(2L)}{\eta^2}\Bigr)^{1/2}.
+\]
+The left side does not depend on $\eta$. The function $c$ is smooth on $(0,\infty)$, and the second difference quotient tends to $c''(2L)$ as $\eta\downarrow0$. Taking $T\to\infty$ first and then $\eta\downarrow0$, we have
+\[
+ \limsup_{T\to\infty}\norm{M_T'(L)}\le\sqrt{c''(2L)}.
+\]
+If $s\le T$, then $v_s$ lies in the range of $P_T$, so $C(T+a,s)=\ip{M_T(a)}{v_s}$ for all $a\ge0$, and $\partial_tC(T+L,s)=\ip{M_T'(L)}{v_s}$. As $\norm{v_s}=1$, we have $|\partial_tC(T+L,s)|\le\norm{M_T'(L)}$ for every $s\le T$. Setting $T=t-L$ proves the first inequality in \eqref{resp:remote-forward}.
+
+For the second inequality, we write the representation \eqref{eq:stationary-spectral-measure} as $c(v)=q+\int_{(0,\infty)}e^{-xv}\,\nu(\dd x)$, where $\nu((0,\infty))=1-q$. Differentiating under the integral for $v>0$, we have
+\[
+ c''(2L)=\int_{(0,\infty)}x^2e^{-2Lx}\,\nu(\dd x)\le\frac{1-q}{e^2L^2},
+\]
+where we used that $\sup_{x>0}x^2e^{-2Lx}=(eL)^{-2}$, attained at $x=1/L$.
+
+\paragraph{Step 2: the recent strip.}
+For $t>s$, we apply the projected drift with $T=s$ to $C(t,s)=\ip{P_sv_t}{v_s}$. This gives
+\[
+ \partial_tC(t,s)=\ip{P_s\mathcal B(v_t)}{v_s}=\ip{\mathcal B(v_t)}{v_s}.
+\]
+The right side is continuous in $t\ge s$. At $t=s$ it equals $-1$, because $\ip{\nabla h(v)}{v}=ph(v)$ by homogeneity and $\norm{v_s}=1$; this is the derivative from the causal side at the diagonal. \Cref{lem:resp-drift-holder} also implies that $|\partial_tC(t,s)-\partial_tC(t',s)|\le\kappa_{\mathcal B}|t-t'|^{1/2}$ for all $t,t'\ge s$.
+
+Fix $L>0$ and $\eta\in(0,1]$. For $0\le v\le L$ and $t\ge L$, we hold the earlier time $t-v$ fixed in a forward difference quotient. The Hölder bound just stated gives
+\[
+ \Bigl|\partial_tC(t,t-v)-\frac{C(t+\eta,t-v)-C(t,t-v)}\eta\Bigr|
+ \le\frac1\eta\int_0^\eta\kappa_{\mathcal B}\sqrt w\,\dd w=\frac23\kappa_{\mathcal B}\sqrt\eta.
+\]
+By \eqref{eq:resp-recent-strip} with $A=L+\eta$, the difference quotient converges to $[c(v+\eta)-c(v)]/\eta$ uniformly in $v\in[0,L]$. We obtain
+\[
+ \limsup_{t\to\infty}\sup_{0\le v\le L}|\partial_tC(t,t-v)-c'(v)|
+ \le\frac23\kappa_{\mathcal B}\sqrt\eta
+ +\sup_{0\le v\le L}\Bigl|\frac{c(v+\eta)-c(v)}\eta-c'(v)\Bigr|.
+\]
+The function $c'=-r$ is uniformly continuous on $[0,L+1]$, including the right derivative $c'(0)=-1$, and the last supremum tends to zero as $\eta\downarrow0$. We conclude that $\sup_{t-L\le s\le t}|\partial_tC(t,s)-c'(t-s)|\to0$ for every fixed $L$.
+
+\paragraph{Step 3: the whole row.}
+On the remote part $0\le s\le t-L$, we have $|\partial_tC(t,s)-c'(t-s)|\le|\partial_tC(t,s)|+r(L)$. Using Step 2 and \eqref{resp:remote-forward}, we find
+\[
+ \limsup_{t\to\infty}\sup_{0\le s\le t}|\partial_tC(t,s)-c'(t-s)|\le\sqrt{c''(2L)}+r(L).
+\]
+Letting $L\to\infty$ proves the first limit in \eqref{resp:uniform-forward-fdt}. As $c'=-r$, the second limit follows from the first and \cref{resp:uniform-row}.
+\end{proof}
+
+\section{The earlier derivative and the squared FDT defect}\label{sec:resp-earlier-derivative}
+
+For $t>s>0$, let $E(t,s)=\partial_sC(t,s)-R(t,s)$ be the backward FDT defect. By \cref{thm:fisher-clock}, the derivative $\partial_sC$ is continuous on the open causal triangle, and there exists a nonnegative integrable function $a_F$, obtained on one dimension subsequence, such that
+\begin{equation}
+ |E(t,s)|^2\le a_F(s)\quad(t>s>0),\qquad
+ \int_0^\infty a_F(s)\,\dd s<\infty,\qquad
+ \lim_{S\to\infty}\sup_{s\ge S}a_F(s)=0.
+ \label{resp:fisher-domination}
+\end{equation}
+We do not need $a_F$ to be unique. The bound \eqref{resp:fisher-domination} is the spherical form used here of the entropy-production bounds on FDT violation of Cugliandolo, Dean, and Kurchan \cite[arXiv version~2, equations~(12)--(13), p.~3, and~(18), p.~4]{cdk1997}. The common majorant in \eqref{resp:fisher-domination} is proved in \cref{thm:fisher-clock}, and the whole-row conclusions below are proved here. It shows that the defect is uniformly small when the earlier time is late. The row $[0,t]$ grows with $t$, however, and this alone does not control the defect on the whole row. The next theorem shows that the integral of the squared defect over the row nevertheless tends to zero.
+
+\begin{theorem}[Strong backward FDT]
+\label{resp:backward-fdt}
+Fix $p\ge3$ and $\beta>0$. Then
+\begin{equation}
+ \lim_{t\to\infty}\sup_{0\le s\le S}|\partial_sC(t,s)|=0
+ \quad\text{for each fixed }0\le S<\infty,
+ \qquad
+ \lim_{t\to\infty}\int_0^t|E(t,s)|^2\,\dd s=0.
+ \label{resp:backward-fdt-limit}
+\end{equation}
+Further, if $g_t(v)=\mathbf1_{[0,t]}(v)\partial_sC(t,t-v)$, then
+\begin{equation}
+ \lim_{t\to\infty}\norm{g_t-r}_{L^2(0,\infty)}=0.
+ \label{resp:earlier-row-limit}
+\end{equation}
+For $t>0$, the earlier derivative at $s=0$ is the right derivative. At $s=t>0$, it is the left derivative of $u\mapsto C(t,u)$ and equals $1$; we set $E(t,t)=0$.
+\end{theorem}
+
+\begin{proof}
+We proceed in three steps. First, we represent the colored memory term of the Green identity through feature vectors. A positivity argument, together with forgetting, shows that this term is negligible on every bounded interval of earlier times. Second, we differentiate the Green identity in its earlier time. This expresses $\partial_sC(t,s)$ through $C$, $R$, and the colored term, and it proves the first claim in \eqref{resp:backward-fdt-limit}. Third, the Fisher majorant allows dominated convergence over the whole row, and \cref{resp:strong-row} implies \eqref{resp:earlier-row-limit}.
+
+\paragraph{Step 1: the colored term forgets bounded earlier intervals.}
+For $s\ge0$, let $\phi_s=v_s^{\otimes(p-1)}\in\mathcal H^{\otimes(p-1)}$. These are unit vectors with $\ip{\phi_u}{\phi_s}=C(u,s)^{p-1}$ and $\norm{\phi_u-\phi_s}^2=2[1-C(u,s)^{p-1}]$. In particular, $s\mapsto\phi_s$ is norm continuous. We define
+\[
+ F_t=\int_0^tR(t,u)\phi_u\,\dd u,\qquad
+ \mathcal K(t,s)=\ip{F_t}{\phi_s}=\int_0^tR(t,u)C(u,s)^{p-1}\,\dd u,
+\]
+where the first integral is a Bochner integral of a continuous function on $[0,t]$. Note that $\mathcal K(t,s)\ge0$. When $s=t$, the colored memory term in the Green identity \eqref{eq:green-covariance} equals $\beta^2p\norm{F_t}^2$. Since all three terms of \eqref{eq:green-covariance} are nonnegative, we obtain $\beta^2p\norm{F_t}^2\le C(t,t)=1$. By the Cauchy--Schwarz inequality, we have, for all $t,s,v\ge0$,
+\begin{equation}
+ |\mathcal K(t,s)-\mathcal K(t,v)|\le(\beta^2p)^{-1/2}\sqrt{2[1-C(s,v)^{p-1}]}.
+ \label{resp:colored-modulus}
+\end{equation}
+This modulus does not depend on $t$. For $s\le t$, Fubini's theorem expresses the colored memory term in \eqref{eq:green-covariance} as $\beta^2p\int_0^sR(s,v)\mathcal K(t,v)\,\dd v$. The other two terms are nonnegative, and therefore
+\begin{equation}
+ C(t,s)\ge\beta^2p\int_0^sR(s,v)\mathcal K(t,v)\,\dd v.
+ \label{resp:colored-test}
+\end{equation}
+
+We claim that $\mathcal K(t,s)\to0$ as $t\to\infty$, for every fixed $s>0$. Suppose instead that $\mathcal K(t_n,s)\ge\varepsilon$ along a sequence $t_n\to\infty$, for some $\varepsilon>0$. Since $C$ is continuous and $C(s,s)=1$, there exists $h\in(0,s]$ such that the right side of \eqref{resp:colored-modulus} is at most $\varepsilon/2$ for $v\in[s-h,s]$. Then $\mathcal K(t_n,v)\ge\varepsilon/2$ on $[s-h,s]$. Inserting this and the lower bound \eqref{eq:resp-response-lower} into \eqref{resp:colored-test}, we obtain
+\[
+ C(t_n,s)\ge\frac{\beta^2p\,\varepsilon}2\int_{s-h}^se^{-\Lambda(s-v)}\,\dd v
+ =\frac{\beta^2p\,\varepsilon}{2\Lambda}\bigl(1-e^{-\Lambda h}\bigr)>0,
+\]
+which contradicts $C(t_n,s)\to0$ from \eqref{sel:fixed-wait-decay}. For $s=0$ and any $s'>0$, \eqref{resp:colored-modulus} implies that $\mathcal K(t,0)\le\mathcal K(t,s')+(\beta^2p)^{-1/2}\sqrt{2[1-C(s',0)^{p-1}]}$. Letting $t\to\infty$ and then $s'\downarrow0$, we find $\mathcal K(t,0)\to0$.
+
+Finally, fix $S$ and $\varepsilon>0$. The correlation is uniformly continuous on $[0,S]^2$ with $C(s,s)=1$. Hence there exists a finite set $\{s_1,\dots,s_k\}\subset[0,S]$ such that every $s\in[0,S]$ has some $s_i$ with $(\beta^2p)^{-1/2}\sqrt{2[1-C(s,s_i)^{p-1}]}\le\varepsilon$. Then \eqref{resp:colored-modulus} implies that $\sup_{0\le s\le S}\mathcal K(t,s)\le\max_i\mathcal K(t,s_i)+\varepsilon$. Letting $t\to\infty$ and then $\varepsilon\downarrow0$, we conclude that
+\begin{equation}\label{eq:resp-colored-forgetting}
+ \lim_{t\to\infty}\sup_{0\le s\le S}\mathcal K(t,s)=0.
+\end{equation}
+
+\paragraph{Step 2: the backward correlation equation.}
+Fix $t>0$. By the Green identity \eqref{eq:green-covariance} and Fubini's theorem, we have, for $0\le s\le t$,
+\[
+ C(t,s)=R(t,0)R(s,0)+2\int_0^sR(t,u)R(s,u)\,\dd u+\beta^2p\int_0^sR(s,v)\mathcal K(t,v)\,\dd v.
+\]
+By \cref{prop:backward-response}, the derivative $\partial_1R$ is continuous on each compact causal triangle, and $\mathcal K(t,\cdot)$ is continuous. We may therefore differentiate in $s\in(0,t)$ under the integral signs. Using $R(s,s)=1$, we obtain
+\begin{align*}
+ \partial_sC(t,s)={}&2R(t,s)+\beta^2p\,\mathcal K(t,s)+R(t,0)\,\partial_1R(s,0)\\
+ &+2\int_0^sR(t,u)\,\partial_1R(s,u)\,\dd u+\beta^2p\int_0^s\partial_1R(s,v)\mathcal K(t,v)\,\dd v.
+\end{align*}
+The first two terms are the boundary terms of the thermal and colored integrals. We now insert the response equation \eqref{eq:ck-response}, which reads $\partial_1R(s,v)=-\lambda(s)R(s,v)+\int_v^s\Sigma(s,w)R(w,v)\,\dd w$ with $\Sigma(s,w)=\beta^2p(p-1)C(s,w)^{p-2}R(s,w)$. The terms with $-\lambda(s)$ reproduce $-\lambda(s)$ times the Green representation of $C(t,s)$. In the memory terms, we exchange the order of integration on the triangle $\{0\le u\le w\le s\}$, and they become
+\[
+ \int_0^s\Sigma(s,w)\Bigl[R(t,0)R(w,0)+2\int_0^wR(t,u)R(w,u)\,\dd u+\beta^2p\int_0^wR(w,v)\mathcal K(t,v)\,\dd v\Bigr]\dd w.
+\]
+By the Green identity at $(t,w)$, the bracket equals $C(t,w)$. We have shown that, for $0<s<t$,
+\begin{align}
+ \partial_sC(t,s)={}&-\lambda(s)C(t,s)+2R(t,s)
+       +\beta^2p(p-1)\int_0^s
+          C(s,u)^{p-2}R(s,u)C(t,u)\,\dd u\notag\\
+       &+\beta^2p\,\mathcal K(t,s).
+ \label{resp:backward-correlation}
+\end{align}
+All integrations and differentiations here take place on finite rectangles, where the integrands are continuous and bounded. The right side of \eqref{resp:backward-correlation} is continuous on $[0,t]$, so it also gives the right derivative at $s=0$ and the left derivative at $s=t$.
+
+As a check, we let $s\uparrow t$. Using the definition of $\mathcal K$ and \eqref{eq:ck-multiplier}, we find
+\[
+\begin{aligned}
+ \beta^2p\,\mathcal K(t,t)+\beta^2p(p-1)\int_0^tC(t,u)^{p-1}R(t,u)\,\dd u
+ &=\beta^2p^2\int_0^tC(t,u)^{p-1}R(t,u)\,\dd u\\
+ &=\lambda(t)-1.
+\end{aligned}
+\]
+Inserting this into \eqref{resp:backward-correlation}, we obtain $\partial_sC(t,t-)=-\lambda(t)+2+\lambda(t)-1=1$, and $E(t,t-)=0$, as the unit diagonal response requires.
+
+Now fix $S$ and let $t>S$. Bounding $C(s,u)^{p-2}\le1$ and $R(s,u)\le1$ in \eqref{resp:backward-correlation}, we have, for $0\le s\le S$,
+\[
+ |\partial_sC(t,s)|\le\bigl(\Lambda+\beta^2p(p-1)S\bigr)\sup_{0\le u\le S}C(t,u)
+ +2\sup_{0\le u\le S}R(t,u)+\beta^2p\sup_{0\le u\le S}\mathcal K(t,u).
+\]
+Each supremum tends to zero, by \eqref{sel:fixed-wait-decay} and \eqref{eq:resp-colored-forgetting}. This proves the first claim in \eqref{resp:backward-fdt-limit}.
+
+\paragraph{Step 3: the whole row.}
+Let $\widetilde E_t(s)=\mathbf1_{(0,t)}(s)E(t,s)$ for $s>0$. For fixed $s>0$, the first claim in \eqref{resp:backward-fdt-limit} and \eqref{sel:fixed-wait-decay} imply that $\widetilde E_t(s)\to0$ as $t\to\infty$. Further, $|\widetilde E_t(s)|^2\le a_F(s)$ for all $t$ by \eqref{resp:fisher-domination}, and $a_F$ is integrable on $(0,\infty)$. By the dominated convergence theorem, we conclude that
+\[
+ \lim_{t\to\infty}\int_0^t|E(t,s)|^2\,\dd s=\lim_{t\to\infty}\int_0^\infty|\widetilde E_t(s)|^2\,\dd s=0.
+\]
+This is the second claim in \eqref{resp:backward-fdt-limit}. After the change of variables $s=t-v$, we have $\norm{g_t-f_t}_2^2=\int_0^t|E(t,s)|^2\,\dd s$. Then \cref{resp:strong-row} implies that $\norm{g_t-r}_2\le\norm{g_t-f_t}_2+\norm{f_t-r}_2\to0$, which is \eqref{resp:earlier-row-limit}.
+\end{proof}
+
+The proof does not require a unique limit of the Fisher information, nor a majorant chosen anew for each terminal time: one function $a_F$ dominates every row. The positivity of $C$ and $R$ enters through \eqref{resp:colored-test}.
+
+The next corollary states that remote values of the response and of the earlier derivative are small, uniformly on the late triangle, and that remote correlations change little across a window of fixed length in the earlier time. It is used in \cref{sec:three-time}.
+
+\begin{corollary}[Uniform remote decay and earlier smoothing]
+\label{resp:remote-earlier}
+Fix $p\ge3$ and $\beta>0$. Then
+\begin{equation}
+ \lim_{D\to\infty}\limsup_{S\to\infty}
+ \sup_{s\ge S,\ t\ge s+D}
+ \bigl(R(t,s)+|\partial_sC(t,s)|\bigr)=0.
+ \label{resp:remote-earlier-limit}
+\end{equation}
+More precisely, for each fixed $D>0$,
+\begin{equation}
+ \limsup_{S\to\infty}
+ \sup_{s\ge S+D,\ t\ge s+D}
+ \int_{s-D}^s|\partial_uC(t,u)|\,\dd u
+ \le\sqrt D\left(\int_D^\infty r(v)^2\,\dd v\right)^{1/2}.
+ \label{resp:earlier-smoothing}
+\end{equation}
+If $r(v)=O(v^{-1-a})$ as $v\to\infty$ for some $a>0$, the right side of \eqref{resp:earlier-smoothing} is $O(D^{-a})$ as $D\to\infty$.
+\end{corollary}
+
+When $\beta\ge\bd$, \cref{thm:stationary-critical-amplitude} gives $r(v)\sim aA_\beta v^{-1-a}$, with the exponent $a\in(0,1/2)$ defined there, and the last hypothesis holds.
+
+\begin{proof}
+Let
+\[
+ \epsilon(U)=\sup_{t\ge U}\norm{f_t-r}_2,\qquad
+ \epsilon_\infty(U)=\sup_{t\ge U}\sup_{0\le s\le t}|R(t,s)-r(t-s)|.
+\]
+Both tend to zero as $U\to\infty$, by \cref{resp:strong-row,resp:uniform-row}. For $t>s>0$, we have $|\partial_sC(t,s)|\le R(t,s)+\sqrt{a_F(s)}$ by \eqref{resp:fisher-domination}.
+
+For the pointwise statement, let $s\ge S$ and $t\ge s+D$. As $r$ is nonincreasing, $R(t,s)\le r(D)+\epsilon_\infty(S+D)$, which implies
+\[
+ R(t,s)+|\partial_sC(t,s)|\le2r(D)+2\epsilon_\infty(S+D)+\sup_{u\ge S}\sqrt{a_F(u)}.
+\]
+We take $S\to\infty$, using \eqref{resp:fisher-domination}, and then $D\to\infty$. This proves \eqref{resp:remote-earlier-limit}.
+
+For the integrated statement, fix $D>0$, and let $s\ge S+D$ and $t\ge s+D$. Then $[s-D,s]\subset[S,t-D]$ and $t\ge S+2D$. Recall that $\mu([S,\infty))=\int_S^\infty a_F(u)\,\dd u$, where $\mu$ is the measure of \eqref{eq:entropy-measure}. By the Cauchy--Schwarz inequality,
+\[
+\begin{aligned}
+ \int_{s-D}^s|\partial_uC(t,u)|\,\dd u
+ &\le\sqrt D\Bigl(\int_{s-D}^sR(t,u)^2\,\dd u\Bigr)^{1/2}+\sqrt{D\,\mu([S,\infty))}\\
+ &\le\sqrt D\,S_2(t,D)^{1/2}+\sqrt{D\,\mu([S,\infty))}.
+\end{aligned}
+\]
+As in Step 4 of the proof of \cref{resp:strong-row}, we have $S_2(t,D)^{1/2}\le(\int_D^\infty r^2)^{1/2}+\norm{f_t-r}_2$. The supremum in \eqref{resp:earlier-smoothing} is therefore at most
+\[
+ \sqrt D\Bigl[\Bigl(\int_D^\infty r(v)^2\,\dd v\Bigr)^{1/2}+\epsilon(S+2D)\Bigr]+\sqrt{D\,\mu([S,\infty))}.
+\]
+Since $a_F$ is integrable, $\mu([S,\infty))\to0$, and letting $S\to\infty$ proves \eqref{resp:earlier-smoothing}. Finally, if $r(v)\le A_0v^{-1-a}$ for $v\ge v_0$, then for $D\ge v_0$ we have
+\[
+ \sqrt D\Bigl(\int_D^\infty r(v)^2\,\dd v\Bigr)^{1/2}\le\sqrt D\Bigl(\frac{A_0^2D^{-1-2a}}{1+2a}\Bigr)^{1/2}=\frac{A_0}{\sqrt{1+2a}}D^{-a}.
+\]
+This completes the proof.
+\end{proof}
+
+\section{The direct thermal covariance}\label{sec:resp-thermal}
+
+The Green identity \eqref{eq:green-covariance} splits $C(t,s)$ into an initial term, a thermal term, which comes directly from the white noise, and a colored memory term. We define the thermal term and its stationary counterpart by
+\[
+ B(t,s)=2\int_0^{t\wedge s}R(t,u)R(s,u)\,\dd u,
+ \qquad b_{\rm th}(\tau)=2\int_0^\infty r(\tau+v)r(v)\,\dd v.
+\]
+We say that a sequence of pairs $(t_n,s_n)$ with $t_n\ge s_n$ is a late pair with diverging lag if $s_n\to\infty$ and $t_n-s_n\to\infty$.
+
+\begin{corollary}[Thermal covariance on the full late triangle]
+\label{resp:thermal}
+Fix $p\ge3$ and $\beta>0$. Then
+\begin{equation}
+ \lim_{S\to\infty}\sup_{t\ge s\ge S}|B(t,s)-b_{\rm th}(t-s)|=0.
+ \label{resp:thermal-uniform}
+\end{equation}
+The function $b_{\rm th}$ is completely monotone on $(0,\infty)$ and tends to zero at infinity. In particular, $B(t_n,s_n)\to0$ along every late pair with diverging lag, and $B(t,t)\to2\int_0^\infty r(v)^2\,\dd v$. If $C(t_n,s_n)\to c_0$ along a late pair with diverging lag, then
+\begin{equation}
+ \lim_{n\to\infty}\beta^2p\int_0^{t_n}\int_0^{s_n}
+ R(t_n,u)R(s_n,v)C(u,v)^{p-1}\,\dd v\,\dd u=c_0.
+ \label{resp:colored-aging}
+\end{equation}
+If $r(\tau)\sim aA\tau^{-1-a}$ as $\tau\to\infty$ for some constants $a,A>0$, then
+\begin{equation}
+ b_{\rm th}(\tau)\sim2(1-q)\,r(\tau)
+ \sim2(1-q)aA\tau^{-1-a}.
+ \label{resp:thermal-tail}
+\end{equation}
+\end{corollary}
+
+By \cref{thm:stationary-critical-amplitude}, the hypothesis of the last assertion holds when $\beta\ge\bd$, with $A=A_\beta$. The identity \eqref{resp:colored-aging} says that any correlation retained along a late pair with diverging lag comes from the colored memory term, with its whole integration rectangle.
+
+\begin{proof}
+Let $\tau=t-s\ge0$. After the substitution $u=s-v$, the zero extension \eqref{resp:lag-row} gives
+\[
+ B(t,s)=2\int_0^\infty f_t(\tau+v)f_s(v)\,\dd v,
+\]
+because $f_s(v)=0$ for $v>s$. Let $(\mathcal T_\tau g)(v)=g(\tau+v)$; this translation is a contraction of $L^2(0,\infty)$. Then $B(t,s)=2\ip{\mathcal T_\tau f_t}{f_s}$ and $b_{\rm th}(\tau)=2\ip{\mathcal T_\tau r}{r}$. Using $\norm{f_s}_2,\norm{r}_2\le1/\sqrt2$, we have
+\[
+ |B(t,s)-b_{\rm th}(\tau)|
+ \le2\bigl|\ip{\mathcal T_\tau(f_t-r)}{f_s}\bigr|+2\bigl|\ip{\mathcal T_\tau r}{f_s-r}\bigr|
+ \le\sqrt2\,\bigl(\norm{f_t-r}_2+\norm{f_s-r}_2\bigr),
+\]
+uniformly in $\tau\ge0$. With $\epsilon(S)=\sup_{t\ge S}\norm{f_t-r}_2$, the left side of \eqref{resp:thermal-uniform} is at most $2\sqrt2\,\epsilon(S)$, which tends to zero by \cref{resp:strong-row}.
+
+Next, we write $c(v)=q+\int_{(0,\infty)}e^{-xv}\nu(\dd x)$ as in \eqref{eq:stationary-spectral-measure}. Let $\sigma(\dd x)=x\,\nu(\dd x)$ on $(0,\infty)$. Then $r(v)=\int_{(0,\infty)}e^{-xv}\sigma(\dd x)$ for $v>0$, and $\sigma((0,\infty))=\lim_{v\downarrow0}r(v)=1$ by monotone convergence. By Tonelli's theorem,
+\[
+ b_{\rm th}(\tau)
+ =2\int_{(0,\infty)^2}\frac{e^{-x\tau}}{x+y}\,\sigma(\dd x)\,\sigma(\dd y)
+ =\int_{(0,\infty)}e^{-x\tau}\rho_{\rm th}(\dd x),
+\]
+where $\rho_{\rm th}(\dd x)=2\sigma(\dd x)\int_{(0,\infty)}(x+y)^{-1}\sigma(\dd y)$. The measure $\rho_{\rm th}$ is positive with total mass $b_{\rm th}(0)=2\norm{r}_2^2\le1$. Hence $b_{\rm th}$ is the Laplace transform of a finite positive measure on $(0,\infty)$, and it is completely monotone on $(0,\infty)$. Also $b_{\rm th}(\tau)\le2\norm{r}_2\,\norm{\mathbf1_{[\tau,\infty)}r}_2\to0$.
+
+Along a late pair with diverging lag, we have $|B(t_n,s_n)|\le|B(t_n,s_n)-b_{\rm th}(t_n-s_n)|+b_{\rm th}(t_n-s_n)\to0$. Taking $\tau=0$ in \eqref{resp:thermal-uniform}, we find $B(t,t)\to b_{\rm th}(0)=2\norm{r}_2^2$. The initial term of the Green identity satisfies $0\le R(t_n,0)R(s_n,0)\le R(t_n,0)\to0$, by \eqref{sel:fixed-wait-decay}. Subtracting the initial and thermal terms from \eqref{eq:green-covariance} at $(t_n,s_n)$ proves \eqref{resp:colored-aging}.
+
+For \eqref{resp:thermal-tail}, note that $r>0$ by \cref{prop:scalar-clusters}, and that
+\[
+ \frac{b_{\rm th}(\tau)}{r(\tau)}=2\int_0^\infty\frac{r(\tau+v)}{r(\tau)}\,r(v)\,\dd v.
+\]
+As $r$ is nonincreasing, the ratio $r(\tau+v)/r(\tau)$ lies in $[0,1]$. It tends to one for each fixed $v$, by the assumed asymptotics. The measure $r(v)\,\dd v$ has finite mass $1-q$. Using dominated convergence, we find $b_{\rm th}(\tau)/r(\tau)\to2(1-q)$.
+\end{proof}
+
+\begin{remark}[Square integrable versus integrated response]\label{rem:resp-l2-versus-l1}
+The convergence statements of this section concern $L^2$ norms and uniform norms of rows. A slowly varying contribution spread over a growing part of the row can have vanishing squared norm and a positive integral. This happens for the response in the cubic model. For $p=3$ and $\beta\ge\sqrt{4/3}$, \cref{thm:geometry-susceptibility-lower} gives $\liminf_t\chi(t,0)\ge2(1-q)$, while $\int_0^Lf_t(v)\,\dd v\to\int_0^Lr(v)\,\dd v\le1-q$ for each fixed $L$. We conclude that, for every fixed $L$,
+\[
+ \liminf_{t\to\infty}\int_0^{t-L}R(t,u)\,\dd u\ge1-q>0,
+\]
+although $\int_0^{t-L}R(t,u)^2\,\dd u\to\int_L^\infty r^2$, which tends to zero as $L\to\infty$. In \cref{resp:integrated-chapter}, we prove a statement of this kind for the backward FDT defect.
+\end{remark}
+
+\section{The remote response for general pure models}
+\label{resp:appendix-p}
+
+In this section, we prove \cref{prop:remote-response-general}. It is the case $q>0$ of the remote estimate \eqref{eq:resp-remote-vanishing} for general $p\ge3$, which we used in Step~3 of the proof of \cref{resp:strong-row}. For $p=3$, we controlled the white-leaf component of a normalized prefix center directly, by the height inequality of the cubic tree ceiling. For general $p$, we have no such inequality. Instead, we test the mean of finitely many independent continuations of the dynamics against one Gaussian direction built from the Brownian path. The overlap penalty for a direction independent of the disorder (\cref{sel:absolute-field-cost}) then plays the role of the height inequality. That lemma rests on the external-field algorithmic threshold of Huang and Sellke \cite[arXiv version~2, Theorem~1, p.~4, and Corollary~1.8, p.~8]{hs2023}; see \cref{sel:published-field-threshold}. As the test direction is independent of the disorder, we do not need the adaptive disclosure argument that \cref{app:general-selection} uses for forgetting.
+
+\paragraph{Setting.}
+We work in the setting of \cref{app:general-selection}. We take dimension limits along the subsequence $(N_j)$ of \cref{thm:fisher-clock} and write $N\to\infty$ for $N=N_j\to\infty$. We keep every time horizon, branch number, and approximation parameter fixed while $N\to\infty$, and take long-time limits afterward.
+
+Fix an integer $K\ge1$ and times $T>0$ and $L\ge0$. We run the diffusion \eqref{eq:hard-sde} up to time $T$, driven by the Brownian motion $(B_u)_{u\le T}$, which we call the trunk. From $X_T$, we run $K$ continuations of duration $L$, driven by Brownian motions independent of each other and of $(J,X_0,(B_u)_{u\le T})$. Let $Y_1,\dots,Y_K$ be their endpoints at time $T+L$, and let $m_{N,T}=K^{-1}\sum_{b=1}^KY_b$ be their mean, which also depends on $K$ and $L$. For each $b$, the Brownian path driving the $b$-th continuation, extended by the trunk on $[0,T]$, is a standard Brownian motion on $[0,T+L]$ independent of $(J,X_0)$. Since \eqref{eq:hard-sde} has a unique strong solution, the vector $(J,X_0,(B_u)_{u\le T},Y_b)$ has the same law as $(J,X_0,(B_u)_{u\le T},X_{T+L})$.
+
+Let $Q_{K,L}$ and $h_{K,L}$ be given by \eqref{sel:fork-norm} and \eqref{sel:fork-center-energy}, with $e=e_\beta(\infty)$. When $q>0$, every sequence $T\to\infty$ realizes the stationary profile $(c,r)$ by \cref{sel:all-temperature}, and we may apply \cref{sel:finite-forks} along every such sequence. By \cref{lem:fork-parameter-limits}\ref{item:fork-K-limit}, we have, for every fixed $L\ge0$,
+\[
+ \lim_{K\to\infty}Q_{K,L}=c(2L)=d_L,\qquad \lim_{K\to\infty}h_{K,L}=h_L.
+\]
+We now show that the quantity $\delta_L$ defined at the start of \cref{resp:chapter} satisfies
+\begin{equation}
+ \delta_L=\Eth-\frac{h_L}{d_L^{p/2}}\ge0,
+ \qquad \lim_{L\to\infty}\delta_L=0.
+ \label{resp:p-center-deficit}
+\end{equation}
+The inequality is \eqref{eq:threshold-input-ceiling}; it also follows by letting $K\to\infty$ in \eqref{sel:fork-center-threshold}. The plateau is marginal by \cref{sel:positive-marginality}, so \eqref{sel:fork-saturation} applies, and it gives the limit, because $h_{K,L}/Q_{K,L}^{p/2}\to h_L/d_L^{p/2}$ as $K\to\infty$. For $p\in\{3,4\}$, the quantity $\delta_L$ is the same as in \eqref{sel:center-deficit}.
+
+\paragraph{Two lemmas.}
+The first lemma converts the absolute-overlap cost of \cref{sel:absolute-field-cost} into a bound on the overlap with a Gaussian vector from an independent seed. We write $B_N=\{x\in\R^N:\norm x\le\sqrt N\}$. Recall that $\bd=\bd(p)$ is a constant of the model, defined in \cref{sec:intro-picture}; it does not depend on the inverse temperature $\beta$.
+
+\begin{lemma}[Gaussian seed overlap has a threshold cost]
+\label{resp:seed-cost}
+Fix $p\ge3$ and $0\le L_0<\infty$. For each $N$, let $\zeta_N$ be a random element independent of the coefficient tensor $J$, let $G_N$ be a standard Gaussian vector in $\R^N$ that is a measurable function of $\zeta_N$, and let $A_N=A_N(J,\zeta_N)\in B_N$ be measurable. Suppose that, for almost every value of $\zeta_N$, the map $J\mapsto A_N(J,\zeta_N)$ is globally $L_0$-Lipschitz, for the Euclidean distances on the ordered coefficient tensors and on $\R^N$. Let $\delta\ge0$, and suppose that
+\[
+ \liminf_{N\to\infty}\frac{\E H_N(A_N)}N\ge\Eth-\delta.
+\]
+Then
+\begin{equation}
+ \limsup_{N\to\infty}\E\Bigl|\frac{\ip{A_N}{G_N}}N\Bigr|\le\bd^{-1/p}\,\delta^{1/p}.
+ \label{resp:seed-cost-bound}
+\end{equation}
+The constant $\bd^{-1/p}$ depends neither on $L_0$ nor on the law of $\zeta_N$. The same holds when $N$ runs through a subsequence.
+\end{lemma}
+
+The algorithm $A_N$ may depend on $G_N$; only $J$ must be independent of the seed. If $A_N$ also depends on parameters held fixed while $N\to\infty$, the lemma applies at each of their values, and its conclusion passes to limits in these parameters taken afterward.
+
+\begin{proof}
+Let $w_N=\sqrt N\,G_N/\norm{G_N}$ if $G_N\ne0$, and $w_N=\sqrt N\,e_1$ otherwise. Then $w_N$ is a measurable function of $\zeta_N$ with $\norm{w_N}=\sqrt N$. Since $\norm{A_N}\le\sqrt N$, we have
+\[
+ \frac{|\ip{A_N}{G_N}-\ip{A_N}{w_N}|}N\le\frac{\norm{G_N-w_N}}{\sqrt N}=\Bigl|\frac{\norm{G_N}}{\sqrt N}-1\Bigr|.
+\]
+For $x\ge0$, we have $|x-1|\le|x^2-1|$. The variable $\norm{G_N}^2/N$ has mean one and variance $2/N$, and the expectation of the right side is at most $\E|\norm{G_N}^2/N-1|\le\sqrt{2/N}$, which tends to zero.
+
+We use \cref{sel:absolute-field-cost} conditionally on $\zeta_N$, with direction $w_N$, which is $\zeta_N$-measurable, and Lipschitz constant $L_0$. Writing $a_N=\ip{A_N}{w_N}/N$, we have
+\[
+ \limsup_{N\to\infty}\Bigl\{\frac{\E H_N(A_N)}N+\bd\,\E|a_N|^p\Bigr\}\le\Eth.
+\]
+Since $\limsup_N(x_N+y_N)\ge\liminf_Nx_N+\limsup_Ny_N$, the hypothesis on the energy implies that $\bd\limsup_N\E|a_N|^p\le\delta$. Hölder's inequality gives $\E|a_N|\le(\E|a_N|^p)^{1/p}$, and hence $\limsup_N\E|a_N|\le(\delta/\bd)^{1/p}$. Combining this with the first paragraph proves \eqref{resp:seed-cost-bound}. The constants in \cref{sel:absolute-field-cost} depend neither on the seed nor on the direction.
+\end{proof}
+
+The second lemma identifies the overlap of the mean $m_{N,T}$ with a Gaussian vector built from the trunk. It is a weighted form of the Brownian response identity of \cref{lem:brown-force-response} and \cref{prop:hard-bridge}.
+
+\begin{lemma}[A weighted Brownian response identity]
+\label{resp:weighted-brownian}
+Fix $K\ge1$, $T>0$, and $L\ge0$, and let $k:[0,T]\to\R$ be a continuous deterministic function with $\int_0^Tk(u)^2\,\dd u=1$. Let $G_N=\int_0^Tk(u)\,\dd B_u$, where $B$ is the trunk Brownian motion. Then $G_N$ is a standard Gaussian vector in $\R^N$, independent of the disorder, and
+\begin{equation}
+ \lim_{N\to\infty}\E\Bigl[\frac{\ip{m_{N,T}}{G_N}}N\Bigr]
+ =\sqrt2\int_0^Tk(u)R(T+L,u)\,\dd u.
+ \label{resp:weighted-brownian-identity}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The coordinates of $G_N$ are Wiener integrals of the independent coordinates of $B$. They are independent centered Gaussian variables with variance $\int_0^Tk^2=1$, and they are independent of $(J,X_0)$ because $B$ is.
+
+Let $t=T+L$. Since $G_N$ is a function of the trunk, the equality of laws noted above gives $\E\ip{Y_b}{G_N}=\E\ip{X_t}{G_N}$ for each $b$. Averaging over $b$, we have $\E\ip{m_{N,T}}{G_N}=\E\ip{X_t}{G_N}$. Suppose first that $k=\sum_{i=1}^nk_i\mathbf1_{(u_{i-1},u_i]}$ is a step function, with $0=u_0<\dots<u_n=T$. Then
+\[
+ \frac{\E\ip{X_t}{G_N}}N=\sum_{i=1}^nk_i\,\frac{\E\ip{X_t}{B_{u_i}-B_{u_{i-1}}}}N
+ =\sqrt2\sum_{i=1}^nk_i\bigl[\E\Gamma_N(t,u_i)-\E\Gamma_N(t,u_{i-1})\bigr],
+\]
+with $\Gamma_N$ as in \cref{prop:hard-bridge}. That proposition states that $\E\Gamma_N(t,u)\to\int_0^uR(t,w)\,\dd w$, and the right side converges to $\sqrt2\int_0^Tk(u)R(t,u)\,\dd u$.
+
+For a general continuous $k$ and $\varepsilon>0$, we choose a step function $k_\varepsilon$ with $\sup_{[0,T]}|k-k_\varepsilon|\le\varepsilon$. We have $\norm{X_t}^2=N$ and, by the Itô isometry, $\E\norm{\int_0^T(k-k_\varepsilon)\,\dd B}^2=N\int_0^T(k-k_\varepsilon)^2$. Using the Cauchy--Schwarz inequality, we find
+\[
+ \frac1N\Bigl|\E\Bigl\langle X_t,\int_0^T(k-k_\varepsilon)\,\dd B\Bigr\rangle\Bigr|
+ \le\Bigl(\int_0^T(k-k_\varepsilon)^2\Bigr)^{1/2}\le\sqrt T\,\varepsilon,
+\]
+uniformly in $N$. Also $|\sqrt2\int_0^T(k-k_\varepsilon)R(t,\cdot)|\le\sqrt2\,T\varepsilon$, since $0\le R\le1$. Using the step-function case for $k_\varepsilon$, we obtain
+\[
+ \limsup_{N\to\infty}\Bigl|\frac{\E\ip{X_t}{G_N}}N-\sqrt2\int_0^Tk(u)R(t,u)\,\dd u\Bigr|\le(\sqrt T+\sqrt2\,T)\varepsilon.
+\]
+Letting $\varepsilon\downarrow0$ proves \eqref{resp:weighted-brownian-identity}.
+\end{proof}
+
+The Brownian observable goes back to Ben Arous, Dembo, and Guionnet \cite[arXiv version~1, equation~(1.9), p.~4, and Theorem~1.2, p.~5]{bag2006}, and its hard-sphere limit is \cite[arXiv version~5, Definition~3, p.~22, and Theorem~4.3, p.~23]{sellke2024}, which underlies \cref{prop:hard-bridge}. By \cref{lem:brown-force-response}, the left side of \eqref{resp:weighted-brownian-identity} at finite $N$ equals $\sqrt2\int_0^Tk(u)\,\bar r_N(T+L,u)\,\dd u$ when $k$ is a step function; this is the Cameron--Martin identity for a deterministic force with profile $k$. We need only its limit, which \cref{prop:hard-bridge} provides without a pointwise limit of the finite-dimensional response.
+
+\paragraph{The remote response.}
+We now prove the remaining case of \eqref{eq:resp-remote-vanishing}.
+
+\begin{proposition}[Remote squared response for general pure models]\label{prop:remote-response-general}
+Fix $p\ge3$ and $\beta>0$, and suppose that the plateau $q$ is positive. Then, for every $L>0$,
+\begin{equation}\label{eq:resp-general-remote-bound}
+ \limsup_{t\to\infty}\int_0^{t-L}R(t,u)^2\,\dd u\le\frac{d_L}2\,\bd^{-2/p}\,\delta_L^{2/p}.
+\end{equation}
+In particular, \eqref{eq:resp-remote-vanishing} holds.
+\end{proposition}
+
+The idea is as follows. We choose the weight $k$ in \cref{resp:weighted-brownian} proportional to the remote response row $u\mapsto R(T+L,u)$ on $[0,T]$. Then the overlap of $m_{N,T}$ with $G_N$ is $\sqrt{2S_2(T+L,L)}$ in the limit. After normalization by $\sqrt{Q_{K,L}}$, the mean $m_{N,T}$ has energy close to $\Eth$, and \cref{resp:seed-cost} forces this overlap to be small. The coefficient-Lipschitz approximations of \cref{sel:finite-forks} make \cref{resp:seed-cost} applicable.
+
+\begin{proof}
+Fix $L>0$ and $K\ge1$, and abbreviate $Q=Q_{K,L}$ and $\delta_{K,L}=\Eth-h_{K,L}/Q^{p/2}$. Recall from \eqref{sel:fork-center-threshold} that $\delta_{K,L}\ge0$, and note that $Q\ge c(2L)\ge q>0$. The proof has four steps. We take the limits in the following order:
+\begin{enumerate}[label=(\roman*)]
+\item $N=N_j\to\infty$, with $T$, $K$, $L$, and the approximation parameter $\varepsilon$ fixed;
+\item $T\to\infty$, along an arbitrary sequence;
+\item $\varepsilon\downarrow0$;
+\item $K\to\infty$.
+\end{enumerate}
+
+\paragraph{Step 1: the test direction.}
+For $T>0$, the response is positive by \eqref{eq:resp-response-lower}, and $S_2(T+L,L)=\int_0^TR(T+L,u)^2\,\dd u>0$. We define
+\[
+ k_{T,L}(u)=\frac{R(T+L,u)}{S_2(T+L,L)^{1/2}},\qquad 0\le u\le T,
+ \qquad G_N=\int_0^Tk_{T,L}(u)\,\dd B_u.
+\]
+The weight $k_{T,L}$ is continuous and deterministic: it depends on the CK solution and on the fixed times $T$ and $L$, not on the disorder or the dimension. It satisfies $\int_0^Tk_{T,L}^2=1$. \Cref{resp:weighted-brownian} implies that
+\begin{equation}\label{eq:resp-test-overlap}
+ \lim_{N\to\infty}\E\Bigl[\frac{\ip{m_{N,T}}{G_N}}N\Bigr]
+ =\sqrt2\,\frac{\int_0^TR(T+L,u)^2\,\dd u}{S_2(T+L,L)^{1/2}}
+ =\sqrt{2S_2(T+L,L)}.
+\end{equation}
+
+\paragraph{Step 2: the normalized mean and its Lipschitz approximation.}
+Let $\Pi_{B_N}$ be the metric projection onto $B_N$, and let $\bar m_{N,T}=\Pi_{B_N}(m_{N,T}/\sqrt Q)$. For $\varepsilon>0$, let $\mathcal A^\varepsilon_{N,T}$ be the maps of \cref{sel:finite-forks}, so that
+\[
+ \limsup_{N\to\infty}\frac1N\E\norm{\mathcal A^\varepsilon_{N,T}-\bar m_{N,T}}^2\le\varepsilon^2,
+\]
+as in \eqref{sel:fork-lipschitz}. These maps take values in $B_N$. Conditionally on the initial point and on all Brownian paths, they are globally Lipschitz in $J$, with a constant that depends neither on $N$ nor on the seed. The vector $G_N$ is a function of the trunk Brownian path. It is therefore measurable with respect to this seed, which is independent of $J$.
+
+We next compare energies. The vectors $m_{N,T}/\sqrt Q$, $\bar m_{N,T}$, and $\mathcal A^\varepsilon_{N,T}$ have norm at most $\sqrt{N/q}$. By homogeneity and \eqref{sel:tensor-ui}, we have $\norm{\nabla H_N(x)}\le pQ_Nq^{-(p-1)/2}\sqrt N$ when $\norm x\le\sqrt{N/q}$, where $Q_N$ is the tensor norm \eqref{eq:tensor-norm}. Integrating along segments and applying the Cauchy--Schwarz inequality, we find that, for random vectors $x,y$ of norm at most $\sqrt{N/q}$,
+\[
+ \Bigl|\frac{\E H_N(x)-\E H_N(y)}N\Bigr|\le D_q\Bigl(\frac{\E\norm{x-y}^2}N\Bigr)^{1/2},
+ \qquad D_q=pq^{-(p-1)/2}\sup_N(\E Q_N^2)^{1/2},
+\]
+and $D_q<\infty$ by \cref{lem:landscape-moments}. We set
+\[
+ \gamma_T=\limsup_{N\to\infty}\Bigl|\frac{\E H_N(m_{N,T})}N-h_{K,L}\Bigr|,
+ \qquad
+ \kappa_T=\limsup_{N\to\infty}\Bigl(\frac{\E\norm{\bar m_{N,T}-m_{N,T}/\sqrt Q}^2}N\Bigr)^{1/2}.
+\]
+Note that $H_N(m_{N,T}/\sqrt Q)=Q^{-p/2}H_N(m_{N,T})$ by homogeneity. Comparing energies through the intermediate vector $\bar m_{N,T}$, we obtain
+\begin{equation}\label{eq:resp-algorithm-energy}
+\begin{aligned}
+ \liminf_{N\to\infty}\frac{\E H_N(\mathcal A^\varepsilon_{N,T})}N
+ &\ge Q^{-p/2}(h_{K,L}-\gamma_T)-D_q(\varepsilon+\kappa_T)\\
+ &=\Eth-\delta_{K,L}-Q^{-p/2}\gamma_T-D_q(\varepsilon+\kappa_T).
+\end{aligned}
+\end{equation}
+
+\paragraph{Step 3: the seed cost.}
+By Step 2, the maps $\mathcal A^\varepsilon_{N,T}$ satisfy the hypotheses of \cref{resp:seed-cost}. The seed is formed by the initial point and all Brownian paths, the Gaussian vector is the vector $G_N$ of Step 1, and $\delta=\delta_{K,L}+Q^{-p/2}\gamma_T+D_q(\varepsilon+\kappa_T)$ by \eqref{eq:resp-algorithm-energy}. \Cref{resp:seed-cost} implies that
+\[
+ \limsup_{N\to\infty}\E\Bigl|\frac{\ip{\mathcal A^\varepsilon_{N,T}}{G_N}}N\Bigr|
+ \le\bd^{-1/p}\bigl(\delta_{K,L}+Q^{-p/2}\gamma_T+D_q(\varepsilon+\kappa_T)\bigr)^{1/p}.
+\]
+To return to $m_{N,T}$, we use $\E\norm{G_N}^2=N$ and the Cauchy--Schwarz inequality; the fact that $G_N$ and the approximation share the trunk seed plays no role here. We have
+\[
+ \Bigl|\E\frac{\ip{m_{N,T}/\sqrt Q-\mathcal A^\varepsilon_{N,T}}{G_N}}N\Bigr|
+ \le\Bigl(\frac{\E\norm{m_{N,T}/\sqrt Q-\bar m_{N,T}}^2}N\Bigr)^{1/2}
+ +\Bigl(\frac{\E\norm{\bar m_{N,T}-\mathcal A^\varepsilon_{N,T}}^2}N\Bigr)^{1/2}.
+\]
+Combining the last two displays with \eqref{eq:resp-test-overlap}, we find that, for every $T>0$,
+\begin{equation}\label{eq:resp-fixed-T-bound}
+ \sqrt{\frac{2S_2(T+L,L)}Q}
+ \le\bd^{-1/p}\bigl(\delta_{K,L}+Q^{-p/2}\gamma_T+D_q(\varepsilon+\kappa_T)\bigr)^{1/p}+\varepsilon+\kappa_T.
+\end{equation}
+
+\paragraph{Step 4: the long-time limits.}
+Let $T_n\to\infty$ be an arbitrary sequence. Using \eqref{sel:fork-center-energy-limit}, we have $\gamma_{T_n}\to0$. For $\kappa_T$, note that $\norm{\Pi_{B_N}(x)-x}=(\norm x-\sqrt N)_+$, and that $|\sqrt{y/Q}-1|\le|y-Q|/Q$ for $y\ge0$. With $y=\norm{m_{N,T}}^2/N$, we find $\kappa_T^2\le\limsup_N\E|\norm{m_{N,T}}^2/N-Q|^2/Q^2$, and \eqref{sel:fork-center-concentration} implies that $\kappa_{T_n}\to0$. The left side of \eqref{eq:resp-fixed-T-bound} does not depend on $\varepsilon$. Taking $T=T_n\to\infty$ in \eqref{eq:resp-fixed-T-bound} and then $\varepsilon\downarrow0$, we obtain
+\[
+ \limsup_{n\to\infty}S_2(T_n+L,L)\le\frac Q2\,\bd^{-2/p}\,\delta_{K,L}^{2/p}.
+\]
+Since the sequence $T_n$ was arbitrary, the same bound holds for $\limsup_{t\to\infty}S_2(t,L)$. This upper limit does not depend on $K$. As $K\to\infty$, we have $Q_{K,L}\to d_L$ and $\delta_{K,L}\to\delta_L$, by \cref{lem:fork-parameter-limits}\ref{item:fork-K-limit}. This proves \eqref{eq:resp-general-remote-bound}. As $d_L\le1$ and $\delta_L\to0$ by \eqref{resp:p-center-deficit}, the right side of \eqref{eq:resp-general-remote-bound} tends to zero as $L\to\infty$, which is \eqref{eq:resp-remote-vanishing}.
+\end{proof}
+
+Together with Steps~1, 2, and~4 of the proof of \cref{resp:strong-row}, \cref{prop:remote-response-general} proves strong $L^2$ convergence of the response rows, the exact limits of the squared tails, and $\chi(t,0)=o(\sqrt t)$ for every pure model with $p\ge3$.

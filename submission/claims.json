@@ -1,0 +1,1464 @@
+{
+  "schema_version": 1,
+  "manuscript": {
+    "title": "Aging in Spherical Spin Glass Dynamics",
+    "pdf": "manuscript/manuscript.pdf",
+    "source": "manuscript/source/main.tex"
+  },
+  "purpose": "Current numbered-object to Lean-declaration index; this index is a navigation and scope record, not a compilation or kernel certificate.",
+  "verification_qualification": "All 237 indexed bindings occur in the current Lean environment and fresh whole-module/private standard-axiom audit. 1882 byte-identical proof modules, including Solution, reuse authenticated prior native objects; 37 comment-edited library modules were compiled in fresh scratch. Every Lean noncomment code skeleton and the import graph are unchanged. The reuse partition is not asserted to be dependency-closed. A fresh protected three-kernel comparison accepts both exact original targets separately. The rebuilt manuscript aligns two unnumbered response paragraphs to the reviewed proved scope; all 100 numbered objects and citations are unchanged. Named declaration types and manuscript standing assumptions determine formal scope. Local technical verification does not claim public visibility, registry submission or editorial acceptance.",
+  "counts": {
+    "numbered_objects": 100,
+    "numbered_arguments": 84,
+    "mathematical_remarks": 13,
+    "interpretive_cautions": 2,
+    "examples": 1,
+    "mathematical_objects_with_completed_bindings": 98,
+    "declaration_bindings": 237,
+    "distinct_completed_declarations": 227
+  },
+  "open_predictions": [
+    "Chronological pointwise slow fluctuation-dissipation ratio.",
+    "Matching susceptibility upper bound and convergence.",
+    "An identified nondegenerate aging clock.",
+    "Observation times growing with the model dimension.",
+    "Zero-temperature dynamics."
+  ],
+  "objects": [
+    {
+      "number": "1.1",
+      "kind": "theorem",
+      "label": "thm:main-aging",
+      "title": "Stationary limit, marginal plateau, and aging",
+      "source": "manuscript/source/sections/01-intro.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.MainStationaryAgingTheorem.source1_1",
+        "SphericalAging.SphereOnlyMainStationaryAgingActualModel.actual_source1_1",
+        "SphericalAging.SphereOnlyCompleteStationaryTheorems.actual_source1_1",
+        "SphericalAging.PalomarCompleteTheorems.exists_complete_conclusions",
+        "SphericalAging.PalomarPrincipalTheorems.exists_principal_conclusions"
+      ],
+      "scope_note": "For every integer p >= 3 and beta > 0: stationary selection, limiting energy and multiplier, complete monotonicity and fixed-wait forgetting. For beta >= beta_d: the larger marginal plateau root, its energy and multiplier, and noncommuting iterated correlation limits. All conclusions use one coherent actual construction."
+    },
+    {
+      "number": "1.2",
+      "kind": "theorem",
+      "label": "thm:main-response",
+      "title": "Response at late times and the violation of FDT",
+      "source": "manuscript/source/sections/01-intro.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.MainResponseTheorem.source1_2",
+        "SphericalAging.SphereOnlyActualMainResponseTheorem.source1_2",
+        "SphericalAging.ActualCoherentMainTheorems.actual_complete_coherent_manuscript_mains",
+        "SphericalAging.PalomarCompleteTheorems.exists_complete_conclusions",
+        "SphericalAging.PalomarFisherTheorems.exists_fisher_conclusions"
+      ],
+      "scope_note": "For every integer p >= 3: the actual sphere Fisher construction gives the response and Fisher extraction, strong causal-row limits, susceptibility, signed-defect and positive-mass conclusions. Standing dynamical assumptions and the preceding independently proved field threshold are retained."
+    },
+    {
+      "number": "1.3",
+      "kind": "theorem",
+      "label": "thm:main-geometry",
+      "title": "Three-time inequality and susceptibility in the cubic model",
+      "source": "manuscript/source/sections/01-intro.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.MainCubicGeometryTheorem.source1_3",
+        "SphericalAging.MainCubicGeometryTheorem.source1_3_with_ordered_aging_and_last_crossings",
+        "SphericalAging.MainCubicGeometryActualMean.source1_3_from_actual_mean_dimensions",
+        "SphericalAging.MainCubicGeometryActualModel.source1_3_actual_model",
+        "SphericalAging.PalomarCompleteTheorems.exists_complete_conclusions",
+        "SphericalAging.PalomarPrincipalTheorems.exists_principal_conclusions"
+      ],
+      "scope_note": "The actual cubic model gives the three product inequalities, susceptibility lower bound, ordered aging and last-crossing inequalities for beta >= beta_d, including beta = beta_d and q = 1/2. It does not assert a susceptibility upper bound, composition equality or identified aging clock."
+    },
+    {
+      "number": "1.4",
+      "kind": "theorem",
+      "label": "thm:main-fisher-cost",
+      "title": "Entropy production and relaxation below the plateau in the cubic model",
+      "source": "manuscript/source/sections/01-intro.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.MainFisherCostTheorem.source1_4",
+        "SphericalAging.MainCubicGeometryActualModel.source1_4_actual_model",
+        "SphericalAging.PalomarCompleteTheorems.exists_complete_conclusions",
+        "SphericalAging.PalomarFisherTheorems.exists_fisher_conclusions"
+      ],
+      "scope_note": "The actual cubic model gives the full Fisher budget and the supercritical relaxation-cost clauses. Strictly positive passage cost is asserted only for beta > beta_d."
+    },
+    {
+      "number": "1.5",
+      "kind": "theorem",
+      "label": "thm:main-stationary-tail",
+      "title": "Power-law approach to the plateau",
+      "source": "manuscript/source/sections/01-intro.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.MainStationaryTailTheorem.source1_5",
+        "SphericalAging.SphereOnlyActualMainStationaryTailTheorem.actual_source1_5",
+        "SphericalAging.SphereOnlyCompleteStationaryTheorems.actual_source1_5",
+        "SphericalAging.PalomarCompleteTheorems.exists_complete_conclusions",
+        "SphericalAging.PalomarPrincipalTheorems.exists_principal_conclusions"
+      ],
+      "scope_note": "The selected stationary profile has the unique Gamma-calibrated exponent in (0, 1/2), strictly positive amplitude, correlation and response asymptotics, and every fixed derivative asymptotic. The beta >= beta_d sector includes equality; scalar stationary assumptions are derived by the preceding actual-model construction."
+    },
+    {
+      "number": "3.1",
+      "kind": "remark",
+      "label": "rem:fdt-convention",
+      "title": "The equilibrium fluctuation--dissipation relation in this convention",
+      "source": "manuscript/source/sections/03-model.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.ActualEquilibriumFDT.equilibrium_fdt",
+        "SphericalAging.ActualEquilibriumResponseNormalization.equilibriumResponse_eq_projected_mean_trace",
+        "SphericalAging.ActualEquilibriumResponseNormalization.equilibriumResponse_eq_expected_physical_trace",
+        "SphericalAging.ActualEquilibriumResponseNormalization.equilibrium_fdt_hasDerivWithinAt",
+        "SphericalAging.ActualEquilibriumResponseNormalization.equilibrium_integrated_fdt",
+        "SphericalAging.ActualEquilibriumResponseNormalization.projected_response_beta_force",
+        "SphericalAging.ActualEquilibriumGibbsInvariance.compact_gibbs_transition_stationary",
+        "SphericalAging.ActualEquilibriumGibbsInvariance.equilibriumCorrelation_eq_actual_brownian_pairing",
+        "SphericalAging.ActualEquilibriumGibbsStationaryLaw.actual_gibbs_law_stationary",
+        "SphericalAging.ActualEquilibriumGibbsStationaryLaw.actual_gibbs_observable_stationary",
+        "SphericalAging.RemarkEquilibriumActualModel.actual_source3_1"
+      ],
+      "scope_note": "The actual Gibbs probability law is invariant as a full measure under the literal sphere SDE; observable stationarity, correctly normalized physical response traces and equilibrium FDT/integrated FDT are constructed. No invariant-law or waiting-law premise is supplied."
+    },
+    {
+      "number": "3.2",
+      "kind": "proposition",
+      "label": "prop:ck-wellposed",
+      "title": "Well-posedness and positivity",
+      "source": "manuscript/source/sections/03-model.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.CKGlobalExistence.proposition_3_2",
+        "SphericalAging.CKGlobalExistence.ck_global_wellposedness"
+      ],
+      "scope_note": "actual finite-model and CK statements; response is the physical variational SDE, integrated Brownian normalization is sqrt(2) N, impulse diagonal is (N-1)/N. Whole-sequence annealed response convergence is explicit."
+    },
+    {
+      "number": "3.3",
+      "kind": "proposition",
+      "label": "prop:hard-bridge",
+      "title": "The bridge on fixed time horizons",
+      "source": "manuscript/source/sections/03-model.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.ActualHardSphereBridge.proposition_3_3_actual",
+        "SphericalAging.ActualHardSphereBridge.exists_actual_hard_sphere_bridge"
+      ],
+      "scope_note": "Complete literal actual-model causal triangle convergence in probability, expected sup(C squared + Gamma absolute) convergence, uniform actual means, response diagonal; all actual regularity, measurability, concentration, response compactness and nonlinear CK identification inputs constructed internally. Arbitrary dimension sequences tending to infinity, source standing p>=3 and beta>0."
+    },
+    {
+      "number": "3.4",
+      "kind": "lemma",
+      "label": "lem:brown-force-response",
+      "title": "Brownian primitive of the averaged force response",
+      "source": "manuscript/source/sections/03-model.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.SourceBrownianForceResponse.source3_4",
+        "SphericalAging.SphereOnlyActualBrownianPrimitiveBridge.actual_brownianPrimitive_tendsto"
+      ],
+      "scope_note": "The literal actual Brownian primitive converges to the CK response integral on every diverging dimension sequence. Its law, mean identification and waiting/terminal response moduli are constructed; no primitive-limit input is supplied."
+    },
+    {
+      "number": "3.5",
+      "kind": "remark",
+      "label": "rem:no-pointwise-response",
+      "title": null,
+      "source": "manuscript/source/sections/03-model.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.ActualContinuousWeightedResponseLimit.actual_signed_weighted_response_uniform_limit",
+        "SphericalAging.ActualContinuousWeightedResponseLimit.actual_signed_weighted_response_window_limit",
+        "SphericalAging.ActualCKMeanKernelConvergence.actual_ck_means_uniform_limit",
+        "SphericalAging.ActualResponseTimeEquicontinuity.actual_modelResponse_equicontinuous"
+      ],
+      "scope_note": "The published Brownian-primitive bridge alone does not imply pointwise response convergence. The completed actual response equicontinuity and mean-kernel convergence separately prove compact-uniform convergence of annealed normalized trace means on every fixed causal triangle. Signed continuous weighted limits follow on the same actual model. No concentration or convergence of random response matrices is asserted."
+    },
+    {
+      "number": "3.6",
+      "kind": "lemma",
+      "label": "lem:landscape-moments",
+      "title": "Uniform landscape moments",
+      "source": "manuscript/source/sections/03-model.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.LandscapeDerivatives.landscape_lemma",
+        "SphericalAging.GaussianLandscapeMoments.landscapeNorm_isLUB",
+        "SphericalAging.LandscapeSphereGeometry.sphericalHessian_eq_covariantDerivative"
+      ],
+      "scope_note": "Actual ordered Gaussian disorder and exact manuscript unit-sphere supremum Q_N. All real nonnegative power and real exponential moments are uniformly finite for N≥1; actual e^(−N) dimension tail. All five derivative inequalities are proved for H_N, its genuine gradient and Hessian, and the round-sphere tangent Hessian/Laplacian. The sphere Hessian is independently identified with the actual derivative of the projected tangent gradient, projected in both arguments; no Hessian or moment bounds are premises."
+    },
+    {
+      "number": "4.1",
+      "kind": "proposition",
+      "label": "prop:energy-bridge",
+      "title": "Energy identity on fixed horizons",
+      "source": "manuscript/source/sections/04-structure.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.ActualEnergyUniformBridge.proposition_4_1_from_preceding_bridges",
+        "SphericalAging.ActualCKPrintedEnergyLimit.actual_meanEnergy_printed_uniform_limit",
+        "SphericalAging.ActualCKPrintedEnergyLimit.actual_annealedEnergy_printed_uniform_limit"
+      ],
+      "scope_note": "Complete local source Proposition4.1 from the exact preceding uniform finite-horizon actual overlap L1 convergence and actual signed tail-response primitive convergence. The genuine finite-N Gaussian Stein/Duhamel/Fubini energy identity and rank-one error, true annealed response moment and total-variation bounds, L1-to-L2 overlap replacement, weighted primitive passage and uniform actual annealed energy limit are derived, together with the exact CK multiplier-energy identity. No pointwise response convergence or energy convergence is assumed. The preceding source3.3 actual finite-dimensional convergence is independently proved by ActualHardSphereBridge.proposition_3_3_actual. Final integration discharges the preceding actual-model/selection/threshold inputs through the native construction and independently proved source10.1; the local source hypotheses retain their exact printed scope."
+    },
+    {
+      "number": "4.2",
+      "kind": "proposition",
+      "label": "prop:green-covariance",
+      "title": "Green covariance identity",
+      "source": "manuscript/source/sections/04-structure.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.GreenCovarianceClosure.green_covariance_proposition"
+      ],
+      "scope_note": "exact energy, Hilbert covariance, global bounds, earlier response and compact-offset extraction statements; actual energy closure supplies preceding finite-model convergence rather than assuming its target."
+    },
+    {
+      "number": "4.3",
+      "kind": "proposition",
+      "label": "prop:uniform-bounds",
+      "title": "Energy--response tradeoff and uniform multiplier bound",
+      "source": "manuscript/source/sections/04-structure.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.UniformMultiplier.uniform_bounds_proposition"
+      ],
+      "scope_note": "exact energy, Hilbert covariance, global bounds, earlier response and compact-offset extraction statements; actual energy closure supplies preceding finite-model convergence rather than assuming its target."
+    },
+    {
+      "number": "4.4",
+      "kind": "proposition",
+      "label": "prop:global-regularity",
+      "title": "Uniform regularity in time",
+      "source": "manuscript/source/sections/04-structure.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.CorrelationSharpModulus.global_regularity_proposition"
+      ],
+      "scope_note": "Entire statement proved unconditionally for CKEquations: common finite multiplier/energy Lipschitz constant, exact Brownian coefficient sqrt(2h) in both coordinate moduli, and actual diagonal increment. Actual completed partial tensor contraction and integrated Green budget discharge both multiplier moment estimates; Hilbert slope cancellation and a genuine compact maximum derive the sharp correlation modulus without a supplied finite-N bridge."
+    },
+    {
+      "number": "4.5",
+      "kind": "proposition",
+      "label": "prop:backward-response",
+      "title": "Backward response equation",
+      "source": "manuscript/source/sections/04-structure.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.BackwardResponse.backward_response_proposition"
+      ],
+      "scope_note": "exact energy, Hilbert covariance, global bounds, earlier response and compact-offset extraction statements; actual energy closure supplies preceding finite-model convergence rather than assuming its target."
+    },
+    {
+      "number": "4.6",
+      "kind": "proposition",
+      "label": "prop:response-compactness",
+      "title": "Response domination and bounded-lag compactness",
+      "source": "manuscript/source/sections/04-structure.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.ResponseCompactness.response_compactness_proposition"
+      ],
+      "scope_note": "Entire response domination, diagonal one-sided derivative bounds and simultaneous local-uniform compactness proved for actual CK equations. Multiplier equicontinuity follows the independently proved actual Hilbert-feature Hölder estimate; no compactness or regularity premise."
+    },
+    {
+      "number": "5.1",
+      "kind": "lemma",
+      "label": "lem:entropy-budget",
+      "title": "Finite normalized entropy budget",
+      "source": "manuscript/source/sections/05-entropy.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.ActualFiniteEntropyBudgetTheorem.actual_source5_1"
+      ],
+      "scope_note": "Full literal actual finite source5.1: sphere-supported score-divergence forward PDE, entropy derivative=-FI with genuine one-sided time-zero derivative, quenched infinite Fisher budget, annealed normalized beta²/2 budget and exact initialentropy/N≤2betaQ. The actual density, positivity and regularity are constructed on the physical sphere. No ambient PDE or global positive FisherDensity record is supplied."
+    },
+    {
+      "number": "5.2",
+      "kind": "lemma",
+      "label": "lem:finite-dimensional-fdt",
+      "title": "Exact nonequilibrium fluctuation--dissipation identity",
+      "source": "manuscript/source/sections/05-entropy.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.ActualFiniteFDTTheorem.actual_source5_2",
+        "SphericalAging.ActualLiteralFiniteFDTTheorem.actual_source5_2_physical",
+        "SphericalAging.ActualResponsePositiveDimension.densityResponse_annealed_eq_physicalResponse"
+      ],
+      "scope_note": "All three printed source5.2 clauses hold for the literal actual sphere model in every N>=2: quenched current identity and physical derivative, annealed physical-response Fisher square bound and literal integrated defect-square inequality. Genuine right derivatives atzero and ordinary interior derivatives are proved. Density correlation/response are identified with the true same-path correlation/projected SDE response using actual waiting laws, true tangent Gaussian envelopes, expected physical trace and Fubini; all density/PDE/mean/envelope/integrability inputs are constructed internally. Auxiliary cutoff R may be chosen N+1, meeting all scalar conditions; no global ambient FisherDensity record is required."
+    },
+    {
+      "number": "5.3",
+      "kind": "theorem",
+      "label": "thm:fisher-clock",
+      "title": "Fisher control of the backward FDT defect",
+      "source": "manuscript/source/sections/05-entropy.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.ActualSphereFisherTheorem.actual_FisherMajorant",
+        "SphericalAging.ActualSphereCKFisherClosure.actual_Fisher_closure"
+      ],
+      "scope_note": "The actual full annealed Fisher information has one genuine locallyL1 dimension subsequence and a globally nonnegative right-continuous CK Fisher majorant, exact mass beta²/2, exponential comparison clock and late-tail decay. All finite sphere PDE, forward-density positivity/regularity, Bochner/clock, bad-event and dimension-limit inputs are constructed internally. The native closure also supplies every printed local backward-defect, energy-increment and waiting conclusion; no ambient FisherDensity or supplied source3.3/density/limit premise is needed."
+    },
+    {
+      "number": "5.4",
+      "kind": "remark",
+      "label": "rem:fisher-endpoints",
+      "title": "The ends of a row",
+      "source": "manuscript/source/sections/05-entropy.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.RemarkFisherEndpoints.source5_4"
+      ],
+      "scope_note": "Both genuine one-sided earlier-row derivatives and the full closed-row Fisher bound follow from the actual Fisher extraction and right continuity; the diagonal earlier derivative and response both equal one."
+    },
+    {
+      "number": "5.5",
+      "kind": "lemma",
+      "label": "lem:waiting-clock-current",
+      "title": "Semigroup gradient bound and the waiting-time derivative",
+      "source": "manuscript/source/sections/05-entropy.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.ActualSphereCKFisherClosure.actual_Fisher_closure",
+        "SphericalAging.ActualSphereCKIncrementControls.actual_waitingControl",
+        "SphericalAging.SphereSharpMeanGradient.actual_mean_projected_operator_bound",
+        "SphericalAging.ActualSphereWaitingCurrent.actual_waiting_hasDerivAt",
+        "SphericalAging.ActualSphereWaitingCurrent.actual_waiting_increment_current",
+        "SphericalAging.ActualSphereFiniteWaitingTheorem.source5_5_actual_model"
+      ],
+      "scope_note": "Full native source5.5 uses the literal actual same-path fixed-lag correlation. The exact sharp mean/observable gradient bounds, signed waiting current, pointwise Fisher-square estimate, current FTC and physical within-Ici0 derivative includingzero are constructed. source5_5_actual_model needs only N>0,p>=2,beta and chooses its cutoff internally. ActualSphereCKFisherClosure.actual_Fisher_closure derives all limiting waiting/clock and stationary-compactness clauses on one actual Fisher dimension subsequence from CK and diverging dimensions alone. No ambient density/PDE, waiting law, mean bridge or derivative/concentration conclusion is supplied."
+    },
+    {
+      "number": "5.6",
+      "kind": "corollary",
+      "label": "cor:uniform-late-estimates",
+      "title": "Uniform late estimates",
+      "source": "manuscript/source/sections/05-entropy.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.CKUniformLateEstimates.source5_6"
+      ],
+      "scope_note": "Complete local source5.6 from the exact preceding FisherMajorant, source5.3 energy increment estimate and source5.5 waiting-clock increment estimate. All three literal suprema have their printed Fisher-tail bounds and vanish. The integrated FDT estimate is derived directly from actual CK earlier derivatives, FTC, Fisher domination and Cauchy-Schwarz. This does not independently close the upstream energy/waiting increment estimates or actual SDE-to-PDE density realization."
+    },
+    {
+      "number": "5.7",
+      "kind": "proposition",
+      "label": "prop:stationary-clusters",
+      "title": "Stationary FDT translated clusters",
+      "source": "manuscript/source/sections/05-entropy.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.CKStationaryClusterExtraction.source5_7",
+        "SphericalAging.PalomarStationarityActual.source5_7"
+      ],
+      "scope_note": "The collected literal result has CKEquations as its only premise: every diverging translation sequence is precompact on arbitrary compact real offsets, and every raw cluster of the same sequence has the complete stationary, FDT, plateau, mass, energy, and differentiable response-equation conclusions. Actual Fisher and increment controls are constructed internally."
+    },
+    {
+      "number": "6.1",
+      "kind": "proposition",
+      "label": "prop:scalar-clusters",
+      "title": "Scalar constraints",
+      "source": "manuscript/source/sections/06-scalar.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.ScalarConstraints.pure_scalar_constraints"
+      ],
+      "scope_note": "exact scalar constraints and uniqueness in the printed measurable locally bounded integrated-solution class; regularity is derived and equations hold at every nonnegative time."
+    },
+    {
+      "number": "6.2",
+      "kind": "lemma",
+      "label": "lem:stationary-uniqueness",
+      "title": "Uniqueness with prescribed multiplier",
+      "source": "manuscript/source/sections/06-scalar.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.StationaryUniqueness.integrated_stationary_unique",
+        "SphericalAging.StationaryUniqueness.ray_integrated_stationary_unique"
+      ],
+      "scope_note": "exact scalar constraints and uniqueness in the printed measurable locally bounded integrated-solution class; regularity is derived and equations hold at every nonnegative time."
+    },
+    {
+      "number": "7.1",
+      "kind": "proposition",
+      "label": "prop:geometry-tree-realization",
+      "title": "Exact causal realization",
+      "source": "manuscript/source/sections/07-tree.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.CausalTreePositivity.exact_causal_realization",
+        "SphericalAging.CausalTreeLabelEquivalence.orderedLeafLabelEquiv_apply",
+        "SphericalAging.CausalTreeLabelEquivalence.treeLeafFunctionEquiv"
+      ],
+      "scope_note": "Actual completed causal tree Hilbert space, ordered leaf labels, isometric graft, true CK Picard limit and norm-continuous positive unit path. Exact Gram C, prefix causality, root-frame identity, tree energy and multiplier are conclusions. The limit is constructed, rather than assumed in a realization record."
+    },
+    {
+      "number": "7.2",
+      "kind": "example",
+      "label": "ex:tree-first-heights",
+      "title": "The first two heights for $p=3$",
+      "source": "manuscript/source/sections/07-tree.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.ExampleFirstHeights.height_le_one_cases",
+        "SphericalAging.ExampleFirstHeights.height_two_cases",
+        "SphericalAging.ExampleFirstHeights.leaf_component_feature",
+        "SphericalAging.ExampleFirstHeights.firstFork_component",
+        "SphericalAging.ExampleFirstHeights.height_two_components",
+        "SphericalAging.ExampleFirstHeights.prefix_component",
+        "SphericalAging.ExampleFirstHeights.height_one_Gram",
+        "SphericalAging.ExampleFirstForkLiteralKernel.source7_2_noise_kernel",
+        "SphericalAging.ExampleFirstForkPrefixKernel.source7_2_prefix_kernel",
+        "SphericalAging.ExampleFirstForkInitialLabels.source7_2_two_initial",
+        "SphericalAging.ExampleFirstForkInitialLabels.source7_2_initial_left",
+        "SphericalAging.ExampleFirstForkRightInitialLabel.source7_2_initial_right"
+      ],
+      "scope_note": "Height zero and all three ordered height-two trees, first-fork integral, two-noise L2 representative coefficient 2*sqrt(3)*beta, both one-initial-label cases and the two-initial-label case, prefix cutoff only on labels, and first Picard Gram are represented. Coordinate statements are AE representatives of genuine completed tensors."
+    },
+    {
+      "number": "7.3",
+      "kind": "lemma",
+      "label": "lem:geometry-projected-drift",
+      "title": "Local polynomial drift after a causal projection",
+      "source": "manuscript/source/sections/07-tree.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.ProjectedTreeDrift.local_polynomial_drift",
+        "SphericalAging.ProjectedTreeDrift.local_polynomial_drift_of_equations"
+      ],
+      "scope_note": "For t>T the actual projected path has derivative of the polynomial drift; Lipschitz bound on the unit ball and 1/2-Holder derivative follow from genuine Gram distance squared=2(1-C). Factor p-1 arises from symmetric tensor-power contractions despite ordered grafting."
+    },
+    {
+      "number": "7.4",
+      "kind": "remark",
+      "label": "rem:geometry-diagonal-increment",
+      "title": "The diagonal increment bound",
+      "source": "manuscript/source/sections/07-tree.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.RemarkProjectedDriftHolder.source7_4"
+      ],
+      "scope_note": "The CK uniform diagonal bound supplies K=Lambda, giving the printed uniform-in-prefix Holder constant. No further regularity of an arbitrary proposed path is supplied."
+    },
+    {
+      "number": "7.5",
+      "kind": "proposition",
+      "label": "sel:prefix-reflection",
+      "title": "Reflection of a stationary cluster",
+      "source": "manuscript/source/sections/07-tree.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.StationaryReflectionReceipt.stationary_prefix_reflection"
+      ],
+      "scope_note": "Every stationary cluster, including q=0 and every p>=3, has uniform prefix Gram c(a+b) on each fixed future rectangle; norm c(2L) and reflected energy identity follow. Rectangle cancellation and stability are constructed. Formal identification uses rectangle uniqueness rather than requiring the manuscript Laplace-transform argument literally."
+    },
+    {
+      "number": "7.6",
+      "kind": "remark",
+      "label": "rem:tree-independent-futures",
+      "title": "Independent futures",
+      "source": "manuscript/source/sections/07-tree.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.RemarkIndependentFutures.source7_6"
+      ],
+      "scope_note": "The reversible Markov conditional-mean identity is mathematical and represented; its analogy to CK prefix centers is accurately qualified as heuristic until reflection."
+    },
+    {
+      "number": "7.7",
+      "kind": "corollary",
+      "label": "sel:cluster-complete-monotonicity",
+      "title": "Spectral representation of every stationary cluster",
+      "source": "manuscript/source/sections/07-tree.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.StationarySpectralRepresentation.stationary_cluster_spectral_representation"
+      ],
+      "scope_note": "Probability Laplace measure supported on nonnegative spectral parameter, atom q at zero, smoothness and alternating derivatives on positive lags for c and r are derived from true Hankel positivity/reflection and stationary FDT. No differentiability at every higher order at lag zero is inferred."
+    },
+    {
+      "number": "8.1",
+      "kind": "proposition",
+      "label": "prop:threshold-inputs",
+      "title": "Threshold inputs",
+      "source": "manuscript/source/sections/08-selection.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.GeneralThresholdInputTheorem.source8_1_from_finite_forks_and_fixed_wait",
+        "SphericalAging.GeneralFixedWaitForgettingTheorem.source8_1_from_actual_forks",
+        "SphericalAging.SphereOnlyActualFixedWaitForgetting.actual_source8_1",
+        "SphericalAging.SphereOnlyCompleteStationaryTheorems.actual_source8_1"
+      ],
+      "scope_note": "Both threshold inputs for every integer p >= 3 are supplied through actual finite-fork ceiling and fixed-wait forgetting constructions. For cubic and quartic models the tree proof independently obtains the same inputs. General p uses current Proposition 10.8; the declaration name source10_10 identifies that fixed-wait theorem."
+    },
+    {
+      "number": "8.2",
+      "kind": "lemma",
+      "label": "lem:center-energy",
+      "title": "Limiting energy of prefix centers",
+      "source": "manuscript/source/sections/08-selection.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.CenterEnergyTheorem.source8_2"
+      ],
+      "scope_note": "Actual limiting center norm/energy lead to threshold domination and the nonnegative deficit limit with q^(p/2) genuine real powers. Equality exactly at marginality; denominator and z are positive. No threshold equality is supplied as input."
+    },
+    {
+      "number": "8.3",
+      "kind": "lemma",
+      "label": "sel:positive-marginality",
+      "title": "Marginality of every positive cluster plateau",
+      "source": "manuscript/source/sections/08-selection.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.PositiveMarginalityTheorem.source8_3"
+      ],
+      "scope_note": "Positive plateau plus preceding finite-age ceiling forces marginality and larger-root selection. The small plateau root is excluded by the strict scalar sign. Premises are CK, cluster, and the previously derived ceiling, not the target marginality."
+    },
+    {
+      "number": "8.4",
+      "kind": "proposition",
+      "label": "sel:all-temperature",
+      "title": "Convergence at every fixed temperature",
+      "source": "manuscript/source/sections/08-selection.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.AllTemperatureTheorem.source8_4",
+        "SphericalAging.SphereOnlyCompleteStationaryTheorems.actual_source8_4"
+      ],
+      "scope_note": "For all beta>0, unique whole-family local stationary profile and convergent multiplier/energy follow from cluster compactness and threshold ceiling. Alternatives q=0 or upper marginal root remain below transition; below spinodal only q=0. Actual-model wrappers construct prerequisites."
+    },
+    {
+      "number": "8.5",
+      "kind": "theorem",
+      "label": "sel:selected-sector",
+      "title": "The selected stationary sector",
+      "source": "manuscript/source/sections/08-selection.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.SelectedSectorTheorem.source8_5"
+      ],
+      "scope_note": "Inclusive beta>=beta_d: q>=q_d>0 is the upper root, with energy/multiplier/window convergence and the printed critical endpoint q=q_d, ell=1+p*beta^2, e=beta. Zero plateau is excluded also at equality by strict branch sign; strict defect positivity is not inferred at equality."
+    },
+    {
+      "number": "8.6",
+      "kind": "remark",
+      "label": "rem:low-temperature",
+      "title": "The subsequent low-temperature limit",
+      "source": "manuscript/source/sections/08-selection.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.RemarkLowTemperatureLimit.source8_6"
+      ],
+      "scope_note": "After long-time selection, q_beta->1, beta*(1-q_beta)->1/sqrt(p(p-1)), and limiting energy tends to the threshold. The order of limits is retained. This is a parameter limit of selected finite-temperature equilibria, not a zero-temperature dynamics theorem."
+    },
+    {
+      "number": "8.7",
+      "kind": "remark",
+      "label": "sel:intermediate-range",
+      "title": "The unselected intermediate interval",
+      "source": "manuscript/source/sections/08-selection.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.RemarkIntermediateBranches.source8_7",
+        "SphericalAging.SphereOnlyCompleteStationaryTheorems.actual_source8_7"
+      ],
+      "scope_note": "In beta_m<=beta<beta_d the two exact possible stationary branches are stated and positive upper branch has limiting energy>beta. The manuscript does not claim which branch is selected. Actual-model wrapper supplies the alternatives."
+    },
+    {
+      "number": "8.8",
+      "kind": "theorem",
+      "label": "sel:fixed-wait-forgetting",
+      "title": "Forgetting of fixed waiting times",
+      "source": "manuscript/source/sections/08-selection.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.FixedWaitingForgettingTheorem.source8_8"
+      ],
+      "scope_note": "C+R forget uniformly over every fixed earlier interval. Positive branch uses the preceding actual threshold-forgetting input; zero branch is derived from actual prefix norm and stationary rows. Zero plateau whole-row convergence is proved, rather than inserted in the statement."
+    },
+    {
+      "number": "8.9",
+      "kind": "corollary",
+      "label": "sel:aging",
+      "title": "Correlation aging in the ordered limits",
+      "source": "manuscript/source/sections/08-selection.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.OrderedCorrelationAging.source8_9"
+      ],
+      "scope_note": "Inclusive selected sector gives two actual iterated limits: fixed-lag waiting limit then lag infinity is q>0, and fixed waiting then lag infinity followed by waiting infinity is zero. Inner Tendsto statements are proved before limUnder is evaluated; no default-limit value is used."
+    },
+    {
+      "number": "9.1",
+      "kind": "lemma",
+      "label": "lem:tree-graft-heights",
+      "title": "Heights of a graft",
+      "source": "manuscript/source/sections/09-ceilings.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.CausalTree.graftPower_height_zero",
+        "SphericalAging.CausalTree.graftTensor_power",
+        "SphericalAging.CausalTree.graftTensor_height_causal",
+        "SphericalAging.CausalTree.graftTensor_height_norm_sq"
+      ],
+      "scope_note": "Actual tensor-power graft uses root height one plus maximum child height. Height block squared norm is B_j^(p-1)-B_(j-1)^(p-1), and the leaf component vanishes; finite tensors and completed tensor powers share the genuine Hilbert norm."
+    },
+    {
+      "number": "9.2",
+      "kind": "theorem",
+      "label": "thm:geometry-tree-ceiling",
+      "title": "The cubic tree ceiling and its retained defects",
+      "source": "manuscript/source/sections/09-ceilings.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.TreeCeilings.cubic_strict_ceiling",
+        "SphericalAging.TreeCeilings.cubic_participation_deficit",
+        "SphericalAging.TreeCeilings.cubic_prefix_deficit",
+        "SphericalAging.TreeCeilings.cubic_supremum",
+        "SphericalAging.TreeCeilings.cubic_angular_gap",
+        "SphericalAging.TreeCeilings.cubic_young_gap"
+      ],
+      "scope_note": "Strict ceiling on every unit cubic tree vector, quantitative participation/prefix bound and retained angular/Young defects are proved by genuinely summable height masses. Supremum 2*sqrt(2)/3 is sharp via concrete approximating vectors, and not attained by a unit vector. Signed deficits and coefficient 1/(4*sqrt(2)) agree."
+    },
+    {
+      "number": "9.3",
+      "kind": "lemma",
+      "label": "thm:geometry-quartic-tree-ceiling",
+      "title": "The quartic tree ceiling",
+      "source": "manuscript/source/sections/09-ceilings.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.TreeCeilings.quartic_strict_ceiling",
+        "SphericalAging.TreeCeilings.quartic_participation_deficit",
+        "SphericalAging.TreeCeilings.quartic_supremum",
+        "SphericalAging.TreeEnergyCeilings.energy_finite_height_escape"
+      ],
+      "scope_note": "The printed environment is a lemma despite its thm-prefixed label. Strict quartic ceiling sqrt(3)/2, quantitative participation bound with coefficient 1/(2*sqrt(3)), concrete sharp sequence, and escape from every finite height under saturation are represented."
+    },
+    {
+      "number": "9.4",
+      "kind": "corollary",
+      "label": "cor:tree-ceiling-energy",
+      "title": "The ceilings in terms of the tree energy",
+      "source": "manuscript/source/sections/09-ceilings.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.TreeEnergyCeilings.tree_energy_ceiling_corollary",
+        "SphericalAging.TreeEnergyCeilings.participation_eq_norm_four"
+      ],
+      "scope_note": "Translation from graft overlap to energy multiplies by sqrt(p), giving the threshold energy and constants kappa_3=4*sqrt(2/3), kappa_4=sqrt(3). True participation=sum_h norm(Pi_h v)^4 and finite-prefix mass bound follow."
+    },
+    {
+      "number": "9.5",
+      "kind": "proposition",
+      "label": "sel:threshold-centers",
+      "title": "Threshold-saturating prefix centers",
+      "source": "manuscript/source/sections/09-ceilings.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.ThresholdCenterHeightTheorem.source9_5"
+      ],
+      "scope_note": "For p=3,4 and positive marginal selected cluster, whole-family reflection gives d_L and h_L, nonnegative deficit delta_L->0, and normalized-center finite-height mass bound with eventual nonzero norm. Formal center normalization is only used after q>0 guarantees nonzero; nested limits retain t first, then offset L."
+    },
+    {
+      "number": "10.1",
+      "kind": "theorem",
+      "label": "sel:published-field-threshold",
+      "title": "External-field Lipschitz threshold of Huang and Sellke",
+      "source": "manuscript/source/sections/10-general.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.PurePActualPublishedFieldThreshold.actual_published_field_threshold",
+        "SphericalAging.PurePFieldThresholdLiteral.source10_1_ordered",
+        "SphericalAging.PurePFieldThresholdLiteral.source10_1_tensor"
+      ],
+      "scope_note": "Independent literal source10.1 for all integer p>=3, including zero coefficient Lipschitz constant. The strictly positive exponential rate and dimension cutoff depend only on p,L,kappa,eta and precede N,deterministic direction and algorithm. Original ordered iid Gaussian coefficients and genuine coefficient Hilbert norm are used. Actual terminal Gaussian pair laws, static law-preserving pruning, uniform separated exactification, sharp direct expected-edge comparison and uniform finite all-field ALG event derive the actual success-probability bound. No published threshold, target sampling law, correct tree configuration, edge bound or energy/probability ceiling is supplied."
+    },
+    {
+      "number": "10.2",
+      "kind": "lemma",
+      "label": "sel:absolute-field-cost",
+      "title": "Absolute-overlap energy cost",
+      "source": "manuscript/source/sections/10-general.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.ExternalFieldRealCostTheorem.source10_2",
+        "SphericalAging.ActualExternalFieldCostTheorem.actual_source_10_2"
+      ],
+      "scope_note": "Complete local source10.2 from the literal quantitative published one-field algorithmic threshold10.1, uniformly over genuine globally coefficient-Lipschitz ball algorithms. Actual polynomial optimization, positive/negative field finite covers, Gaussian landscape uniform integrability, measurable independent seeded sections, and actual conditional expectation are constructed. A finite real dimension-only error is proved nonnegative and tending to zero for every positive dimension; its finiteness is derived from the true Gaussian moment bound. Both almost-sure conditional inequality and unconditional real limsup hold along every diverging dimension subsequence. No absolute-field penalty, conditional expectation bound, uniform-integrability target, or error finiteness is supplied as a premise. The preceding threshold10.1 is independently proved by PurePActualPublishedFieldThreshold.actual_published_field_threshold; the native wrapper supplies it internally."
+    },
+    {
+      "number": "10.3",
+      "kind": "lemma",
+      "label": "sel:fork-moments",
+      "title": "Entropy comparison for two branches",
+      "source": "manuscript/source/sections/10-general.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.ActualSphereOnlyForkMomentTheorem.actual_source10_3",
+        "SphericalAging.ActualSphereOnlyForkRealization.exists_actual_realization"
+      ],
+      "scope_note": "Both complete source10.3 clauses hold for literal actual spherical diffusion independent-future endpoints on one actual Fisher dimension subsequence, selected before any stationary cluster. Finite moment comparison for every k>=1, uniform closed-window stationary L2 concentration and actual endpoint/current/first-jet/FTC bounds are constructed internally. No smooth global ambient FisherDensity, supplied waiting law, Fisher majorant, concentration or mean CK bridge premise remains. Dimension limits along source5.3 subsequence are exactly the source10 standing convention."
+    },
+    {
+      "number": "10.4",
+      "kind": "proposition",
+      "label": "sel:finite-forks",
+      "title": "Finite forks and their center",
+      "source": "manuscript/source/sections/10-general.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.SphereOnlyPhysicalForkRealization.proposition_10_4_realization"
+      ],
+      "scope_note": "All eight printed clauses of source10.4 hold for the literal actual full-history physical fork on the same native Fisher dimension subsequence: genuine branch/past laws, exact ordered norm and energy limits, threshold ceiling, normalization replacements and seeded dimension-uniform Lipschitz ball approximations. Actual Fisher L1loc, canonical CK means/response primitives, trace replacement, annealed energy and concentration are derived internally. The realizing stationary cluster is a printed source input; the preceding published field threshold10.1 is independently proved."
+    },
+    {
+      "number": "10.5",
+      "kind": "lemma",
+      "label": "lem:fork-parameter-limits",
+      "title": "The fork parameters as $K\\to\\infty$ and $L\\to\\infty$",
+      "source": "manuscript/source/sections/10-general.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.ForkParameterTheorem.source10_5"
+      ],
+      "scope_note": "Complete local Lemma10.5 from the preceding stationary profile/FDT/response-integrability and scalar multiplier identity. The literal finite-K fork norm, mixed-overlap and energy formulas satisfy both exact O(1/K) bounds; the actual K and L limits and literal ordered normalized K-then-L threshold limit are derived. No fork-parameter limit is assumed. Physical finite-fork realization10.4 is independently proved by the native actual-model chain. Final integration discharges the preceding actual-model/selection/threshold inputs through the native construction and independently proved source10.1; the local source hypotheses retain their exact printed scope."
+    },
+    {
+      "number": "10.6",
+      "kind": "lemma",
+      "label": "sel:adaptive-disclosure",
+      "title": "Adaptive tensor disclosure",
+      "source": "manuscript/source/sections/10-general.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.AdaptiveTensorDisclosureSource.exists_actual_prefix",
+        "SphericalAging.AdaptiveTensorDisclosureSource.conditional_gaussian",
+        "SphericalAging.AdaptiveTensorDisclosureSource.disclosed_measurable",
+        "SphericalAging.AdaptiveTensorDisclosureSource.gradient_measurable",
+        "SphericalAging.AdaptiveTensorDisclosureGradientDirection.direction_measurable",
+        "SphericalAging.AdaptiveTensorDisclosureGradientDirection.direction_orthogonal",
+        "SphericalAging.AdaptiveTensorDisclosureGradientDirection.direction_zero_or_unit"
+      ],
+      "scope_note": "Complete source10.6 for the literal recursively generated sigma algebras under original independent Gaussian disorder and arbitrary measurable seed/subspace. Initial history is precisely (seed, projection of original tensor onto residualTensorSpace(W0) orthogonal complement); every subsequent history appends the original tensor block in T(Wj) intersect T(Wj+1) orthogonal complement. Any vector measurable in the current literal history is factored and appended, including dependent and zero queries, with no fixed-rank, chosen-frame, regeneration, conditional Gaussian or target-span premise. Every arbitrary-rank prefix is genuinely constructed. Original projected residual has exactly standard projected Gaussian conditional law; original disclosed tensor and all actual gradients at history-measurable points in Wj are history-measurable. Normalized projected gradient is measurable, orthogonal and zero or unit. The proof handles a larger query class than the printed zero-or-unit hypothesis. Exact final history also equals sigma(seed, final disclosed original tensor)."
+    },
+    {
+      "number": "10.7",
+      "kind": "proposition",
+      "label": "sel:adaptive-orthogonality",
+      "title": "Orthogonality to every fixed finite query span",
+      "source": "manuscript/source/sections/10-general.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.AdaptiveTensorDisclosureWaitingPairing.actual_source_10_7_with_pairing",
+        "SphericalAging.ActualAdaptiveTensorDisclosureWaitingPairing.actual_source_10_7_with_pairing"
+      ],
+      "scope_note": "The complete source projection limit and printed random-vector pairing consequence are proved for the literal original tensor disclosure history. Independent probability seed, measurable histories/queries/output/vector, initial-rank bound, zero-or-unit fresh queries, uniform Lipschitz ball outputs, and energy-deficit convergence are explicit source hypotheses. The preceding PublishedFieldThreshold p L from10.1 is independently proved and supplied internally by the native wrapper. Residual Gaussian cost, original-disorder tower, conditional Jensen comparison, finite-step recursion, dimension limsup and pairing transfer are derived internally; none of their conclusions is supplied as a premise."
+    },
+    {
+      "number": "10.8",
+      "kind": "proposition",
+      "label": "sel:general-fixed-wait",
+      "title": "Fixed-waiting-time decorrelation",
+      "source": "manuscript/source/sections/10-general.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.GeneralFixedWaitForgettingTheorem.source10_10",
+        "SphericalAging.SphereOnlyActualFixedWaitForgetting.actual_source10_10",
+        "SphericalAging.SphereOnlyCompleteStationaryTheorems.actual_source10_10"
+      ],
+      "scope_note": "Current Proposition 10.8 has the printed CK/cluster hypotheses and fixed-wait forgetting conclusion. Its proof uses the actual finite-K full-path fork seed and product law, a fixed ordered fork filter, and predictable Euler gradients in a disclosed finite query span. The original-sample projection transfer sends the Euler resolution M to infinity last. Declaration names source10_10 identify this current proposition; actual_source10_9 is its closed Euler-history specialization. The field threshold 10.1 is independently proved."
+    },
+    {
+      "number": "11.1",
+      "kind": "theorem",
+      "label": "resp:strong-row",
+      "title": "Strong localization of the response",
+      "source": "manuscript/source/sections/11-response.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.StrongResponseTheorem.source11_1",
+        "SphericalAging.SphereOnlyActualStrongResponseTheorem.actual_source11_1"
+      ],
+      "scope_note": "The complete strong response consequences hold for every actual stationary cluster and every p>=3. Physical forks, primitive identification, marginality and strong response inputs are constructed; PublishedFieldThreshold10.1 is independently proved."
+    },
+    {
+      "number": "11.2",
+      "kind": "corollary",
+      "label": "resp:uniform-row",
+      "title": "Uniform absolute localization",
+      "source": "manuscript/source/sections/11-response.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.UniformResponseRows.source11_2",
+        "SphericalAging.SphereOnlyActualResponseCorollaries.actual_source11_2"
+      ],
+      "scope_note": "The native arbitrary-spin actual cluster proves literal uniform absolute response localization with all actual response/Fisher/forgetting inputs internally derived, with the preceding field threshold10.1 independently proved."
+    },
+    {
+      "number": "11.3",
+      "kind": "lemma",
+      "label": "lem:resp-drift-holder",
+      "title": "Hölder continuity of the projected drift",
+      "source": "manuscript/source/sections/11-response.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.ProjectedDriftHolder.source11_3"
+      ],
+      "scope_note": "Complete source Lemma11.3 for every p>=3 directly from actual CK equations: genuine correlation increment bound, tree half-Holder modulus, polynomial drift half-Holder estimate and its actual causal projection estimate, with the source explicit constants. Actual CK physical bounds and global multiplier ceiling are derived. No extra analytic, stationary or localization premise."
+    },
+    {
+      "number": "11.4",
+      "kind": "theorem",
+      "label": "resp:forward-derivative",
+      "title": "Remote derivative bound and forward FDT",
+      "source": "manuscript/source/sections/11-response.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.ForwardDerivativeTheorem.forward_derivative_theorem_literal",
+        "SphericalAging.SphereOnlyActualForwardDerivativeTheorem.actual_source11_4",
+        "SphericalAging.ActualForwardDerivativeTheorem.actual_source11_4",
+        "SphericalAging.ActualForwardDerivativeTheorem.exists_actual_source11_4",
+        "SphericalAging.PalomarCompleteTheorems.exists_complete_conclusions",
+        "SphericalAging.PalomarPrincipalTheorems.exists_principal_conclusions"
+      ],
+      "scope_note": "Theorem11.4 holds for every integer p>=3 and all actual stationary clusters, including the sharp remote envelope, both literal full causal-row suprema, diagonal slope -1 and one-sided c derivative -1. The direct actual_source11_4 requires only the genuine CK Cluster; the field threshold and every analytic/response input are proved internally. exists_actual_source11_4 also constructs the stationary profile from CK equations alone."
+    },
+    {
+      "number": "11.5",
+      "kind": "theorem",
+      "label": "resp:backward-fdt",
+      "title": "Strong backward FDT",
+      "source": "manuscript/source/sections/11-response.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.BackwardStrongTheorem.strong_backward_fdt",
+        "SphericalAging.BackwardStrongTheorem.sourceEarlierRow_ae",
+        "SphericalAging.EarlierCovariance.correlation_earlier_hasDerivAt",
+        "SphericalAging.EarlierCovariance.correlation_earlier_initial_hasDerivWithinAt",
+        "SphericalAging.SphereOnlyActualResponseCorollaries.actual_source11_5",
+        "SphericalAging.RemarkFisherEndpoints.correlation_diagonal_left_derivative",
+        "SphericalAging.RemarkFisherEndpoints.earlierSlope_diagonal"
+      ],
+      "scope_note": "The native actual all-spin model proves the complete backward FDT clauses with actual reflection/strong/Fisher/forgetting inputs constructed, leaving only preceding field threshold10.1."
+    },
+    {
+      "number": "11.6",
+      "kind": "corollary",
+      "label": "resp:remote-earlier",
+      "title": "Uniform remote decay and earlier smoothing",
+      "source": "manuscript/source/sections/11-response.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.RemoteEarlierTheorem.remote_earlier_limit",
+        "SphericalAging.RemoteEarlierTheorem.earlier_smoothing_limsup",
+        "SphericalAging.ResponsePowerTail.power_square_tail",
+        "SphericalAging.ResponsePowerTail.power_smoothing_bound",
+        "SphericalAging.ResponsePowerTail.power_smoothing_isBigO",
+        "SphericalAging.SphereOnlyActualResponseCorollaries.actual_source11_6"
+      ],
+      "scope_note": "The native actual all-spin model proves remote earlier decay and the literal smoothing envelope. The additional power-tail statement retains its genuine stated profile tail assumption and derives its sharp Big-O consequence; actual model inputs are internally constructed."
+    },
+    {
+      "number": "11.7",
+      "kind": "corollary",
+      "label": "resp:thermal",
+      "title": "Thermal covariance on the full late triangle",
+      "source": "manuscript/source/sections/11-response.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.ThermalTheorem.source11_7",
+        "SphericalAging.SphereOnlyActualResponseCorollaries.actual_source11_7"
+      ],
+      "scope_note": "The complete thermal covariance theorem on the full late triangle has a native all-spin actual wrapper, with all physical/reflection/response/forgetting inputs derived and only preceding field threshold10.1 explicit."
+    },
+    {
+      "number": "11.8",
+      "kind": "remark",
+      "label": "rem:resp-l2-versus-l1",
+      "title": "Square integrable versus integrated response",
+      "source": "manuscript/source/sections/11-response.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.RemarkResponseIntegratedTail.source11_8_actual_model"
+      ],
+      "scope_note": "The actual cubic response has remote integrated mass liminf at least 1-q>0 for every fixed window, including the critical endpoint, while its squared mass converges to the stationary square tail and that tail tends to zero."
+    },
+    {
+      "number": "11.9",
+      "kind": "lemma",
+      "label": "resp:seed-cost",
+      "title": "Gaussian seed overlap has a threshold cost",
+      "source": "manuscript/source/sections/11-response.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.GaussianSeedCostTheorem.source11_9"
+      ],
+      "scope_note": "Complete local source11.9 for the literal ordered-coefficient Gaussian disorder and an arbitrary probability seed independent of disorder, with a measurable standard Gaussian vector from that seed. The preceding actual sharp external-field penalty is derived from exactly10.1; Gaussian radial normalization error follows from the true Gaussian radius variance, Holder/Jensen and integrability are proved, and the stated energy lower liminf forces the exact beta_d^(-1/p) delta^(1/p) absolute overlap limsup. The constant is independent of the coefficient-Lipschitz constant and seed law; every diverging dimension subsequence is allowed. No seed-overlap or field-cost conclusion is a premise. The actual globally coefficient-Lipschitz algorithm and ball constraints are the printed standing inputs."
+    },
+    {
+      "number": "11.10",
+      "kind": "lemma",
+      "label": "resp:weighted-brownian",
+      "title": "A weighted Brownian response identity",
+      "source": "manuscript/source/sections/11-response.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.WeightedBrownianTheorem.source11_10"
+      ],
+      "scope_note": "Complete local source11.10 from the precise preceding source3.4 unweighted Brownian primitive expectation limit and source10.4 branch-endpoint/trunk-past joint law. The genuine deterministic continuous-weight Wiener integral is constructed; its standard Gaussian law and independence from disorder follow from its true isometry and the product Brownian model. Finite branch averaging, endpoint/past law transfer, bounded pairing operator and continuous-weight density approximation prove the printed sqrt(2) weighted response limit along any dimension subsequence. No Gaussian target law, weighted convergence target or weighted isometry is a premise. The whole trunk path after the fork time is not assumed to have the endpoint joint law. The source3.4 and source10.4 actual realization remain upstream."
+    },
+    {
+      "number": "11.11",
+      "kind": "proposition",
+      "label": "prop:remote-response-general",
+      "title": "Remote squared response for general pure models",
+      "source": "manuscript/source/sections/11-response.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.RemoteResponseTheorem.source11_11",
+        "SphericalAging.SphereOnlyActualRemoteResponseTheorem.actual_source11_11"
+      ],
+      "scope_note": "The arbitrary-spin positive actual cluster proves every printed remote row field-cost clause. Physical forks, Brownian primitive, marginality and localization are internally derived; only preceding PublishedFieldThreshold10.1 is supplied."
+    },
+    {
+      "number": "12.1",
+      "kind": "proposition",
+      "label": "resp:weighted-ratio",
+      "title": "An exact weighted slow ratio",
+      "source": "manuscript/source/sections/12-violation.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.WeightedSlowRatioTheorem.source12_1",
+        "SphericalAging.SphereOnlyActualWeightedSlowRatioTheorem.actual_source12_1"
+      ],
+      "scope_note": "Strict beta>beta_d makes x in (0,1). Actual slow denominator is eventually positive for each fixed cutoff, genuine inner ratio limits are proved, outer cutoff tends to x, and exact weighted slow defect identity follows by the row FTC without monotonicity."
+    },
+    {
+      "number": "12.2",
+      "kind": "remark",
+      "label": "rem:viol-x-interpretation",
+      "title": "Interpretation of $x$",
+      "source": "manuscript/source/sections/12-violation.tex",
+      "formalization_required": false,
+      "binding_status": "interpretive_scope_caution",
+      "exact_completed_declarations": [],
+      "scope_note": "Correctly distinguishes the proved weighted moment from a pointwise slow FDR. The pointwise relation is a physical interpretation/open target, not a claimed theorem. No completed theorem binding is demanded for that open prediction; the mathematical moment is covered by the preceding proposition."
+    },
+    {
+      "number": "12.3",
+      "kind": "lemma",
+      "label": "resp:transport",
+      "title": "Response-budget transport",
+      "source": "manuscript/source/sections/12-violation.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.ResponseTransport.response_budget_transport_expanded"
+      ],
+      "scope_note": "Abstract transport holds for any absolutely continuous nonnegative z and nonnegative integrable r satisfying a genuine square budget. Extended square-defect lintegral handles infinity, finite case uses actual L2 inequality. No monotonicity of z is assumed; printed integrated-square relation is proved."
+    },
+    {
+      "number": "12.4",
+      "kind": "theorem",
+      "label": "resp:persistent-defect",
+      "title": "A positive slow defect and a physical rate constraint",
+      "source": "manuscript/source/sections/12-violation.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.PersistentDefectTheorem.source12_4",
+        "SphericalAging.SphereOnlyActualPersistentDefectTheorem.actual_source12_4"
+      ],
+      "scope_note": "Strict selected sector yields positive m_infinity, monotone convergence of m_L, physical remote budget, and lower bound involving true unweighted square-defect integral and E_F; extended-integral cases are handled. Full defect-square decay is derived from actual Fisher/derivative bounds and produces the rate constraint. No negative-part L1 control is asserted."
+    },
+    {
+      "number": "12.5",
+      "kind": "remark",
+      "label": "rem:transport-sharp",
+      "title": "Sharpness of the transport inequality",
+      "source": "manuscript/source/sections/12-violation.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.ResponseTransportSharpness.actual_source12_5"
+      ],
+      "scope_note": "Concrete two-stage absolutely continuous curves attain the abstract bound in the limit, with true budget and computed integral; supports optimality for that abstract transport inequality. The printed remark explicitly avoids claiming sharpness of the CK rate constant."
+    },
+    {
+      "number": "13.1",
+      "kind": "lemma",
+      "label": "lem:geometry-coherent-root",
+      "title": "Coherent approximation of a root",
+      "source": "manuscript/source/sections/13-saturated.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.TreeCoherentOperator.coherent_root"
+      ],
+      "scope_note": "Concrete symmetric coherent HS operator with genuine norm1 and printed height blocks, zero-denominator convention, and actual root error<=5*delta^(1/4). Positivity is not falsely claimed for every coherent step approximation; symmetry and norm are the local claim."
+    },
+    {
+      "number": "13.2",
+      "kind": "theorem",
+      "label": "thm:geometry-universal-root",
+      "title": "Universal threshold root",
+      "source": "manuscript/source/sections/13-saturated.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.UniversalRootTheorem.source13_2"
+      ],
+      "scope_note": "One fixed infinite-dimensional target and actual isometric embeddings send each v_n to 1 plus zero. Actual conjugated root converges in HS to the literal max-kernel operator, paired value 2*sqrt(2)/3, positive frame and absolute diagonal HasSum trace sqrt(2) for every Hilbert basis. Formal target does not require separability, hence is stronger on target scope. No trace continuity from HS convergence is asserted."
+    },
+    {
+      "number": "13.3",
+      "kind": "remark",
+      "label": "rem:geometry-universal-kernel",
+      "title": "Interpretation of the universal kernel",
+      "source": "manuscript/source/sections/13-saturated.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.UniversalRootRemark.source13_3"
+      ],
+      "scope_note": "Cumulative-mass max-band density 2x, uniqueness of the nonnegative max kernel up to null sets, finite coherent squared band masses, and threshold constant-vector pairing are proved literally. HS norm1, positive weighted rank-one frame and trace sqrt(2) use the actual max kernel. Trace class is encoded by positive diagonal summability. The rank-one frame integrability gives the printed trace-norm assertion, although the implementation stores its Bochner integral in HS rather than a separate trace-norm Banach-space datatype."
+    },
+    {
+      "number": "13.4",
+      "kind": "lemma",
+      "label": "lem:geometry-pair-deficit",
+      "title": "Prefix alignment measured by a pair deficit",
+      "source": "manuscript/source/sections/13-saturated.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.TreePairDeficit.pair_deficit"
+      ],
+      "scope_note": "True heightwise cross masses>=0, cumulative prefixes, denominator-zero handling, rho in [0,1], and nonnegative Delta bounded by constant times the two 1/4 powers. Coherent-root comparison is actual HS pairing, with leaf correction accounted for."
+    },
+    {
+      "number": "13.5",
+      "kind": "theorem",
+      "label": "thm:geometry-threshold-product",
+      "title": "Product inequality for positive threshold states",
+      "source": "manuscript/source/sections/13-saturated.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.TreeThresholdProductSup.positive_threshold_states",
+        "SphericalAging.TreeThresholdProductSup.threshold_product_supremum"
+      ],
+      "scope_note": "Product bound for all unit triples with nonnegative cross overlap at every height and small genuine deficits. Uniform supremum tends to zero; positive part is actual real max. Boundedness holds for actual triples, sharp approximants make admissible sets nonempty, and the proof does not assume a target product inequality."
+    },
+    {
+      "number": "14.1",
+      "kind": "lemma",
+      "label": "lem:geometry-center-average",
+      "title": "Causal centers are approximated by local averages",
+      "source": "manuscript/source/sections/14-threetime.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.CenterAverageDecay.causal_centers_approximated_by_local_averages",
+        "SphericalAging.CenterAverageReal.center_average_real_limit",
+        "SphericalAging.CenterAverageDecay.errorLimit_tendsto"
+      ],
+      "scope_note": "Actual causal center approximated in Hilbert norm by Bochner local average around t-D; finite D true error limit eta_D>=0 and eta_D->0. Reflected Gram and actual remote correlation cancellation, rather than a supplied approximation record, produce this."
+    },
+    {
+      "number": "14.2",
+      "kind": "proposition",
+      "label": "prop:geometry-center-gram",
+      "title": "Uniform aging Gram of normalized centers",
+      "source": "manuscript/source/sections/14-threetime.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.AgingCenterGramSup.aging_center_gram_supremum",
+        "SphericalAging.AgingCenterEnvelope.remote_covariance_limsup"
+      ],
+      "scope_note": "Uniform nested aging Gram supremum has all three late-time/gap constraints. Eventual positive q guarantees actual normalized centers. Local averages and covariance oscillation transfer control; actual sup is bounded/nonempty with harmless added zero, and the nested limit is genuine."
+    },
+    {
+      "number": "14.3",
+      "kind": "theorem",
+      "label": "thm:geometry-actual-product",
+      "title": "Actual three-time product inequality",
+      "source": "manuscript/source/sections/14-threetime.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.ActualCorrelationProductSup.actual_three_time_product_supremum",
+        "SphericalAging.ActualCorrelationProductSup.actual_three_time_product_liminf",
+        "SphericalAging.ActualCorrelationProductSup.critical_endpoint_product_supremum"
+      ],
+      "scope_note": "Inclusive beta>=beta_d in cubic model gives uniform positive product-residual supremum->0 for actual C on all three large-gap pairs; sequential product version and negative-product liminf are derived. Critical q=1/2, beta=beta_d is included. Arbitrary correlations need not converge and no monotonicity or ultrametric equality is required."
+    },
+    {
+      "number": "14.4",
+      "kind": "corollary",
+      "label": "cor:geometry-last-crossing",
+      "title": "Composition of last-crossing relaxation times",
+      "source": "manuscript/source/sections/14-threetime.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.LastCrossingChain.source14_4"
+      ],
+      "scope_note": "Literal last crossing is supremum of the continuous row level set. Fixed-wait forgetting makes it bounded, diagonal makes it nonempty, and continuity gives attained equality and no later overshoot. Lag diverges from fixed-window stationary c>=q. Composition and all finite chains follow from actual product bound with strict levels; no no-return or monotone-row premise."
+    },
+    {
+      "number": "14.5",
+      "kind": "remark",
+      "label": "rem:geometry-last-crossing-scope",
+      "title": null,
+      "source": "manuscript/source/sections/14-threetime.tex",
+      "formalization_required": false,
+      "binding_status": "interpretive_scope_caution",
+      "exact_completed_declarations": [],
+      "scope_note": "The manuscript explicitly limits conclusions to one-sided last-crossing inequalities; it does not identify first passages with last crossings, give monotonicity/no returns, or assert a physical clock or equality in composition. This is a correct scope statement, not a new algebra theorem requiring an extra formal binding."
+    },
+    {
+      "number": "14.6",
+      "kind": "lemma",
+      "label": "lem:geometry-disjoint-strips",
+      "title": "Orthogonality of disjoint causal strips",
+      "source": "manuscript/source/sections/14-threetime.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.DisjointCausalStripTheorem.cubic_disjoint_causal_strips"
+      ],
+      "scope_note": "Actual root-frame strips in genuine causal tensor/HS space are orthogonal for disjoint intervals separated by D, have printed integral-square norm identity and bound with interval length8D, and old row approximation uses true causal response L2 and actual early-time derivative control."
+    },
+    {
+      "number": "14.7",
+      "kind": "theorem",
+      "label": "thm:geometry-susceptibility-lower",
+      "title": "Susceptibility lower bound",
+      "source": "manuscript/source/sections/14-threetime.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.SusceptibilityLowerLimit.source14_7"
+      ],
+      "scope_note": "Inclusive cubic selected sector liminf chi(t,0)>=2(1-q). Actual diagonal construction synchronizes nonzero normalized threshold centers, fixed recent offsets, root embeddings and any finite convergent chi subsequence. Positivity and finite traces give lower semicontinuity before cutoff limit; full trace continuity is not used. If susceptibility escapes to infinity the extended-real liminf handles it, and no global finite bound is assumed."
+    },
+    {
+      "number": "14.8",
+      "kind": "remark",
+      "label": "rem:geometry-susceptibility-prediction",
+      "title": null,
+      "source": "manuscript/source/sections/14-threetime.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.RemarkSusceptibilityPrediction.predictedMass_eq",
+        "SphericalAging.RemarkSusceptibilityPrediction.predictedMass_cubic",
+        "SphericalAging.RemarkSusceptibilityPrediction.source14_8_actual_model"
+      ],
+      "scope_note": "Algebraic predicted mass 1-q+xq=(p-1)(1-q) and cubic2(1-q) match; lower-bound result is proved. Matching upper bound/convergence is explicitly stated as a prediction/open problem. The proof does not claim complete slow FDR from the lower trace bound."
+    },
+    {
+      "number": "15.1",
+      "kind": "theorem",
+      "label": "resp:fisher-cost",
+      "title": "Fisher-small windows and all-level passage costs",
+      "source": "manuscript/source/sections/15-fisher.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.FisherPassageTheorem.source15_1"
+      ],
+      "scope_note": "Strict beta>beta_d, cubic q>1/2: every genuine Fisher-small long physical window keeps correlation at q and primitive at1-q; every level c in (0,q) has finite exact first passage, no earlier crossing, passage lag->infinity and positive explicit local and global ENNReal liminf costs. Analytic estimates are derived from actual CK response, true Fisher majorant and actual product inequality; the same extracted a_F is used in public response and cost conclusions."
+    },
+    {
+      "number": "15.2",
+      "kind": "remark",
+      "label": "rem:fisher-constant",
+      "title": "The constant and the endpoint",
+      "source": "manuscript/source/sections/15-fisher.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.FisherCost.three_b_formula",
+        "SphericalAging.FisherCost.multiplier_formula",
+        "SphericalAging.FisherCost.denominator_formula",
+        "SphericalAging.FisherCost.fisherRatio_eq",
+        "SphericalAging.FisherCost.reduced_denominator_gt_five",
+        "SphericalAging.FisherCost.reducedRatio_pos",
+        "SphericalAging.FisherCost.reducedRatio_lt_one_fifth",
+        "SphericalAging.FisherCost.fisherCost_eq",
+        "SphericalAging.FisherCost.fisherCost_pos",
+        "SphericalAging.FisherCost.fisherCost_at_transition"
+      ],
+      "scope_note": "Using cubic marginality, exact ratio reduces to (2q-1)(q-c)^2/(6+2q-3q^2). Denominator>5, ratio lies in (0,1/5), and cost is its square for strict sector. At critical q=1/2 the cost is exactly zero; no strictly positive endpoint cost is claimed."
+    },
+    {
+      "number": "15.3",
+      "kind": "lemma",
+      "label": "resp:fisher-obstruction",
+      "title": "A sequential physical-window obstruction",
+      "source": "manuscript/source/sections/15-fisher.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.FisherObstructionTheorem.source15_3"
+      ],
+      "scope_note": "Sequential obstruction selects a genuine memory-convergent subsequence from a bounded actual integral, proves the lower memory estimate using actual bulk product control and recent stationary response primitives, and combines with actual response upper bound and calibrated margin. Recent cutoff/level tolerance/n limits are ordered correctly. The upper and lower analytic estimates are not merely supplied assumptions of the full theorem."
+    },
+    {
+      "number": "16.1",
+      "kind": "theorem",
+      "label": "thm:stationary-critical-amplitude",
+      "title": "Stationary critical relaxation",
+      "source": "manuscript/source/sections/16-relaxation.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.StationarySelectedCriticalRelaxation.stationary_selected_critical_relaxation"
+      ],
+      "scope_note": "Complete scalar implication from exactly the source stationary inputs S1-S4. Constructs the unique Gamma-calibrated exponent in (0,1/2), positive amplitude, literal IsEquivalent correlation tail, signed iterated derivatives for every fixed order and response tail. Actual normalization, convolution balance, Gamma-beta averaging, finite Dirichlet energy, true renewal representation, log-beta renewal limit, unsmoothing and monotone-density derivatives are proved. No amplitude, asymptotic, normalized equation or renewal representation is assumed; upstream selected-sector existence remains a separate manuscript claim. Final integration discharges the preceding actual-model/selection/threshold inputs through the native construction and independently proved source10.1; the local source hypotheses retain their exact printed scope."
+    },
+    {
+      "number": "16.2",
+      "kind": "remark",
+      "label": "rem:sc-amplitude",
+      "title": null,
+      "source": "manuscript/source/sections/16-relaxation.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.StationaryCriticalAmplitudeIdentification.critical_exponent_depends_only_on_parameter",
+        "SphericalAging.StationaryCriticalAmplitudeIdentification.stationary_critical_amplitude_identification"
+      ],
+      "scope_note": "Exact exponent uniqueness from its parameter and actual normalized/physical amplitude identification proved, including source mass/mean square-root formula. No closed-form amplitude claimed."
+    },
+    {
+      "number": "16.3",
+      "kind": "lemma",
+      "label": "lem:sc-normalized-equation",
+      "title": "The normalized equation",
+      "source": "manuscript/source/sections/16-relaxation.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.StationaryNormalization.normalized_stationary_profile"
+      ],
+      "scope_note": "exact S1-S4 input class, positive amplitude and all derivatives, actual normalization, comparison class, endpoint/error/Dirichlet bounds, first-moment key renewal, density control and Gamma-beta law."
+    },
+    {
+      "number": "16.4",
+      "kind": "lemma",
+      "label": "lem:sc-comparison",
+      "title": "Comparison",
+      "source": "manuscript/source/sections/16-relaxation.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.StationaryComparison.normalized_comparison_upper",
+        "SphericalAging.StationaryComparison.normalized_comparison_lower"
+      ],
+      "scope_note": "exact S1-S4 input class, positive amplitude and all derivatives, actual normalization, comparison class, endpoint/error/Dirichlet bounds, first-moment key renewal, density control and Gamma-beta law."
+    },
+    {
+      "number": "16.5",
+      "kind": "lemma",
+      "label": "lem:sc-shifted",
+      "title": "Shifted-power estimates",
+      "source": "manuscript/source/sections/16-relaxation.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.StationaryShiftedProfiles.shifted_power_profiles"
+      ],
+      "scope_note": "exact S1-S4 input class, positive amplitude and all derivatives, actual normalization, comparison class, endpoint/error/Dirichlet bounds, first-moment key renewal, density control and Gamma-beta law."
+    },
+    {
+      "number": "16.6",
+      "kind": "lemma",
+      "label": "lem:sc-critical-residuals",
+      "title": "Corrected critical profiles",
+      "source": "manuscript/source/sections/16-relaxation.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.StationaryCorrectedCriticalProfiles.critical_corrected_profiles",
+        "SphericalAging.StationaryCorrectedCriticalProfiles.normalized_critical_corrected_profiles",
+        "SphericalAging.StationaryCorrectedCriticalProfiles.normalized_critical_residual_signs"
+      ],
+      "scope_note": "All profile positivity, strict decrease, initial values and actual upper/global and lower/eventual residual signs proved from normalized stationary conclusions and the critical exponent equation, the section standing hypotheses. Genuine convolution derivatives and remainder bounds are proved, not assumed."
+    },
+    {
+      "number": "16.7",
+      "kind": "proposition",
+      "label": "thm:stationary-critical-endpoint",
+      "title": "Critical endpoint bounds",
+      "source": "manuscript/source/sections/16-relaxation.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.StationaryEndpointTheorem.stationary_critical_endpoint",
+        "SphericalAging.StationaryEndpointBounds.normalized_critical_response_upper_bound"
+      ],
+      "scope_note": "The entire normalized source proposition, including explicitly ordered positive global lower/upper constants and ordered positive all-order derivative constants for n>=1. Genuine comparison profiles, convolution errors, spectral derivative identities, monotonicity and FTC induction are proved. Assumes only the normalized stationary conclusions of16.3 and the section standing critical exponent equation."
+    },
+    {
+      "number": "16.8",
+      "kind": "lemma",
+      "label": "lem:stationary-critical-balance-error",
+      "title": "Integrable critical balance error",
+      "source": "manuscript/source/sections/16-relaxation.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.StationaryBalanceError.integrable_critical_balance_error"
+      ],
+      "scope_note": "Genuine causal convolution derivative balance, global cubic error bound and actual weighted L1 integrability. Normalized stationary conclusions and selected critical exponent are exactly the section standing hypotheses. At0 the half-line derivative is a genuine right derivative; for t>0 the ordinary derivative is proved. No desired error bound or convolution derivative identity is assumed."
+    },
+    {
+      "number": "16.9",
+      "kind": "lemma",
+      "label": "lem:stationary-critical-dirichlet",
+      "title": "Logarithmic Dirichlet bound",
+      "source": "manuscript/source/sections/16-relaxation.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.StationaryDirichletTheorem.stationary_critical_dirichlet"
+      ],
+      "scope_note": "All source clauses for the actual logarithmic normalized profile: boundedness, strict positivity and lower bound on the positive ray, genuine global Lipschitz bound, actual two-dimensional weighted Dirichlet energy finiteness, all fixed increments and uniformity over bounded increment sets. Only normalized stationary conclusions and the selected exponent equation are standing inputs. Genuine Schur row beta integral, weighted cutoff integration by parts, triangle comparison, Fatou, exponential coordinate conversion and quantitative finite-energy increment decay are proved independently."
+    },
+    {
+      "number": "16.10",
+      "kind": "theorem",
+      "label": "thm:sc-key-renewal",
+      "title": "Key renewal theorem; {\\cite[Chapter~XI, Section~1, pp.~362--363]{feller1971}}",
+      "source": "manuscript/source/sections/16-relaxation.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.PositiveRenewalSourceSeries.first_moment_source_key_renewal"
+      ],
+      "scope_note": "Positive-support nonarithmetic probability law with a finite first moment; the real half-line renewal series with cutoff [0,x] is summable and tends to the test integral divided by the mean. Full Darboux direct Riemann integrability and Borel measurability of the causal extension are explicit assumptions. Continuity, Lipschitz regularity, a second moment, and a Fourier Nonlattice strengthening are not assumed. The iid renewal walk, first-entry cell bound, harmonic maximum principle, survival-weighted Tonelli normalization, Blackwell theorem and Darboux squeeze are derived."
+    },
+    {
+      "number": "16.11",
+      "kind": "lemma",
+      "label": "lem:sc-dri",
+      "title": "A criterion for direct Riemann integrability",
+      "source": "manuscript/source/sections/16-relaxation.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.DirectRiemannReal.continuous_summable_unit_suprema_directly_riemann_integrable"
+      ],
+      "scope_note": "Exact continuous nonnegative function with summable real unit-interval suprema. Constructs integrable grid envelopes, proves all-mesh upper/lower summability and convergence of both literal Darboux sums to the actual half-line Lebesgue integral. No Riemann-sum convergence or integrability premise."
+    },
+    {
+      "number": "16.12",
+      "kind": "lemma",
+      "label": "lem:log-beta-renewal-density",
+      "title": "Renewal density for a logarithmic beta variable",
+      "source": "manuscript/source/sections/16-relaxation.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.LogBetaRenewalDensityTheorem.log_beta_renewal_density"
+      ],
+      "scope_note": "Actual logarithmic-beta density and genuine all-order scalar convolution laws; exact positive digamma mean, pointwise summability of the actual renewal density, local integrability, uniform tail bound and reciprocal-mean limit. Finite convolution smoothing, Gamma/beta bounds, DRI norm, nonlattice and moment conditions, exact continuous density uniqueness and all key-renewal inputs are proved. No renewal conclusion is assumed."
+    },
+    {
+      "number": "16.13",
+      "kind": "lemma",
+      "label": "lem:sc-gamma-beta",
+      "title": "Gamma--beta factorization",
+      "source": "manuscript/source/sections/16-relaxation.tex",
+      "formalization_required": true,
+      "binding_status": "native_kernel_checked_completed_declarations",
+      "exact_completed_declarations": [
+        "SphericalAging.BetaGammaLaw.independent_beta_gamma",
+        "SphericalAging.BetaGammaLaw.beta_gamma_product_law"
+      ],
+      "scope_note": "Actual beta/gamma measures and arbitrary independent measurable random variables with the prescribed marginal laws. Genuine one-dimensional Jacobian substitution derives the product density, then nonnegative Fubini proves equality of the pushforward measures. No product density or factorization identity is assumed."
+    }
+  ]
+}

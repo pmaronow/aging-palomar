@@ -1,0 +1,152 @@
+{
+  "schema_version": 5,
+  "scope": "Both original targets are independently preserved in canonical root Challenge and Solution. Byte-identical proof modules, including Solution, reuse authenticated prior native objects. Every comment-changed library module is compiled in fresh external scratch. Reuse is not asserted to be dependency-closed. All Lean noncomment code and the import graph are unchanged; a fresh current whole-private Audit and fresh protected three-kernel comparison check the current sources and objects. The manuscript was rebuilt after two unnumbered response paragraphs were aligned to the proved scope; all numbered statements and citations remain unchanged. This local technical record does not claim public visibility, Palomar registration or editorial acceptance.",
+  "original_repository": {
+    "url": "https://github.com/paronow-yale/aging-palomar-original",
+    "base_commit": "bf8f45defef103eaa8a590656fb8a67ab26cec45",
+    "base_tree": "0a3e667369c8b1ca8433038c168c4c46eedb7685",
+    "original_commit": "c9733dc79c5e717f95b39107def1285733564a5e",
+    "original_tree": "873a4c2e996836bd44502c6732e6a0ff738679cd"
+  },
+  "palomar_preflight": {
+    "report_sha256": "8ce3e8e579717881518f202849d973e3819e3507851a1430b451c9d493a4b389",
+    "structural_requirements_satisfied": true,
+    "official_submission_commit": "d4e41c1d5b0d114c4859e6e5831dc6d3ad1d0d44",
+    "proof_inputs_sha256": "cda55a9a0f0e28f513f017d2ad83c9e1e9a0dcb3588ac174af9f9d4480a8f10c",
+    "rules_sha256": {
+      "official-rules/PalomarSubmission/README.md": "9684b6b4704fff27ca8b8c9a795029b500c5c8612f15f350b7e3d03980339a88",
+      "official-rules/PalomarSubmission/scripts/submission_contract.py": "724f82211ef702e2d1b4e5012183e532bd8f8ba03ba676022e4722a420c5be75",
+      "official-rules/PalomarSubmission/scripts/source_requirements.py": "971950a45500ad8ba8c9061eb51716bc1c38f411ff877c447b6de527b23d2c6d",
+      "official-rules/PalomarSubmission/scripts/verify_submission.py": "c575759d82c506f181b3736a110950fd32931c08a1be454262027d6205f178a2",
+      "official-rules/PalomarSubmission/scripts/detect_license.rb": "7cc4ad2c63633b307c42808cbe29b6df799ef93f6c7560456e2637bc376f35f8",
+      "official-rules/PalomarSubmission/Gemfile": "c0197db488ffa8e154edea20a26fa7a1c1c3e89675dfce43e72c16831966dd9b",
+      "official-rules/PalomarSubmission/Gemfile.lock": "d93caad3b41ab81138c1770dcde1415ac9aa47e8e469ea25b3f876a9f3d2cdff",
+      "official-rules/PalomarSubmission/toolchains.json": "fd40347e4b586e7c42233b35f11efb006d25033b9a7ded9565719edf7aa98354",
+      "official-rules/PalomarSubmission/allowed-challenge-repositories.json": "bfb114daf5ead308052ccec85b1029aa0c875bebe6eec8f642df57f2ddbd8971",
+      "official-rules/PalomarSubmission/formalization-profile.json": "d695b838bbab69236f6e43afda6bd4d719a91099412351f89c3c2cfeb26d5131",
+      "official-rules/PalomarSubmission/verification-profile.json": "94fcd7906a1b6c076c0036d742e1c5add8625e49bb474818ec8924576dbf0caa",
+      "official-rules/PalomarSubmission/browser-preflight-policy.json": "d3d0003b7a043695c5cb06c117253e248406e0723bbfe2cac50afb703fa97046",
+      "official-rules/PalomarSubmission/taxonomies/arxiv-categories.json": "3b339cf140a914c50bab39b1c44df2437ce3984bd09bb2150fcb0edd60eda776",
+      "official-rules/PalomarSubmission/taxonomies/msc2020-codes.json": "b4de69f1f562da01e0f4580cecc0ab36098f5297bb7cdd669c8ec3b0d3606060",
+      "latest-official/PalomarPolicy-CONTRIBUTING.md": "32cfaa48ef8d51a6959df46f73ccff1482d8bbf89b4bb3f878498b518b11edcd",
+      "latest-official/PalomarTemplate-README.md": "532a563b4524da1681bc8509e8d037654bfe5b25d7426bdcfe5a1ffe960aa325",
+      "latest-official/PalomarTemplate-lakefile.toml": "a83f55ed63076ba7bb97046c7254e40754fc80d32c485c77b81a7dfd90e10d61",
+      "latest-official/PalomarTemplate-comparator.json": "ecb5fdece4f95702adc4dc86988c9315717e77ebfbda6d6d420571ddbe42e9fc",
+      "official-rules/PalomarPolicy/docs/specification.md": "ec8ac89a6b4eea0e44c94a381af7b11ff540299ffd00cf2826603be2783b4376",
+      "official-rules/PalomarPolicy/rubric.json": "fb8b5eb01bc41dc2c0a5a138b78b82004708681c97b311c225bdf6217f5f7d7d",
+      "official-rules/PalomarPolicy/prompts/materiality.md": "deaf4fec6e79b390faef453bccd17632efa1a4d39b428d545ae5e70f475d19ca",
+      "official-rules/PalomarPolicy/prompts/01-metadata.md": "287758a771c910c9e11bf8e784ccfad61d83d5fbac55b07c768da18cd3bd5ae2",
+      "official-rules/PalomarPolicy/prompts/02-statement-alignment.md": "b94741bb2f453cab4444fbdc58f06ba3311188be81eba33a8433c6d325823ec1",
+      "official-rules/PalomarPolicy/prompts/03-definition-fidelity.md": "501132529866327951e09a3196d0a9120a38908572128821b3890b87888cbdc6",
+      "official-rules/PalomarPolicy/prompts/04-literature-notability.md": "1507ed150b4fa9e1d93cad1cab6a754826bb9719df32cd46607989ed7b618f7f",
+      "official-rules/PalomarPolicy/prompts/05-proof-account.md": "c6bb4dfbccff8a9010a51549897dfd2f0ea1f28d82ba16f89f7bc9991c435584",
+      "official-rules/PalomarPolicy/prompts/06-synthesis.md": "34d9a72ac62074e97f0e3c19a54934049934a2d1e8701ff3fdf513cdf18c0267"
+    },
+    "technical_payload_sha256": "b57ca848e14b81fd75a9c224bc973e13c0a35fe1b92deca537ce476aa21a2238",
+    "technical_payload_files": 1966,
+    "visibility_observation_sha256": "b8c5848f57c798b50e45681e57c579b52d0456cb045a25eb87ced6dee25b2e4d",
+    "public_visibility_satisfied": false,
+    "observed_actor_admin": true,
+    "visibility_change_authority_available": true,
+    "registration_complete": false,
+    "submission_ready": false,
+    "publication_prerequisites_pending": [
+      "Public GitHub visibility",
+      "Palomar registry submission and editorial review"
+    ],
+    "visibility": {
+      "repository": "paronow-yale/aging-palomar-original",
+      "visibility": "private",
+      "private": true,
+      "admin": true,
+      "observed_actor": "paronow-yale",
+      "public_submission_prerequisite_satisfied": false,
+      "observation_sha256": "b8c5848f57c798b50e45681e57c579b52d0456cb045a25eb87ced6dee25b2e4d"
+    },
+    "qualification": "Current local source/configuration/metadata/license/pinned-public-dependency structural checks and actual all-source native header parsing passed. All 101 named non-target Challenge declarations and both targets now have attached mathematical docstrings, with bounded independent meaning review; this does not guarantee official editorial acceptance. Physical U-kernel Duhamel prose is restricted to the formally proved bounded continuous forcings; general predictable L2 affine sources remain separately formalized. The repository remains private; the freshly observed owner account has admin capability, but no visibility change or registration was performed. Public release, authorization declaration, immutable-commit intake and Palomar hosted verification/editorial review remain pending. Native proof, whole-private axiom and three-kernel execution evidence are separate; no proof compilation or kernel replay was performed for this structural preflight."
+  },
+  "toolchain": "leanprover/lean4:v4.35.0-rc2",
+  "mathlib_commit": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "proof_inputs_sha256": "cda55a9a0f0e28f513f017d2ad83c9e1e9a0dcb3588ac174af9f9d4480a8f10c",
+  "manuscript": {
+    "pages": 285,
+    "source_files": 31,
+    "references": 122,
+    "pdf_sha256": "79681cd62b837bf74ebd062891aacc034b3cddd4cdecd9beab976104e6dbc5c5",
+    "unchanged_from_previously_verified_version": false,
+    "rebuilt_for_interface_only_change": false,
+    "rebuilt_after_scope_alignment": true,
+    "numbered_statements_labels_and_citations_unchanged": true,
+    "source_inputs_sha256": "7ab11737f66506ca312f1ecc84a5d06d3e898328308d7212892b2b815e05f46c",
+    "source_review_sha256": "5e0101195867b8cf37a9c4b667ff2a6d4c15536badb17ab1d3d7d51d6fd9d60d"
+  },
+  "lean": {
+    "verified_proof_modules": 1919,
+    "failed_modules": 0,
+    "old_project_objects_reused": true,
+    "reuse_class": "prior_verified_build",
+    "prior_verified_proof_modules_reused_count": 1882,
+    "prior_verified_library_modules_reused_count": 1881,
+    "prior_verified_retained_solution_modules_reused_count": 1,
+    "newly_compiled_current_modules": 37,
+    "source_unchanged": true,
+    "receipt_sha256": "76f64e0ac8f31a470c4a90e1d177d1c63dcc9463998ec4089a644d235339d9d7",
+    "plan_sha256": "c139716bd6e338525365330a5dd7169b13df163861a6eea84416f4427b5e7550",
+    "events_sha256": "7ebb5ea752f234c44044bc03a3b9e9da709512ebd8f168bbe86504a048802d73",
+    "prior_native_receipt_sha256": "060248cad1b666c6268e0193d25f71f49afda8039f4f2899ae89d85c829471e2",
+    "noncomment_code_and_import_graph_unchanged": true,
+    "reused_module_dependency_closure_asserted": false,
+    "source_revision_kind": "comment_only_with_identical_noncomment_code"
+  },
+  "axiom_audit": {
+    "fresh_current_execution": true,
+    "retained_modules": 1919,
+    "private_module_coverage_complete": true,
+    "audited_declarations": 26592,
+    "audited_private_declarations": 4427,
+    "unexpected_axioms": 0,
+    "permitted_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "claim_bindings": 237,
+    "distinct_claim_declarations": 227,
+    "receipt_sha256": "a23c85a35bbeb6953fb64a6ee180e2d2b704524521b293c116f053da523858d3",
+    "log_sha256": "c63429e363f61d61f485dfcc715955d9c1e7f9f9a74c51453a2c993686dfea0c",
+    "native_claim_binding_review_sha256": "f16c120ef77fc6ecd63f782cc5fdec9641f5574f3ede2a2ae08832922753f623"
+  },
+  "comparators": [
+    {
+      "configuration": "comparator.json",
+      "challenge_module": "Challenge",
+      "solution_module": "Solution",
+      "theorem_names": [
+        "SphericalAging.PalomarCompleteTheorems.exists_complete_conclusions",
+        "SphericalAging.PalomarStationarityCertificate.proposition5_7"
+      ],
+      "fresh_current_execution": true,
+      "accepted": true,
+      "kernel_acceptance": {
+        "Lean default": true,
+        "nanoda": true,
+        "con-ron": true
+      },
+      "config_sha256": "c7aae903711013002d8de745fe71279d496586e079d49a9ec796b079a253ce9b",
+      "report_sha256": "4f9998e36766983bf965881e903dfb792a0682041bfa7a6d450becb23e88d7e6",
+      "log_sha256": "b6c68660182d5f5e47308361b46b7024c3839cc03df94a9fe557df3195e4bc69",
+      "proof_inputs_unchanged": true,
+      "build_receipt_sha256": "76f64e0ac8f31a470c4a90e1d177d1c63dcc9463998ec4089a644d235339d9d7"
+    }
+  ],
+  "comment_cleanup": {
+    "report_sha256": "26a9f1df0b020fc5fa01b08c1e1ef798d1aa985d022f810306e99a64f38fb911",
+    "proposal_sha256": "fc86ab8586a17895d21978049cd3365a6679fb825cbbc92176f6bdad36eabe80",
+    "source_freeze_sha256": "212fd02507ecef3004d86287b547f47c31e63e19a54ef9b48dab0db343f672e4",
+    "comment_spans_cleaned": 88,
+    "library_files_changed": 37,
+    "all_noncomment_code_and_layout_unchanged": true,
+    "original_legal_notices_preserved": true,
+    "Challenge_documentation_review_sha256": "9ddd163abf9befb622a4daa09b81f702bdd54fca3f358f2cd299cf3715baac38"
+  }
+}

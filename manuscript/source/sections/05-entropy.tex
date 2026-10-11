@@ -1,0 +1,511 @@
+\chapter{Entropy production and stationary limits}\label{sec:entropy-clusters}
+
+In this section, we prove that the CK solution becomes stationary on late time windows and satisfies the fluctuation--dissipation theorem (FDT) there. Our tool is the relative entropy of the diffusion with respect to its Gibbs measure. It decreases at a rate equal to the relative Fisher information. Since the initial law is uniform, the entropy produced over all times is at most $\beta^2N/2$ on average over the disorder (\cref{lem:entropy-budget}). We then show in \cref{lem:finite-dimensional-fdt} that the Fisher information at an earlier time $s$ controls the backward FDT defect $\partial_sC-R$ at that time. In \cref{thm:fisher-clock}, we pass these estimates to the limit along one subsequence of dimensions. We obtain an integrable function $a_F$, the Fisher majorant, whose square root dominates the defect for all $t>s>0$. In \cref{lem:waiting-clock-current}, we establish that the Fisher information also controls the change of a correlation at fixed lag when both observation times are shifted. Combining these estimates with compactness, we prove \cref{prop:stationary-clusters}. It states that every limit point of the translated kernels is a stationary FDT profile with a constant multiplier, and that its response satisfies a closed equation.
+
+We use the following results of \cref{sec:model,sec:ck-structure}: the fixed-horizon bridge (\cref{prop:hard-bridge}), the Brownian primitive of the response (\cref{lem:brown-force-response}), the landscape bounds (\cref{lem:landscape-moments}), the energy identity (\cref{prop:energy-bridge}), the Green covariance identity (\cref{prop:green-covariance}), and the uniform estimates of \cref{prop:uniform-bounds,prop:global-regularity,prop:backward-response,prop:response-compactness}. The stationary clusters of \cref{prop:stationary-clusters} are the starting point of \cref{sec:scalar,sec:geometry-core,sec:stationary-selection}. We use the Fisher majorant again in \cref{app:general-selection,resp:chapter,sec:three-time,resp:fisher-chapter}, and \cref{app:general-selection} reuses the subsequence of dimensions chosen in \cref{thm:fisher-clock}.
+
+The entropy dissipation identity, the Bochner formula, and the gradient bound for the semigroup are standard calculus for reversible diffusions. The Bochner formula for a Laplacian with a gradient drift is recorded in \cite[Proposition~3, equation~(4b), p.~187]{bakryemery1985}, and the diffusion and entropy calculus is presented in \cite[Chapter~3 and Proposition~5.2.2, p.~245]{bgl2014}. We derive the spherical response identity of \cref{lem:finite-dimensional-fdt} directly; for related response identities around nonthermal steady states under detailed balance, see \cite[Sections~2--3, pp.~27--30]{agarwal1972}; nonequilibrium diffusion response identities are given in \cite[equations~(6) and~(11), pp.~010602-2--010602-3]{bmw2009}. Cugliandolo, Dean, and Kurchan described the physical mechanism that links entropy production to violations of FDT, and they derived bounds on these violations from the entropy production \cite[arXiv version~2, equations~(12)--(13), p.~3, and~(18), p.~4]{cdk1997}; their integrated bounds are discussed in the unnumbered passage ``Integrated bounds for purely relaxational systems'' on p.~3 of that arXiv version. For the projected hard-spherical response, we establish dimension-uniform bounds and pass them to a single Fisher majorant for the CK solution. We give the calculations in full because the sign, the spherical projection, and the normalization of the response all matter later.
+
+\paragraph{Standing notation.}
+Throughout this section, $p\ge3$ and $\beta>0$ are fixed. For a fixed realization of the disorder $J$, the Hamiltonian $H_N$ is fixed. Recall from \eqref{eq:generator} that the generator of \eqref{eq:hard-sde} is
+\[
+ \mathcal L_N=\Delta_S+\beta\ip{\nabla_SH_N}{\nabla_S\,\cdot\,}.
+\]
+We write $P_\tau=P^H_\tau=e^{\tau\mathcal L_N}$ for its semigroup. All differential operators act on functions on $S_N$ and are spherical: $\nabla_S$, $\diver_S$, $\Delta_S$, and $\nabla_S^2$ are the gradient, divergence, Laplacian, and Hessian of $S_N$, as in \cref{sec:langevin}, and $\operatorname{Ric}$ is its Ricci tensor. We write $\Gamma(f,g)=\ip{\nabla_Sf}{\nabla_Sg}$ and $\Gamma(f)=\Gamma(f,f)$. The subscript $H$ marks quantities computed for the fixed Hamiltonian $H_N$. The expectation $\E_J$ averages over the Gaussian tensor, while $\E$ also averages over the initial point and the Brownian motion. Let $\rho_t$ be the density of the law of $X_t$ given $J$ with respect to $\omega_N$. The actual diffusion realizes a strictly positive density on $S_N$, with $\rho_0=1$ because the initial point is uniform and independent of $J$. We use its $C^3$ spatial regularity and the joint continuity, up to time zero, of $\rho_t$, $\nabla_S\rho_t$, its forward-equation slope, and the spatial gradient of that slope. The forward equation holds on $S_N$ at positive times and gives its right derivative at zero. All density, score, and current quantities used below are jointly measurable in the disorder and their time parameters; we establish their integrability over the disorder in the estimates below. We require no positivity or forward equation for an extension off $S_N$. Finally, $Q_N$ is the tensor norm \eqref{eq:tensor-norm}. Derivatives at time zero are always right derivatives; derivatives at positive times are ordinary derivatives.
+
+\section{Relative entropy and an exact fluctuation--dissipation identity}\label{sec:entropy-fdt}
+
+Recall from \cref{sec:langevin} that the Gibbs density $g_N=Z_{N,\beta}^{-1}e^{\beta H_N}$, with $Z_{N,\beta}=\int e^{\beta H_N}\,\dd\omega_N$, is reversible for $\mathcal L_N$. We write
+\[
+ v^{\mathrm{cur}}_t=\nabla_S\log(\rho_t/g_N)
+\]
+for the relative score of $\rho_t$; the superscript distinguishes it from the tree vectors $v_t$ of \cref{sec:geometry-core}. The probability current of the diffusion is $j_t=\beta\rho_t\nabla_SH_N-\nabla_S\rho_t=-\rho_tv^{\mathrm{cur}}_t$, which satisfies $\partial_t\rho_t+\diver_Sj_t=0$; we write all formulas below in terms of $v^{\mathrm{cur}}_t$. We define the relative entropy, the relative Fisher information, and its normalized annealed average by
+\[
+ D_H(t)=\int\rho_t\log(\rho_t/g_N)\,\dd\omega_N,
+ \qquad
+ I_H(t)=\int\norm{v^{\mathrm{cur}}_t}^2\rho_t\,\dd\omega_N,
+ \qquad
+ a_N(t)=\frac1N\E_J I_H(t).
+\]
+
+\begin{lemma}[Finite normalized entropy budget]\label{lem:entropy-budget}
+For every realization of the disorder and every $t\ge0$,
+\begin{equation}
+ \partial_t\rho_t=\diver_S(\rho_tv^{\mathrm{cur}}_t),\qquad
+ D_H'(t)=-I_H(t),\qquad
+ \int_0^\infty I_H(t)\,\dd t\le D_H(0).
+ \label{eq:quenched-entropy-dissipation}
+\end{equation}
+The first identity is an equation on $S_N$, and both derivatives at $t=0$ are taken from the right.
+Moreover,
+\begin{equation}
+ \int_0^\infty a_N(t)\,\dd t\le\frac{\beta^2}{2},
+ \qquad
+ \frac{D_H(0)}N\le2\beta Q_N.
+ \label{eq:normalized-entropy-budget}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Note that $\rho_tv^{\mathrm{cur}}_t=\nabla_S\rho_t-\beta\rho_t\nabla_SH_N$. Then the forward equation $\partial_t\rho_t=\Delta_S\rho_t-\beta\diver_S(\rho_t\nabla_SH_N)$ of the diffusion is the first identity in \eqref{eq:quenched-entropy-dissipation}. Next, we differentiate the relative entropy. Using $\int\partial_t\rho_t\,\dd\omega_N=0$ and integrating by parts, we find
+\[
+ D_H'(t)=\int\log(\rho_t/g_N)\,\diver_S(\rho_tv^{\mathrm{cur}}_t)\,\dd\omega_N
+ =-\int\rho_t\norm{v^{\mathrm{cur}}_t}^2\,\dd\omega_N=-I_H(t).
+\]
+At positive times, we may differentiate under the integral because the forward slope is continuous and the density is strictly positive on the compact sphere. Since the entropy and Fisher information are continuous up to zero, the positive-time identity gives $D_H'(0+)=-I_H(0)$. The same argument, applied to the continuous forward slope, gives the right derivative of the density at zero. Integrating from $0$ to $T$, we have $\int_0^TI_H(t)\,\dd t=D_H(0)-D_H(T)\le D_H(0)$, where we used the fact that the relative entropy of two probability densities is nonnegative. Letting $T\to\infty$ proves the third assertion of \eqref{eq:quenched-entropy-dissipation}.
+
+We now bound the initial entropy. Since $\rho_0=1$, we have
+\[
+ D_H(0)=\log Z_{N,\beta}-\beta\int H_N\,\dd\omega_N.
+\]
+By \eqref{eq:landscape-derivative-bounds}, we have $|H_N|\le NQ_N$ on $S_N$. As $\omega_N$ is a probability measure, this implies that
+\[
+ -\beta NQ_N\le\log Z_{N,\beta}\le\beta NQ_N,
+ \qquad
+ \Bigl|\int H_N\,\dd\omega_N\Bigr|\le NQ_N.
+\]
+This proves the second inequality in \eqref{eq:normalized-entropy-budget}, and by \cref{lem:landscape-moments}, both $\log Z_{N,\beta}$ and $\int H_N\,\dd\omega_N$ are integrable over the disorder. For each $x\in S_N$, the variable $H_N(x)$ is a centered Gaussian of variance $N\xi(1)=N$. By Fubini's theorem, we have $\E_J\int H_N\,\dd\omega_N=0$ and
+\[
+ \E_JZ_{N,\beta}=\int\E_Je^{\beta H_N(x)}\,\dd\omega_N(x)=e^{\beta^2N/2}.
+\]
+Using Jensen's inequality, we obtain
+\[
+ \E_JD_H(0)=\E_J\log Z_{N,\beta}\le\log\E_JZ_{N,\beta}=\frac{\beta^2N}{2}.
+\]
+Finally, by Tonelli's theorem and the third assertion of \eqref{eq:quenched-entropy-dissipation},
+\[
+ \int_0^\infty a_N(t)\,\dd t=\frac1N\E_J\int_0^\infty I_H(t)\,\dd t\le\frac1N\E_JD_H(0)\le\frac{\beta^2}{2},
+\]
+which is the first inequality in \eqref{eq:normalized-entropy-budget}.
+\end{proof}
+
+We next express correlations and responses through the semigroup. Let $m_\tau=P_\tau\operatorname{id}$ be the vector of functions $(P_\tau x_1,\dots,P_\tau x_N)$. By the Markov property, $m_\tau(x)$ is the conditional mean of $X_{s+\tau}$ given $X_s=x$ and $J$. Jensen's inequality and $\norm{X_{s+\tau}}=\sqrt N$ imply that $\norm{m_\tau(x)}\le\sqrt N$. For $t\ge s$, we define the quenched correlation and the normalized impulse response by
+\begin{align}
+ c_H(t,s)&=\frac1N\int\rho_s(x)\ip{x}{m_{t-s}(x)}\,\dd\omega_N(x),
+ \label{eq:quenched-correlation}\\
+ r_H(t,s)&=\frac1N\int\rho_s\sum_{i=1}^N\Gamma(x_i,P_{t-s}x_i)\,\dd\omega_N.
+ \label{eq:quenched-force-response}
+\end{align}
+By the Markov property again, $c_H(t,s)=N^{-1}\E[X_t\cdot X_s\mid J]$, and $\E_Jc_H(t,s)=\E C_N(t,s)$. The function $r_H$ is the response to an additive tangent force. Recall that a deterministic force $h(s)\in\R^N$ enters the linearized equation \eqref{eq:perturbed-sde} as $P_{X_s}h(s)$, without a factor of $\beta$. Because $\nabla_Sx_i=P_xe_i$, the actual mean response is expressed through the derivatives of the transition mean. For bounded continuous $h$, \eqref{eq:response-variation} and the expected projected-restart derivative identify the $i$th coordinate of the mean linearized response with
+\[
+ \int_0^t\int\rho_s\sum_{j=1}^Nh_j(s)\,\Gamma(x_j,P_{t-s}x_i)\,\dd\omega_N\,\dd s.
+\]
+In other words, $Nr_H(t,s)$ is the trace of the impulse response matrix of the quenched mean. As in \cref{rem:fdt-convention}, the actual tangent-projected restart is Fr\'echet differentiable into $L^2$, and the bounded linear expectation operator commutes with that derivative. It follows that the expected trace of $U_N(t,s)$ is the mean of $\sum_i\Gamma(x_i,P_{t-s}x_i)(X_s)$. The actual waiting-state law is $\rho_s\,\dd\omega_N$, so this is exactly the integral in \eqref{eq:quenched-force-response}. Integrability follows from the fixed-disorder fourth-moment estimate \eqref{eq:tangent-flow-bound}. We set
+\[
+ \bar c_N=\E_Jc_H,\qquad \bar r_N=\E_Jr_H.
+\]
+By the discussion above, $\bar r_N$ is the annealed normalized response \eqref{eq:annealed-response}, and $r_H(s,s)=N^{-1}\int\rho_s\operatorname{tr}P_x\,\dd\omega_N=\kappa_N$, where $\kappa_N=(N-1)/N$ as in \cref{sec:langevin}.
+
+\begin{lemma}[Exact nonequilibrium fluctuation--dissipation identity]\label{lem:finite-dimensional-fdt}
+For $0\le s<t$,
+\begin{equation}
+ r_H(t,s)-\partial_sc_H(t,s)
+ =\frac1N\int\rho_s\ip{m_{t-s}}{v^{\mathrm{cur}}_s}\,\dd\omega_N,
+ \label{eq:quenched-fdt-current}
+\end{equation}
+where the derivative is taken with the terminal time $t$ fixed, from the right when $s=0$. In particular,
+\begin{equation}
+ |\bar r_N(t,s)-\partial_s\bar c_N(t,s)|^2\le a_N(s),
+ \label{eq:annealed-fdt-bound}
+\end{equation}
+and, for $0\le s\le t$,
+\begin{equation}
+ \Bigl|1-\bar c_N(t,s)-\int_s^t\bar r_N(t,u)\,\dd u\Bigr|^2
+ \le(t-s)\int_s^ta_N(u)\,\dd u.
+ \label{eq:finite-dimensional-integrated-fdt}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+We begin with an integration by parts formula for the law at time $s$. For smooth functions $f,g$ on $S_N$, we have
+\begin{equation}
+ \int\rho_sf\mathcal L_Ng\,\dd\omega_N
+ =-\int\rho_s\Gamma(f,g)\,\dd\omega_N
+ -\int\rho_sf\ip{v^{\mathrm{cur}}_s}{\nabla_Sg}\,\dd\omega_N.
+ \label{eq:gibbs-current-integration-by-parts}
+\end{equation}
+Indeed, integrating $\Delta_Sg$ by parts against $\rho_sf$ gives $-\int\rho_s\Gamma(f,g)-\int f\ip{\nabla_S\rho_s}{\nabla_Sg}$, and the remaining term combines with the drift term of $\mathcal L_N$ because $\nabla_S\rho_s-\beta\rho_s\nabla_SH_N=\rho_sv^{\mathrm{cur}}_s$.
+
+Next, we differentiate \eqref{eq:quenched-correlation} in $s$, using the forward equation $\partial_s\rho_s=\mathcal L_N^*\rho_s$, where $\mathcal L_N^*$ is the adjoint with respect to $\omega_N$, and the backward equation $\partial_sP_{t-s}x_i=-\mathcal L_NP_{t-s}x_i$. This gives
+\[
+ \partial_sc_H(t,s)=\frac1N\int\rho_s\sum_{i=1}^N\bigl[\mathcal L_N(x_iP_{t-s}x_i)-x_i\mathcal L_NP_{t-s}x_i\bigr]\,\dd\omega_N.
+\]
+Using the product rule $\mathcal L_N(fg)=f\mathcal L_Ng+g\mathcal L_Nf+2\Gamma(f,g)$, we can write the bracket as $(P_{t-s}x_i)\mathcal L_Nx_i+2\Gamma(x_i,P_{t-s}x_i)$. Applying \eqref{eq:gibbs-current-integration-by-parts} with $f=P_{t-s}x_i$ and $g=x_i$ to the first of these two terms, we obtain
+\[
+ \partial_sc_H(t,s)=\frac1N\int\rho_s\sum_{i=1}^N\bigl[\Gamma(x_i,P_{t-s}x_i)-(P_{t-s}x_i)\ip{v^{\mathrm{cur}}_s}{\nabla_Sx_i}\bigr]\,\dd\omega_N.
+\]
+The first term is $r_H(t,s)$. In the second, we have $\sum_i(P_{t-s}x_i)\ip{v^{\mathrm{cur}}_s}{P_xe_i}=\ip{m_{t-s}}{v^{\mathrm{cur}}_s}$, because $v^{\mathrm{cur}}_s$ is tangent and $\nabla_Sx_i=P_xe_i$. This proves \eqref{eq:quenched-fdt-current}, with its sign and coefficient. As a check of the normalization, consider $\beta=0$. Then the uniform law is invariant, $\rho_s=1$, and $v^{\mathrm{cur}}_s=0$. The coordinates satisfy $\Delta_Sx_i=-\kappa_Nx_i$, so that $c_H(t,s)=e^{-\kappa_N(t-s)}$ and $r_H(t,s)=\kappa_Ne^{-\kappa_N(t-s)}=\partial_sc_H(t,s)$.
+
+By the Cauchy--Schwarz inequality and $\norm{m_{t-s}}\le\sqrt N$, the square of the right side of \eqref{eq:quenched-fdt-current} is at most $I_H(s)/N$. To average over the disorder, we need a bound on $\partial_sc_H$ that is integrable over $J$. In the formula for $\partial_sc_H$ before the integration by parts, the first term is $N^{-1}\int\rho_s\ip{m_{t-s}}{\mathcal L_N\operatorname{id}}\,\dd\omega_N$. Using $\mathcal L_N\operatorname{id}=\beta\nabla_SH_N-\kappa_N\operatorname{id}$ and the bound $\norm{\nabla_SH_N}\le pQ_N\sqrt N$ from \eqref{eq:landscape-derivative-bounds}, we see that its absolute value is at most $\kappa_N+\beta pQ_N$. The second term is $2N^{-1}\int\rho_s\operatorname{tr}(D_Sm_{t-s}P_x)\,\dd\omega_N$, and its absolute value is at most $2\norm{D_Sm_{t-s}}_{\op}\le2e^{\beta p^2Q_N(t-s)}$ by the gradient bound \eqref{eq:conditional-mean-gradient} below, whose proof uses only the Bochner formula. We conclude that
+\[
+ |\partial_sc_H(t,s)|\le1+\beta pQ_N+2e^{\beta p^2Q_N(t-s)},
+ \qquad
+ |r_H(t,s)|\le e^{\beta p^2Q_N(t-s)}.
+\]
+These bounds are integrable over the disorder by \cref{lem:landscape-moments}, uniformly for $t-s$ in compact sets, and dominated convergence justifies $\partial_s\bar c_N=\E_J\partial_sc_H$ for $0<s<t$. The quenched and annealed correlations, responses, and currents are continuous on each closed causal row, so the identities for the earlier-time derivatives of the correlations at positive times extend to the right derivative at $s=0$. By Jensen's inequality, we have
+\[
+ |\bar r_N(t,s)-\partial_s\bar c_N(t,s)|^2\le\E_J|r_H(t,s)-\partial_sc_H(t,s)|^2\le\frac1N\E_JI_H(s)=a_N(s),
+\]
+which is \eqref{eq:annealed-fdt-bound}.
+
+For \eqref{eq:finite-dimensional-integrated-fdt}, note that $\bar c_N(t,t)=1$ because $\norm{X_t}^2=N$. The function $u\mapsto\bar c_N(t,u)$ is continuous on $[s,t]$, with a bounded derivative on $[s,t)$; in particular, it is Lipschitz and is the integral of its derivative. Integrating \eqref{eq:annealed-fdt-bound} over $u\in[s,t]$, we obtain
+\[
+ \Bigl|1-\bar c_N(t,s)-\int_s^t\bar r_N(t,u)\,\dd u\Bigr|
+ \le\int_s^t\sqrt{a_N(u)}\,\dd u,
+\]
+and one more application of the Cauchy--Schwarz inequality completes the proof.
+\end{proof}
+
+\section{An integrable Fisher majorant}\label{sec:fisher-majorant}
+
+Recall that the landscape cutoff $A_p$ of \cref{lem:landscape-moments} satisfies $\Prob(Q_N>A_p)\le e^{-c_pN}$. We write $G_N=\{Q_N\le A_p\}$ for the corresponding event on the disorder and set
+\[
+ K=2\beta p^2A_p.
+\]
+The constant $K$ depends only on $p$ and $\beta$. We extract the subsequence in the following theorem once, before any later waiting-time sequence, stationary cluster, or finite-fork profile is chosen, and we keep the same strictly increasing dimension subsequence $(N_j)$ for the rest of the paper. We take all limits in $N$ at fixed times; the long-time statements concern only the limiting function $a_F$ and the deterministic CK solution.
+
+\begin{theorem}[Fisher control of the backward FDT defect]\label{thm:fisher-clock}
+There exist a dimension subsequence $(N_j)$ and a nonnegative, locally bounded, right-continuous function $a_F$ on $[0,\infty)$ such that
+\begin{equation}
+ a_{N_j}\longrightarrow a_F\quad\text{in }L^1_{\mathrm{loc}}([0,\infty)),
+ \qquad \int_0^\infty a_F(u)\,\dd u\le\frac{\beta^2}{2}.
+ \label{eq:fisher-density-budget}
+\end{equation}
+The function $e^{-Kt}a_F(t)$ is nonincreasing. In particular, for $s\ge\varepsilon>0$,
+\begin{equation}
+ a_F(s)\le\frac{K}{1-e^{-K\varepsilon}}\int_{s-\varepsilon}^sa_F(u)\,\dd u,
+ \qquad \sup_{s\ge T}a_F(s)\longrightarrow0\quad(T\to\infty).
+ \label{eq:fisher-density-tail}
+\end{equation}
+For every $t>s>0$, the earlier-time derivative $\partial_2C(t,s)=\partial_sC(t,s)$ exists, is continuous, and satisfies
+\begin{equation}
+ |\partial_2C(t,s)-R(t,s)|^2\le a_F(s).
+ \label{eq:fisher-global-fdt}
+\end{equation}
+Every row $C(t,\cdot\,)$ is absolutely continuous on $[0,t]$, and for $t\ge v\ge u\ge0$,
+\begin{equation}
+ \Bigl|C(t,v)-C(t,u)-\int_u^vR(t,s)\,\dd s\Bigr|
+ \le\int_u^v\sqrt{a_F(s)}\,\dd s.
+ \label{eq:fisher-global-row}
+\end{equation}
+Finally, $e_\beta$ is locally absolutely continuous, and
+\begin{equation}
+ |e_\beta'(s)|^2\le p^2A_p^2a_F(s)\quad\text{for almost every }s\ge0.
+ \label{eq:fisher-energy-density}
+\end{equation}
+We write
+\begin{equation}
+ \mu(\dd s)=a_F(s)\,\dd s,
+ \qquad \mu([0,\infty))\le\beta^2/2.
+ \label{eq:entropy-measure}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The proof has six steps. The first three construct $a_F$. In Step~1, we use the Bochner formula to show that, on the event $G_N$, the Fisher information grows at most like $e^{Kt}$. Then the average of the Fisher information over $G_N$, multiplied by $e^{-Kt}$, is a bounded nonincreasing function of $t$, and we use Helly's selection theorem to extract a subsequence along which these functions converge (Step~2). In Step~3, we show that the Fisher information on the complement of $G_N$ has total mass tending to zero, which leads to \eqref{eq:fisher-density-budget} and \eqref{eq:fisher-density-tail}. In the last three steps, we transfer the finite-dimensional estimates to the CK solution. In Step~4, we pass the integrated form of \cref{lem:finite-dimensional-fdt} to the limit, which gives \eqref{eq:fisher-global-row}, together with \eqref{eq:fisher-global-fdt} for almost every $s$. In Step~5, we deduce from the Green covariance identity that $\partial_2C$ is continuous, which upgrades the bound to every $s$. In Step~6, we treat the energy in the same way.
+
+\paragraph{Step 1: the Bochner identity and growth of the Fisher information.}
+Fix the disorder. Let $f_t=\rho_t/g_N$ and $\psi_t=\log f_t$, and let $\nu_N(\dd x)=g_N(x)\,\omega_N(\dd x)$ be the Gibbs measure. Then $v^{\mathrm{cur}}_t=\nabla_S\psi_t$ and $I_H(t)=\int f_t\Gamma(\psi_t)\,\dd\nu_N$. Recall that the generator $\mathcal L_N$ is symmetric with respect to $\nu_N$, with $\int f\mathcal L_Ng\,\dd\nu_N=-\int\Gamma(f,g)\,\dd\nu_N$. In terms of $f_t$, the forward equation reads $\partial_tf_t=\mathcal L_Nf_t$. As $\mathcal L_N(e^{\psi})=e^{\psi}(\mathcal L_N\psi+\Gamma(\psi))$, we also have $\partial_t\psi_t=\mathcal L_N\psi_t+\Gamma(\psi_t)$. Differentiating $I_H$, we find
+\[
+ I_H'(t)=\int(\mathcal L_Nf_t)\Gamma(\psi_t)\,\dd\nu_N
+ +2\int f_t\Gamma(\psi_t,\mathcal L_N\psi_t)\,\dd\nu_N
+ +2\int f_t\Gamma(\psi_t,\Gamma(\psi_t))\,\dd\nu_N.
+\]
+By symmetry, the first integral equals $\int f_t\mathcal L_N\Gamma(\psi_t)\,\dd\nu_N$. It also equals $-\int\Gamma(f_t,\Gamma(\psi_t))\,\dd\nu_N=-\int f_t\Gamma(\psi_t,\Gamma(\psi_t))\,\dd\nu_N$, because $\nabla_Sf_t=f_t\nabla_S\psi_t$. The third integral is therefore $-2\int f_t\mathcal L_N\Gamma(\psi_t)\,\dd\nu_N$, and we obtain
+\[
+ I_H'(t)=-\int f_t\mathcal L_N\Gamma(\psi_t)\,\dd\nu_N+2\int f_t\Gamma(\psi_t,\mathcal L_N\psi_t)\,\dd\nu_N
+ =-2\int f_t\Gamma_2(\psi_t)\,\dd\nu_N,
+\]
+where $\Gamma_2(\psi)=\frac12\mathcal L_N\Gamma(\psi)-\Gamma(\psi,\mathcal L_N\psi)$. For $\mathcal L_N=\Delta_S+\beta\ip{\nabla_SH_N}{\nabla_S\,\cdot\,}$, the Bochner formula reads $\Gamma_2(\psi)=\norm{\nabla_S^2\psi}_{\HS}^2+(\operatorname{Ric}-\beta\nabla_S^2H_N)(\nabla_S\psi,\nabla_S\psi)$. Using $f_t\,\dd\nu_N=\rho_t\,\dd\omega_N$, we conclude that
+\begin{equation}
+ I_H'(t)=-2\int\rho_t\Bigl\{
+ \norm{\nabla_S^2\psi_t}_{\HS}^2
+ +(\operatorname{Ric}-\beta\nabla_S^2H_N)(\nabla_S\psi_t,\nabla_S\psi_t)\Bigr\}\,\dd\omega_N.
+ \label{eq:fisher-bochner-identity}
+\end{equation}
+This identity is asserted for $t>0$. Its differentiations and integrations by parts use the spatial $C^3$ density, positivity on the compact sphere, and joint continuity of the forward slope and its spatial gradient. In particular, we compute the time derivative of the relative score by differentiating the intrinsic forward equation along the sphere. Continuity of $I_H$ at zero will suffice to include the initial time in the resulting comparison.
+
+For $N\ge2$, the sphere $S_N$ of radius $\sqrt N$ has $\operatorname{Ric}=\frac{N-2}{N}$ times its metric, which is nonnegative, and $\norm{\nabla_S^2H_N}_{\op}\le p^2Q_N$ by \eqref{eq:landscape-derivative-bounds}. Then \eqref{eq:fisher-bochner-identity} implies that $I_H'\le2\beta p^2Q_NI_H$ at positive times. On the event $G_N$, we have $I_H'\le KI_H$, so $e^{-Kt}I_H(t)$ is nonincreasing for $t>0$. Its continuity at zero extends this monotonicity to $[0,\infty)$. We define
+\[
+ b_N(t)=\frac1N\E_J\bigl[\mathbf 1_{G_N}I_H(t)\bigr],
+ \qquad
+ \tilde b_N(t)=e^{-Kt}b_N(t).
+\]
+As an average of nonincreasing functions, $\tilde b_N$ is nonincreasing; no differentiation under $\E_J$ is needed. At time zero, $\nabla_S\psi_0=-\beta\nabla_SH_N$. Differentiating the covariance $N(x\cdot y/N)^p$ in both variables and setting $y=x\in S_N$, we see that $\E_J[\nabla H_N(x)\nabla H_N(x)^{\mathsf T}]=pI+\frac{p(p-1)}{N}xx^{\mathsf T}$. The projection $P_x$ removes the second term, because $P_xx=0$. We obtain $\E_J\norm{\nabla_SH_N(x)}^2=p\operatorname{tr}P_x=p(N-1)$, and by Tonelli's theorem,
+\[
+ a_N(0)=\frac{\beta^2}{N}\int\E_J\norm{\nabla_SH_N}^2\,\dd\omega_N=\beta^2p\,\frac{N-1}{N}.
+\]
+We have shown that $\tilde b_N$ is nonincreasing and $0\le\tilde b_N(t)\le\tilde b_N(0)\le a_N(0)\le\beta^2p$ for all $t\ge0$. We also note that the bound $I_H'\le2\beta p^2Q_NI_H$ holds for every disorder. It implies $I_H(t)\le I_H(0)e^{2\beta p^2Q_Nt}\le\beta^2p^2NQ_N^2e^{2\beta p^2Q_Nt}$, and by \cref{lem:landscape-moments}, $a_N$ is finite and bounded on compact intervals, uniformly in $N$.
+
+\paragraph{Step 2: Helly selection.}
+We use the Helly diagonal-selection argument; compare the proof of \cite[Theorem~25.9, p.~336]{billingsley1995}.
+The sequences $(\tilde b_N(\theta))_N$ are bounded, and a diagonal extraction over the positive rationals gives a subsequence $(N_j)$ along which $\tilde b_{N_j}(\theta)$ converges for every rational $\theta>0$. The limits form a nonincreasing function on the positive rationals with values in $[0,\beta^2p]$. Let $\tilde b(t)$ be the right-continuous function on $[0,\infty)$ defined by the limit of these values as $\theta\downarrow t$ through the rationals. Let $t>0$ be a continuity point of $\tilde b$. For rationals $\theta<t<\theta'$, we have $\tilde b_{N_j}(\theta')\le\tilde b_{N_j}(t)\le\tilde b_{N_j}(\theta)$ by monotonicity. Letting $j\to\infty$ and then $\theta\uparrow t$, $\theta'\downarrow t$, we find that $\tilde b_{N_j}(t)\to\tilde b(t)$. Since a monotone function has at most countably many discontinuities, we conclude that $\tilde b_{N_j}\to\tilde b$ almost everywhere. We define
+\[
+ a_F(t)=e^{Kt}\tilde b(t).
+\]
+Then $a_F$ is nonnegative and right-continuous, $a_F(t)\le\beta^2pe^{Kt}$, and $e^{-Kt}a_F(t)=\tilde b(t)$ is nonincreasing. For every $M<\infty$, we have $0\le b_{N_j}(t)\le\beta^2pe^{KM}$ for $t\in[0,M]$, and by dominated convergence, $b_{N_j}\to a_F$ in $L^1([0,M])$. The value of $a_F$ at zero is the right limit; no convergence of $b_N(0)$ to $a_F(0)$ is used. We have shown that
+\[
+ b_{N_j}\longrightarrow a_F\quad\text{in }L^1_{\mathrm{loc}}([0,\infty)).
+\]
+
+\paragraph{Step 3: the Fisher mass on the bad event.}
+The difference $a_N-b_N=N^{-1}\E_J[\mathbf 1_{G_N^c}I_H]$ is nonnegative. By the quenched budget in \eqref{eq:quenched-entropy-dissipation} and the bound $D_H(0)\le2\beta NQ_N$ of \cref{lem:entropy-budget}, we have
+\[
+\begin{aligned}
+ \int_0^\infty(a_N-b_N)(t)\,\dd t
+ &=\frac1N\E_J\Bigl[\mathbf 1_{G_N^c}\int_0^\infty I_H(t)\,\dd t\Bigr]\\
+ &\le2\beta\E_J\bigl[Q_N\mathbf 1_{G_N^c}\bigr]
+ \le2\beta\bigl(\E_JQ_N^2\bigr)^{1/2}\Prob(G_N^c)^{1/2}.
+\end{aligned}
+\]
+The right side tends to zero by \cref{lem:landscape-moments}. Together with Step~2, this implies that $a_{N_j}\to a_F$ in $L^1_{\mathrm{loc}}([0,\infty))$. For every $M$, we have $\int_0^Ma_F=\lim_j\int_0^Ma_{N_j}\le\beta^2/2$ by \cref{lem:entropy-budget}, and monotone convergence in $M$ proves \eqref{eq:fisher-density-budget}.
+
+The monotonicity of $e^{-Kt}a_F(t)$ means that $a_F(u)\ge e^{-K(s-u)}a_F(s)$ for $u\le s$. Integrating this inequality over $u\in[s-\varepsilon,s]$, we have
+\[
+ \int_{s-\varepsilon}^sa_F(u)\,\dd u\ge a_F(s)\int_0^\varepsilon e^{-Kw}\,\dd w=a_F(s)\,\frac{1-e^{-K\varepsilon}}{K},
+\]
+which is the first part of \eqref{eq:fisher-density-tail}; here $K>0$ because $\beta>0$ and $A_p>0$. Taking $\varepsilon=1$, we have $\sup_{s\ge T}a_F(s)\le K(1-e^{-K})^{-1}\mu([T-1,\infty))$ for $T\ge1$, and the right side tends to zero because $\mu$ is a finite measure. This proves \eqref{eq:fisher-density-tail}. We note that integrability of $a_F$ alone would not give this uniform decay; it comes from the monotonicity of $e^{-Kt}a_F(t)$.
+
+\paragraph{Step 4: passage of the row inequality to the limit.}
+Fix $t\ge v\ge u\ge0$. Recall from the proof of \cref{lem:finite-dimensional-fdt} that $\bar c_N(t,\cdot\,)$ is the integral of its derivative on $[u,t]$. Integrating \eqref{eq:annealed-fdt-bound} over $[u,v]$, we have
+\[
+ \Bigl|\bar c_N(t,v)-\bar c_N(t,u)-\int_u^v\bar r_N(t,s)\,\dd s\Bigr|
+ \le\int_u^v\sqrt{a_N(s)}\,\dd s.
+\]
+We let $N=N_j\to\infty$ in each term. By \cref{prop:hard-bridge}, $\bar c_N(t,v)=\E C_N(t,v)\to C(t,v)$, and similarly at $(t,u)$. The response integral equals $\E[X_t\cdot(B_v-B_u)]/(\sqrt2N)$ by \cref{lem:brown-force-response}; it is a difference of the Brownian observables of \cref{prop:hard-bridge}, whose expectations converge to $\int_u^vR(t,s)\,\dd s$. For the right side, we use the elementary inequality $|\sqrt x-\sqrt y|^2\le|x-y|$ for $x,y\ge0$. On every compact interval $I$, it yields
+\[
+ \int_I\bigl|\sqrt{a_{N_j}}-\sqrt{a_F}\bigr|^2\le\int_I|a_{N_j}-a_F|\longrightarrow0,
+\]
+and by the Cauchy--Schwarz inequality, $\sqrt{a_{N_j}}\to\sqrt{a_F}$ in $L^1(I)$. This proves \eqref{eq:fisher-global-row} for every $t\ge v\ge u\ge0$. We fixed the subsequence in Step~2, before choosing the endpoints, and the correlations and the primitives of the response converge along the full sequence of dimensions. No further extraction is involved.
+
+Next, fix $t$ and let $F_t(s)=C(t,s)-\int_0^sR(t,w)\,\dd w$ for $0\le s\le t$. By \eqref{eq:fisher-global-row}, we have, for every finite family of disjoint intervals $(u_i,v_i)\subset[0,t]$,
+\[
+ \sum_i|F_t(v_i)-F_t(u_i)|\le\int_{\bigcup_i(u_i,v_i)}\sqrt{a_F(s)}\,\dd s.
+\]
+The right side is small when the total length of the intervals is small, because $\sqrt{a_F}$ is locally bounded. Hence $F_t$ is absolutely continuous. As $s\mapsto\int_0^sR(t,w)\,\dd w$ is continuously differentiable, the row $C(t,\cdot\,)$ is absolutely continuous on $[0,t]$. At every point $s\in(0,t)$ where $F_t$ is differentiable and which is a Lebesgue point of $\sqrt{a_F}$, dividing \eqref{eq:fisher-global-row} by $v-u$ and letting the interval shrink to $s$, we have $|F_t'(s)|\le\sqrt{a_F(s)}$. We have shown that
+\[
+ |\partial_2C(t,s)-R(t,s)|^2\le a_F(s)\quad\text{for almost every }s\in(0,t).
+\]
+The exceptional set may depend on $t$; this causes no difficulty, since we carry out Step~5 on each fixed row with the fixed function $a_F$.
+
+\paragraph{Step 5: the continuous representative of the earlier derivative.}
+Let $\dot R(s,u)=\partial_1R(s,u)$. Recall from \eqref{eq:ck-response} and \cref{prop:backward-response} that $\dot R$ is continuous on every compact causal triangle, with one-sided values on the diagonal. For $t>s$, the Green identity \eqref{eq:green-covariance} reads
+\[
+\begin{aligned}
+ C(t,s)={}&R(t,0)R(s,0)+2\int_0^sR(t,u)R(s,u)\,\dd u\\
+ &+\beta^2p\int_0^tR(t,u)\int_0^sR(s,v)C(u,v)^{p-1}\,\dd v\,\dd u.
+\end{aligned}
+\]
+The variable $s$ enters only through $R(s,0)$, $R(s,u)$, $R(s,v)$, and the upper limits of the integrals over $u$ and $v$. Differentiating in $s$ and using $R(s,s)=1$, we obtain, for $t>s>0$,
+\begin{align}
+ \partial_2C(t,s)={}&R(t,0)\dot R(s,0)+2R(t,s)
+ +2\int_0^sR(t,u)\dot R(s,u)\,\dd u\notag\\
+ &+\beta^2p\int_0^tR(t,u)
+ \Bigl\{C(u,s)^{p-1}+\int_0^s\dot R(s,v)C(u,v)^{p-1}\,\dd v\Bigr\}\,\dd u.
+ \label{eq:green-earlier-derivative}
+\end{align}
+All integrands are continuous on the fixed compact sets of integration, which justifies differentiation under the integral sign. No derivative of $C(u,v)^{p-1}$ is needed, because $u$ and $v$ are integration variables that do not depend on $s$. The right side of \eqref{eq:green-earlier-derivative} is jointly continuous on the open triangle $t>s>0$. Hence, for each fixed $t$, the row $C(t,\cdot\,)$ is continuously differentiable on $(0,t)$, and its classical derivative agrees with the almost-everywhere derivative of Step~4.
+
+Fix $t>s>0$, and choose points $s_n\downarrow s$ with $s_n<t$ at which the bound of Step~4 holds. Then $|\partial_2C(t,s_n)-R(t,s_n)|^2\le a_F(s_n)$. As $n\to\infty$, the left side converges to $|\partial_2C(t,s)-R(t,s)|^2$ by the continuity of \eqref{eq:green-earlier-derivative} and of $R$, and $a_F(s_n)\to a_F(s)$ because $a_F$ is right-continuous. This proves \eqref{eq:fisher-global-fdt}.
+
+\paragraph{Step 6: the energy.}
+Let $e_H(s)=N^{-1}\int\rho_sH_N\,\dd\omega_N$, so that $e_N(s)=\E_Je_H(s)=N^{-1}\E H_N(X_s)$. By the first identity in \eqref{eq:quenched-entropy-dissipation} and an integration by parts, we have
+\[
+ e_H'(s)=-\frac1N\int\rho_s\ip{v^{\mathrm{cur}}_s}{\nabla_SH_N}\,\dd\omega_N.
+\]
+Using $\norm{\nabla_SH_N}\le pQ_N\sqrt N$ and the Cauchy--Schwarz inequality, we find that $|e_H'(s)|\le pQ_N\sqrt{I_H(s)/N}$. We split the average over the disorder according to $G_N$. On $G_N$, we have $Q_N\le A_p$, and Jensen's inequality yields $\E_J[\mathbf 1_{G_N}pQ_N\sqrt{I_H(s)/N}]\le pA_p\sqrt{b_N(s)}$. On the complement, by the Cauchy--Schwarz inequality, $\E_J[\mathbf 1_{G_N^c}pQ_N\sqrt{I_H(s)/N}]\le\sqrt{\eta_N(s)}$, where
+\[
+ \eta_N(s)=\frac{p^2}{N}\E_J\bigl[Q_N^2I_H(s)\mathbf 1_{G_N^c}\bigr].
+\]
+By \eqref{eq:quenched-entropy-dissipation} and $D_H(0)\le2\beta NQ_N$, the total mass of $\eta_N$ satisfies
+\[
+ \int_0^\infty\eta_N(s)\,\dd s\le2\beta p^2\E_J\bigl[Q_N^3\mathbf 1_{G_N^c}\bigr]
+ \le2\beta p^2\bigl(\E_JQ_N^6\bigr)^{1/2}\Prob(G_N^c)^{1/2}\longrightarrow0.
+\]
+For fixed $u\le v$, Tonelli's theorem and the two bounds above give
+\[
+ |e_N(v)-e_N(u)|\le\int_u^v\E_J|e_H'(s)|\,\dd s
+ \le pA_p\int_u^v\sqrt{b_N(s)}\,\dd s+\Bigl((v-u)\int_0^\infty\eta_N(s)\,\dd s\Bigr)^{1/2}.
+\]
+We let $N=N_j\to\infty$. By \cref{prop:energy-bridge}, $e_N(v)\to e_\beta(v)$ and $e_N(u)\to e_\beta(u)$; by Step~2 and the argument of Step~4, $\int_u^v\sqrt{b_{N_j}}\to\int_u^v\sqrt{a_F}$; and the last term tends to zero. We conclude that
+\[
+ |e_\beta(v)-e_\beta(u)|\le pA_p\int_u^v\sqrt{a_F(s)}\,\dd s,\qquad 0\le u\le v.
+\]
+As in Step~4, we see that $e_\beta$ is locally absolutely continuous and that $|e_\beta'(s)|\le pA_p\sqrt{a_F(s)}$ at almost every $s$, which is \eqref{eq:fisher-energy-density}. Here we use only the convergence of energies at fixed times, not the convergence of their derivatives.
+\end{proof}
+
+We note two features of \cref{thm:fisher-clock}. First, the majorant $a_F$ is produced by one subsequence of dimensions and need not be unique; the inequalities it satisfies concern the unique deterministic CK solution; the bounds on the defect hold at every pair of times, and the bound on the derivative of the energy holds for almost every time. Second, \eqref{eq:fisher-global-fdt} and \eqref{eq:fisher-density-tail} imply that the defect $\partial_2C(t,s)-R(t,s)$ tends to zero uniformly in $t$ as $s\to\infty$. This does not identify the slow fluctuation--dissipation ratio: both $R$ and $\partial_2C$ may tend to zero while $R/\partial_2C$ has a nontrivial limit, and the defect may accumulate over a diverging interval of earlier times. For $\beta>\bd$, \cref{resp:integrated-chapter} shows that a positive amount of defect does accumulate in this way.
+
+The bound \eqref{eq:fisher-global-fdt} also holds at the two ends of each row, with one-sided derivatives. We record this for later use.
+
+\begin{remark}[The ends of a row]\label{rem:fisher-endpoints}
+Let $t>0$. The one-sided derivatives $\partial_2C(t,0+)$ and $\partial_2C(t,t-)$ of $s\mapsto C(t,s)$ exist, and
+\[
+ |\partial_2C(t,0+)-R(t,0)|^2\le a_F(0),
+ \qquad
+ \partial_2C(t,t-)=R(t,t)=1.
+\]
+In other words, \eqref{eq:fisher-global-fdt} holds for $0\le s\le t$, with derivatives at $s=0$ and $s=t$ taken from the interior of the row. Indeed, let $\Delta(t,s)$ denote the right side of \eqref{eq:green-earlier-derivative}. It is continuous for $0\le s\le t$, and by the mean value theorem, the one-sided derivatives at the ends of the row exist and equal $\Delta(t,0)$ and $\Delta(t,t)$. The first bound follows by choosing $s_n\downarrow0$ in \eqref{eq:fisher-global-fdt} and using the right continuity of $a_F$ at zero. For the second, we differentiate the diagonal Green identity
+\[
+ 1=C(t,t)=R(t,0)^2+2\int_0^tR(t,u)^2\,\dd u
+ +\beta^2p\int_0^t\int_0^tR(t,u)R(t,v)C(u,v)^{p-1}\,\dd v\,\dd u
+\]
+in $t$. Using $R(t,t)=1$ and the symmetry of $C$, we find that the initial, white-noise, and colored-noise terms have derivatives $2R(t,0)\dot R(t,0)$, $2+4\int_0^tR(t,u)\dot R(t,u)\,\dd u$, and twice the colored-noise term of $\Delta(t,t)$, respectively. Comparing with \eqref{eq:green-earlier-derivative}, we see that the derivative of the right side equals $2\Delta(t,t)-2$; the white-noise boundary term is counted once on the diagonal, while $2\Delta(t,t)$ counts it twice. Since the left side is constant, $\Delta(t,t)=1$.
+\end{remark}
+
+\section{Flatness in the waiting time}\label{sec:waiting-time-flatness}
+
+The bound \eqref{eq:fisher-global-fdt} controls the earlier observation time with the terminal time fixed. To compare two correlations with the same lag at different waiting times, we also need to control the effect of the probability current on a conditional-mean observable. A bound of this kind for one-time observables appears in \cite[arXiv version~2, equation~(15), p.~3]{cdk1997}.
+
+\begin{lemma}[Semigroup gradient bound and the waiting-time derivative]\label{lem:waiting-clock-current}
+For every $\tau\ge0$ and $x\in S_N$,
+\begin{equation}
+ \norm{D_Sm_\tau(x)}_{\op}\le e^{\beta p^2Q_N\tau}.
+ \label{eq:conditional-mean-gradient}
+\end{equation}
+Let $\Psi_\tau(x)=N^{-1}\ip{x}{m_\tau(x)}$. Then
+\begin{align}
+ \norm{\nabla_S\Psi_\tau(x)}
+ &\le N^{-1/2}\bigl(1+e^{\beta p^2Q_N\tau}\bigr),
+ \label{eq:waiting-observable-gradient}\\
+ \frac{\dd}{\dd w}c_H(w+\tau,w)
+ &=-\int\rho_w\ip{v^{\mathrm{cur}}_w}{\nabla_S\Psi_\tau}\,\dd\omega_N.
+ \label{eq:waiting-clock-current}
+\end{align}
+The waiting-time identity holds for all $w\ge0$, with a right derivative at $w=0$.
+For $0\le\tau\le L$ and $0\le w_1\le w_2$,
+\begin{equation}
+ |C(w_2+\tau,w_2)-C(w_1+\tau,w_1)|
+ \le B_L\int_{w_1}^{w_2}\sqrt{a_F(u)}\,\dd u,
+ \qquad B_L=1+e^{\beta p^2A_pL}.
+ \label{eq:ck-measure-waiting-shift}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+We begin with the gradient bound. Let $K_N=\beta p^2Q_N$. Recall from Step~1 of the proof of \cref{thm:fisher-clock} that $\operatorname{Ric}\ge0$ and $\norm{\nabla_S^2H_N}_{\op}\le p^2Q_N$. By the Bochner formula, we have the curvature bound $\Gamma_2(f)\ge-K_N\Gamma(f)$ for smooth $f$. Fix $\tau$, $x$, and a smooth function $f$, and let $\Phi(u)=P_u\Gamma(P_{\tau-u}f)(x)$ for $0\le u\le\tau$. Using $\partial_u\Gamma(P_{\tau-u}f)=-2\Gamma(P_{\tau-u}f,\mathcal L_NP_{\tau-u}f)$, we find
+\[
+ \Phi'(u)=P_u\bigl[\mathcal L_N\Gamma(P_{\tau-u}f)-2\Gamma(P_{\tau-u}f,\mathcal L_NP_{\tau-u}f)\bigr](x)
+ =2P_u\Gamma_2(P_{\tau-u}f)(x)\ge-2K_N\Phi(u),
+\]
+where we used that $P_u$ preserves order. By Gronwall's inequality, $\Phi(\tau)\ge e^{-2K_N\tau}\Phi(0)$, that is,
+\[
+ \norm{\nabla_SP_\tau f}^2\le e^{2K_N\tau}P_\tau\norm{\nabla_Sf}^2.
+\]
+This is the classical gradient bound under a lower bound on the curvature; see \cite[Theorem~3.2.3, p.~144]{bgl2014}.
+We apply it to $f_z(x)=\ip{z}{x}$ for a unit vector $z\in\R^N$. Then $\norm{\nabla_Sf_z}=\norm{P_xz}\le1$ and $\nabla_SP_\tau f_z=\nabla_S\ip{z}{m_\tau}=(D_Sm_\tau)^*z$. By the gradient bound, we now have $\norm{(D_Sm_\tau(x))^*z}\le e^{K_N\tau}$. Taking the supremum over unit vectors $z$ proves \eqref{eq:conditional-mean-gradient}. This bound has no factor depending on the dimension; applying the scalar estimate only to the $N$ coordinate functions and summing would lose such a factor.
+
+Next, we have $\nabla_S\Psi_\tau=N^{-1}[P_xm_\tau+(D_Sm_\tau)^*x]$. As $\norm x=\sqrt N$ and $\norm{m_\tau}\le\sqrt N$, \eqref{eq:conditional-mean-gradient} implies \eqref{eq:waiting-observable-gradient}. At fixed lag $\tau$, we have $c_H(w+\tau,w)=\int\rho_w\Psi_\tau\,\dd\omega_N$ by \eqref{eq:quenched-correlation}. Differentiating at $w>0$ and using the first identity in \eqref{eq:quenched-entropy-dissipation} and an integration by parts, we obtain \eqref{eq:waiting-clock-current}. The current is continuous up to zero, and the exact current integral over a waiting-time interval therefore gives the same identity with the right derivative at $w=0$.
+
+It remains to prove \eqref{eq:ck-measure-waiting-shift}. Let $0\le\tau\le L$. On the event $G_N$, we have $Q_N\le A_p$, and by \eqref{eq:waiting-observable-gradient}, \eqref{eq:waiting-clock-current}, and the Cauchy--Schwarz inequality,
+\[
+ \Bigl|\frac{\dd}{\dd w}c_H(w+\tau,w)\Bigr|\le B_L\sqrt{I_H(w)/N}.
+\]
+Averaging over $G_N$ and using Jensen's inequality, we obtain $\E_J[\mathbf 1_{G_N}\sqrt{I_H(w)/N}]\le\sqrt{b_N(w)}$, with $b_N$ as in Step~1 of the proof of \cref{thm:fisher-clock}. On the complement of $G_N$, we use only $|c_H|\le1$ at the two endpoints; no control of the gradient is needed there. Combining these bounds, we find
+\[
+ |\bar c_N(w_2+\tau,w_2)-\bar c_N(w_1+\tau,w_1)|
+ \le B_L\int_{w_1}^{w_2}\sqrt{b_N(w)}\,\dd w+2\Prob(G_N^c).
+\]
+We now let $N=N_j\to\infty$. The correlations converge by \cref{prop:hard-bridge}, $\int_{w_1}^{w_2}\sqrt{b_{N_j}}\to\int_{w_1}^{w_2}\sqrt{a_F}$ by Steps~2 and~4 of the proof of \cref{thm:fisher-clock}, and $\Prob(G_N^c)\le e^{-c_pN}\to0$. This proves \eqref{eq:ck-measure-waiting-shift}.
+\end{proof}
+
+We now collect the uniform late estimates that follow from \cref{thm:fisher-clock,lem:waiting-clock-current}. Since $\mu$ is a finite measure, they show that, on late windows of bounded length, the integrated FDT relation holds, and the correlation at fixed lag and the energy do not depend on the waiting time, up to errors that vanish as the window moves to infinity.
+
+\begin{corollary}[Uniform late estimates]\label{cor:uniform-late-estimates}
+Fix $L,\Theta\ge0$. For every $T\ge0$,
+\begin{equation}
+ \sup_{s\ge T,\,0\le\tau\le L}
+ \Bigl|1-C(s+\tau,s)-\int_s^{s+\tau}R(s+\tau,u)\,\dd u\Bigr|
+ \le\sqrt{L\mu([T,\infty))},
+ \label{eq:uniform-late-integrated-fdt}
+\end{equation}
+and for every $T\ge\Theta$,
+\begin{align}
+ \sup_{s\ge T,\,|\theta|\le\Theta,\,0\le\tau\le L}
+ |C(s+\theta+\tau,s+\theta)-C(s+\tau,s)|
+ &\le B_L\sqrt{\Theta\mu([T-\Theta,\infty))},
+ \label{eq:uniform-late-clock-stationarity}\\
+ \sup_{s\ge T,\,|\theta|\le\Theta}|e_\beta(s+\theta)-e_\beta(s)|
+ &\le pA_p\sqrt{\Theta\mu([T-\Theta,\infty))}.
+ \label{eq:uniform-late-energy-flatness}
+\end{align}
+The three right sides tend to zero as $T\to\infty$ with $L$ and $\Theta$ fixed.
+\end{corollary}
+
+\begin{proof}
+For \eqref{eq:uniform-late-integrated-fdt}, we use \eqref{eq:fisher-global-row} on the row $t=s+\tau$ between $u=s$ and $v=t$, together with $C(t,t)=1$. Its right side is at most $\sqrt{\tau\mu([s,s+\tau])}\le\sqrt{L\mu([T,\infty))}$ by the Cauchy--Schwarz inequality. For \eqref{eq:uniform-late-clock-stationarity}, we apply \eqref{eq:ck-measure-waiting-shift} with $w_1$ and $w_2$ the smaller and the larger of $s$ and $s+\theta$. The interval $[w_1,w_2]$ has length $|\theta|\le\Theta$ and lies in $[T-\Theta,\infty)$, and the Cauchy--Schwarz inequality gives the bound as before. The proof of \eqref{eq:uniform-late-energy-flatness} is the same, using the increment bound $|e_\beta(v)-e_\beta(u)|\le pA_p\int_u^v\sqrt{a_F}$ from Step~6 of the proof of \cref{thm:fisher-clock}. The last assertion holds because $\mu([T,\infty))\to0$ as $T\to\infty$.
+\end{proof}
+
+\section{Stationary translated clusters}\label{sec:translated-clusters}
+
+Recall the translated kernels $C_T$, $R_T$, and $\lambda_T$ of \eqref{eq:translated-kernels}, with correlations considered on squares of offsets and responses only on closed causal triangles $\{a\ge b\}$. We say that a triple $(C_\infty,R_\infty,\lambda_\infty)$ is a \emph{translated cluster} if there exists a sequence $T_n\to\infty$ such that $C_{T_n}\to C_\infty$, $R_{T_n}\to R_\infty$, and $\lambda_{T_n}\to\lambda_\infty$ uniformly on compact sets of offsets in their respective domains.
+
+\begin{proposition}[Stationary FDT translated clusters]\label{prop:stationary-clusters}
+The translated family $(C_T,R_T,\lambda_T)$ is precompact for locally uniform convergence on compact offset sets. Every translated cluster has the form
+\[
+ C_\infty(a,b)=c(|a-b|),\qquad
+ R_\infty(a,b)=r(a-b)\quad(a\ge b),\qquad
+ \lambda_\infty(a)=\ell,
+\]
+where $\ell$ is a constant and
+\begin{equation}
+ c(0)=1,\qquad r(0)=1,\qquad c'=-r,\qquad
+ 0\le c\le1,\quad r\ge0.
+ \label{eq:cluster-fdt-properties}
+\end{equation}
+In particular, $c$ is nonincreasing, its limit $q=\lim_{\tau\to\infty}c(\tau)$ belongs to $[0,1)$, and $\int_0^\infty r(u)\,\dd u=1-q$. Along the same sequence $T_n$, the energy translates $e_\beta(T_n+a)$ converge locally uniformly to a constant $e_\infty$, and $\ell=1+p\beta e_\infty$. Moreover, $r$ is continuously differentiable on $[0,\infty)$ and satisfies the closed stationary response equation
+\begin{equation}
+ r'(\tau)=-\ell r(\tau)
+ +\beta^2p(p-1)\int_0^\tau c(\tau-u)^{p-2}r(\tau-u)r(u)\,\dd u.
+ \label{eq:stationary-cluster-response}
+\end{equation}
+\end{proposition}
+
+We call the triple $(c,r,\ell)$ of \cref{prop:stationary-clusters} a \emph{stationary cluster}, and $q$ its \emph{plateau}. Different sequences $T_n$ may a priori lead to different stationary clusters.
+
+\begin{proof}
+The proof has four steps. We first recall compactness. We then show that the correlation of every translated cluster is stationary, and that its response is stationary and satisfies FDT. Finally, we identify the multiplier and pass to the limit in the response equation. The order of limits is the same throughout: we have already taken the dimension limit in \cref{thm:fisher-clock}, the window of offsets is fixed, and only $T_n\to\infty$ varies.
+
+\paragraph{Step 1: compactness.}
+The precompactness of the translated family is proved in \cref{prop:response-compactness}. The bounds $0\le C_T\le1$ and $R_T\ge0$, the symmetry of $C_T$, and the diagonal values $C_T(a,a)=R_T(a,a)=1$ pass to every translated cluster.
+
+\paragraph{Step 2: stationarity of the correlation.}
+Fix a sequence $T_n\to\infty$ along which the translated family converges to a translated cluster $(C_\infty,R_\infty,\lambda_\infty)$. Let $a\ge b$ and $\theta$ be fixed offsets. We have
+\[
+ C_{T_n}(a+\theta,b+\theta)-C_{T_n}(a,b)=C(s_n+\theta+\tau,s_n+\theta)-C(s_n+\tau,s_n),
+\]
+where $s_n=T_n+b$ and $\tau=a-b$.
+Once $s_n\ge|\theta|$, we may apply \eqref{eq:uniform-late-clock-stationarity} with $L=\tau$, $\Theta=|\theta|$, and $T=s_n$, and its right side tends to zero because $s_n\to\infty$. We conclude that $C_\infty(a+\theta,b+\theta)=C_\infty(a,b)$. Let $c(\tau)=C_\infty(\tau,0)$ for $\tau\ge0$. Taking $\theta=-b$, we have $C_\infty(a,b)=c(a-b)$ for $a\ge b$, and by symmetry $C_\infty(a,b)=c(|a-b|)$. The function $c$ is continuous, $0\le c\le1$, and $c(0)=1$.
+
+\paragraph{Step 3: the response and FDT.}
+Let $a\ge b$. By \eqref{eq:uniform-late-integrated-fdt} with $s=T_n+b$, $\tau=a-b$, and $L=a-b$, we have
+\[
+ \Bigl|1-C_{T_n}(a,b)-\int_b^aR_{T_n}(a,u)\,\dd u\Bigr|\le\sqrt{(a-b)\,\mu([T_n+b,\infty))}\longrightarrow0.
+\]
+Since the response converges uniformly on the causal triangle containing the segment $\{(a,u):b\le u\le a\}$, we may pass to the limit inside the integral. This gives
+\[
+ \int_b^aR_\infty(a,u)\,\dd u=1-c(a-b).
+\]
+For $a=0$ and $b=-\tau$, this reads $1-c(\tau)=\int_{-\tau}^0R_\infty(0,u)\,\dd u$. As $R_\infty(0,\cdot\,)$ is continuous on $(-\infty,0]$, the function $c$ is continuously differentiable on $[0,\infty)$, with $c'(\tau)=-R_\infty(0,-\tau)$ and a one-sided derivative at $\tau=0$. Differentiating the general identity in $b$ with $a$ fixed, we have $R_\infty(a,b)=-c'(a-b)$ for $a\ge b$. We set $r=-c'$. Then $r$ is continuous and nonnegative, $r(0)=R_\infty(0,0)=1$, and $R_\infty(a,b)=r(a-b)$. This proves that the response is stationary and satisfies FDT; neither property was assumed.
+
+As $r\ge0$ and $c\ge0$, the function $c$ is nonincreasing and bounded below, and the limit $q$ exists. As $r$ is continuous with $r(0)=1$, there exists $\delta>0$ such that $r\ge1/2$ on $[0,\delta]$. Then $q\le c(\delta)\le1-\delta/2<1$. Integrating $c'=-r$ gives $\int_0^\infty r(u)\,\dd u=\lim_{\tau\to\infty}(1-c(\tau))=1-q$.
+
+\paragraph{Step 4: the multiplier and the response equation.}
+By \eqref{eq:energy-identity}, we have $e_\beta(t)=(\lambda(t)-1)/(p\beta)$ at every time $t$. Then $e_\beta(T_n+a)\to(\lambda_\infty(a)-1)/(p\beta)$ locally uniformly in $a$. For fixed offsets $a$ and $a'$, \eqref{eq:uniform-late-energy-flatness} with $s=T_n+a'$, $\theta=a-a'$, and $\Theta=|a-a'|$ implies that $e_\beta(T_n+a)-e_\beta(T_n+a')\to0$. The limit of the energy translates is therefore a constant $e_\infty$, and $\lambda_\infty$ is the constant $\ell=1+p\beta e_\infty$.
+
+Finally, we pass to the limit in the response equation. Fix $\tau\ge0$ and let $s=T_n$. Integrating \eqref{eq:ck-response} in its first variable from $s$ to $s+\tau$, using $R(s,s)=1$, and substituting $u=s+u'$ in the memory integral, we obtain
+\[
+\begin{aligned}
+ R(s+\tau,s)-1=\int_0^\tau\Bigl[&-\lambda(s+v)R(s+v,s)
+ +\beta^2p(p-1)\int_0^vC(s+v,s+u')^{p-2}\\
+ &\quad\times R(s+v,s+u')R(s+u',s)\,\dd u'\Bigr]\dd v.
+\end{aligned}
+\]
+Here we used $\xi''(x)=p(p-1)x^{p-2}$. All arguments of $C$, $R$, and $\lambda$ are translated times with offsets in $[0,\tau]$, in a fixed causal triangle. The memory integral of \eqref{eq:ck-response} runs only over times between the two observation times, and no other part of the history enters. By the locally uniform convergence along $T_n$, together with $C_\infty(a,b)=c(|a-b|)$, $R_\infty(a,b)=r(a-b)$, and $\lambda_\infty=\ell$, we find
+\[
+ r(\tau)=1+\int_0^\tau\Bigl[-\ell r(v)+\beta^2p(p-1)\int_0^vc(v-u)^{p-2}r(v-u)r(u)\,\dd u\Bigr]\dd v.
+\]
+The integrand is continuous in $v$, which implies that $r$ is continuously differentiable on $[0,\infty)$ and satisfies \eqref{eq:stationary-cluster-response}, with $r'(0)=-\ell$. This completes the proof.
+\end{proof}
+
+\Cref{prop:stationary-clusters} describes every translated cluster, but it does not determine the plateau $q$ or the multiplier $\ell$, it does not show that the whole translated family converges, and it says nothing about the correlation with a fixed early state. We answer these questions in \cref{sec:stationary-selection}, using the scalar equation of \cref{sec:scalar} and the causal covariance representation of \cref{sec:geometry-core}.
